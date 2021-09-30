@@ -1,7 +1,6 @@
 
 
 
-// initialize game
 void setup()
 {
   background(0);
