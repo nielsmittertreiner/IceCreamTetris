@@ -1,4 +1,4 @@
-class Block
+class Shapes
 {
   
 }
