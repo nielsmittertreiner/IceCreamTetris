@@ -2,6 +2,7 @@
 
 GameManager gameManager;
 UI ui;
+Animal animal;
 
 void setup()
 {
@@ -9,17 +10,21 @@ void setup()
   background(0);
   gameManager = new GameManager();
   ui = new UI();
+  animal = new Animal();
+  
 }
 
 // update all game objects
 void update()
 {
   ui.keyPressed();
+  animal.update();
 }
 
 // render all objects to screen
 void render()
 {
+  animal.draw();
 }
 
 // update and render game loop
