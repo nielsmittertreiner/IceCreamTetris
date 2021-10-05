@@ -1,0 +1,23 @@
+Ijsje ijsje; 
+
+
+
+void setup(){
+
+size(1600, 900);
+  
+  ijsje = new Ijsje(); 
+  
+}
+
+void draw(){
+
+background(8, 195, 250);
+
+}
+
+class Ijsje{ 
+
+
+
+}
