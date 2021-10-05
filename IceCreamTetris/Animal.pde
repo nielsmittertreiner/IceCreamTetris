@@ -1,4 +1,8 @@
 class Animal
 {
+    void update(){
+
+        
+    }
 
 }
