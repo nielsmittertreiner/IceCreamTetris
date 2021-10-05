@@ -1,35 +1,38 @@
 // initialize game
 
 GameManager gameManager;
+Grid grid;
 UI ui;
 Animal animal;
 
 void setup()
 {
-  size(1067, 600, P2D);
-  background(0);
-  gameManager = new GameManager();
-  ui = new UI();
-  animal = new Animal();
-  
+    size(1067, 600, P2D);
+    gameManager = new GameManager();
+    ui = new UI();
+    grid = new Grid(50, 50, 10);
+    grid.setState(1, 1, 1);
+    animal = new Animal();
 }
 
 // update all game objects
 void update()
 {
-  ui.keyPressed();
-  animal.update();
+    ui.keyPressed();
+    animal.update();
 }
 
 // render all objects to screen
 void render()
 {
-  animal.draw();
+    background(128);
+    animal.draw();
+    grid.draw();
 }
 
 // update and render game loop
 void draw()
 {
-  update();
-  render();
+    update();
+    render();
 }
