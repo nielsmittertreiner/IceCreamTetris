@@ -58,9 +58,6 @@ class Shapes {
 
   void draw() {
 
-    shape(shapes[0], 0, 0);
-    shape(shapes[1], 210, 210);
-    shape(shapes[2], 400, 350);
-    shape(shapes[3], 410, 0);
+    
   }
 }
