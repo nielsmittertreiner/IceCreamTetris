@@ -12,11 +12,11 @@ class Shapes {
     shapes[0].noStroke();
     shapes[0].fill(126, 69, 8);
     shapes[0].vertex(0, 0);
-    shapes[0].vertex(200, 0);
-    shapes[0].vertex(200, 50);
-    shapes[0].vertex(50, 50);
-    shapes[0].vertex(50, 100);
-    shapes[0].vertex(0, 100);
+    shapes[0].vertex(225, 0);
+    shapes[0].vertex(225, 75);
+    shapes[0].vertex(75, 75);
+    shapes[0].vertex(75, 150);
+    shapes[0].vertex(0, 150);
     shapes[0].endShape(CLOSE);
 
     shapes[1] = createShape();
@@ -25,8 +25,8 @@ class Shapes {
     shapes[1].fill(126, 69, 8);
     shapes[1].vertex(0, 0);
     shapes[1].vertex(150, 0);
-    shapes[1].vertex(150, 50);
-    shapes[1].vertex(0, 50);
+    shapes[1].vertex(150, 75);
+    shapes[1].vertex(0, 75);
     shapes[1].endShape(CLOSE);
 
     shapes[2] = createShape();
@@ -34,9 +34,9 @@ class Shapes {
     shapes[2].noStroke();
     shapes[2].fill(126, 69, 8);
     shapes[2].vertex(0, 0);
-    shapes[2].vertex(50, 0);
-    shapes[2].vertex(50, 50);
-    shapes[2].vertex(0, 50);
+    shapes[2].vertex(75, 0);
+    shapes[2].vertex(75, 75);
+    shapes[2].vertex(0, 75);
     shapes[2].endShape(CLOSE);
 
     shapes[3] = createShape();
@@ -44,13 +44,13 @@ class Shapes {
     shapes[3].noStroke();
     shapes[3].fill(126, 69, 8);
     shapes[3].vertex(0, 0);
-    shapes[3].vertex(50, 0);
-    shapes[3].vertex(50, 50);
-    shapes[3].vertex(100, 50);
-    shapes[3].vertex(100, 100);
-    shapes[3].vertex(-50, 100);
-    shapes[3].vertex(-50, 50);
-    shapes[3].vertex(0, 50);
+    shapes[3].vertex(75, 0);
+    shapes[3].vertex(75, 75);
+    shapes[3].vertex(150, 75);
+    shapes[3].vertex(150, 150);
+    shapes[3].vertex(-75, 150);
+    shapes[3].vertex(-75, 75);
+    shapes[3].vertex(0, 75);
     shapes[3].endShape(CLOSE);
   }
   void update() {
@@ -61,6 +61,6 @@ class Shapes {
     shape(shapes[0], 0, 0);
     shape(shapes[1], 210, 210);
     shape(shapes[2], 400, 350);
-    shape(shapes[3], 410,0);
+    shape(shapes[3], 410, 0);
   }
 }
