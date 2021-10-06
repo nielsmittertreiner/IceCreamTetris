@@ -40,18 +40,14 @@ class Animal
     
     
     void checkPass(int count) {
-
-                 if (blockX <= xAnimal + count * space  && blockX >= xAnimal - 25) {
-
-            moveAnimal();
-            
+   
 
         }
         
         
         
         
-    }
+    
     void drawAnimal(int animal,int count) {
         image(animals[animal], xAnimal + count * space, yAnimal);
         fill(255,255,255,20);

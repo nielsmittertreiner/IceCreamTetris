@@ -10,7 +10,7 @@ void setup()
     size(1067, 600, P2D);
     gameManager = new GameManager();
     ui = new UI();
-    grid = new Grid(50, 50, 10);
+    grid = new Grid(25, 15, 50);
     grid.setState(1, 1, 1);
     animal = new Animal();
 }
