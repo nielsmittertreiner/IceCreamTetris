@@ -1,63 +1,58 @@
-PShape [] shapes= new PShape[4];
-
-
 
 class Shapes {
 
+  int[][] tilePyramide = {
+    {0, 0, 1}, 
+    {0, 1, 1}, 
+    {0, 0, 1}, };
+  int[][] tileSnake = {
+    {1, 1, 0}, 
+    {0, 1, 0}, 
+    {0, 1, 1}, };
+  int[][] tileLShape = {
+    {1, 1, 1}, 
+    {0, 0, 1}, 
+    {0, 0, 0} };
+  int[][] tilePlus = {
+    {0, 1, 0}, 
+    {1, 1, 1}, 
+    {0, 1, 0}, };
+  int[][] tileSqaure ={
+    {0, 0, 0}, 
+    {0, 1, 0}, 
+    {0, 0, 0} };
+  int[][] tileRectangle={
+    {0, 0, 0}, 
+    {0, 1, 0}, 
+    {0, 0, 0} };
 
-  Shapes() { 
-    noStroke();
-    shapes[0] = createShape();
-    shapes[0].beginShape();
-    shapes[0].noStroke();
-    shapes[0].fill(126, 69, 8);
-    shapes[0].vertex(0, 0);
-    shapes[0].vertex(225, 0);
-    shapes[0].vertex(225, 75);
-    shapes[0].vertex(75, 75);
-    shapes[0].vertex(75, 150);
-    shapes[0].vertex(0, 150);
-    shapes[0].endShape(CLOSE);
+  int tileSize;
+  Shapes() {
 
-    shapes[1] = createShape();
-    shapes[1].beginShape();
-    shapes[1].noStroke();
-    shapes[1].fill(126, 69, 8);
-    shapes[1].vertex(0, 0);
-    shapes[1].vertex(150, 0);
-    shapes[1].vertex(150, 75);
-    shapes[1].vertex(0, 75);
-    shapes[1].endShape(CLOSE);
 
-    shapes[2] = createShape();
-    shapes[2].beginShape();
-    shapes[2].noStroke();
-    shapes[2].fill(126, 69, 8);
-    shapes[2].vertex(0, 0);
-    shapes[2].vertex(75, 0);
-    shapes[2].vertex(75, 75);
-    shapes[2].vertex(0, 75);
-    shapes[2].endShape(CLOSE);
-
-    shapes[3] = createShape();
-    shapes[3].beginShape();
-    shapes[3].noStroke();
-    shapes[3].fill(126, 69, 8);
-    shapes[3].vertex(0, 0);
-    shapes[3].vertex(75, 0);
-    shapes[3].vertex(75, 75);
-    shapes[3].vertex(150, 75);
-    shapes[3].vertex(150, 150);
-    shapes[3].vertex(-75, 150);
-    shapes[3].vertex(-75, 75);
-    shapes[3].vertex(0, 75);
-    shapes[3].endShape(CLOSE);
+    tileSize = 75;
   }
-  void update() {
-  }
-
   void draw() {
-
-    
+    noStroke();
+    fill(183, 121, 6);
+    //for (int x=0; x<3; x++) {
+      //for (int y=0; y<3; y++) {
+       // if (tilePyramide[x][y] ==1) {
+          rect(x*tileSize, y*tileSize, tileSize, tileSize);
+        }
+       // if (tilePlus[x][y] ==1) {
+          rect(x*tileSize+500, y*tileSize+500, tileSize, tileSize);
+        } 
+      //  if (tileLShape[x][y] ==1) {
+          rect(x*tileSize+500, y*tileSize, tileSize, tileSize);
+        }    
+      //  if (tileSqaure[x][y] ==1) {
+          rect(x*tileSize+600, y*tileSize, tileSize, tileSize);
+        }   
+      //  if (tileSnake[x][y] ==1) {
+          rect(x*tileSize+600, y*tileSize+300, tileSize, tileSize);
+        }
+      }
+    }
   }
 }
