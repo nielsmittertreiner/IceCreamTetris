@@ -21,7 +21,7 @@ void setup()
 void update()
 {
   ui.pause();
-  if (!gameManager.paused)
+  if (gameManager.gameState == 1)
   {
     ui.keyImput();
     animal.update();
@@ -32,9 +32,15 @@ void update()
 void render()
 {
   background(128);
-  animal.draw();
-  grid.draw();
-  ui.draw();
+  if (gameManager.gameState == 0){
+  ui.drawMenu();
+  } else if (gameManager.gameState == 1) {  
+    animal.draw();
+    grid.draw();
+    ui.drawGame();
+  } else if (gameManager.gameState == -1) {
+    ui.drawPaused();
+  }
 }
 
 // update and render game loop

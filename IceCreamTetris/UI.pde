@@ -4,19 +4,21 @@ class UI
 
   void pause() {
     if (keyCode == BACKSPACE && keyPressed) {
-      gameManager.paused = !gameManager.paused;
+      gameManager.gameState *= -1;
       keyCode = TAB;
+    } else if (keyCode == ENTER && gameManager.gameState == 0){
+      gameManager.gameState = 1;
     }
   }
 
   void keyImput() {
     //add 2 to Score by pressing m, take 2 away by pressing l
     if (key == 'm' && keyPressed) {
-      gameManager.setScore(2);
+      gameManager.addScore(2);
       key = 'q';
     } 
     if (key == 'l' && keyPressed) {
-      gameManager.setScore(-2);
+      gameManager.addScore(-2);
       key = 'q';
     }
 
@@ -32,13 +34,21 @@ class UI
       key = 'q';
     }
   }
-  void draw() {
+  void drawGame() {
     textSize(textSize);
     fill(asset.red);
     text("SCORE: " + gameManager.score, textDistance, textSize);
-    if (gameManager.paused) {
-      fill(asset.white);
-      text("-PAUSED-", textDistance, 2*textSize);
-    }
+  }
+  void drawPaused() {
+    textSize(textSize);
+    fill(asset.red);
+    text("SCORE: " + gameManager.score, textDistance, textSize);
+    fill(asset.white);
+    text("-PAUSED-", textDistance, 2*textSize);
+  }
+  void drawMenu() {
+    textSize(textSize);
+    fill(asset.white);
+    text("press enter to play", textDistance, textSize);
   }
 }

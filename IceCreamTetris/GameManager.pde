@@ -1,9 +1,10 @@
 class GameManager
 {
+  //-1 = paused, 0 = starting menu, 1 = game
+  int gameState = 0;
   int score = 0, difficulty = 0;
-  boolean paused;
 
-  void setScore(int scoreAdded) {
+  void addScore(int scoreAdded) {
     score += scoreAdded;
     if (score < 0) {
       score = 0;
@@ -11,12 +12,12 @@ class GameManager
   }
 
   void setDifficulty(int difficultyAdded) {
-      difficulty += difficultyAdded;
+    difficulty += difficultyAdded;
   }
 
   void reset() {
     difficulty = 0;
     score = 0;
-    paused = false;
+    gameState = 0;
   }
 }
