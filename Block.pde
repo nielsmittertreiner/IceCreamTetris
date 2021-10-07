@@ -5,7 +5,11 @@ class Shapes {
     {0, 0, 1}, 
     {0, 1, 1}, 
     {0, 0, 1}, };
-    int[][] tileStair = {
+  int[][] tileCShape = {
+    {1, 1, 1}, 
+    {1, 0, 1}, 
+    {0, 0, 0}, };
+  int[][] tileStair = {
     {0, 0, 0}, 
     {0, 1, 1}, 
     {0, 0, 1}, };
@@ -62,6 +66,9 @@ class Shapes {
         } // eerste difulcultie
      //   if (tileRectangle[x][y] ==1) {
       //    rect(x*tileSize+0, y*tileSize+300, tileSize, tileSize);
+        }// tweede difulcultie
+       //  if (tileCShape[x][y] ==1) {
+        //  rect(x*tileSize+100, y*tileSize+500, tileSize, tileSize);
         }
       }
     }
