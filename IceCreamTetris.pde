@@ -12,6 +12,8 @@ void setup()
     ui = new UI();
     grid = new Grid(25, 15, 50);
     grid.setState(1, 1, 1);
+    grid.setState(5, 5, 1);
+    grid.setState(10, 10, 1);
     animal = new Animal();
 }
 
