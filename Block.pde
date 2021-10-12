@@ -38,7 +38,9 @@ class Shapes {
   Shapes()
   {
     tileSize = 75;
-  }  void keyPressed() {  
+  } 
+/*
+  void keyPressed() {  
     if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
     keysPressed[keyCode] = true; // set its boolean to true
     if (keyPressed) {
@@ -92,70 +94,6 @@ class Shapes {
         tilePyramide[1][1] = 1;
         tilePyramide[1][2] = 0;
         tilePyramide[2][0] = 0;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 0;
-        key = 'k';
-      }
-    }
-  }
-/*
-  void keyReleased() {
-    if (keyCode >= KEY_LIMIT) return;
-    keysPressed[keyCode] = false;
-    void keyPressed() {  
-    if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
-    keysPressed[keyCode] = true; // set its boolean to true
-    if (keyPressed) {
-      if (key== 'a') {
-        tilePyramide[0][0] = 0;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 0;
-        tilePyramide[1][0] = 0;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 0;
-        tilePyramide[2][0] = 1;
-        tilePyramide[2][1] = 1;
-        tilePyramide[2][2] = 1;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'b') {
-        tilePyramide[0][0] = 1;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 0;
-        tilePyramide[1][0] = 1;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 0;
-        tilePyramide[2][0] = 1;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 0;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'x') {
-        tilePyramide[0][0] = 0;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 1;
-        tilePyramide[1][0] = 0;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 1;
-        tilePyramide[2][0] = 0;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 1;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'y') {
-        tilePyramide[0][0] = 1;
-      tilePyramide[0][1] = 1;
-       tilePyramide[0][2] = 1;
-        tilePyramide[1][0] = 0;
-       tilePyramide[1][1] = 1;
-       tilePyramide[1][2] = 0;
-       tilePyramide[2][0] = 0;
         tilePyramide[2][1] = 0;
         tilePyramide[2][2] = 0;
         key = 'k';
