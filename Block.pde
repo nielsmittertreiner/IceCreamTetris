@@ -43,6 +43,20 @@ class Shapes {
   void keyPressed() {  
     if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
     keysPressed[keyCode] = true; // set its boolean to true
+     if (keyPressed) {
+      if (key== 'a') {
+        tileChozen[0][0] = tileCurrent[2][0];
+        tileChozen[0][1] = tileCurrent[1][0];
+        tileChozen[0][2] = tileCurrent[0][0];
+        tileChozen[1][0] = tileCurrent[2][1];
+        tileChozen[1][1] = tileCurrent[1][1];
+        tileChozen[1][2] = tileCurrent[0][1];
+        tileChozen[2][0] = tileCurrent[2][2];
+        tileChozen[2][1] = tileCurrent[1][2];
+        tileChozen[2][2] = tileCurrent[0][2];
+        key = 'k';
+      }
+    }
     if (keyPressed) {
       if (key== 'a') {
         tilePyramide[0][0] = 0;
