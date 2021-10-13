@@ -1,11 +1,13 @@
 class GameManager
 {
-  int highscore = 0, difficulty = 0;
+  //-1 = paused, 0 = starting menu, 1 = game
+  int gameState = 0;
+  int score = 0, difficulty = 0;
 
-  void setHighscore(int highscoreAdded) {
-    highscore += highscoreAdded;
-    if (highscore < 0) {
-      highscore = 0;
+  void addScore(int scoreAdded) {
+    score += scoreAdded;
+    if (score < 0) {
+      score = 0;
     }
   }
 
@@ -15,6 +17,7 @@ class GameManager
 
   void reset() {
     difficulty = 0;
-    highscore = 0;
+    score = 0;
+    gameState = 0;
   }
 }
