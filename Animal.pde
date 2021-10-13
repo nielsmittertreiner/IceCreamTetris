@@ -1,71 +1,82 @@
 class Animal
 {
-    PImage[] animals = new PImage[5];
-    int xAnimal = 100, yAnimal = 500;
-    int yVel = 1;
+    PImage graphic = new PImage();
+    int xAnimal, yAnimal = 500;
+    int yVel = 0;
     int space = 100;
-    int blockX, blockY;
     int xPath = xAnimal;
-    int animalCount = 4;
-    boolean pass = false;
+    String[] filepaths = new String[5];
+    AnimalSystem animalsystem;
+    Grid grid;
     
-    Animal() {
-        animals[0] = loadImage("img/cow.png"); 
-        animals[1] = loadImage("img/sheep.png");   
-        animals[2] = loadImage("img/chicken.png");   
-        animals[3] = loadImage("img/pig.png");   
-        animals[4] = loadImage("img/horse.png");  
-        
-    }
-      
-    void update() {
-        blockX = mouseX - 25;
-        blockY = mouseY - 25;       
-    }
-    
-    void draw() {
-
-        fill(255);
-        AnimalBlock();
-        for (int i = 0; i < animalCount; ++i) {
-            drawAnimal(i,i); 
-            checkPass(0 ,i); 
-        }
+    Animal(int animal) 
+    {
+        filepaths[0] = "img/cow.png";
+        filepaths[1] = "img/sheep.png";
+        filepaths[2] = "img/horse.png";
+        filepaths[3] = "img/chicken.png";
+        filepaths[4] = "img/pig.png";
         
         
+        graphic = loadImage(filepaths[animal]);
     }
     
-    void checkPass( int x, int count) {
-        if ( x == 1) {
-            pass = true;
+    void update() 
+    {   
+        if (mouseX >= xAnimal && mouseX <= xAnimal +graphic.width) {
+            yAnimal -= 1;
+            println("Noooo");
         }
-        else{
-            pass = false;
-        }
-    }
-
-    void drawAnimal(int animal,int count) {
-                moveAnimal();
-        image(animals[animal], xAnimal + count * space, yAnimal);
-        fill(255,255,255,20);
-        rect(xPath + count * space,0,30,height); 
-        
-    }
-    
-    void moveAnimal() {
-        if (pass == true) {
-            yAnimal -= yVel;
-        }
-        if (pass == false) {
+        else
+        {
             yAnimal = yAnimal;
             
-        }
+            println("Yeees");
+        }  
     }
     
-    void AnimalBlock() {
-        rect(blockX,blockY,50,50);
+    // boolean checkPass() {
+    
+    
+    //     if (grid.isRowFull(5)) 
+    //         {
+    //         return true;
+    //     }
+    
+    //     return false;
+// }
+    
+    
+    
+    // void moveAnimal() 
+    //  {
+    
+    //  if (checkPass() == true) 
+    //  {
+    //  yAnimal -= 1;
+    //  }
+    //  else
+    //  {
+    //  yAnimal = yAnimal;
+    
+    //  }
+//     }
+    
+    void draw() 
+    {
+        
+        fill(255);
+        drawAnimal();      
         
         
+    }
+    
+    void drawAnimal() 
+    {
+        image(graphic, xAnimal, yAnimal);
+        fill(255,255,255,20);
+        rect(xPath ,0,30,height); 
+        // moveAnimal();   
     }
 }
 
