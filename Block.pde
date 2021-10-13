@@ -1,5 +1,26 @@
+final int TILE_PYRAMID   = 0;
+final int TILE_C_SHAPE   = 1;
+final int TILE_STAIRS    = 2;
+final int TILE_SNAKE     = 3;
+final int TILE_L_SHAPE   = 4;
+final int TILE_PLUS      = 5;
+final int TILE_SQUARE    = 6;
+final int TILE_RECTANGLE = 7;
+
 
 class Shapes {
+
+    int[][][] tileSet = 
+    {
+        TILE_PYRAMID = {
+            {0, 0, 1}, 
+            {0, 1, 1}, 
+            {0, 0, 1},
+        },
+        TILE_C_SHAPE = {
+
+        },
+    }
 
   int[][] tilePyramide = {
     {0, 0, 1}, 
