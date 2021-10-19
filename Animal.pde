@@ -24,10 +24,8 @@ class Animal
     }
     
     
-    
     void draw() 
     {
-        
         fill(255);
         drawAnimal();      
         

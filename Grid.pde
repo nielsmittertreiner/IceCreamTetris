@@ -29,7 +29,7 @@ class Grid
         return true;
     }
 
-    public boolean removeRow(int x) {
+    public void removeRow(int x) {
         for(int y = 0; y < grid.length; y++) {
             grid[y][x] = 0;
         }
