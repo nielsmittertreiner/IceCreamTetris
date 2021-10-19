@@ -8,15 +8,15 @@ final int TILE_SQUARE    = 6;
 final int TILE_RECTANGLE = 7;
 
 
-class Shapes {
+class Piece {
 
     int[][][] tileSet = 
     {
         TILE_PYRAMID = 
         {
-            {0, 0, 1}, 
-            {0, 1, 1}, 
-            {0, 0, 1},
+           {0, 0, 1}, 
+           {0, 1, 1}, 
+           {0, 0, 1},
         },
         TILE_C_SHAPE = 
         {
@@ -63,7 +63,7 @@ class Shapes {
     }
 
   int tileSize;
-  Shapes()
+  Piece()
   {
     tileSize = 75;
   } 

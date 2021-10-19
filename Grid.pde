@@ -20,22 +20,22 @@ class Grid
     
     
     public boolean isRowFull(int x) {
-        
-        for (int y = 0; y < grid.length; y++) {
-            
-            if (grid[y][x] == 0) {
-                
+        for (int y = 0; y < grid.length; y++) {   
+            if (grid[y][x] == 0) {  
                 return false;
-                
             }
-            
         }
         
-        
-        
         return true;
-        
     }
+
+    public boolean removeRow(int x) {
+        for(int y = 0; y < grid.length; y++) {
+            grid[y][x] = 0;
+        }
+    }
+
+
     public void setTileColor(int r, int g, int b) {
         tileColor[0] = r;
         tileColor[1] = g;
