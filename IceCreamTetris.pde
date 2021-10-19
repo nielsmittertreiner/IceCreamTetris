@@ -6,30 +6,23 @@ Grid grid;
 UI ui;
 AnimalSystem animalsystem;
 Animal animal;
-
 void setup()
 {
     size(1067, 600, P2D);
     asset = new Asset();
     gameManager = new GameManager();
     ui = new UI();
-    grid = new Grid(25, 15, 50);
-    grid.setState(5, 1, 1);
-    grid.setState(5, 2, 1);
-    grid.setState(5, 3, 1);
-    grid.setState(5, 4, 1);
-    grid.setState(5, 5, 1);
-    grid.setState(5, 6, 1);
-    grid.setState(5, 7, 1);
-    grid.setState(5, 8, 1);
-    grid.setState(5, 9, 1);
-    grid.setState(5, 10, 1);
-    grid.setState(5, 11, 1);
-    grid.setState(5, 12, 1);
-    grid.setState(5, 13, 1);
-    grid.setState(5, 14, 1);
-
-    grid.setState(10, 10, 1);
+    grid = new Grid(5, 8, 100);
+    
+    grid.setState(1, 0, 1);
+    grid.setState(1, 1, 1);
+    grid.setState(1, 2, 1);
+    grid.setState(1, 3, 1);
+    grid.setState(1, 4, 1);
+    grid.setState(1, 5, 1);
+    grid.setState(1, 6, 1);
+    grid.setState(1, 7, 1);
+    
     animalsystem = new AnimalSystem();
     
 }
@@ -39,6 +32,13 @@ void update()
 {
     ui.keyPressed();
     ui.pause();
+
+    // checks if grid is full and moves the animal.
+    for (int i = 0; i < 5; ++i) { 
+        if (grid.isRowFull(i)) {
+            animalsystem.moveAnimal(i);       
+        }
+}
     if (gameManager.gameState == 1)
         {
         ui.keyImput();
@@ -56,22 +56,22 @@ void render()
 
 
 // update and render game loop
-    {
-    background(128);
-    if (gameManager.gameState == 0) {
-        ui.drawMenu();
-    } else if (gameManager.gameState == 1) {  
-        animal.draw();
-        grid.draw();
-        ui.drawGame();
-        } else if (gameManager.gameState == -1) {
-        ui.drawPaused();
-        }
-    }
+// {
+// background(128);
+// if (gameManager.gameState == 0) {
+//     ui.drawMenu();
+// } else if (gameManager.gameState == 1) {  
+//     animal.draw();
+//     grid.draw();
+//     ui.drawGame();
+//     } else if (gameManager.gameState == -1) {
+//     ui.drawPaused();
+//     }
+// }
 
 // update and rendergame loop
 void draw()
     {
     update();
     render();
-    }
+}
