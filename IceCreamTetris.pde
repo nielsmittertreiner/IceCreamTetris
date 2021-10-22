@@ -11,12 +11,12 @@ void setup()
     asset = new Asset();
     gameManager = new GameManager();
     ui = new UI();
-    grid = new Grid(8, 5, 100);
-    grid.setState(1, 0, 1);
-    grid.setState(1, 1, 1);
-    grid.setState(1, 2, 1);
-    grid.setState(1, 3, 1);
-    grid.setState(1, 4, 1);
+    grid = new Grid(9, 5, 100);
+    grid.setState(2, 0, 1);
+    grid.setState(2, 1, 1);
+    grid.setState(2, 2, 1);
+    grid.setState(2, 3, 1);
+    grid.setState(2, 4, 1);
     
     animalsystem = new AnimalSystem();
     
@@ -25,31 +25,35 @@ void setup()
 // update all game objects
 void update()
 {
-    ui.keyPressed();
+    // ui.keyPressed();
     ui.pause();
 
     // checks if grid is full and moves the animal.
     for (int i = 0; i < 5; ++i) { 
-        if (grid.isRowFull(i)) {
+        if (grid.isRowFull(i)) 
+        {
             animalsystem.moveAnimal(i);    
         }
-        if (animalsystem.checkpassed(i) == true) {
+        if (animalsystem.checkpassed(i) == true) 
+        {
                 grid.removeRow(i);
-                
-                
+    animalsystem.respawnanimal(i); 
+    
             } 
+    
 }
+animalsystem.update();
     if (gameManager.gameState == 1)
         {
         ui.keyImput();
-        animal.update();
+        // animal.update();
     }
 }
 
 // render all objects to screen
 void render()
 {
-    
+    background(100,100,100);
     grid.draw();
     animalsystem.run();
 }

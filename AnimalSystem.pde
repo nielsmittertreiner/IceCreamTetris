@@ -1,9 +1,8 @@
 private int ANIMALS_USED = 5;
 private int SPACE = 100;
-private int HEIGHT = 50;
+private int MOVETOTHERIGHT= 100;
 public int animalscount;
 
-boolean animalpassed = false;
 
 
 class AnimalSystem
@@ -19,16 +18,18 @@ class AnimalSystem
         for (int i = 0; i < ANIMALS_USED; ++i) 
         {
             animaltemp = new Animal(i);
-            animaltemp.xAnimal = i * SPACE + HEIGHT;
+            animaltemp.yAnimal = height - 100;
+            animaltemp.xAnimal = i * SPACE + MOVETOTHERIGHT;
             animals.add(animaltemp);
         }
     }
     
-    public boolean checkpassed(int animal) {
+    public boolean checkpassed(int animal)
+    {
+        
         // resets the animal after it disappears from the screen and gives it a value that it has passed the gap.
         if (animals.get(animal).yAnimal + animals.get(animal).graphic.height <= 0) {
-             animals.get(animal).yAnimal = 500;
-             return true;           
+            return true;           
         }
         
         return false;
@@ -40,14 +41,24 @@ class AnimalSystem
     
     
     // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
-    void moveAnimal(int animal) {
+    void moveAnimal(int animal) 
+    {
         animals.get(animal).yAnimal -= 5;
-        
         
     }
     
-    void update() {
+
+     void respawnanimal(int animal)
+    {
+         animals.get(animal).yAnimal = height - 100;
+       
+
         
+    }
+
+
+    void update()   
+    {
     }
     
     
@@ -57,13 +68,16 @@ class AnimalSystem
         for (animalscount = 0; animalscount < ANIMALS_USED; animalscount++) 
         {
             Animal animal = animals.get(animalscount);
-            
             animal.draw();
+
+
+
         }
+
     }
-
-
- 
+    
+    
+    
     
     
     
