@@ -1,29 +1,69 @@
-final int ANIMAL_COUNT = 5;
+private int ANIMALS_USED = 5;
+private int SPACE = 100;
+private int MOVETOTHERIGHT= 100;
+public int animalscount;
+
 
 
 class AnimalSystem
-{ 
-    ArrayList<Animal> animals;
+{ ArrayList<Animal> animals;
+    
+    Animal animaltemp;
     
     AnimalSystem()
     {
-        Animal animaltemp;
+        
+        //puts animals in the Arraylist with position.
         animals = new ArrayList<Animal>();   
-        for (int i = 0; i < ANIMAL_COUNT; ++i) 
+        for (int i = 0; i < ANIMALS_USED; ++i) 
         {
             animaltemp = new Animal(i);
-            animaltemp.xAnimal = i * 100 + 50;
+            animaltemp.yAnimal = height - 100;
+            animaltemp.xAnimal = i * SPACE + MOVETOTHERIGHT;
             animals.add(animaltemp);
         }
     }
     
+    public boolean checkpassed(int animal)
+    {
+        // resets the animal after it disappears from the screen and gives it a value that it has passed the gap.
+        if (animals.get(animal).yAnimal + animals.get(animal).graphic.height <= 0)
+        {
+            return true;           
+        }
+        return false;
+    }
+    
+    // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
+    void moveAnimal(int animal) 
+    {
+        animals.get(animal).yAnimal -= 5;
+        
+    }
+
+    void respawnanimal(int animal)
+    {
+         animals.get(animal).yAnimal = height - 100;
+       
+
+        
+    }
+
+    void update()   
+    {
+
+    }
+    
     void run()
     {
-        for (int i = 0; i < animals.size(); ++i) 
+        //Draws the animals from animal.pde with the right count.
+        for (animalscount = 0; animalscount < ANIMALS_USED; animalscount++) 
         {
-            Animal animal = animals.get(i);  
-            animal.update();
+            Animal animal = animals.get(animalscount);
             animal.draw();
+
+
+
         }
-    }    
+    }
 }
