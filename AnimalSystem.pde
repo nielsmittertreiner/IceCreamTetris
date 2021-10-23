@@ -2,8 +2,8 @@ final int ANIMAL_COUNT = 5;
 
 
 class AnimalSystem
-{ ArrayList<Animal> animals;
-    
+{ 
+    ArrayList<Animal> animals;
     
     AnimalSystem()
     {
@@ -25,13 +25,5 @@ class AnimalSystem
             animal.update();
             animal.draw();
         }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
+    }    
 }

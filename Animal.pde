@@ -25,13 +25,13 @@ class Animal
     {   
         if (mouseX >= xAnimal && mouseX <= xAnimal +graphic.width) {
             yAnimal -= 1;
-            println("Noooo");
+            //println("Noooo");
         }
         else
         {
             yAnimal = yAnimal;
             
-            println("Yeees");
+            //println("Yeees");
         }  
     }
     
