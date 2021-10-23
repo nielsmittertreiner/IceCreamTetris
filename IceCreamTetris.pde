@@ -13,16 +13,19 @@ void setup()
     asset = new Asset();
     gameManager = new GameManager();
     ui = new UI();
-    grid = new Grid(9, 5, 100);
-    grid.setState(2, 0, 1);
-    grid.setState(2, 1, 1);
-    grid.setState(2, 2, 1);
-    grid.setState(2, 3, 1);
-    grid.setState(2, 4, 1);
-    
+    grid = new Grid(75, 50, 10);
+    // grid.setState(2, 0, 1);
+    // grid.setState(2, 1, 1);
+    // grid.setState(2, 2, 1);
+    // grid.setState(2, 3, 1);
+    // grid.setState(2, 4, 1);
+
+
     animalsystem = new AnimalSystem();
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
+
+    grid.addPiece(currentPiece, 10, 10);
 }
 
 // update all game objects
@@ -37,15 +40,16 @@ void update()
         {
             animalsystem.moveAnimal(i);    
         }
+
         if (animalsystem.checkpassed(i) == true) 
         {
-                grid.removeRow(i);
-    animalsystem.respawnanimal(i); 
-    
-            } 
-    
-}
-animalsystem.update();
+            grid.removeRow(i);
+            animalsystem.respawnanimal(i); 
+        } 
+    }
+
+    animalsystem.update();
+
     if (gameManager.gameState == 1)
     {
         ui.keyImput();

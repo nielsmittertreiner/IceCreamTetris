@@ -19,7 +19,7 @@ class Grid
     }
     
     
-    public boolean isRowFull(int x) {
+    boolean isRowFull(int x) {
         for (int y = 0; y < grid.length; y++) {   
             if (grid[y][x] == 0) {  
                 return false;
@@ -29,50 +29,54 @@ class Grid
         return true;
     }
 
-    public void removeRow(int x) {
+    void removeRow(int x) {
         for(int y = 0; y < grid.length; y++) {
             grid[y][x] = 0;
         }
     }
 
 
-    public void setTileColor(int r, int g, int b) {
+    void setTileColor(int r, int g, int b) {
         tileColor[0] = r;
         tileColor[1] = g;
         tileColor[2] = b;
     }
     
-    public void setBackgroundColor(int r, int g, int b) {
+    void setBackgroundColor(int r, int g, int b) {
         backgroundColor[0] = r;
         backgroundColor[1] = g;
         backgroundColor[2] = b;
     }
     
-    public void setStrokeColor(int r, int g, int b) {
+    void setStrokeColor(int r, int g, int b) {
         strokeColor[0] = r;
         strokeColor[1] = g;
         strokeColor[2] = b;
     }
     
-    public void setOpacity(int alpha) {
+    void setOpacity(int alpha) {
         opacity = alpha;
     }
     
-    /**
-    * Sets the state of a grid cell
-    */
-    public void setState(int x, int y, int state) {
+    void addPiece(Piece newPiece, int posX, int posY) {
+        int[][] piece = newPiece.piece;
+
+        for(int y = 0; y < piece.length; y++) {
+            for(int x = 0; x < piece[y].length; x++) {
+                grid[y + posY][x + posX] = piece[y][x];
+            }
+        }
+    }
+
+    void setState(int x, int y, int state) {
         grid[y][x] = state;
     }
-    
-    /** 
-    * Returns the state of the grid cell
-    */
-    public int getState(int x, int y) {
+
+    int getState(int x, int y) {
         return grid[y][x];
     }
     
-    public void draw() {
+    void draw() {
         stroke(strokeColor[0], strokeColor[1], strokeColor[2], opacity);
         
         // Draw grid box
