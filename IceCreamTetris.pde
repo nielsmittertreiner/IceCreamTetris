@@ -22,7 +22,7 @@ void setup()
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
 
-    grid.addPiece(currentPiece, 10, 10);
+    grid.addPiece(currentPiece, 10, 4);
 }
 
 // update all game objects

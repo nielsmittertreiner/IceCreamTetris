@@ -68,6 +68,12 @@ class Grid
         }
     }
 
+    void getRowPosition(int rowX) {
+        int gridWidth = grid[0].length * cellSize;
+        int boxOffsetX = width / 2 - gridWidth / 2;
+        return boxOffsetX + rowX * cellSize;
+    }
+
     void setState(int x, int y, int state) {
         grid[y][x] = state;
     }
