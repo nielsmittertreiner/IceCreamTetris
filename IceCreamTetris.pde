@@ -18,7 +18,7 @@ void setup()
     grid = new Grid(20, 9, 80);
     grid.setState(0,0,1);
     grid.setState(1,1,1);
-    animalsystem = new AnimalSystem();
+    animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
 
