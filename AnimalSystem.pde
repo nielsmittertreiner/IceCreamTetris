@@ -7,10 +7,12 @@ class AnimalSystem
 { ArrayList<Animal> animals;
     
     Animal animaltemp;
+    Grid grid;
     
-    AnimalSystem()
+    AnimalSystem(Grid grid)
     {
-        
+        this.grid = grid;
+
         //puts animals in the Arraylist with position.
         animals = new ArrayList<Animal>();   
         for (int i = 0; i < ANIMALS_USED; ++i) 
