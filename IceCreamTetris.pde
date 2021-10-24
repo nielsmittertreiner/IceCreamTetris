@@ -6,21 +6,18 @@ UI ui;
 AnimalSystem animalsystem;
 Piece currentPiece;
 Piece nextPiece;
+PImage ground;
 
 void setup()
 {
-    size(1067, 600, P2D);
+    size(1600, 900, P2D);
+    ground = loadImage("img/ground.jpg");
     asset = new Asset();
     gameManager = new GameManager();
     ui = new UI();
-    grid = new Grid(75, 50, 10);
-    // grid.setState(2, 0, 1);
-    // grid.setState(2, 1, 1);
-    // grid.setState(2, 2, 1);
-    // grid.setState(2, 3, 1);
-    // grid.setState(2, 4, 1);
-
-
+    grid = new Grid(20, 9, 80);
+    grid.setState(0,0,1);
+    grid.setState(1,1,1);
     animalsystem = new AnimalSystem();
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
@@ -58,7 +55,7 @@ void update()
 // render all objects to screen
 void render()
 {
-    background(100,100,100);
+    image(ground, 0, 0,width,height);
     grid.draw();
     animalsystem.run();
     currentPiece.render();
