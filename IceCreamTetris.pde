@@ -37,10 +37,11 @@ void update()
         if (animalsystem.checkpassed(i) == true) 
         {
                 grid.removeRow(i);
-    animalsystem.respawnanimal(i); 
-    
+                animalsystem.respawnanimal(i);
+       
             } 
-    
+ 
+
 }
 animalsystem.update();
     if (gameManager.gameState == 1)

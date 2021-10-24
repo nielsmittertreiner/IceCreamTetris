@@ -19,11 +19,13 @@ class Animal
         
         graphic = loadImage(filepaths[animal]);
 
-        animalgridposition[0] = 0;
-        animalgridposition[1] = 2;
-        animalgridposition[2] = 4;
-        animalgridposition[3] = 6;
-        animalgridposition[4] = 8;
+        animalgridposition[0] = 100;
+        animalgridposition[1] = 200;
+        animalgridposition[2] = 300;
+        animalgridposition[3] = 400;
+        animalgridposition[4] = 500;
+
+        xAnimal = animalgridposition[animal];
 
         
     }

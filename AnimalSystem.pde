@@ -1,6 +1,4 @@
 private int ANIMALS_USED = 5;
-private int SPACE = 100;
-private int MOVETOTHERIGHT= 100;
 public int animalscount;
 
 
@@ -19,7 +17,6 @@ class AnimalSystem
         {
             animaltemp = new Animal(i);
             animaltemp.yAnimal = height - 100;
-            animaltemp.xAnimal = i * SPACE + MOVETOTHERIGHT;
             animals.add(animaltemp);
         }
     }
@@ -31,9 +28,11 @@ class AnimalSystem
         if (animals.get(animal).yAnimal + animals.get(animal).graphic.height <= 0) {
             return true;           
         }
-        
+
+
         return false;
         
+            
         
         
         
@@ -47,16 +46,16 @@ class AnimalSystem
         
     }
     
+    
+    void respawnanimal(int animal)
 
-     void respawnanimal(int animal)
-    {
-         animals.get(animal).yAnimal = height - 100;
-       
+    {   
+        animals.get(animal).yAnimal = height - 100;
 
-        
     }
 
-
+    
+    
     void update()   
     {
     }
@@ -69,11 +68,11 @@ class AnimalSystem
         {
             Animal animal = animals.get(animalscount);
             animal.draw();
-
-
-
+            
+            
+            
         }
-
+        
     }
     
     
