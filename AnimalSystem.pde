@@ -23,9 +23,9 @@ class AnimalSystem
     
     public boolean checkpassed(int animal)
     {
-        
         // resets the animal after it disappears from the screen and gives it a value that it has passed the gap.
-        if (animals.get(animal).yAnimal + animals.get(animal).graphic.height <= 0) {
+        if (animals.get(animal).yAnimal + animals.get(animal).graphic.height <= 0)
+        {
             return true;           
         }
 
@@ -38,19 +38,17 @@ class AnimalSystem
         
     }
     
-    
     // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
     void moveAnimal(int animal) 
     {
         animals.get(animal).yAnimal -= 5;
         
     }
-    
-    
-    void respawnanimal(int animal)
 
-    {   
-        animals.get(animal).yAnimal = height - 100;
+    void respawnanimal(int animal)
+    {
+         animals.get(animal).yAnimal = height - 100;
+       
 
     }
 
@@ -58,8 +56,8 @@ class AnimalSystem
     
     void update()   
     {
+
     }
-    
     
     void run()
     {
@@ -74,15 +72,4 @@ class AnimalSystem
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

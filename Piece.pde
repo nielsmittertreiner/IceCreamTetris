@@ -1,154 +1,99 @@
-final int TILE_PYRAMID   = 0;
-final int TILE_C_SHAPE   = 1;
-final int TILE_STAIRS    = 2;
-final int TILE_SNAKE     = 3;
-final int TILE_L_SHAPE   = 4;
-final int TILE_PLUS      = 5;
-final int TILE_SQUARE    = 6;
-final int TILE_RECTANGLE = 7;
-
-
 class Piece {
+    final int BLOCK_SIZE = 20;
 
-    int[][][] tileSet = 
+    final color[] colors =
     {
-        TILE_PYRAMID = 
-        {
-           {0, 0, 1}, 
-           {0, 1, 1}, 
-           {0, 0, 1},
+        color(0, 255, 255), // cyan
+        color(0, 0, 255),   // blue
+        color(230, 170, 0), // orange
+        color(255, 255, 0), // yellow
+        color(0, 255, 0),   // green
+        color(153, 0, 255), // purple
+        color(255, 0, 0),   // red
+        color(255, 0, 0)    // red
+    };
+
+    int[][][] piecesCoords =
+    {
+        {   // . . .    
+            // . X .
+            // X X X
+            {0, 0},
+            {0, 0},
+            {-1, 1},
+            {0, 0},
+            {0, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0},
+            {1, 1},
         },
-        TILE_C_SHAPE = 
-        {
-          {1, 1, 1}, 
-          {1, 0, 1}, 
-          {0, 0, 0},
+        { // C shape
+            {1, 1, 1}, 
+            {1, 0, 1}, 
+            {0, 0, 0},
         },
-        TILE_STAIRS  = 
-        {
-          {0, 0, 0}, 
-          {0, 1, 1}, 
-          {0, 0, 1},
+        { // stairs
+            {0, 0, 0}, 
+            {0, 1, 1}, 
+            {0, 0, 1},
         },
-        TILE_SNAKE   = 
-        {
-          {1, 1, 0}, 
-          {0, 1, 0}, 
-          {0, 1, 1},
+        { // snake
+            {1, 1, 0}, 
+            {0, 1, 0}, 
+            {0, 1, 1},
         },
-        TILE_L_SHAPE =
-        {
-          {1, 1, 1}, 
-          {0, 0, 1}, 
-          {0, 0, 0},
+        { // L shape
+            {1, 1, 1}, 
+            {0, 0, 1}, 
+            {0, 0, 0},
         },
-        TILE_PLUS     = 
-        {
-          {0, 1, 0}, 
-          {1, 1, 1}, 
-          {0, 1, 0},
+        { // plus
+            {0, 1, 0}, 
+            {1, 1, 1}, 
+            {0, 1, 0},
         },
-        TILE_SQUARE   = 
-        {
-          {0, 0, 0}, 
-          {0, 1, 0}, 
-          {0, 0, 0} 
+        { // square
+            {0, 0, 0}, 
+            {0, 1, 0}, 
+            {0, 0, 0},
         },
-        TILE_RECTANGLE= 
-        {
-          {0, 1, 0}, 
-          {0, 1, 0}, 
-          {0, 1, 0},
-        },
+        { // rectangle
+            {0, 1, 0}, 
+            {0, 1, 0}, 
+            {0, 1, 0},
+        }
+    };
+
+    int[][] piece = new int[9][2];
+    int x = int(width/2);
+    int y = 0;
+    int type;
+    int c;
+    int rotation;
+
+    Piece(int type)
+    {
+        this.type = type;
+        this.piece = piecesCoords[type];
+        this.c = colors[type];
+        this.rotation = 0;
+
+        // testing only
+        this.x = int(width/2); // center piece x
+        this.y = int(height/2); // center piece y
+        println("type: "+type);
     }
 
-  int tileSize;
-  Piece()
-  {
-    tileSize = 75;
-  } 
-/*
-  void keyPressed() {  
-    if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
-    keysPressed[keyCode] = true; // set its boolean to true
-     if (keyPressed) {
-      if (key== 'a') {
-        tileChozen[0][0] = tileCurrent[2][0];
-        tileChozen[0][1] = tileCurrent[1][0];
-        tileChozen[0][2] = tileCurrent[0][0];
-        tileChozen[1][0] = tileCurrent[2][1];
-        tileChozen[1][1] = tileCurrent[1][1];
-        tileChozen[1][2] = tileCurrent[0][1];
-        tileChozen[2][0] = tileCurrent[2][2];
-        tileChozen[2][1] = tileCurrent[1][2];
-        tileChozen[2][2] = tileCurrent[0][2];
-        key = 'k';
-      }
+    void render()
+    {
+        fill(c);
+        pushMatrix();
+        translate(x, y); // verander dit naar grid x y later
+        for (int i = 0; i < 3; i++)
+        {
+            rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+        popMatrix();
     }
-    if (keyPressed) {
-      if (key== 'a') {
-        tilePyramide[0][0] = 0;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 0;
-        tilePyramide[1][0] = 0;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 0;
-        tilePyramide[2][0] = 1;
-        tilePyramide[2][1] = 1;
-        tilePyramide[2][2] = 1;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'b') {
-        tilePyramide[0][0] = 1;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 0;
-        tilePyramide[1][0] = 1;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 0;
-        tilePyramide[2][0] = 1;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 0;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'x') {
-        tilePyramide[0][0] = 0;
-        tilePyramide[0][1] = 0;
-        tilePyramide[0][2] = 1;
-        tilePyramide[1][0] = 0;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 1;
-        tilePyramide[2][0] = 0;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 1;
-        key = 'k';
-      }
-    }
-    if (keyPressed) {
-      if (key== 'y') {
-        tilePyramide[0][0] = 1;
-        tilePyramide[0][1] = 1;
-        tilePyramide[0][2] = 1;
-        tilePyramide[1][0] = 0;
-        tilePyramide[1][1] = 1;
-        tilePyramide[1][2] = 0;
-        tilePyramide[2][0] = 0;
-        tilePyramide[2][1] = 0;
-        tilePyramide[2][2] = 0;
-        key = 'k';
-      }
-    }
-  }
-
-  void keyReleased() {
-    if (keyCode >= KEY_LIMIT) return;
-    keysPressed[keyCode] = false;*/
-  void draw()
-  {
-      
-  }
 }
- 
