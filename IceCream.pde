@@ -2,34 +2,38 @@
 
 
   PImage iceCream[] = new PImage[5];
-  int xIceCream = 75, yIceCream = 5; 
-  float iceCreamSize = 60, timeWidth = 15;
-  float tempo = 250;
-  float timeStop = iceCreamSize * tempo;
+  int xIceCream, yIceCream = 5; 
+  float iceCreamSize = 80, timeWidth = 15;
+  float timePace = 250;
+  float timeStop = iceCreamSize * timePace;
   int xTimer = xIceCream, yTimer = yIceCream; 
   boolean time; 
   boolean stop; 
 
- // int[] icecreamgridposition = new int[5];
+  int[] icecreamgridposition = new int[5];
 
   int m = millis();
 
-  void setup() {}
+  IceCream(int iceCream){
 
-  IceCream(){
 
-    for (int i = 0; i < iceCream.length; ++i) {
-    
-    iceCream[i] = loadImage("img/ijsje.png");
-  /*  
-  icecreamgridposition[0] = 0;
-  icecreamgridposition[1] = 2;
-  icecreamgridposition[2] = 4;
-  icecreamgridposition[3] = 6;
-  icecreamgridposition[4] = 8;
-*/
+      filepaths[0] = "img/ijsje.png";
+      filepaths[1] = "img/ijsje.png";
+      filepaths[2] = "img/ijsje.png";
+      filepaths[3] = "img/ijsje.png";
+      filepaths[4] = "img/ijsje.png";
 
-}    
+   graphic = loadImage(filepaths[iceCream]);
+  
+  icecreamgridposition[0] = 100;
+  icecreamgridposition[1] = 200;
+  icecreamgridposition[2] = 300;
+  icecreamgridposition[3] = 400;
+  icecreamgridposition[4] = 500;
+  
+  xIceCream = icecreamgridposition[iceCream];
+  
+
 
   }
    
@@ -38,28 +42,25 @@
   }
 
   void draw() {
-
+ // draws my icecream and the timebar next to eachother by 5. 
     for (int i = 0; i < 5; ++i) {
-      image(iceCream[i], 675 + i * xIceCream, yIceCream, iceCreamSize, iceCreamSize);
+      image(iceCream[i], 660 + i * xIceCream, yIceCream, iceCreamSize, iceCreamSize);
       noStroke();
-      fill(255);
+      fill(0);
       rect(725 + i * xTimer, yTimer, timeWidth, iceCreamSize);
 
+// if the timebar reaches 0 it will stop and make a rectangle that is the same color as the background of the game. 
 time = true;
 
 if (time) {
 noStroke();
-fill(100);
-rect(725 + i * xTimer , yTimer, timeWidth, m / tempo);
+fill(0, 255, 0);
+rect(725 + i * xTimer , yTimer, timeWidth, m / timePace);
 m++;
 }
 
 stop = true;
 if (m > timeStop) { 
-
-noStroke();
-fill(100);
-rect(725 + i * xTimer, yTimer, timeWidth, iceCreamSize);
 m--;
 
 }
