@@ -18,6 +18,7 @@ class AnimalSystem
         for (int i = 0; i < ANIMALS_USED; ++i) 
         {
             animaltemp = new Animal(i);
+            animaltemp.xAnimal = grid.getRowPosition(i);
             animaltemp.yAnimal = height - 100;
             animals.add(animaltemp);
         }
@@ -56,7 +57,7 @@ class AnimalSystem
 
     
     
-    void update()   
+    void update()
     {
 
     }
