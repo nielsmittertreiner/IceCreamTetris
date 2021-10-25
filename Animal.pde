@@ -1,71 +1,53 @@
 class Animal
 {
-    PImage[] animals = new PImage[5];
-    int xAnimal = 100, yAnimal = 500;
-    int yVel = 1;
-    int space = 100;
-    int blockX, blockY;
-    int xPath = xAnimal;
-    int animalCount = 4;
-    boolean pass = false;
+
+    PImage graphic = new PImage();
+    int xAnimal, yAnimal;
+    String[] filepaths = new String[5];
+    int[] animalgridposition = new int[5];
+    AnimalSystem animalsystem;
     
-    Animal() {
-        animals[0] = loadImage("img/cow.png"); 
-        animals[1] = loadImage("img/sheep.png");   
-        animals[2] = loadImage("img/chicken.png");   
-        animals[3] = loadImage("img/pig.png");   
-        animals[4] = loadImage("img/horse.png");  
+    
+    Animal(int animal) 
+    {
+        filepaths[0] = "img/cow.png";
+        filepaths[1] = "img/sheep.png";
+        filepaths[2] = "img/horse.png";
+        filepaths[3] = "img/chicken.png";
+        filepaths[4] = "img/pig.png";
+        
+        
+        graphic = loadImage(filepaths[animal]);
+
+        animalgridposition[0] = 100;
+        animalgridposition[1] = 200;
+        animalgridposition[2] = 300;
+        animalgridposition[3] = 400;
+        animalgridposition[4] = 500;
+
+        xAnimal = animalgridposition[animal];
+
         
     }
-      
-    void update() {
-        blockX = mouseX - 25;
-        blockY = mouseY - 25;       
+
+    
+    void update() 
+    {   
+        
     }
     
-    void draw() {
-
+    
+    void draw() 
+    {
         fill(255);
-        AnimalBlock();
-        for (int i = 0; i < animalCount; ++i) {
-            drawAnimal(i,i); 
-            checkPass(0 ,i); 
-        }
+        drawAnimal();      
         
         
     }
     
-    void checkPass( int x, int count) {
-        if ( x == 1) {
-            pass = true;
-        }
-        else{
-            pass = false;
-        }
-    }
-
-    void drawAnimal(int animal,int count) {
-                moveAnimal();
-        image(animals[animal], xAnimal + count * space, yAnimal);
-        fill(255,255,255,20);
-        rect(xPath + count * space,0,30,height); 
-        
-    }
-    
-    void moveAnimal() {
-        if (pass == true) {
-            yAnimal -= yVel;
-        }
-        if (pass == false) {
-            yAnimal = yAnimal;
-            
-        }
-    }
-    
-    void AnimalBlock() {
-        rect(blockX,blockY,50,50);
-        
-        
+    void drawAnimal() 
+    {
+        image(graphic, xAnimal, yAnimal, 75,75);
     }
 }
 
