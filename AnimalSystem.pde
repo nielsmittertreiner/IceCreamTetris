@@ -1,8 +1,6 @@
 private int ANIMALS_USED = 5;
 public int animalscount;
 
-
-
 class AnimalSystem
 { ArrayList<Animal> animals;
     
@@ -44,7 +42,7 @@ class AnimalSystem
     { 
         animals.get(calculateanimal(animal)).yAnimal = height - 100;
     }
-    
+    // changes the value of animal to the grid x position.
     int calculateanimal(int animal)
     {
         switch(animal) {
@@ -59,11 +57,12 @@ class AnimalSystem
         case 19:
                 return  4;	  
         default :
-                return - 1;       	
+            println("cant calculate Animal");
+            return -1;
         }
     }
     
-    void draw()
+    void run()
     {
         //Draws the animals from animal.pde with the right count.
         for (animalscount = 0; animalscount < ANIMALS_USED; animalscount++) 
