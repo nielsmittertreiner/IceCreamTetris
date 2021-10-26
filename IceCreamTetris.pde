@@ -24,15 +24,15 @@ void setup()
     button = new Button();
     ui = new UI();
     grid = new Grid(20, 9, 80);
-    grid.setState(17,0,1);
-    grid.setState(17,1,1);
-    grid.setState(17,2,1);
-    grid.setState(17,3,1);
-    grid.setState(17,4,1);
-    grid.setState(17,5,1);
-    grid.setState(17,6,1);
-    grid.setState(17,7,1);
-    grid.setState(17,8,1);
+    grid.setState(15,0,1);
+    grid.setState(15,1,1);
+    grid.setState(15,2,1);
+    grid.setState(15,3,1);
+    grid.setState(15,4,1);
+    grid.setState(15,5,1);
+    grid.setState(15,6,1);
+    grid.setState(15,7,1);
+    grid.setState(15,8,1);
     
     grid.setState(11,8,1);
     grid.setState(13,8,1);
@@ -52,6 +52,7 @@ void setup()
     
     mainMenu.setup();
     pauseMenu.setup();
+    icecreamsystem.resettimer();
 }
 
 // update all game objects
@@ -77,6 +78,7 @@ void update()
                 {
                     grid.removeRow(i);
                     animalsystem.respawnanimal(i);  
+                    animalsystem.checkoverlapp(i);
                 }  
                  if (animalsystem.respawning(i))
                 {
@@ -106,6 +108,7 @@ void render()
             // game
             image(ground, 0, 0, width, height);
             grid.draw();
+            icecreamsystem.draw();
             animalsystem.run();
             currentPiece.render();
             ui.draw();

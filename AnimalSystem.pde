@@ -56,7 +56,7 @@ class AnimalSystem
 
     void movetospawn(int animal)
     {
-        animals.get(calculateanimal(animal)).yAnimal -= 1;
+        animals.get(calculateanimal(animal)).yAnimal -= 2;
 
     }
     // changes the value of animal to the grid x position.
@@ -74,7 +74,7 @@ class AnimalSystem
         case 19:
                 return  4;	  
         default :
-            println("cant calculate Animal");
+            println("can't calculate Animal");
             return -1;
         }
     }
@@ -89,4 +89,11 @@ class AnimalSystem
         }
         
     }
+    boolean checkoverlapp(int animal)
+        { if (animals.get(calculateanimal(animal)).yAnimal < icecreamsystem.icecreams.get(calculateanimal(animal)).yIceCream) {
+                return true;
+            }
+            return false;
+            
+        }
 }
