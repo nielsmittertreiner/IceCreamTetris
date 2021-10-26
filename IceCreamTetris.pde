@@ -16,21 +16,29 @@ void setup()
     gameManager = new GameManager();
     ui = new UI();
     grid = new Grid(20, 9, 80);
-    grid.setState(1,0,1);
-    grid.setState(1,1,1);
-    grid.setState(1,2,1);
-    grid.setState(1,3,1);
-    grid.setState(1,4,1);
-    grid.setState(1,5,1);
-    grid.setState(1,6,1);
-    grid.setState(1,7,1);
-    grid.setState(1,8,1);
+    grid.setState(17,0,1);
+    grid.setState(17,1,1);
+    grid.setState(17,2,1);
+    grid.setState(17,3,1);
+    grid.setState(17,4,1);
+    grid.setState(17,5,1);
+    grid.setState(17,6,1);
+    grid.setState(17,7,1);
+    grid.setState(17,8,1);
+
+    grid.setState(11,8,1);
+    grid.setState(13,8,1);
+    grid.setState(15,8,1);
+    grid.setState(19,8,1);
+
+
+
 
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
 
-    grid.addPiece(currentPiece, 10, 4);
+    // grid.addPiece(currentPiece, 10, 4);
 }
 
 // update all game objects
@@ -42,7 +50,7 @@ void update()
     // checks if grid is full and moves the animal.
 
 
-    for (int i = 0; i < 5; ++i) { 
+    for (int i = 15; i < 20; i++) { 
         if (grid.isRowFull(i)) 
         {
             animalsystem.moveAnimal(i);    
@@ -70,7 +78,7 @@ void render()
 {
     image(ground, 0, 0,width,height);
     grid.draw();
-    animalsystem.run();
+    animalsystem.draw();
     currentPiece.render();
 }
 
