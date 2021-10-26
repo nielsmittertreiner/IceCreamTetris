@@ -10,7 +10,7 @@ class UI
             keyCode = TAB;
             if (gameManager.gameState == 1)
             {
-                gameManager.gameState = -1;
+                gameManager.gameState = 2;
             }
         }
         

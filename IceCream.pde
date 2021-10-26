@@ -15,10 +15,9 @@
  
   for (int i = 0; i < 5; ++i) {
     
-        filepaths[i] = "img/ijsjes.png";
+        filepaths[i] = "img/ijsje.png";
   }
 
-        
         graphic = loadImage(filepaths[icecream]);
   
 

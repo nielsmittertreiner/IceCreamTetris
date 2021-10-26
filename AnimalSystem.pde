@@ -1,8 +1,6 @@
 private int ANIMALS_USED = 5;
 public int animalscount;
 
-
-
 class AnimalSystem
 { ArrayList<Animal> animals;
     
@@ -32,19 +30,36 @@ class AnimalSystem
         {
             return true;           
         }
+        
         return false;    
     }
+
+        public boolean respawning(int animal)
+    {        while (animals.get(calculateanimal(animal)).yAnimal >= height - 100)
+        {
+            return true;           
+        }
+        return false;
+
+
+    }
+
     // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
     void moveAnimal(int animal) 
     {
         animals.get(calculateanimal(animal)).yAnimal -= 5;
     }
-    //if animalpassed == true respawn the animal puts the yAnimal on height - 100
+    //if animalpassed == true respawn the animal puts the yAnimal on height + 100
     void respawnanimal(int animal)
-    { 
-        animals.get(calculateanimal(animal)).yAnimal = height - 100;
+    {         animals.get(calculateanimal(animal)).yAnimal = height + 100;
     }
-    
+
+    void movetospawn(int animal)
+    {
+        animals.get(calculateanimal(animal)).yAnimal -= 1;
+
+    }
+    // changes the value of animal to the grid x position.
     int calculateanimal(int animal)
     {
         switch(animal) {
@@ -59,11 +74,12 @@ class AnimalSystem
         case 19:
                 return  4;	  
         default :
-                return - 1;       	
+            println("cant calculate Animal");
+            return -1;
         }
     }
     
-    void draw()
+    void run()
     {
         //Draws the animals from animal.pde with the right count.
         for (animalscount = 0; animalscount < ANIMALS_USED; animalscount++) 
