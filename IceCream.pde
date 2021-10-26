@@ -1,75 +1,48 @@
  class IceCream { 
 
 
-  PImage iceCream[] = new PImage[5];
-  int xIceCream, yIceCream = 5; 
-  float iceCreamSize = 80, timeWidth = 15;
-  float timePace = 250;
-  float timeStop = iceCreamSize * timePace;
-  int xTimer = xIceCream, yTimer = yIceCream; 
-  boolean time; 
-  boolean stop; 
+  PImage graphic = new PImage();
+  int xIceCream, yIceCream;
+  float iceCreamSize = 80;
 
+  String[] filepaths = new String[5];
   int[] icecreamgridposition = new int[5];
-
-  int m = millis();
-
-  IceCream(int iceCream){
+  IceCreamSystem icecreamsystem;
 
 
-      filepaths[0] = "img/ijsje.png";
-      filepaths[1] = "img/ijsje.png";
-      filepaths[2] = "img/ijsje.png";
-      filepaths[3] = "img/ijsje.png";
-      filepaths[4] = "img/ijsje.png";
+    IceCream(int icecream){
 
-   graphic = loadImage(filepaths[iceCream]);
-  
-  icecreamgridposition[0] = 100;
-  icecreamgridposition[1] = 200;
-  icecreamgridposition[2] = 300;
-  icecreamgridposition[3] = 400;
-  icecreamgridposition[4] = 500;
-  
-  xIceCream = icecreamgridposition[iceCream];
-  
-
-
+ 
+  for (int i = 0; i < 5; ++i) {
+    
+        filepaths[i] = "img/ijsjes.png";
   }
+
+        
+        graphic = loadImage(filepaths[icecream]);
+  
+
    
+ }
+
+
+ void draw(){
+
+  drawIceCream();
+
+ }
+
 
   void update() {
   }
 
-  void draw() {
- // draws my icecream and the timebar next to eachother by 5. 
-    for (int i = 0; i < 5; ++i) {
-      image(iceCream[i], 660 + i * xIceCream, yIceCream, iceCreamSize, iceCreamSize);
-      noStroke();
-      fill(0);
-      rect(725 + i * xTimer, yTimer, timeWidth, iceCreamSize);
 
-// if the timebar reaches 0 it will stop and make a rectangle that is the same color as the background of the game. 
-time = true;
+ void drawIceCream(){ 
 
-if (time) {
-noStroke();
-fill(0, 255, 0);
-rect(725 + i * xTimer , yTimer, timeWidth, m / timePace);
-m++;
-}
+  image(graphic, xIceCream, yIceCream, iceCreamSize,iceCreamSize);
 
-stop = true;
-if (m > timeStop) { 
-m--;
+ }
 
-}
 
-}
-}
-
-/*void respawnIceCream(int icecream){
- // iceCream.get(iceCream).yIceCream = height - 10; 
-*/
 
 }
