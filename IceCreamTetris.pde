@@ -100,10 +100,7 @@ void render()
     switch(gameManager.gameState) {
         case 0:
             // main menu
-            if (gameManager.gameState == 0)
-                {
-                mainMenu.draw();
-            }
+            mainMenu.draw();
             break;
         case 1:
             // game

@@ -39,7 +39,7 @@ class IceCreamSystem
     
     
 void draw() {
-        // draws the timebar next to eachother by 5. 
+        // draws icecreams with the timebar next to eachother by 5. 
         for (icecreamcount = 0; icecreamcount < 5; icecreamcount++) 
         {
             IceCream icecream = icecreams.get(icecreamcount);
@@ -52,24 +52,27 @@ void draw() {
             // if the timebar reaches 0 it will stop and make a rectangle that is the same color as the background of the game. 
                time = true;
             
-        if (time) {
-                noStroke();
-               fill(0, 255, 0);
-              rect(icecreams.get(icecreamcount).xIceCream + icecreamcount * xTimer , yTimer, timeWidth, m / timePace);
+            if (time) {
+             noStroke();
+             fill(0, 255, 0);
+             rect(icecreams.get(icecreamcount).xIceCream + icecreamcount * xTimer , yTimer, timeWidth, m / timePace);
                 m++;
             }
                 
                stop = true;
-                if (m > timeStop) { 
-                    m--;
+            if (m > timeStop) { 
+                m--;
                     
                 }
-                            // /*
-                           //  void respawnIceCream(inticecream) {
-                                //  IceCream.get(IceCream).yIceCream = height - 10; 
-                                
-                            // }
-                                // */
-                            }
-}
+        }      
+
+}      
+             void respawnIceCream(int icecream) {
+                icecreams.get(icecream).yIceCream = 0; 
+                rect(icecreams.get(icecreamcount).xIceCream + icecreamcount * xTimer , yTimer, timeWidth, m / timePace);
+   
+              }
+               
+              
+
 }                           
