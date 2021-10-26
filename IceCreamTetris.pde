@@ -1,5 +1,4 @@
 // initialize game
-
 Asset asset;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
@@ -7,11 +6,14 @@ GameManager gameManager;
 Grid grid;
 UI ui;
 AnimalSystem animalsystem;
-Button button;
+Piece currentPiece;
+Piece nextPiece;
+PImage ground;
 
 void setup()
 {
-    size(1067, 600, P2D);
+    size(1600, 900, P2D);
+    ground = loadImage("img/ground.jpg");
     asset = new Asset();
     mainMenu = new MainMenu();
     pauseMenu = new PauseMenu();
@@ -19,67 +21,81 @@ void setup()
     animalsystem = new AnimalSystem();
     button = new Button();
     ui = new UI();
-    grid = new Grid(25, 15, 50);
-    grid.setState(5, 1, 1);
-    grid.setState(5, 2, 1);
-    grid.setState(5, 3, 1);
-    grid.setState(5, 4, 1);
-    grid.setState(5, 5, 1);
-    grid.setState(5, 6, 1);
-    grid.setState(5, 7, 1);
-    grid.setState(5, 8, 1);
-    grid.setState(5, 9, 1);
-    grid.setState(5, 10, 1);
-    grid.setState(5, 11, 1);
-    grid.setState(5, 12, 1);
-    grid.setState(5, 13, 1);
-    grid.setState(5, 14, 1);
-    grid.setState(10, 10, 1);
-    
-    mainMenu.setup();
-    pauseMenu.setup();
+    grid = new Grid(20, 9, 80);
+    grid.setState(1,0,1);
+    grid.setState(1,1,1);
+    grid.setState(1,2,1);
+    grid.setState(1,3,1);
+    grid.setState(1,4,1);
+    grid.setState(1,5,1);
+    grid.setState(1,6,1);
+    grid.setState(1,7,1);
+    grid.setState(1,8,1);
+
+    animalsystem = new AnimalSystem(grid);
+    currentPiece = new Piece(int(random(0, 7)));
+    nextPiece = new Piece(int(random(0, 7)));
+
+    grid.addPiece(currentPiece, 10, 4);
 }
 
 // update all game objects
 void update()
 {
-    if (gameManager.gameState == 0)
+    //ui.keyPressed();
+    ui.pause();
+
+    // checks if grid is full and moves the animal.
+
+
+    for (int i = 0; i < 5; ++i) { 
+        if (grid.isRowFull(i)) 
+        {
+            animalsystem.moveAnimal(i);    
+        }
+
+        if (animalsystem.checkpassed(i) == true) 
+        {
+                grid.removeRow(i);
+                animalsystem.respawnanimal(i);
+       
+            } 
+        }
+
+
+    if (gameManager.gameState == 1)
     {
-        mainMenu.keyInput();
+        ui.keyImput();
+        
     }
-    else if (gameManager.gameState == 1) {
-        ui.keyInput();
-        animal.update();
-        grid.draw();
-        animalsystem.run();
-    }
-    else
-    {
-        pauseMenu.keyInput();
-    }
+// animalsystem.update();
 }
 
 // render all objects to screen
 void render()
 {
-    if (gameManager.gameState == 0)
-    {
-        mainMenu.draw();
-    }
-    else if (gameManager.gameState == 1)
-    {
-        background(asset.grey);
-        animal.draw();
-        grid.draw();
-        ui.draw();
-    }
-    else
-    {  
-        pauseMenu.draw();     
-    }
+    image(ground, 0, 0,width,height);
+    grid.draw();
+    animalsystem.run();
+    currentPiece.render();
 }
 
-// update and rendergame loop
+
+// update and render game loop
+// {
+// background(128);
+// if (gameManager.gameState == 0) {
+//     ui.drawMenu();
+// } else if (gameManager.gameState == 1) {  
+//     animal.draw();
+//     grid.draw();
+//     ui.drawGame();
+//     } else if (gameManager.gameState == -1) {
+//     ui.drawPaused();
+//     }
+// }
+
+// update and render game loop
 void draw()
 {
     update();
