@@ -6,6 +6,7 @@ UI ui;
 AnimalSystem animalsystem;
 Piece currentPiece;
 Piece nextPiece;
+IceCreamSystem icecreamsystem;
 PImage ground;
 
 void setup()
@@ -16,20 +17,12 @@ void setup()
     gameManager = new GameManager();
     ui = new UI();
     grid = new Grid(20, 9, 80);
-    grid.setState(1,0,1);
+    grid.setState(0,0,1);
     grid.setState(1,1,1);
-    grid.setState(1,2,1);
-    grid.setState(1,3,1);
-    grid.setState(1,4,1);
-    grid.setState(1,5,1);
-    grid.setState(1,6,1);
-    grid.setState(1,7,1);
-    grid.setState(1,8,1);
-
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(random(0, 7)));
     nextPiece = new Piece(int(random(0, 7)));
-
+    icecreamsystem = new IceCreamSystem(grid); 
     grid.addPiece(currentPiece, 10, 4);
 }
 
@@ -40,8 +33,6 @@ void update()
     ui.pause();
 
     // checks if grid is full and moves the animal.
-
-
     for (int i = 0; i < 5; ++i) { 
         if (grid.isRowFull(i)) 
         {
@@ -55,14 +46,11 @@ void update()
        
             } 
         }
-
-
     if (gameManager.gameState == 1)
     {
         ui.keyImput();
-        
+        // animal.update();
     }
-// animalsystem.update();
 }
 
 // render all objects to screen
@@ -72,6 +60,7 @@ void render()
     grid.draw();
     animalsystem.run();
     currentPiece.render();
+    icecreamsystem.draw();
 }
 
 
@@ -84,6 +73,7 @@ void render()
 //     animal.draw();
 //     grid.draw();
 //     ui.drawGame();
+//     iceCream.draw();
 //     } else if (gameManager.gameState == -1) {
 //     ui.drawPaused();
 //     }
