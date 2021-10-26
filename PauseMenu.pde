@@ -50,7 +50,7 @@ class PauseMenu
     }
     void draw()
     {
-        background(asset.black); 
+        background(asset.darkblue); 
         for (int i = 0; i < numberButtons; i++)
         {
             button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
