@@ -34,7 +34,7 @@ void setup()
     grid.setState(1,8,1);
     
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(0);
+    currentPiece = new Piece(int(random(0,7)));
     nextPiece = new Piece(int(random(0, 7)));
     
     //grid.addPiece(currentPiece, 10, 4);
