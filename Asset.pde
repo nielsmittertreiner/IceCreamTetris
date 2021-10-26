@@ -1,8 +1,14 @@
 class Asset
 {
-  int red = #FF0000;
-  int darkBlue = #323264;
-  int white = #FFFFFF;
-  int grey = #808080;
-  int black = #000000;
+  int red = #731d0b;
+
+  int lightBlue = #39cedb;
+  int blue = #216cb8;
+  int darkBlue = #322f64;
+
+  int green = #648c30;
+
+  int white = #a2a54c;
+  int grey = #808b80;
+  int black = #555c01;
 }
