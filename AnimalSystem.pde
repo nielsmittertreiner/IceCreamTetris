@@ -35,7 +35,7 @@ class AnimalSystem
     }
 
         public boolean respawning(int animal)
-    {        if (animals.get(calculateanimal(animal)).yAnimal + animals.get(calculateanimal(animal)).graphic.height < height - 500)
+    {        while (animals.get(calculateanimal(animal)).yAnimal >= height - 100)
         {
             return true;           
         }
@@ -49,18 +49,14 @@ class AnimalSystem
     {
         animals.get(calculateanimal(animal)).yAnimal -= 5;
     }
-    //if animalpassed == true respawn the animal puts the yAnimal on height - 100
+    //if animalpassed == true respawn the animal puts the yAnimal on height + 100
     void respawnanimal(int animal)
-    {         animals.get(calculateanimal(animal)).yAnimal = height +100;
+    {         animals.get(calculateanimal(animal)).yAnimal = height + 100;
     }
 
     void movetospawn(int animal)
     {
-        println("movetospawn doet het");
-        while (animals.get(calculateanimal(animal)).yAnimal < height - 100) {
-            println("While loop doet het");
-            animals.get(calculateanimal(animal)).yAnimal -=1;
-        }
+        animals.get(calculateanimal(animal)).yAnimal -= 1;
 
     }
     // changes the value of animal to the grid x position.

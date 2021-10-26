@@ -63,8 +63,8 @@ void update()
         case 0:
             // main menu
             mainMenu.keyInput();
-            
-        case 1:
+        break;
+            case 1:
             // game
             // checks if grid is full and moves the animal.
             for (int i = 15; i < 20; ++i) { 
@@ -73,13 +73,18 @@ void update()
                     animalsystem.moveAnimal(i);    
                 }
                 
-                if (animalsystem.checkpassed(i) == true) 
+                if (animalsystem.checkpassed(i)) 
                 {
                     grid.removeRow(i);
-                    animalsystem.respawnanimal(i);
-                    
-                }    
-            }
+                    animalsystem.respawnanimal(i);  
+                }  
+                 if (animalsystem.respawning(i))
+                {
+                    animalsystem.movetospawn(i);
+                }   
+                  
+                
+        }
         break;
         // pausemenu
         case 2:
