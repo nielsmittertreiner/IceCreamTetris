@@ -73,12 +73,11 @@ void update()
                 animalsystem.moveAnimal(i);    
             }
             
-            if (animalsystem.checkpassed(i) == true) 
+            if (animalsystem.checkpassed(i) ) 
             {
                 grid.removeRow(i);
                 animalsystem.respawnanimal(i);
-                
-            } 
+            }
         }
     }
     // pause menu
