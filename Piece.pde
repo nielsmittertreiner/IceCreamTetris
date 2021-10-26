@@ -1,4 +1,6 @@
-class Piece {
+class Piece
+{
+    final int BLOCKS_PER_PIECE_COUNT = 9;
     final int BLOCK_SIZE = 20;
 
     final color[] colors =
@@ -65,7 +67,7 @@ class Piece {
         }
     };
 
-    int[][] piece = new int[9][2];
+    int[][] piece = new int[BLOCKS_PER_PIECE_COUNT][2];
     int x = int(width/2);
     int y = 0;
     int type;
@@ -90,7 +92,7 @@ class Piece {
         fill(c);
         pushMatrix();
         translate(x, y); // verander dit naar grid x y later
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < BLOCKS_PER_PIECE_COUNT; i++)
         {
             rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }

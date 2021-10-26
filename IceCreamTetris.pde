@@ -34,10 +34,10 @@ void setup()
     grid.setState(1,8,1);
     
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(random(0, 7)));
+    currentPiece = new Piece(0);
     nextPiece = new Piece(int(random(0, 7)));
     
-    grid.addPiece(currentPiece, 10, 4);
+    //grid.addPiece(currentPiece, 10, 4);
     
     mainMenu.setup();
     pauseMenu.setup();
