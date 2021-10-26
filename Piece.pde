@@ -1,5 +1,5 @@
 class Piece {
-    final int BLOCK_SIZE = 20;
+    final int BLOCK_SIZE = 80;
 
     final color[] colors =
     {
@@ -14,21 +14,24 @@ class Piece {
     };
 
     int[][][] piecesCoords =
-    {
+    {       // Pyramide
         {   // . . .    
             // . X .
             // X X X
-            {0, 0},
-            {0, 0},
-            {-1, 1},
-            {0, 0},
-            {0, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0},
-            {1, 1},
+           {0,0},
+           {0,0},
+           {-1,1},
+           {0,0},
+           {0,0},
+           {0,1},
+           {0,0},
+           {0,0},
+           {1,1},
         },
         { // C shape
+          // X X X
+          // X . .
+          // X X X
             {1, 1, 1}, 
             {1, 0, 1}, 
             {0, 0, 0},
@@ -49,9 +52,15 @@ class Piece {
             {0, 0, 0},
         },
         { // plus
-            {0, 1, 0}, 
-            {1, 1, 1}, 
-            {0, 1, 0},
+            {0, 0}, 
+            {0, 1}, 
+            {-1,0},
+            {-1,1}, 
+            {1, 1}, 
+            {1, 1},
+            {0, 0}, 
+            {1, 1}, 
+            {0, 0},
         },
         { // square
             {0, 0, 0}, 
@@ -71,6 +80,7 @@ class Piece {
     int type;
     int c;
     int rotation;
+    
 
     Piece(int type)
     {
@@ -84,7 +94,7 @@ class Piece {
         this.y = int(height/2); // center piece y
         println("type: "+type);
     }
-
+ 
     void render()
     {
         fill(c);
@@ -95,5 +105,6 @@ class Piece {
             rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
         popMatrix();
+         
     }
 }
