@@ -10,7 +10,7 @@ class IceCream {
     
     
     float iceCreamSize = 80, timeWidth = 15;
-    float timePace = 50;
+    float timePace = 100;
     int xIceCream, yIceCream;
     int xTimer = xIceCream, yTimer = yIceCream; 
     int m = millis();
