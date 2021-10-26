@@ -1,12 +1,10 @@
 class Animal
 {
-
+    
     PImage graphic = new PImage();
     int xAnimal, yAnimal;
     String[] filepaths = new String[5];
-    int[] animalgridposition = new int[5];
     AnimalSystem animalsystem;
-    
     
     Animal(int animal) 
     {
@@ -16,26 +14,17 @@ class Animal
         filepaths[3] = "img/chicken.png";
         filepaths[4] = "img/pig.png";
         
-        
         graphic = loadImage(filepaths[animal]);
-
-
-        
     }
-
     
     void update() 
-    {   
-        
+    {    
     }
-    
     
     void draw() 
     {
         fill(255);
         drawAnimal();      
-        
-        
     }
     
     void drawAnimal() 
