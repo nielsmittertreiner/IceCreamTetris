@@ -48,62 +48,66 @@ void update()
 {
     ui.keyInput();
     //  main menu
-    if (gameManager.gameState == 0)
-    {
-        mainMenu.keyInput();
-    }
-    // game
-    else if (gameManager.gameState == 1) 
-    {
-        // checks if grid is full and moves the animal.
-        for (int i = 0; i < 5; ++i) { 
-            if (grid.isRowFull(i)) 
-            {
-                animalsystem.moveAnimal(i);    
-            }
+    switch(gameManager.gameState) {
+        case 0:
+            // main menu
+            mainMenu.keyInput();
             
-            if (animalsystem.checkpassed(i) == true) 
-            {
-                grid.removeRow(i);
-                animalsystem.respawnanimal(i);
+            case 1:
+            // game
+            // checks if grid is full and moves the animal.
+            for (int i = 0; i < 5; ++i) { 
+                if (grid.isRowFull(i)) 
+                {
+                    animalsystem.moveAnimal(i);    
+                }
                 
-            } 
+                if (animalsystem.checkpassed(i) == true) 
+                {
+                    grid.removeRow(i);
+                    animalsystem.respawnanimal(i);
+                    
+                }    
+                break;
+            // pausemenu
+            case 2:
+                pauseMenu.keyInput();
+                break;
         }
     }
-    // pause menu
-    else
-    {
-        pauseMenu.keyInput();
+    
+    // render all objects to screen
+    void render()
+        {
+        switch(gameManager.gameState) {
+            case 0:
+                // main menu
+                if (gameManager.gameState == 0)
+                    {
+                    mainMenu.draw();
+                }
+                break;
+            case 1:
+                // game
+                image(ground, 0, 0, width, height);
+                grid.draw();
+                animalsystem.run();
+                currentPiece.render();
+                ui.draw();
+                break;
+            
+            case 2:
+                // pausemenu
+                pauseMenu.draw();
+                break;
+        }
+        
     }
-}
-
-// render all objects to screen
-void render()
-{
-    // main menu
-    if (gameManager.gameState == 0)
-    {
-        mainMenu.draw();
-    }
-    // game
-    else if (gameManager.gameState == 1)
-    {
-        image(ground, 0, 0,width,height);
-        grid.draw();
-        animalsystem.run();
-        currentPiece.render();
-        ui.draw();
-    }
-    // pause menu
-    else 
-    {
-        pauseMenu.draw();
-    }
-}
-
-// update and render game loop
-void draw()
-{
-    update();
-    render();
-}
+    
+    // update and render game loop
+    void draw()
+        {
+        update();
+        render();
+        }
+    
