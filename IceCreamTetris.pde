@@ -43,7 +43,7 @@ void setup()
 
 
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(0);
+    currentPiece = new Piece(int(random(0,7)));
     nextPiece = new Piece(int(random(0, 7)));
     icecreamsystem = new IceCreamSystem(grid); 
    
