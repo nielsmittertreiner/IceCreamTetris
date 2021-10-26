@@ -1,5 +1,7 @@
-class Piece {
-    final int BLOCK_SIZE = 20;
+class Piece
+{
+    final int BLOCKS_PER_PIECE_COUNT = 9;
+    final int BLOCK_SIZE = 80;
 
     final color[] colors =
     {
@@ -14,21 +16,24 @@ class Piece {
     };
 
     int[][][] piecesCoords =
-    {
+    {       // Pyramide
         {   // . . .    
             // . X .
             // X X X
-            {0, 0},
-            {0, 0},
-            {-1, 1},
-            {0, 0},
-            {0, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0},
-            {1, 1},
+           {0,0},
+           {0,0},
+           {-1,1},
+           {0,0},
+           {0,0},
+           {0,1},
+           {0,0},
+           {0,0},
+           {1,1},
         },
         { // C shape
+          // X X X
+          // X . .
+          // X X X
             {1, 1, 1}, 
             {1, 0, 1}, 
             {0, 0, 0},
@@ -49,9 +54,15 @@ class Piece {
             {0, 0, 0},
         },
         { // plus
-            {0, 1, 0}, 
-            {1, 1, 1}, 
-            {0, 1, 0},
+            {0, 0}, 
+            {0, 1}, 
+            {-1,0},
+            {-1,1}, 
+            {1, 1}, 
+            {1, 1},
+            {0, 0}, 
+            {1, 1}, 
+            {0, 0},
         },
         { // square
             {0, 0, 0}, 
@@ -65,12 +76,13 @@ class Piece {
         }
     };
 
-    int[][] piece = new int[9][2];
+    int[][] piece = new int[BLOCKS_PER_PIECE_COUNT][2];
     int x = int(width/2);
     int y = 0;
     int type;
     int c;
     int rotation;
+    
 
     Piece(int type)
     {
@@ -84,16 +96,17 @@ class Piece {
         this.y = int(height/2); // center piece y
         println("type: "+type);
     }
-
+ 
     void render()
     {
         fill(c);
         pushMatrix();
         translate(x, y); // verander dit naar grid x y later
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < BLOCKS_PER_PIECE_COUNT; i++)
         {
             rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
         popMatrix();
+         
     }
 }
