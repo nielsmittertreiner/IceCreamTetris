@@ -17,13 +17,13 @@
   IceCream(int iceCream){
 
 
-      filepaths[0] = "img/ijsje.png";
-      filepaths[1] = "img/ijsje.png";
-      filepaths[2] = "img/ijsje.png";
-      filepaths[3] = "img/ijsje.png";
-      filepaths[4] = "img/ijsje.png";
+      // filepaths[0] = "img/ijsje.png";
+      // filepaths[1] = "img/ijsje.png";
+      // filepaths[2] = "img/ijsje.png";
+      // filepaths[3] = "img/ijsje.png";
+      // filepaths[4] = "img/ijsje.png";
 
-   graphic = loadImage(filepaths[iceCream]);
+   //graphic = loadImage(filepaths[iceCream]);
   
   icecreamgridposition[0] = 100;
   icecreamgridposition[1] = 200;
