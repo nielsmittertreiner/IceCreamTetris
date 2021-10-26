@@ -11,12 +11,14 @@ Piece currentPiece;
 Piece nextPiece;
 IceCreamSystem icecreamsystem;
 PImage ground;
+int groundColour;
 
 void setup()
 {
     size(1600, 900, P2D);
-    ground = loadImage("img/ground.jpg");
     asset = new Asset();
+    ground = loadImage("img/ground.jpg");
+    groundColour = asset.green;
     mainMenu = new MainMenu();
     pauseMenu = new PauseMenu();
     gameManager = new GameManager();
@@ -59,7 +61,6 @@ void setup()
 void update()
 {
     ui.keyInput();
-    //  main menu
     switch(gameManager.gameState) {
         case 0:
             // main menu
@@ -107,6 +108,8 @@ void render()
         case 1:
             // game
             image(ground, 0, 0, width, height);
+            fill(groundColour, 150);
+            rect(0, 0, width, height);
             grid.draw();
             icecreamsystem.draw();
             animalsystem.run();
