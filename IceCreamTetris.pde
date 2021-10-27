@@ -10,6 +10,7 @@ AnimalSystem animalsystem;
 Piece currentPiece;
 Piece nextPiece;
 IceCreamSystem icecreamsystem;
+RiverAnimation riverAnimation;
 PImage ground;
 int groundColour;
 
@@ -23,6 +24,7 @@ void setup()
     pauseMenu = new PauseMenu();
     gameManager = new GameManager();
     // animalsystem = new AnimalSystem();
+    riverAnimation = new RiverAnimation();
     button = new Button();
     ui = new UI();
     grid = new Grid(20, 9, 80);
@@ -54,6 +56,7 @@ void setup()
     
     mainMenu.setup();
     pauseMenu.setup();
+    riverAnimation.setup();
     icecreamsystem.resettimer();
 }
 
@@ -69,7 +72,8 @@ void update()
         case 1:
             // game
             // checks if grid is full and moves the animal.
-            for (int i = 15; i < 20; ++i) { 
+            for (int i = 15; i < 20; ++i)
+            { 
                 if (grid.isRowFull(i)) 
                 {
                     animalsystem.moveAnimal(i);    
@@ -96,40 +100,40 @@ void update()
             pauseMenu.keyInput();
             break;
     }
-    }
+}
         
-        // render all objects to screen
-       void render()
-        {
-        switch(gameManager.gameState) {
-           case 0:
-                // main menu
-                mainMenu.draw();
-                break;
-           case 1:
-                // game
-                image(ground, 0, 0, width, height);
-                fill(groundColour, asset.opacity);
-                rect(0, 0, width, height);
-                grid.draw();
-                icecreamsystem.draw();
-                animalsystem.run();
-                currentPiece.render();
-                ui.draw();
-                break;
+// render all objects to screen
+void render()
+{
+    switch(gameManager.gameState)
+    {
+        case 0:
+            // main menu
+            mainMenu.draw();
+            break;
+        case 1:
+            // game
+            image(ground, 0, 0, width, height);
+            fill(groundColour, asset.opacity);
+            rect(0, 0, width, height);
+            grid.draw();
+            icecreamsystem.draw();
+            animalsystem.run();
+            currentPiece.render();
+            ui.draw();
+            break;
             
-           case 2:
-                // pausemenu
-                pauseMenu.draw();
-                break;
-        }
+         case 2:
+            // pausemenu
+            pauseMenu.draw();
+            break;
+    }        
+}
             
-        }
-            
-            // update and render game loop
-           void draw()
-            {
-            update();
-            render();
-        }
+// update and render game loop
+void draw()
+{
+    update();
+    render();
+}
             
