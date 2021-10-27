@@ -63,7 +63,7 @@ void setup()
 // update all game objects
 void update()
 {
-    ui.keyInput();
+    gameManager.keyInput();
     switch(gameManager.gameState) 
     {
         case 0:

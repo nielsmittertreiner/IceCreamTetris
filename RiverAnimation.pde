@@ -1,7 +1,5 @@
 class RiverAnimation
 {
-    int numberLines = 7;
-    int numberWaves = 5;
     float speed = 1.05;
     float offset = 0;
     float offset2 = 0;
@@ -12,7 +10,7 @@ class RiverAnimation
     void setup()
     {
         water = loadImage("img/water.jpg");   
-        water2 = loadImage("img/water.jpg");
+        water2 = loadImage("img/water2.jpg");
     }
     
     void draw(int top, int bottom)
