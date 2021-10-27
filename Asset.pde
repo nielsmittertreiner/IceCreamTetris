@@ -14,4 +14,6 @@ class Asset
 
   int animationWhite = #FFFFFF;
   int animationBlack = #000000;
+
+  int opacity = 150;
 }
