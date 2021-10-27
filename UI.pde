@@ -43,7 +43,7 @@ class UI
     void draw()
     {
         textSize(textSize);
-        fill(asset.red);
+        fill(asset.white);
         text("SCORE:" + gameManager.score, textDistance, textSize);
     }
 }

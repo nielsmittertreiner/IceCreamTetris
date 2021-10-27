@@ -3,16 +3,16 @@ class Piece {
 
     final int BLOCK_SIZE = 80;
 
-    final color[] colors =
+    final int[] colors =
     {
-        color(0, 255, 255), // cyan
-        color(0, 0, 255),   // blue
-        color(230, 170, 0), // orange
-        color(255, 255, 0), // yellow
-        color(0, 255, 0),   // green
-        color(153, 0, 255), // purple
-        color(255, 0, 0),   // red
-        color(255, 0, 0)    // red
+      asset.green,
+      asset.green,
+      asset.blue,
+      asset.blue,
+      asset.red,
+      asset.red,
+      asset.white,
+      asset.white
     };
 
     int[][][] piecesCoords =
