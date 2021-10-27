@@ -1,11 +1,11 @@
 class Animal
 {
-    
     PImage graphic = new PImage();
     int xAnimal, yAnimal;
     String[] filepaths = new String[5];
     AnimalSystem animalsystem;
     
+    // constructor for the animals makes the filepaths and convertes them into a image.
     Animal(int animal) 
     {
         filepaths[0] = "img/cow.png";
@@ -16,11 +16,7 @@ class Animal
         
         graphic = loadImage(filepaths[animal]);
     }
-    
-    void update() 
-    {    
-    }
-    
+     
     void draw() 
     {
         fill(255);

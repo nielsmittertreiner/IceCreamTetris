@@ -136,7 +136,9 @@ class Piece {
     int type;
     int c;
     int rotation;
-    boolean end =false;
+    boolean isPieceOnTheEnd(int endIndex){
+      return this.x >= 1440;
+    }
 
     Piece(int type)
     {
@@ -144,10 +146,10 @@ class Piece {
         this.piece = piecesCoords[type];
         this.c = colors[type];
         this.rotation = 0;
-
+        
         // testing only
         this.x = int(80); // center piece x
-        this.y = int(random(140,740)); // center piece y
+        this.y = int(random(140,600)); // center piece y
         println("type: "+type);
     }
  
@@ -161,14 +163,34 @@ class Piece {
             rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
         popMatrix();
-        this.x++;
-      
-        if(end){
-            this.x = 1440;
-        }
-        else if(!end){
+        
+     
+          this.x+=4;
+          if (this.x >= 1440)
+          {
             currentPiece = new Piece(nextPiece.type);
+            println(this.x);
+            println(this.y);
+            grid.setState(calculateXposition(this.x),calculateYposition(this.y),1);
             nextPiece = new Piece(int(random(0, 7)));
-        }
+            this.x = 1440;
+          }
+    }
+
+    int calculateXposition(int xPosition)
+    {
+      println("old"+xPosition);
+      int(xPosition = 10);
+      println("new"+xPosition);
+      return xPosition;
+
+    }
+    int calculateYposition(int yPosition)
+    {
+      println("old"+yPosition);
+      int(yPosition = 4);
+      println("new"+yPosition);
+      return yPosition;
+
     }
 }
