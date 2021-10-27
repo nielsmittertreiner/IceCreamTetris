@@ -5,7 +5,7 @@ class IceCreamSystem
     ArrayList<IceCream> icecreams;
 
     float iceCreamSize = 80;
-    float timePace = 60;
+    float timePace = 5;
     float timeStop = iceCreamSize * timePace;
     boolean time = true; 
 
