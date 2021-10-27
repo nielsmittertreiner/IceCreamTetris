@@ -3,6 +3,9 @@ class Grid
     private int[][] grid;
     private int cellSize;
     
+    int boxX;
+    int boxY;
+
     private int tileColor;
     private int backgroundColor;
     private int strokeColor;
@@ -18,7 +21,14 @@ class Grid
         opacity = 255;
     }
     
-    
+    int gridX() {
+        return boxX;
+    }
+
+    int gridY() {
+        return boxY;
+    }
+
     boolean isRowFull(int x) {
         for (int y = 0; y < grid.length; y++) {   
             if (grid[y][x] == 0) {  
@@ -83,8 +93,8 @@ class Grid
         fill(backgroundColor, opacity);
         int gridWidth = grid[0].length * cellSize;
         int gridHeight = grid.length * cellSize;
-        int boxX = width / 2 - gridWidth / 2;
-        int boxY = height / 2 - gridHeight / 2;
+        boxX = width / 2 - gridWidth / 2;
+        boxY = height / 2 - gridHeight / 2;
         
         rect(boxX, boxY, gridWidth, gridHeight);
         
