@@ -37,7 +37,7 @@ class IceCream {
         noFill();
         image(graphic, xIceCream, yIceCream, iceCreamSize,iceCreamSize);
         noStroke();
-        fill(0,255, 0);
+        fill(asset.lightGreen);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         fill(0);
         rect(xIceCream, yTimer, timeWidth, m / timePace);
