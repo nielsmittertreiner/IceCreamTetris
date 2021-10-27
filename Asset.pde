@@ -1,8 +1,7 @@
 class Asset
 {
-  int red = #731d0b;
-  int lightRed = #FF1212;
-
+  int darkRed = #731d0b;
+  int red = #FF1212;
 
   int lightBlue = #39cedb;
   int blue = #216cb8;

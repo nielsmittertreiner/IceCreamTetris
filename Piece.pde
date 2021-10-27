@@ -6,13 +6,13 @@ class Piece {
     final int[] colors =
     {
       asset.green,
-      asset.green,
+      asset.orange,
       asset.blue,
-      asset.blue,
+      asset.darkBlue,
       asset.red,
-      asset.red,
+      asset.darkRed,
       asset.white,
-      asset.white
+      asset.black
     };
 
     int[][][] piecesCoords =

@@ -47,7 +47,7 @@ class IceCream {
         if (m > timeStop / 1.25){
 
         noStroke();
-        fill(asset.lightRed);
+        fill(asset.red);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         
         } else if (m > timeStop / 1.75){
