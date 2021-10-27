@@ -45,7 +45,7 @@ void setup()
 
 
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(random(0,7)));
+    currentPiece = new Piece(int(2));
     nextPiece = new Piece(int(random(0, 7)));
     icecreamsystem = new IceCreamSystem(grid); 
     
@@ -61,7 +61,8 @@ void setup()
 void update()
 {
     ui.keyInput();
-    switch(gameManager.gameState) {
+    switch(gameManager.gameState) 
+    {
         case 0:
             // main menu
             mainMenu.keyInput();
@@ -69,7 +70,8 @@ void update()
             case 1:
             // game
             // checks if grid is full and moves the animal.
-            for (int i = 15; i < 20; ++i) { 
+            for (int i = 15; i < 20; ++i) 
+            { 
                 if (grid.isRowFull(i)) 
                 {
                     animalsystem.moveAnimal(i);    
@@ -88,13 +90,15 @@ void update()
                   
                 
             } 
-        }
-    }
+    
+    
     // pause menu
-    else
+    case 2:
     {
         pauseMenu.keyInput();
     }
+    break;
+}
 }
 
 // render all objects to screen

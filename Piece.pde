@@ -149,7 +149,7 @@ class Piece {
         
         // testing only
         this.x = int(80); // center piece x
-        this.y = int(random(140,700)); // center piece y
+        this.y = int(random(140,600)); // center piece y
         println("type: "+type);
     }
  
@@ -165,12 +165,32 @@ class Piece {
         popMatrix();
         
      
-       
-          this.x+=1;
-          if (this.x > 1440){
-            // currentPiece = new Piece(nextPiece.type);
+          this.x+=4;
+          if (this.x >= 1440)
+          {
+            currentPiece = new Piece(nextPiece.type);
+            println(this.x);
+            println(this.y);
+            grid.setState(calculateXposition(this.x),calculateYposition(this.y),1);
             nextPiece = new Piece(int(random(0, 7)));
             this.x = 1440;
           }
+    }
+
+    int calculateXposition(int xPosition)
+    {
+      println("old"+xPosition);
+      int(xPosition = 10);
+      println("new"+xPosition);
+      return xPosition;
+
+    }
+    int calculateYposition(int yPosition)
+    {
+      println("old"+yPosition);
+      int(yPosition = 4);
+      println("new"+yPosition);
+      return yPosition;
+
     }
 }
