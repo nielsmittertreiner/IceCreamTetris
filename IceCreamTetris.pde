@@ -40,10 +40,10 @@ void setup()
     grid.setState(13,8,1);
     grid.setState(15,8,1);
     grid.setState(19,8,1);
-    
-    
-    
-    
+
+
+
+
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(random(0,7)));
     nextPiece = new Piece(int(random(0, 7)));
@@ -87,13 +87,13 @@ void update()
                 }   
                   
                 
+            } 
         }
-        break;
-        // pausemenu
-        case 2:
-            pauseMenu.keyInput();
-            break;
-        
+    }
+    // pause menu
+    else
+    {
+        pauseMenu.keyInput();
     }
 }
 
@@ -127,8 +127,7 @@ void render()
 
 // update and render game loop
 void draw()
-    {
+{
     update();
     render();
 }
-

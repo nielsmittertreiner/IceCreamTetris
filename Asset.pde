@@ -11,4 +11,7 @@ class Asset
   int white = #f7fbf8;
   int grey = #808b80;
   int black = #1d1f1e;
+
+  int animationWhite = #FFFFFF;
+  int animationBlack = #000000;
 }
