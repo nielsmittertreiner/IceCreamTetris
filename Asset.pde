@@ -8,6 +8,7 @@ class Asset
 
   int green = #648c30; 
   int lightGreen = #32CE5D;
+  
   int white = #f7fbf8;
   int grey = #808b80;
   int black = #1d1f1e;
