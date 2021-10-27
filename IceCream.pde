@@ -4,7 +4,7 @@ class IceCream {
     PImage graphic = new PImage();
     
     String[] filepaths = new String[5];
-    int[] icecreamgridposition = new int[5];
+
     
     float iceCreamSize = 80, timeWidth = 15;
     float timePace = 5;
@@ -39,10 +39,12 @@ class IceCream {
     {      
         noFill();
         image(graphic, xIceCream, yIceCream, iceCreamSize,iceCreamSize);
+
         noStroke();
         fill(asset.white);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
 
+    //change the color of the timers.
         changeColor = true;
         if (m > timeStop / 1.25){
 
@@ -65,6 +67,7 @@ class IceCream {
         fill(asset.lightBlue);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         }
+
         noStroke();
         fill(0);
         rect(xIceCream, yTimer, timeWidth, m / timePace);
