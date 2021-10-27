@@ -40,10 +40,10 @@ void setup()
     grid.setState(13,8,1);
     grid.setState(15,8,1);
     grid.setState(19,8,1);
-
-
-
-
+    
+    
+    
+    
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(2));
     nextPiece = new Piece(int(random(0, 7)));
@@ -66,8 +66,8 @@ void update()
         case 0:
             // main menu
             mainMenu.keyInput();
-        break;
-            case 1:
+            break;
+        case 1:
             // game
             // checks if grid is full and moves the animal.
             for (int i = 15; i < 20; ++i) 
@@ -83,55 +83,55 @@ void update()
                     animalsystem.respawnanimal(i);  
                     animalsystem.checkoverlapp(i);
                 }  
-                 if (animalsystem.respawning(i))
+                if (animalsystem.respawning(i))
                 {
                     animalsystem.movetospawn(i);
                 }   
-                  
+                
                 
             } 
-    
-    
-    // pause menu
-    case 2:
-    {
-        pauseMenu.keyInput();
-    }
-    break;
-}
-}
-
-// render all objects to screen
-void render()
-    {
-    switch(gameManager.gameState) {
-        case 0:
-            // main menu
-            mainMenu.draw();
-            break;
-        case 1:
-            // game
-            image(ground, 0, 0, width, height);
-            fill(groundColour, 150);
-            rect(0, 0, width, height);
-            grid.draw();
-            icecreamsystem.draw();
-            animalsystem.run();
-            currentPiece.render();
-            ui.draw();
-            break;
-        
+            
+            
         case 2:
-            // pausemenu
-            pauseMenu.draw();
+            // pause menu
+            
+            pauseMenu.keyInput();
             break;
     }
-    
-}
-
-// update and render game loop
-void draw()
-{
-    update();
-    render();
-}
+    }
+        
+        // render all objects to screen
+       void render()
+        {
+        switch(gameManager.gameState) {
+           case 0:
+                // main menu
+                mainMenu.draw();
+                break;
+           case 1:
+                // game
+                image(ground, 0, 0, width, height);
+                fill(groundColour, asset.opacity);
+                rect(0, 0, width, height);
+                grid.draw();
+                icecreamsystem.draw();
+                animalsystem.run();
+                currentPiece.render();
+                ui.draw();
+                break;
+            
+           case 2:
+                // pausemenu
+                pauseMenu.draw();
+                break;
+        }
+            
+        }
+            
+            // update and render game loop
+           void draw()
+            {
+            update();
+            render();
+        }
+            
