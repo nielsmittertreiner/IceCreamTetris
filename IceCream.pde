@@ -40,29 +40,29 @@ class IceCream {
         noFill();
         image(graphic, xIceCream, yIceCream, iceCreamSize,iceCreamSize);
         noStroke();
-        fill(#1A27FF);
+        fill(asset.white);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
 
         changeColor = true;
         if (m > timeStop / 1.25){
 
         noStroke();
-        fill(#F52100);
+        fill(asset.lightRed);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         
         } else if (m > timeStop / 1.75){
         noStroke();
-        fill(#F5BC00);
+        fill(asset.orange);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         
         } else if (m > timeStop / 3){
         noStroke();
-        fill(#00F52E);
+        fill(asset.lightGreen);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         
         } else if (m > timeStop / 5){
         noStroke();
-        fill(#00E2F5);
+        fill(asset.lightBlue);
         rect(xIceCream, yTimer, timeWidth, iceCreamSize);
         }
         noStroke();
