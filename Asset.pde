@@ -16,6 +16,5 @@ class Asset
 
   int orange = #F5BC00;
 
-
   int opacity = 150;
 }
