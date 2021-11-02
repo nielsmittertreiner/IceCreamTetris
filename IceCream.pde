@@ -7,7 +7,7 @@ class IceCream {
 
     
     float iceCreamSize = 90, timeWidth = 15;
-    float timePace = 15;
+    float timePace = 75;
     float timeStop = iceCreamSize * timePace;
     int xIceCream, yIceCream;
     int xTimer = xIceCream, yTimer = yIceCream; 
