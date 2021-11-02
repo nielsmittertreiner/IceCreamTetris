@@ -79,8 +79,8 @@ class IceCreamSystem
     //Respawns the icecream and the timer and puts the timer on 0.
     void respawnIceCream(int icecream) 
     {
-        icecreams.get(calculateiceceream(icecream)).yIceCream = -100; 
-        icecreams.get(calculateiceceream(icecream)).yTimer = -100; 
+        icecreams.get(calculateiceceream(icecream)).yIceCream = -250; 
+        icecreams.get(calculateiceceream(icecream)).yTimer = -250; 
         icecreams.get(calculateiceceream(icecream)).m = 0;
         
     }
