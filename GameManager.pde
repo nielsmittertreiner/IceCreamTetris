@@ -4,6 +4,7 @@ class GameManager
     int gameState = 0;
     int score = 0, difficulty = 0;
     
+    
     void keyInput()
     {
         
@@ -15,6 +16,40 @@ class GameManager
                 gameManager.gameState = 2;
             }
         }
+        if(key == 's'&& keyPressed)
+        {
+            currentPiece.y+=80;
+            if(currentPiece.y> 650)
+            {
+                currentPiece.y = 650;
+            }
+            key = 'q';
+        }
+        if(key == 'w'&& keyPressed)
+        {
+            currentPiece.y-=80;
+            if(currentPiece.y< 90)
+            {
+                
+                currentPiece.y = 90;
+            }
+            key = 'q';
+        }
+        if(key == 'a'&& keyPressed)
+        {
+            currentPiece.x+=80;
+           
+            key = 'q';
+        }
+        // angel = angel+90;
+        // if(key == 'y'&& keyPressed)
+        // {
+        //     push();
+        //     translate(currentPiece.x,currentPiece.y);
+        //     rotate(angel);
+        //     pop();
+        //     key = 'q';
+        // }
         
         //add 2 to Score by pressing m, take 2 away by pressing l
         if (key == 'm' && keyPressed)

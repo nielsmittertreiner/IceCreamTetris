@@ -48,7 +48,7 @@ void setup()
     
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(2));
-    nextPiece = new Piece(int(random(0, 7)));
+    nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
     
     
@@ -134,6 +134,7 @@ void render()
 // update and render game loop
 void draw()
 {
+    
     update();
     render();
 }

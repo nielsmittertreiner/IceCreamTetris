@@ -67,7 +67,7 @@ class Grid
 
         for(int y = 0; y < piece.length; y++) {
             for(int x = 0; x < piece[y].length; x++) {
-                grid[y + posY][x + posX] = piece[y][x];
+                grid[posY][ posX] = piece[y][x];
             }
         }
     }
