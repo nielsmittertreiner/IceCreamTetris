@@ -18,7 +18,7 @@ class Grid
         tileColor = asset.black;
         backgroundColor = asset.lightBlue;
         strokeColor = asset.black;
-        opacity = 255;
+        opacity = asset.opacity;
     }
     
     int gridX() {
@@ -67,7 +67,7 @@ class Grid
 
         for(int y = 0; y < piece.length; y++) {
             for(int x = 0; x < piece[y].length; x++) {
-                grid[y + posY][x + posX] = piece[y][x];
+                grid[posY][ posX] = piece[y][x];
             }
         }
     }
@@ -86,16 +86,23 @@ class Grid
         return grid[y][x];
     }
     
-    void draw() {
-        stroke(strokeColor, opacity);
-        
-        // Draw grid box
-        fill(backgroundColor, opacity);
+    void draw() {        
+        // Calculate grid
         int gridWidth = grid[0].length * cellSize;
         int gridHeight = grid.length * cellSize;
         boxX = width / 2 - gridWidth / 2;
         boxY = height / 2 - gridHeight / 2;
         
+        // Draw background
+        fill(asset.grey);
+        rect(boxX, boxY, gridWidth, gridHeight);
+
+        // Draw animation
+        riverAnimation.draw(boxY, gridHeight);
+
+        // Draw grid box
+        stroke(strokeColor, opacity);
+        fill(backgroundColor, opacity);
         rect(boxX, boxY, gridWidth, gridHeight);
         
         // Draw tiles

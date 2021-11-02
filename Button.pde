@@ -7,7 +7,7 @@ class Button
     {
         float x = width / 2, y = (height / total) * number;
         rectMode(CENTER);
-        fill(asset.red);
+        fill(asset.darkRed);
         if (selected)
         {
             stroke(asset.white);
