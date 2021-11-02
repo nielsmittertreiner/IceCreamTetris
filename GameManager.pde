@@ -27,6 +27,22 @@ class GameManager
         }
         if(key == 'w'&& keyPressed)
         {
+        if (currentPiece.type == 5)
+        {
+            currentPiece.y-=80;
+            if(currentPiece.y< 170)
+            {
+                
+                currentPiece.y = 170;
+            }
+            key = 'q';
+
+
+
+        }
+        else {
+            
+        
             currentPiece.y-=80;
             if(currentPiece.y< 90)
             {
@@ -35,11 +51,16 @@ class GameManager
             }
             key = 'q';
         }
-        if(key == 'a'&& keyPressed)
+        }
+        if(key == 'd'&& keyPressed)
         {
+            if (currentPiece.x <=1360) {
+                
+            
             currentPiece.x+=80;
            
             key = 'q';
+        }
         }
         // angel = angel+90;
         // if(key == 'y'&& keyPressed)
@@ -64,7 +85,7 @@ class GameManager
         }
         
         //up the difficulty by pressing d
-        if (key == 'd' && keyPressed) 
+        if (key == 'a' && keyPressed) 
         {
             gameManager.setDifficulty(1);
             key = 'q';
