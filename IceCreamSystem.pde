@@ -48,7 +48,7 @@ class IceCreamSystem
     }
 
     
-    //Calculates the score by the size of the whole timer - the time past. max 80 min 0.  
+    //Calculates the score by the size of the whole timer - the time past. max 90 min 0.  
     int getscore(int icecream)
     {
       icecream = int(icecreams.get(calculateiceceream(icecream)).iceCreamSize - (icecreams.get(calculateiceceream(icecream)).m / icecreams.get(calculateiceceream(icecream)).timePace));
