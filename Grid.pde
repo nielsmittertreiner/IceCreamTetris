@@ -63,13 +63,13 @@ class Grid
     }
     
     void addPiece(Piece newPiece, int posX, int posY) {
-        int[][] piece = newPiece.piece;
+        int[] origin = {posX, posY};
+        int[][] pieceCoords = newPiece.piece;
 
-        for(int y = 0; y < piece.length; y++) {
-            for(int x = 0; x < piece[y].length; x++) {
-                grid[posY][ posX] = piece[y][x];
-            }
+        for(int[] coord : pieceCoords) {
+            grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
         }
+
     }
 
     int getRowPosition(int rowX) {
