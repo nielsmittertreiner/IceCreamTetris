@@ -135,7 +135,6 @@ class Piece {
     int c;
     int rotation;
     
-    
     Piece(int type)
     {
         this.type = type;
@@ -156,7 +155,6 @@ class Piece {
         translate(x, y); // verander dit naar grid x y later
         for (int i = 0; i < 9; i++)
         {
-            
             rect(piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }  
         popMatrix();
@@ -177,45 +175,45 @@ class Piece {
         {
         println("old" + xPosition);
             switch(xPosition) {
-                case -80:
+                case 0:
                    return 0;
-                    case 0 :
-                   return 1;
                     case 80 :
-                   return 2;
+                   return 1;
                     case 160 :
-                   return 3;
+                   return 2;
                     case 240 :
-                   return 4;
+                   return 3;
                     case 320 :
+                   return 4;
+                    case 400 :
                    return 5;
-                   case 400 :
-                   return 6;
                    case 480 :
-                   return 7;
+                   return 6;
                    case 560 :
+                   return 7;
+                   case 640 :
                    return 8;
-                  case 640 :
+                  case 720 :
                    return 9;
-                   case 720 :
-                   return 10;
                    case 800 :
-                   return 11;
+                   return 10;
                    case 880 :
-                   return 12;
+                   return 11;
                    case 960 :
-                   return 13;
+                   return 12;
                    case 1040 :
-                   return 14;
+                   return 13;
                    case 1120 :
-                   return 15;
+                   return 14;
                    case 1200 :
-                   return 16;
+                   return 15;
                    case 1280 :
-                   return 17;
+                   return 16;
                    case 1360 :
+                   return 17;
+                   case 1440 :
                    return 18; 
-                    case 1440 :
+                   case 1600 :
                    return 19;
                    default :
                    println("can not calculate xPosition.");
