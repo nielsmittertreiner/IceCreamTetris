@@ -3,6 +3,7 @@ class GameManager
     //-1 = paused, 0 = starting menu, 1 = game
     int gameState = 0;
     int score = 0, difficulty = 0;
+    int speeddifficulty = 600;
     
     
     void keyInput()
@@ -99,11 +100,24 @@ class GameManager
         }
     }
     
+    void changeSpeedDifficulty()
+    {   if(speeddifficulty >= 100){
+            speeddifficulty -= (score / 200);
+            println(speeddifficulty);
+            }
+            else {
+                println("Maximum Difficultyspeed reached!");
+            } 
+
+        
+    }
+        
     void addScore(int scoreAdded) {
         score += scoreAdded;
         if (score < 0) {
             score = 0;
         }
+        changeSpeedDifficulty();
 }
     
     void setDifficulty(int difficultyAdded) {
