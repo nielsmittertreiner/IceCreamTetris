@@ -33,12 +33,21 @@ class MainMenu
             keyCode = TAB;
             if (selectedButton == -1)
             {
-                selectedButton = numberButtons -1;
+                selectedButton = numberButtons - 1;
             }
         }
-        if (key == 'x' && keyPressed && selectedButton == 0)
+        if (key == 'x' && keyPressed)
         {
-            gameManager.gameState = 1;
+            switch(selectedButton)
+            {
+                case 0:
+                    gameManager.gameState = 1;
+                    break;
+
+                case 2:
+                    gameManager.gameState = 3;
+                    break;
+            }
             keyCode = 'q';
         }
     }
