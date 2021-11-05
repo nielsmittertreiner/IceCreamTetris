@@ -16,7 +16,7 @@ class GameManager
                 gameManager.gameState = 2;
             }
         }
-        if(key == 's'&& keyPressed)
+        if(keyCode == DOWN && keyPressed)
         {
             currentPiece.y+=80;
             if(currentPiece.y> 650)
@@ -25,7 +25,7 @@ class GameManager
             }
             key = 'q';
         }
-        if(key == 'w'&& keyPressed)
+        if(keyCode == UP && keyPressed)
         {
         if (currentPiece.type == 5)
         {
@@ -52,8 +52,9 @@ class GameManager
             key = 'q';
         }
         }
-        if(key == 'd'&& keyPressed)
+        if(keyCode == RIGHT && keyPressed)
         {
+            
             if (currentPiece.x <=1360) {
                 
             
