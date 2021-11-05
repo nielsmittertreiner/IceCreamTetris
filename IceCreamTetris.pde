@@ -30,27 +30,9 @@ void setup()
     button = new Button();
     ui = new UI();
     grid = new Grid(20, 9, 80);
-    grid.setState(15,0,1);
-    grid.setState(15,1,1);
-    grid.setState(15,2,1);
-    grid.setState(15,3,1);
-    grid.setState(15,4,1);
-    grid.setState(15,5,1);
-    grid.setState(15,6,1);
-    grid.setState(15,7,1);
-    grid.setState(15,8,1);
-    
-    grid.setState(11,8,1);
-    grid.setState(13,8,1);
-    grid.setState(15,8,1);
-    grid.setState(19,8,1);
-    
-    
-    
-    
     animalsystem = new AnimalSystem(grid);
     currentPiece = new Piece(int(2));
-    nextPiece = new Piece(int(random(0, 7)));
+    nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
     
     
@@ -146,6 +128,7 @@ void render()
 // update and render game loop
 void draw()
 {
+    
     update();
     render();
 }

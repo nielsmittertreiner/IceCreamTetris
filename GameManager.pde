@@ -3,6 +3,8 @@ class GameManager
     //-1 = paused, 0 = starting menu, 1 = game
     int gameState = 0;
     int score = 0, difficulty = 0;
+    int speeddifficulty = 600;
+    
     
     void keyInput()
     {
@@ -15,6 +17,62 @@ class GameManager
                 gameManager.gameState = 2;
             }
         }
+        if(keyCode == DOWN && keyPressed)
+        {
+            currentPiece.y+=80;
+            if(currentPiece.y> 650)
+            {
+                currentPiece.y = 650;
+            }
+            key = 'q';
+        }
+        if(keyCode == UP && keyPressed)
+        {
+        if (currentPiece.type == 5)
+        {
+            currentPiece.y-=80;
+            if(currentPiece.y< 170)
+            {
+                
+                currentPiece.y = 170;
+            }
+            key = 'q';
+
+
+
+        }
+        else {
+            
+        
+            currentPiece.y-=80;
+            if(currentPiece.y< 90)
+            {
+                
+                currentPiece.y = 90;
+            }
+            key = 'q';
+        }
+        }
+        if(keyCode == RIGHT && keyPressed)
+        {
+            
+            if (currentPiece.x <=1360) {
+                
+            
+            currentPiece.x+=80;
+           
+            key = 'q';
+        }
+        }
+        // angel = angel+90;
+        // if(key == 'y'&& keyPressed)
+        // {
+        //     push();
+        //     translate(currentPiece.x,currentPiece.y);
+        //     rotate(angel);
+        //     pop();
+        //     key = 'q';
+        // }
         
         //add 2 to Score by pressing m, take 2 away by pressing l
         if (key == 'm' && keyPressed)
@@ -29,7 +87,7 @@ class GameManager
         }
         
         //up the difficulty by pressing d
-        if (key == 'd' && keyPressed) 
+        if (key == 'a' && keyPressed) 
         {
             gameManager.setDifficulty(1);
             key = 'q';
@@ -43,11 +101,24 @@ class GameManager
         }
     }
     
+    void changeSpeedDifficulty()
+    {   if(speeddifficulty >= 100){
+            speeddifficulty -= (score / 200);
+            println(speeddifficulty);
+            }
+            else {
+                println("Maximum Difficultyspeed reached!");
+            } 
+
+        
+    }
+        
     void addScore(int scoreAdded) {
         score += scoreAdded;
         if (score < 0) {
             score = 0;
         }
+        changeSpeedDifficulty();
 }
     
     void setDifficulty(int difficultyAdded) {

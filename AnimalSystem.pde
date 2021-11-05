@@ -56,7 +56,7 @@ class AnimalSystem
     // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
     void moveAnimal(int animal) 
     {
-        animals.get(calculateanimal(animal)).yAnimal -= 5;
+        animals.get(calculateanimal(animal)).yAnimal -= 3;
     }
 
     //if animalpassed == true respawn the animal puts the yAnimal on height + 100.

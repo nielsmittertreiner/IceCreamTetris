@@ -8,11 +8,11 @@ class Animal
     // constructor for the animals makes the filepaths and convertes them into a image.
     Animal(int animal) 
     {
-        filepaths[0] = "img/cow.png";
-        filepaths[1] = "img/sheep.png";
-        filepaths[2] = "img/horse.png";
-        filepaths[3] = "img/chicken.png";
-        filepaths[4] = "img/pig.png";
+        filepaths[0] = "img/elephant.png";
+        filepaths[1] = "img/hippo.png";
+        filepaths[2] = "img/lion.png";
+        filepaths[3] = "img/rabbit.png";
+        filepaths[4] = "img/deer.png";
         
         graphic = loadImage(filepaths[animal]);
     }

@@ -6,8 +6,8 @@ class IceCream {
     String[] filepaths = new String[5];
 
     
-    float iceCreamSize = 80, timeWidth = 15;
-    float timePace = 5;
+    float iceCreamSize = 90, timeWidth = 15;
+    float timePace = 75;
     float timeStop = iceCreamSize * timePace;
     int xIceCream, yIceCream;
     int xTimer = xIceCream, yTimer = yIceCream; 
