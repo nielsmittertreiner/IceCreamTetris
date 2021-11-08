@@ -3,6 +3,9 @@ class Piece
     final int BLOCK_COUNT = 5;
     final int BLOCK_SIZE = 80;
 
+    int last;
+    int m;
+
     final String[] textures = 
     {
         "img/wood_1.png",
@@ -54,7 +57,7 @@ class Piece
             {0, 0}, // filler
             {0, 0}, // filler
         },
-        {
+         {
             // . . .
             // . X X
             // X X .
@@ -142,6 +145,13 @@ class Piece
         {
             image(gfx[i], piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }  
-        popMatrix();        
+        popMatrix();   
+
+        if (currentPiece.x >= 1440)
+        m = millis() - last;
+        if (millis() > last + gameManager.speeddifficulty) {
+            last = millis();
+            this.x += 80;
+        }   
     }
 }
