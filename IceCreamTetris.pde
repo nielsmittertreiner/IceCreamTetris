@@ -2,6 +2,7 @@
 Asset asset;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
+Credits credits;
 Button button;
 GameManager gameManager;
 Grid grid;
@@ -22,6 +23,7 @@ void setup()
     groundColour = asset.green;
     mainMenu = new MainMenu();
     pauseMenu = new PauseMenu();
+    credits = new Credits();
     gameManager = new GameManager();
     // animalsystem = new AnimalSystem();
     riverAnimation = new RiverAnimation();
@@ -82,6 +84,11 @@ void update()
             
             pauseMenu.keyInput();
             break;
+
+        case 3:
+            //credits
+            credits.keyInput();
+            break;
     }
 }
         
@@ -106,9 +113,14 @@ void render()
             ui.draw();
             break;
             
-         case 2:
+        case 2:
             // pausemenu
             pauseMenu.draw();
+            break;
+
+        case 3:
+            // credits
+            credits.draw();
             break;
     }        
 }
