@@ -7,7 +7,7 @@ class Piece
     int m;
 
     final String[] textures = 
-    {
+    { // Texture of the Pieces
         "img/wood_1.png",
         "img/wood_2.png",
         "img/wood_3.png",
@@ -15,7 +15,7 @@ class Piece
     };
     
     final color[] tints =
-    {
+    {   // colour of the Pieces
         asset.green,
         asset.orange,
         asset.blue,
@@ -27,7 +27,7 @@ class Piece
     };
     
     int[][][] blockCoordinates =
-    {
+    {       // Pyramid
         {   // . . .    
             // X X X
             // . X .
@@ -37,7 +37,7 @@ class Piece
             {1, 0},
             {0, 0}, // filler
         },
-        {
+        {   // Cshape
             // . . .
             // X X X
             // X . X
@@ -47,7 +47,7 @@ class Piece
             {1 ,0},
             {1, 1},
         },
-        {
+        {   // stair
             // . . .
             // . X X
             // . . X
@@ -57,7 +57,7 @@ class Piece
             {0, 0}, // filler
             {0, 0}, // filler
         },
-         {
+         {  // snake
             // . . .
             // . X X
             // X X .
@@ -67,7 +67,7 @@ class Piece
             {1, 0},
             {0, 0}, // filler
         },
-        {
+        {   // Lshape
             // . . .
             // X X X
             // . . X
@@ -77,7 +77,7 @@ class Piece
             {1, 1},
             {0, 0}, // filler
         } ,
-        {
+        {   // Plus 
             // . X .
             // X X X
             // . X .
@@ -97,7 +97,7 @@ class Piece
             {1, 1},
             {0, 0}, // filler
         },
-        {
+        {   // ractangle
             // . . .
             // X X X
             // . . .
@@ -116,7 +116,7 @@ class Piece
     int type;
     int tint;
     int rotation;
-
+ // Generate of the Pieces
     Piece(int type)
     {
         this.type = type;
@@ -137,7 +137,7 @@ class Piece
     
 
     void render()
-    {
+    {  //rendering the Pieces
         pushMatrix();
         translate(x, y); // verander dit naar grid x y later
         tint(tint);
@@ -146,9 +146,13 @@ class Piece
             image(gfx[i], piece[i][0] * BLOCK_SIZE, piece[i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }  
         popMatrix();   
-
-        if (currentPiece.x >= 1440)
+        // generate next Pieces
+        if (currentPiece.x >= 1440) {
+                currentPiece.x = 1440;
+                currentPiece = new Piece(int(random(0,7)));
+            }
         m = millis() - last;
+        // movement Pieces
         if (millis() > last + gameManager.speeddifficulty) {
             last = millis();
             this.x += 80;
