@@ -16,7 +16,7 @@ class GameManager
             {
                 gameManager.gameState = 2;
             }
-        }
+        }// going Down
         if(keyCode == DOWN && keyPressed)
         {
             currentPiece.y+=80;
@@ -25,7 +25,7 @@ class GameManager
                 currentPiece.y = 650;
             }
             key = 'q';
-        }
+        } // going Up
         if(keyCode == UP && keyPressed)
         {
         if (currentPiece.type == 5)
@@ -52,7 +52,7 @@ class GameManager
             }
             key = 'q';
         }
-        }
+        } // going forward
         if(keyCode == RIGHT && keyPressed)
         {
             
@@ -64,15 +64,7 @@ class GameManager
             key = 'q';
         }
         }
-        // angel = angel+90;
-        // if(key == 'y'&& keyPressed)
-        // {
-        //     push();
-        //     translate(currentPiece.x,currentPiece.y);
-        //     rotate(angel);
-        //     pop();
-        //     key = 'q';
-        // }
+    
         
         //add 2 to Score by pressing m, take 2 away by pressing l
         if (key == 'm' && keyPressed)

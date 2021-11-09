@@ -4,8 +4,11 @@ class Piece
     final int BLOCK_SIZE = 80;
     final int ROTATION_COUNT = 4;
 
+    int last;
+    int m;
+
     final String[] textures = 
-    {
+    { // Texture of the Pieces
         "img/wood_1.png",
         "img/wood_2.png",
         "img/wood_3.png",
@@ -13,7 +16,7 @@ class Piece
     };
     
     final color[] tints =
-    {
+    {   // colour of the Pieces
         asset.green,
         asset.orange,
         asset.blue,
@@ -26,7 +29,8 @@ class Piece
     
     int[][][][] blockCoordinates =
     {
-        {   // . . .    
+        {   // Pyramid
+            // . . .    
             // X X X
             // . X .
             {
@@ -46,7 +50,7 @@ class Piece
 
             },
         },
-        {
+        {   // C shape
             // . . .
             // X X X
             // X . X
@@ -67,7 +71,7 @@ class Piece
 
             },
         },
-        {
+        {   // Stairs
             // . . .
             // . X X
             // . . X
@@ -88,7 +92,7 @@ class Piece
 
             },
         },
-        {
+         {  // Snake
             // . . .
             // . X X
             // X X .
@@ -109,7 +113,7 @@ class Piece
 
             },
         },
-        {
+        {   // L shape
             // . . .
             // X X X
             // . . X
@@ -130,7 +134,7 @@ class Piece
 
             },
         } ,
-        {
+        {   // Plus 
             // . X .
             // X X X
             // . X .
@@ -153,6 +157,7 @@ class Piece
             
         },
         {
+            // Square
             // . . .
             // . X X
             // . X X
@@ -173,7 +178,7 @@ class Piece
 
             },
         },
-        {
+        {   // Long Rectangle
             // . . .
             // X X X
             // . . .
@@ -203,7 +208,7 @@ class Piece
     int type;
     int tint;
     int rotation;
-
+ // Generate of the Pieces
     Piece(int type)
     {
         this.type = type;
@@ -224,7 +229,7 @@ class Piece
     
 
     void render()
-    {
+    {  //rendering the Pieces
         pushMatrix();
         translate(x, y); // verander dit naar grid x y later
         tint(tint);
@@ -232,6 +237,17 @@ class Piece
         {
             image(gfx[i], piece[rotation][i][0] * BLOCK_SIZE, piece[rotation][i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }  
-        popMatrix();        
+        popMatrix();   
+        // generate next Pieces
+        if (currentPiece.x >= 1440) {
+                currentPiece.x = 1440;
+                currentPiece = new Piece(int(random(0,7)));
+            }
+        m = millis() - last;
+        // movement Pieces
+        if (millis() > last + gameManager.speeddifficulty) {
+            last = millis();
+            this.x += 80;
+        }   
     }
 }
