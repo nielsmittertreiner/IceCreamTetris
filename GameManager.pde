@@ -8,7 +8,6 @@ class GameManager
     
     void keyInput()
     {
-        
         if (keyCode == BACKSPACE && keyPressed)
         {
             keyCode = TAB;
@@ -16,53 +15,54 @@ class GameManager
             {
                 gameManager.gameState = 2;
             }
-        }// going Down
+        }
+        
+        // going Down
         if(keyCode == DOWN && keyPressed)
         {
-            currentPiece.y+=80;
-            if(currentPiece.y> 650)
+            currentPiece.move(grid, 0, 1);// currentPiece.y+=80;
+
+            if(currentPiece.y > 650)
             {
                 currentPiece.y = 650;
             }
+
             key = 'q';
-        } // going Up
+        } 
+        
+        // going Up
         if(keyCode == UP && keyPressed)
         {
-        if (currentPiece.type == 5)
-        {
-            currentPiece.y-=80;
-            if(currentPiece.y< 170)
+            if (currentPiece.type == 5)
             {
-                
-                currentPiece.y = 170;
-            }
-            key = 'q';
+                currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;
 
+                if(currentPiece.y< 170)
+                {
+                    currentPiece.y = 170;
+                }
 
+                key = 'q';
+            } else {
+            currentPiece.move(grid, 0, -1);// currentPiece.y-=80;
 
-        }
-        else {
-            
-        
-            currentPiece.y-=80;
             if(currentPiece.y< 90)
             {
-                
                 currentPiece.y = 90;
             }
+
             key = 'q';
         }
-        } // going forward
+
+        } 
+        // going forward
         if(keyCode == RIGHT && keyPressed)
         {
-            
-            if (currentPiece.x <=1360) {
-                
-            
-            currentPiece.x+=80;
+            if (currentPiece.x <= 1360) {
+                currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
            
-            key = 'q';
-        }
+                key = 'q';
+            }
         }
     
         
