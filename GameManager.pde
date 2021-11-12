@@ -33,7 +33,7 @@ class GameManager
         // going Up
         if(keyCode == UP && keyPressed)
         {
-            if (currentPiece.type == 5)
+            if (currentPiece.type == 5 || currentPiece.type == 0 || currentPiece.type == 1 || currentPiece.type == 3 || currentPiece.type == 4 || currentPiece.type == 7)
             {
                 currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;
 
@@ -108,6 +108,12 @@ class GameManager
             } 
 
         
+    }
+
+    void checkFit()
+    {
+       
+
     }
         
     void addScore(int scoreAdded) {
