@@ -343,7 +343,7 @@ class Piece
     void move(Grid grid, int x, int y) {
         int[] w2g = world2grid();
         
-        println(w2g[0]);
+        int[][] piece = this.piece[rotation];
 
         for(int[] coord : piece) {
             if(w2g[0] + coord[0] == grid.width() - 1) {
