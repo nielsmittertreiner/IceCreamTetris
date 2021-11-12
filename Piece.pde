@@ -372,3 +372,6 @@ class Piece
         return new int[] {grid_x, grid_y};
     }
 }
+
+
+//test
