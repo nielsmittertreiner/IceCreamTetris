@@ -33,7 +33,7 @@ void setup()
     ui = new UI();
     grid = new Grid(20, 9, 80);
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(2));
+    currentPiece = new Piece(int(random(0,7)));
     // nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
 
