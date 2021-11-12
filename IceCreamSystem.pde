@@ -125,12 +125,11 @@ class IceCreamSystem
             if (icecreams.get(calculateiceceream(i)).m > timeStop) 
             { 
                 icecreams.get(calculateiceceream(i)).m --; 
-         //     respawnIceCream(i);
-         //     movetospawn(i);
+              //  gameManager.addScore(-50);
+               // respawnIceCream(i);
+              //  movetospawn(i);
 
             } 
-
         }    
     } 
-
 }   
