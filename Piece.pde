@@ -118,7 +118,7 @@ class Piece
                 {0,0},
                 {0,0},
                 {0,1}, // filler
-                {1,1}, // filler
+                {1,0}, // filler
             },
             {
                 {0,0},
