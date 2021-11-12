@@ -334,23 +334,40 @@ class Piece
         {
             image(gfx[i], piece[rotation][i][0] * BLOCK_SIZE, piece[rotation][i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
+        noTint();
+        popMatrix();   
+    }
 
-        noTint(); 
-        popMatrix();
+    void instanceNextPiece() {
+        currentPiece = new Piece(int(random(0,7)));
+    }
 
-        // generate next Pieces
-        if (currentPiece.x >= 1440)
-        {
-            currentPiece.x = 1440;
-            currentPiece = new Piece(int(random(0,7)));
+    void move(Grid grid, int x, int y) {
+        int[] w2g = world2grid();
+        
+        int[][] piece = this.piece[rotation];
+
+        for(int[] coord : piece) {
+            if(w2g[0] + coord[0] == grid.width() - 1) {
+                grid.addPiece(this, w2g[0], w2g[1]);
+                instanceNextPiece();
+                return;
+            } else if(grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
+                grid.addPiece(this, w2g[0], w2g[1]);
+                instanceNextPiece();
+                return;
+            } else if(grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
+                return;
+            }
         }
-        m = millis() - last;
 
-        // movement Pieces
-        if (millis() > last + gameManager.speeddifficulty)
-        {
-            last = millis();
-            this.x += 80;
-        }
+        this.x += BLOCK_SIZE * x;
+        this.y += BLOCK_SIZE * y;
+    }
+
+    int[] world2grid() {
+        int grid_x = (x / BLOCK_SIZE) + 1;
+        int grid_y = (y / BLOCK_SIZE) - 1;
+        return new int[] {grid_x, grid_y};
     }
 }
