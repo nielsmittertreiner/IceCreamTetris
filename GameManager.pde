@@ -16,38 +16,35 @@ class GameManager
             {
                 gameManager.gameState = 2;
             }
-        }// going Down
+        }
+        // going Down
         if(keyCode == DOWN && keyPressed)
         {
-            currentPiece.y+=80;
-            if(currentPiece.y> 650)
+            currentPiece.y += 80;
+            if(currentPiece.y > 650)
             {
                 currentPiece.y = 650;
             }
             key = 'q';
-        } // going Up
+        }
+        // going Up
         if(keyCode == UP && keyPressed)
         {
         if (currentPiece.type == 5)
         {
-            currentPiece.y-=80;
-            if(currentPiece.y< 170)
+            currentPiece.y -= 80;
+            if(currentPiece.y < 170)
             {
                 
                 currentPiece.y = 170;
             }
             key = 'q';
-
-
-
         }
-        else {
-            
-        
-            currentPiece.y-=80;
-            if(currentPiece.y< 90)
+        else
+        {
+            currentPiece.y -= 80;
+            if(currentPiece.y < 90)
             {
-                
                 currentPiece.y = 90;
             }
             key = 'q';
@@ -63,6 +60,11 @@ class GameManager
            
             key = 'q';
         }
+        }
+        if(keyCode == LEFT && keyPressed)
+        {
+            currentPiece.rotation = (currentPiece.rotation + 1) % 4;
+            keyCode = ENTER;
         }
     
         

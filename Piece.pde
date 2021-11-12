@@ -304,7 +304,8 @@ class Piece
     int type;
     int tint;
     int rotation;
- // Generate of the Pieces
+
+    // Generate of the Pieces
     Piece(int type)
     {
         this.type = type;
@@ -318,32 +319,38 @@ class Piece
         }
         
         // testing only
-        this.x = int(0); // center piece x
-        this.y = int(170); // center piece y
+        this.x = int(0); // initialize piece x
+        this.y = int(170); // initialize piece y
         println("type: " + type);
     }
     
-
+    //rendering the Pieces
     void render()
-    {  //rendering the Pieces
+    {
         pushMatrix();
-        translate(x, y); // verander dit naar grid x y later
+        translate(x, y); // verander dit naar grid x y later?
         tint(tint);
         for (int i = 0; i < BLOCK_COUNT; i++)
         {
             image(gfx[i], piece[rotation][i][0] * BLOCK_SIZE, piece[rotation][i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-        }  
-        popMatrix();   
+        }
+
+        noTint(); 
+        popMatrix();
+
         // generate next Pieces
-        if (currentPiece.x >= 1440) {
-                currentPiece.x = 1440;
-                currentPiece = new Piece(int(random(0,7)));
-            }
+        if (currentPiece.x >= 1440)
+        {
+            currentPiece.x = 1440;
+            currentPiece = new Piece(int(random(0,7)));
+        }
         m = millis() - last;
+
         // movement Pieces
-        if (millis() > last + gameManager.speeddifficulty) {
+        if (millis() > last + gameManager.speeddifficulty)
+        {
             last = millis();
             this.x += 80;
-        }   
+        }
     }
 }
