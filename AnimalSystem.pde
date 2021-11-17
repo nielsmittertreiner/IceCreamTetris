@@ -86,7 +86,7 @@ class AnimalSystem
                case 19:
                 return  4;	  
                 default :
-                println("can't calculate Animal");
+                //println("can't calculate Animal");
                 return - 1;
         }
     }

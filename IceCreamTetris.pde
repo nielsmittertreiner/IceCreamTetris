@@ -39,6 +39,7 @@ void setup()
 
     mainMenu.setup();
     pauseMenu.setup();
+    credits.setup();
     riverAnimation.setup();
     icecreamsystem.resettimer();
 }
@@ -46,9 +47,14 @@ void setup()
 // update all game objects
 void update()
 {
+    gameManager.update();
     gameManager.keyInput();
     switch(gameManager.gameState) 
     {
+        case -1:
+            //quit
+            exit();
+            break;
         case 0:
             // main menu
             mainMenu.keyInput();
@@ -92,17 +98,16 @@ void update()
 
         case 2:
             // pause menu
-            
             pauseMenu.keyInput();
             break;
-
+        
         case 3:
             //credits
             credits.keyInput();
             break;
     }
 }
-        
+
 // render all objects to screen
 void render()
 {
@@ -123,19 +128,19 @@ void render()
             currentPiece.render();
             ui.draw();
             break;
-            
+        
         case 2:
-            // pausemenu
+            // pause menu
             pauseMenu.draw();
             break;
-
+        
         case 3:
             // credits
             credits.draw();
             break;
     }        
 }
-            
+
 // update and render game loop
 void draw()
 {
