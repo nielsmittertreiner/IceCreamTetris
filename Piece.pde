@@ -149,7 +149,7 @@ class Piece {
         // testing only
         this.x = int(0); // center piece x
         this.y = int(170); // center piece y
-        println("type: " + type);
+        //println("type: " + type);
     }
     
 
@@ -284,7 +284,7 @@ class Piece {
                 case 1600 :
                 return 19;
                 default :
-                println("can not calculate xPosition.");
+                //println("can not calculate xPosition.");
                 return - 1;    
         }
     }
@@ -308,7 +308,7 @@ class Piece {
                 case 650 :
                 return 7;
                 default :
-                println("can not calculate yPosition.");
+                //println("can not calculate yPosition.");
                 return - 1;    
         }
         

@@ -1,6 +1,6 @@
 class MainMenu
 {
-    int numberButtons = 3, selectedButton = 0;
+    int numberButtons = 3;
     
     Button[] buttons;
     
@@ -14,49 +14,25 @@ class MainMenu
         buttons[0].text = "PLAY";
         buttons[1].text = "HIGHSCORE";
         buttons[2].text = "CREDITS";
+
+        buttons[0].link = 1;
+        buttons[1].link = 0;
+        buttons[2].link = 3;
     }
     
     void keyInput()
     {
-        if (keyCode == DOWN && keyPressed)
+        for (int i = 0; i < numberButtons; i++)
         {
-            selectedButton += 1;
-            keyCode = TAB;
-            if (selectedButton == numberButtons)
-            {
-                selectedButton = 0;
-            }
-        }
-        if (keyCode == UP && keyPressed)
-        {
-            selectedButton -= 1;
-            keyCode = TAB;
-            if (selectedButton == -1)
-            {
-                selectedButton = numberButtons - 1;
-            }
-        }
-        if (key == 'x' && keyPressed)
-        {
-            switch(selectedButton)
-            {
-                case 0:
-                    gameManager.gameState = 1;
-                    break;
-
-                case 2:
-                    gameManager.gameState = 3;
-                    break;
-            }
-            keyCode = 'q';
-        }
+            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+        } 
     }
     void draw()
     {
         background(asset.darkBlue); 
         for (int i = 0; i < numberButtons; i++)
         {
-            button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
+            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
     }
 }

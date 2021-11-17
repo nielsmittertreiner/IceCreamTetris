@@ -71,7 +71,7 @@ class IceCreamSystem
                case 19:
                 return  4;	  
                 default :
-                println("can't calculate icecream");
+                //println("can't calculate icecream");
                 return - 1;
         }
     }
