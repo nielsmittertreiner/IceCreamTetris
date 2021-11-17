@@ -14,6 +14,8 @@ IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 PImage ground;
 int groundColour;
+int last;
+int m;
 
 void setup()
 {
@@ -31,13 +33,10 @@ void setup()
     ui = new UI();
     grid = new Grid(20, 9, 80);
     animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(2));
-    nextPiece = new Piece(int(1));
+    currentPiece = new Piece(int(random(0,8)));
+    // nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
-    
-    
-    //grid.addPiece(currentPiece, 10, 4);
-    
+
     mainMenu.setup();
     pauseMenu.setup();
     credits.setup();
@@ -80,8 +79,23 @@ void update()
                 {
                     animalsystem.movetospawn(i);
                 }    
-            } 
-            
+            }
+            for (int i = 0; i < 15; ++i) 
+            { 
+                if (grid.isRowFull(i)) 
+                {
+                    grid.removeRow(i);
+                }
+
+            }
+        
+        m = millis() - last;
+        // movement Pieces
+        if (millis() > last + gameManager.speeddifficulty) {
+            last = millis();
+            currentPiece.move(grid, 1, 0);// this.x += 80;
+        }   
+
         case 2:
             // pause menu
             pauseMenu.keyInput();
@@ -134,3 +148,6 @@ void draw()
     update();
     render();
 }
+
+// test
+            

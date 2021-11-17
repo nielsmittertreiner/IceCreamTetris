@@ -93,6 +93,8 @@ class IceCreamSystem
         
     }
 
+
+
     void draw() 
     {
         //draws the icecreams + timers.
@@ -123,9 +125,11 @@ class IceCreamSystem
             if (icecreams.get(calculateiceceream(i)).m > timeStop) 
             { 
                 icecreams.get(calculateiceceream(i)).m --; 
+              //  gameManager.addScore(-50);
+               // respawnIceCream(i);
+              //  movetospawn(i);
+
             } 
-            
         }    
     } 
-
 }   

@@ -21,6 +21,14 @@ class Grid
         opacity = asset.opacity;
     }
     
+    int width() {
+        return grid[0].length;
+    }
+
+    int height() {
+        return grid.length;
+    }
+
     int gridX() {
         return boxX;
     }
@@ -64,12 +72,11 @@ class Grid
     
     void addPiece(Piece newPiece, int posX, int posY) {
         int[] origin = {posX, posY};
-        int[][] pieceCoords = newPiece.piece;
+        int[][] pieceCoords = newPiece.piece[newPiece.rotation];
 
         for(int[] coord : pieceCoords) {
             grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
         }
-
     }
 
     int getRowPosition(int rowX) {
@@ -83,7 +90,11 @@ class Grid
     }
 
     int getState(int x, int y) {
-        return grid[y][x];
+        try {
+            return grid[y][x];
+        } catch (Exception e) {
+            return -1;
+        }
     }
     
     void draw() {        
