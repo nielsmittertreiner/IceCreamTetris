@@ -82,7 +82,6 @@ class MainMenu
         image(water2, offset2 - width, 0, width, height);
 
         tint(255, 255);
-       // image(mainmenu, 0, 0, width, height); 
       
         for (int i = 0; i < numberButtons; i++)
         {
