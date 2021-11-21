@@ -36,9 +36,10 @@ void setup()
     currentPiece = new Piece(int(random(0,8)));
     // nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
-
+    
     mainMenu.setup();
     pauseMenu.setup();
+    credits.setup();
     riverAnimation.setup();
     icecreamsystem.resettimer();
 }
@@ -46,15 +47,20 @@ void setup()
 // update all game objects
 void update()
 {
-    gameManager.keyInput();
+    gameManager.update();
     switch(gameManager.gameState) 
     {
+        case - 1:
+            //quit
+            exit();
+            break;
         case 0:
             // main menu
             mainMenu.keyInput();
             break;
         case 1:
             // game
+            gameManager.keyInput();
             // checks if grid is full and moves the animal.
             for (int i = 15; i < 20; ++i) 
             { 
@@ -74,27 +80,34 @@ void update()
                     animalsystem.movetospawn(i);
                 }    
             }
-        
-        m = millis() - last;
-        // movement Pieces
-        if (millis() > last + gameManager.speeddifficulty) {
-            last = millis();
-            currentPiece.move(grid, 1, 0);// this.x += 80;
-        }   
-
+            for (int i = 0; i < 15; ++i) 
+            { 
+                if (grid.isRowFull(i)) 
+                {
+                    grid.removeRow(i);
+                }
+                
+            }
+            
+            m = millis() - last;
+            // movement Pieces
+            if (millis() > last + gameManager.speeddifficulty) {
+                last= millis();
+                currentPiece.move(grid, 1, 0);// this.x += 80;
+            }   
+            
         case 2:
             // pause menu
-            
             pauseMenu.keyInput();
             break;
-
+        
         case 3:
             //credits
             credits.keyInput();
             break;
     }
 }
-        
+
 // render all objects to screen
 void render()
 {
@@ -115,19 +128,19 @@ void render()
             currentPiece.render();
             ui.draw();
             break;
-            
+        
         case 2:
-            // pausemenu
+            // pause menu
             pauseMenu.draw();
             break;
-
+        
         case 3:
             // credits
             credits.draw();
             break;
     }        
 }
-            
+
 // update and render game loop
 void draw()
 {
@@ -137,4 +150,4 @@ void draw()
 }
 
 // test
-            
+
