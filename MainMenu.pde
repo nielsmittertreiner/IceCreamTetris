@@ -7,7 +7,7 @@ class MainMenu
     float speed = 1.05;
     float offset = 0;
     float offset2 = 0;
-    PImage mainmenu;
+   
      PImage water;
     PImage water2;
     void setup()
@@ -20,7 +20,7 @@ class MainMenu
         buttons[0].text = "PLAY";
         buttons[1].text = "HIGHSCORE";
         buttons[2].text = "CREDITS";
-        mainmenu =loadImage("img/mainmenu.png");
+      
            water = loadImage("img/water.jpg");   
         water2 = loadImage("img/water2.jpg");
     }
