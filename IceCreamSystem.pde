@@ -7,7 +7,7 @@ class IceCreamSystem
     float iceCreamSize = 90;
     float timePace = 75;
     float timeStop = iceCreamSize * timePace;
-    float timePlus = 600;
+    float timePlus = 900;
     boolean time = true; 
 
     IceCream icecreamtemp;
@@ -113,6 +113,20 @@ class IceCreamSystem
             IceCream icecream = icecreams.get(icecreamcount);
             icecream.draw();    
         }  
+        // checks if a row is full outside of the icecreams and animals, if so then the icecreams gets more time. 
+        for (int i = 0; i < 15; ++i) {
+
+            if(grid.isRowFull(i))
+            {
+               // println(false);
+                for (int j = 15; j < 20; ++j) {
+                   icecreams.get(calculateiceceream(j)).m -= timePlus;
+                 //   println(true);
+                }
+
+            }
+
+        }
         // checks if overlapp = true and adds points to the score and then respawns the ice cream. 
         for (int i = 15; i < 20; ++i) 
         {    
@@ -120,11 +134,12 @@ class IceCreamSystem
             {
                 gameManager.addScore(getscore(i));
 
-                for (int j = 15; j < 20; ++j) {
+         // if animal takes icecream, the other icecreams get more time. 
+          //     for (int j = 15; j < 20; ++j) {
 
-                   icecreams.get(calculateiceceream(j)).m -= timePlus;
+          //         icecreams.get(calculateiceceream(j)).m -= timePlus;
 
-                }
+          //      }
 
 
                 respawnIceCream(i);   
