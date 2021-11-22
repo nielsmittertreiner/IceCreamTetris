@@ -7,6 +7,7 @@ class IceCreamSystem
     float iceCreamSize = 90;
     float timePace = 75;
     float timeStop = iceCreamSize * timePace;
+    float timePlus = 600;
     boolean time = true; 
 
     IceCream icecreamtemp;
@@ -71,7 +72,7 @@ class IceCreamSystem
                case 19:
                 return  4;	  
                 default :
-                println("can't calculate icecream");
+                //println("can't calculate icecream");
                 return - 1;
         }
     }
@@ -83,6 +84,15 @@ class IceCreamSystem
         icecreams.get(calculateiceceream(icecream)).yTimer = -375; 
         icecreams.get(calculateiceceream(icecream)).m = 0;
         
+    }
+
+
+
+    void despawnIceCream(int icecream){
+
+    icecreams.get(calculateiceceream(icecream)).xIceCream = -375; 
+    icecreams.get(calculateiceceream(icecream)).xTimer = -375; 
+
     }
 
     //If boolean is true makes the icecream move to the right location.
@@ -109,7 +119,17 @@ class IceCreamSystem
             if (animalsystem.checkoverlapp(i)) 
             {
                 gameManager.addScore(getscore(i));
-                respawnIceCream(i);    
+
+                for (int j = 15; j < 20; ++j) {
+
+                   icecreams.get(calculateiceceream(j)).m -= timePlus;
+
+                }
+
+
+                respawnIceCream(i);   
+             
+
             }       
             // if respawned it is placed above the screen so then move tot the right location.
             if (respawning(i)) 
@@ -125,12 +145,14 @@ class IceCreamSystem
             if (icecreams.get(calculateiceceream(i)).m > timeStop) 
             { 
                 icecreams.get(calculateiceceream(i)).m --; 
-         //     respawnIceCream(i);
-         //     movetospawn(i);
+              
+              
+              //  despawnIceCream(i);
+              //  gameManager.addScore(-50);
+              //  respawnIceCream(i);
+              //  movetospawn(i);
 
             } 
-
         }    
     } 
-
 }   
