@@ -30,14 +30,17 @@ class GameManager
                 {
                     usedKey = 'R';
                 }
+            }
+            else
+            {
                 if (keyCode == BACKSPACE)
                 {
                     usedKey = 'E';
                 }
-            }
-            else
-            {
+                else
+                {
                 usedKey = key;
+                }
             }
             timer = 0;
         }
@@ -91,15 +94,22 @@ class GameManager
         }
         
         //up the difficulty by pressing d
-        if (gameManager.usedKey == 'a') 
+        if (gameManager.usedKey == 'd') 
             {
             //gameManager.setDifficulty(1);
         }
         
         //reset both by pressing r
         if (gameManager.usedKey == 'r')
-            {
+        {
             gameManager.reset();
+        }
+        
+        //pause game
+        if (gameManager.usedKey == 'E')
+        {
+            gameManager.gameState = 2;
+            print("pause");
         }
     }
     
@@ -136,33 +146,33 @@ class GameManager
                 if (currentPiece.y < 90)
                     {
                     currentPiece.y = 90;
-                    }
                 }
+            }
             if (currentPiece.rotation == 1 || currentPiece.rotation == 2 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y < 170)
                     {
                     currentPiece.y = 170;
                     
-                    }   
-                }
+                }   
+            }
             
             if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y > 650)
                     {
                     currentPiece.y = 650;
-                    }
                 }
+            }
             if (currentPiece.rotation == 2)
                 {
                 if (currentPiece.y > 730)
                     {
                     currentPiece.y = 730;
-                    }   
-                }
-            
+                }   
             }
+            
+        }
         
         if (currentPiece.type == 1) 
             {
@@ -172,21 +182,21 @@ class GameManager
                 if (currentPiece.y < 90)
                     {
                     currentPiece.y = 90;
-                    }
                 }
+            }
             if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y < 170)
                     {
                     currentPiece.y = 170;
                 }       
-                }
+            }
             
             if (currentPiece.y > 650)
                 {
                 currentPiece.y = 650;
-                }
             }
+        }
         
         if (currentPiece.type ==  2) 
             {
@@ -196,21 +206,21 @@ class GameManager
                 if (currentPiece.y < 90)
                     {
                     currentPiece.y = 90;
-                    }
                 }
+            }
             if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y < 170)
                     {
                     currentPiece.y = 170;
                 }           
-                }
+            }
             
             if (currentPiece.y > 650)
                 {
                 currentPiece.y = 650;
-                }
             }
+        }
         
         if (currentPiece.type == 3) 
             {
@@ -220,30 +230,30 @@ class GameManager
                 if (currentPiece.y < 90)
                     {
                     currentPiece.y = 90;
-                    }
                 }
+            }
             if (currentPiece.rotation == 1  || currentPiece.rotation == 2 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y < 170)
                     {
                     currentPiece.y = 170;
                 }     
-                }
+            }
             
             if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y > 650)
                     {
                     currentPiece.y = 650;
-                    }
                 }
+            }
             if (currentPiece.rotation == 2)
                 {
                 if (currentPiece.y > 730) {
                     currentPiece.y = 730;
                 }           
-                }
             }
+        }
         
         if (currentPiece.type == 4) 
             {
@@ -253,74 +263,75 @@ class GameManager
                 if (currentPiece.y < 90)
                     {
                     currentPiece.y = 90;
-                    }
                 }
+            }
             if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y < 170)
                     {
                     currentPiece.y = 170;
-                    }
-                
                 }
+                
+            }
             
             if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
                 {
                 if (currentPiece.y > 650)
                     {
                     currentPiece.y = 650;
-                    }
                 }
+            }
             if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
                 {
                 if (currentPiece.y > 730) {
                     currentPiece.y = 730;
                 }           
-                }
-            
             }
+            
+        }
         
         if (currentPiece.type == 5) 
             {
             if (currentPiece.y < 170)
                 {
                 currentPiece.y = 170;
-                }
+            }
             if (currentPiece.y > 650)
                 {
                 currentPiece.y = 650;
-                }
             }
+        }
         
         if (currentPiece.type == 6) 
             {
             if (currentPiece.y < 90)
                 {
                 currentPiece.y = 90;
-                }
+            }
             if (currentPiece.y > 650)
                 {
                 currentPiece.y = 650;
-                } 
-            }
+            } 
+        }
         
         if (currentPiece.type == 7) 
             {
             if (currentPiece.y < 90)
                 {
                 currentPiece.y = 90;
-                }
+            }
             if (currentPiece.y > 650)
                 {
                 currentPiece.y = 650;
-                } 
-            }
+            } 
         }
+    }
     
-    void reset() {
+    void reset()
+    {
         difficulty = 0;
         score = 0;
         gameState = 0;
-        }
     }
+}
 // test

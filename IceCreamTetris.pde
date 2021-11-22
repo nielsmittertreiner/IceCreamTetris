@@ -36,7 +36,7 @@ void setup()
     currentPiece = new Piece(int(random(0,8)));
     // nextPiece = new Piece(int(1));
     icecreamsystem = new IceCreamSystem(grid); 
-
+    
     mainMenu.setup();
     pauseMenu.setup();
     credits.setup();
@@ -48,10 +48,9 @@ void setup()
 void update()
 {
     gameManager.update();
-    gameManager.keyInput();
     switch(gameManager.gameState) 
     {
-        case -1:
+        case - 1:
             //quit
             exit();
             break;
@@ -61,6 +60,7 @@ void update()
             break;
         case 1:
             // game
+            gameManager.keyInput();
             // checks if grid is full and moves the animal.
             for (int i = 15; i < 20; ++i) 
             { 
@@ -86,16 +86,16 @@ void update()
                 {
                     grid.removeRow(i);
                 }
-
+                
             }
-        
-        m = millis() - last;
-        // movement Pieces
-        if (millis() > last + gameManager.speeddifficulty) {
-            last = millis();
-            currentPiece.move(grid, 1, 0);// this.x += 80;
-        }   
-
+            
+            m = millis() - last;
+            // movement Pieces
+            if (millis() > last + gameManager.speeddifficulty) {
+                last= millis();
+                currentPiece.move(grid, 1, 0);// this.x += 80;
+            }   
+            
         case 2:
             // pause menu
             pauseMenu.keyInput();
@@ -150,4 +150,4 @@ void draw()
 }
 
 // test
-            
+
