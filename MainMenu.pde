@@ -20,10 +20,9 @@ class MainMenu
         buttons[0].text = "PLAY";
         buttons[1].text = "HIGHSCORE";
         buttons[2].text = "CREDITS";
-
-        buttons[0].link = 1;
-        buttons[1].link = 0;
-        buttons[2].link = 3;
+        mainmenu =loadImage("img/mainmenu.png");
+           water = loadImage("img/water.jpg");   
+        water2 = loadImage("img/water2.jpg");
     }
     
     void keyInput()
