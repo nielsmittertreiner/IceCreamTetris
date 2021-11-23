@@ -1,7 +1,6 @@
 class MainMenu
 {
-    int numberButtons = 3;
-    
+    int numberButtons = 3, selectedButton = 0;
     Button[] buttons;
     
     float speed = 1.05;
@@ -27,11 +26,38 @@ class MainMenu
     
     void keyInput()
     {
-        for (int i = 0; i < numberButtons; i++)
+          if (keyCode == DOWN && keyPressed)
         {
-            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-        } 
-    }
+            selectedButton += 1;
+            keyCode = TAB;
+            if (selectedButton == numberButtons)
+            {
+                selectedButton = 0;
+            }
+        }
+        if (keyCode == UP && keyPressed)
+        {
+            selectedButton -= 1;
+            keyCode = TAB;
+            if (selectedButton == -1)
+            {
+                selectedButton = numberButtons - 1;
+            }
+        }
+        if (key == 'x' && keyPressed)
+         switch(selectedButton)
+            {
+                case 0:
+                    gameManager.gameState = 1;
+                    break;
+
+                case 2:
+                    gameManager.gameState = 3;
+                    break;
+            }
+            keyCode = 'q';
+        }
+    
     void draw()
     {
         offset += speed;
@@ -45,11 +71,12 @@ class MainMenu
         {
             offset2 = 0;
         }
+         
          tint(15,115,250, asset.opacity);
         image(water, offset, 0, width, height);
         image(water, offset - width, 0, width, height);
 
-        tint(15,115,250, asset.opacity);
+        tint(15,215,250, asset.opacity);
         image(water2, offset2, 0, width, height);
         image(water2, offset2 - width, 0, width, height);
 
@@ -57,7 +84,8 @@ class MainMenu
       
         for (int i = 0; i < numberButtons; i++)
         {
-            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
+            button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
         }
     }
 }
+    
