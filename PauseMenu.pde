@@ -1,6 +1,6 @@
 class PauseMenu
 {
-    int numberButtons = 2;
+    int numberButtons = 2, selectedButton = 0;
     
     Button[] buttons;
     
@@ -14,23 +14,48 @@ class PauseMenu
         buttons[0].text = "RESUME";
         buttons[1].text = "QUIT";
 
-        buttons[0].link = 1;
-        buttons[1].link = -1;
+        
     }
     
     void keyInput()
     {
-        for (int i = 0; i < numberButtons; i++)
+       if (keyCode == DOWN && keyPressed)
         {
-            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+            selectedButton += 1;
+            keyCode = TAB;
+            if (selectedButton == numberButtons)
+            {
+                selectedButton = 0;
+            }
         }
+        if (keyCode == UP && keyPressed)
+        {
+            selectedButton -= 1;
+            keyCode = TAB;
+            if (selectedButton == -1)
+            {
+                selectedButton = numberButtons - 1;
+            }
+        }
+        if (key == 'x' && keyPressed)
+         {
+            if (selectedButton == 0)
+            {
+                gameManager.gameState = 1;
+                keyCode = 'q';
+            }
+            else
+            {
+                exit();
+            }
+     }
     }
     void draw()
     {
         background(asset.darkBlue); 
         for (int i = 0; i < numberButtons; i++)
         {
-            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
-        }
+            button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
+             }
     }
-}
+} 
