@@ -40,6 +40,7 @@ class GameManager
                 else
                 {
                 usedKey = key;
+                print(usedKey);
                 }
             }
             timer = 0;
