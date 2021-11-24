@@ -1,6 +1,7 @@
 class MainMenu
 {
-    int numberButtons = 3, selectedButton = 0;
+    int numberButtons = 3;
+    
     Button[] buttons;
     
     float speed = 1.05;
@@ -30,9 +31,10 @@ class MainMenu
     
     void keyInput()
     {
-          if (keyCode == DOWN && keyPressed)
+        for (int i = 0; i < numberButtons; i++)
         {
             button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+            print(gameManager.usedKey);
         }
     }
     void draw()
@@ -60,8 +62,7 @@ class MainMenu
       
         for (int i = 0; i < numberButtons; i++)
         {
-            button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
+            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
     }
 }
-    
