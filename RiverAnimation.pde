@@ -28,10 +28,10 @@ class RiverAnimation
         }
 
         tint(colour, asset.opacity);
+        
         image(water, offset, top, width, bottom);
         image(water, offset - width, top, width, bottom);
 
-        tint(colour, asset.opacity);
         image(water2, offset2, top, width, bottom);
         image(water2, offset2 - width, top, width, bottom);
 
