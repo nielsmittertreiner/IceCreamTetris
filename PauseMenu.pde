@@ -27,7 +27,8 @@ class PauseMenu
     }
     void draw()
     {
-        background(asset.darkBlue); 
+        riverAnimation.draw(0, height, asset.blue);
+         
         for (int i = 0; i < numberButtons; i++)
         {
             button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);

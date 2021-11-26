@@ -39,26 +39,7 @@ class MainMenu
     }
     void draw()
     {
-        offset += speed;
-        if (offset >= width)
-        {
-            offset = 0;
-        }
-
-        offset2 += speed * 3;
-        if (offset2 >= width)
-        {
-            offset2 = 0;
-        }
-         tint(asset.blue, asset.opacity);
-        image(water, offset, 0, width, height);
-        image(water, offset - width, 0, width, height);
-
-        tint(asset.blue, asset.opacity);
-        image(water2, offset2, 0, width, height);
-        image(water2, offset2 - width, 0, width, height);
-
-        tint(255, 255);
+        riverAnimation.draw(0, height, asset.blue);
       
         for (int i = 0; i < numberButtons; i++)
         {

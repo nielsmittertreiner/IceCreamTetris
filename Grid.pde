@@ -109,11 +109,11 @@ class Grid
         rect(boxX, boxY, gridWidth, gridHeight);
 
         // Draw animation
-        riverAnimation.draw(boxY, gridHeight);
+        riverAnimation.draw(boxY, gridHeight, backgroundColor);
 
         // Draw grid box
         stroke(strokeColor, opacity);
-        fill(backgroundColor, opacity);
+        noFill();
         rect(boxX, boxY, gridWidth, gridHeight);
         
         // Draw tiles
