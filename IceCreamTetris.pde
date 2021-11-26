@@ -144,9 +144,16 @@ void render()
 // update and render game loop
 void draw()
 {
-    
     update();
     render();
+}
+
+void keyPressed()
+{
+    if (key== ESC)
+    {   
+        key = 'E';
+    }
 }
 
 // test

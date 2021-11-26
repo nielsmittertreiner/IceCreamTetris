@@ -11,7 +11,7 @@ class GameManager
     void update()
     {   
         timer++;
-
+        
         if (keyPressed && timer > timerTotal)
         {
             timer = 0;
@@ -36,14 +36,7 @@ class GameManager
             }
             else
             {
-                if (keyCode == BACKSPACE)
-                {
-                    usedKey = 'E';
-                }
-                else
-                {
-                    usedKey = key;
-                }
+                usedKey = key;
             }
         }
         else
