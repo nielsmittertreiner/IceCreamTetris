@@ -41,7 +41,7 @@ class GameManager
         }
         else
         {
-            usedKey = ' ';
+            usedKey = 0;
         }
     }
     
