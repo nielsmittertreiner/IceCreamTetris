@@ -8,8 +8,6 @@ class MainMenu
     float offset = 0;
     float offset2 = 0;
    
-    PImage water;
-    PImage water2;
     void setup()
     {
         buttons = new Button[numberButtons];
@@ -24,9 +22,6 @@ class MainMenu
         buttons[0].link = 1;
         buttons[1].link = -1;
         buttons[2].link = 3;
-      
-        water = loadImage("img/water.jpg");   
-        water2 = loadImage("img/water2.jpg");
     }
     
     void keyInput()
