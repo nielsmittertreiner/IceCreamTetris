@@ -104,6 +104,12 @@ class GameManager
         {
             gameManager.gameState = 2;
         }
+        if (gameManager.usedKey == 'y')
+        {
+            gameManager.reset();
+            gameManager.gameState = 4;
+            
+        }
     }
     
     void addScore(int scoreAdded)
