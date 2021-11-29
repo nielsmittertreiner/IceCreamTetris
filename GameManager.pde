@@ -8,8 +8,17 @@ class GameManager
     char usedKey = ' ';
     int timer = 0, timerTotal = 30;
     
+    PImage heart = new PImage();
+    float xHearts;
+    int yHearts = 815;
+    int heartsSize = 80;
+
+    int health = 5;
+    
+
     void update()
     {   
+        
         timer++;
         
         if (keyPressed && timer > timerTotal)
@@ -334,5 +343,36 @@ class GameManager
                 grid.removeRow(i);
             }
     }
+
+
+void setup(){
+
+     heart = loadImage("img/Hearts.png");
+
 }
+    
+void removeHealth(){
+
+    health -= 1;
+}
+
+
+    void draw(){
+      
+      for (int i = 0; i < health; ++i) {
+
+          noFill();
+          image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
+
+      }
+
+      if (health < 0){
+
+        
+
+      }
+    }
+}
+
+
 // test
