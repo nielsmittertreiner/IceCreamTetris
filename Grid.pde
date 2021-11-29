@@ -1,5 +1,7 @@
 class Grid
 {
+    int piecesAmount = 1;
+
     private int[][] grid;
     private int cellSize;
     
@@ -75,8 +77,10 @@ class Grid
         int[][] pieceCoords = newPiece.piece[newPiece.rotation];
 
         for(int[] coord : pieceCoords) {
-            grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
+            grid[origin[1] + coord[1]][origin[0] + coord[0]] = piecesAmount;
         }
+
+        piecesAmount++;
     }
 
     int getRowPosition(int rowX) {
@@ -109,11 +113,11 @@ class Grid
         rect(boxX, boxY, gridWidth, gridHeight);
 
         // Draw animation
-        riverAnimation.draw(boxY, gridHeight);
+        riverAnimation.draw(boxY, gridHeight, backgroundColor);
 
         // Draw grid box
         stroke(strokeColor, opacity);
-        fill(backgroundColor, opacity);
+        noFill();
         rect(boxX, boxY, gridWidth, gridHeight);
         
         // Draw tiles

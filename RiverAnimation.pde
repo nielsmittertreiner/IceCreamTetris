@@ -13,7 +13,7 @@ class RiverAnimation
         water2 = loadImage("img/water2.jpg");
     }
     
-    void draw(int top, int bottom)
+    void draw(int top, int bottom, int colour)
     {
         offset += speed;
         if (offset >= width)
@@ -27,11 +27,11 @@ class RiverAnimation
             offset2 = 0;
         }
 
-        tint(255, asset.opacity);
+        tint(colour, asset.opacity);
+        
         image(water, offset, top, width, bottom);
         image(water, offset - width, top, width, bottom);
 
-        tint(255, asset.opacity);
         image(water2, offset2, top, width, bottom);
         image(water2, offset2 - width, top, width, bottom);
 
