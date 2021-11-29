@@ -25,21 +25,18 @@ class GameManager
                 {
                     usedKey = 'D';
                 }
+                else if (keyCode == LEFT)
+                {
+                    usedKey = 'L';
+                }
             }
             else
             {
                 usedKey = key;
             }
-        } else if (keyPressed & key == CODED)
-        {
-                if (keyCode == LEFT)
-                {
-                    usedKey = 'L';
-                }
-                else if (keyCode == RIGHT)
-                {
-                    usedKey = 'R';
-                }
+        } else if (keyPressed & keyCode == RIGHT)
+        {   
+          usedKey = 'R';
         }
         else
         {
