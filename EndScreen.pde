@@ -20,8 +20,9 @@ void keyInput()
       for (int i = 0; i < numberButtons; i++)
         {
             button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+            gameManager.reset();
         }
-    }
+}
     void draw()
     {
       riverAnimation.draw(0, height, asset.blue);

@@ -28,8 +28,7 @@ class MainMenu
     {
         for (int i = 0; i < numberButtons; i++)
         {
-            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-            print(gameManager.usedKey);
+            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);          
         }
     }
     void draw()

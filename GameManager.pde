@@ -330,7 +330,10 @@ class GameManager
     {
         difficulty = 0;
         score = 0;
-        gameState = 0;
+        icecreamsystem.resettimer();
+         for (int i = 0; i < 20; ++i) {
+                grid.removeRow(i);
+            }
     }
 }
 // test
