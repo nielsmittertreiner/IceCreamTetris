@@ -2,6 +2,7 @@
 Asset asset;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
+EndScreen endScreen;
 Credits credits;
 Button button;
 GameManager gameManager;
@@ -25,6 +26,7 @@ void setup()
     groundColour = asset.green;
     mainMenu = new MainMenu();
     pauseMenu = new PauseMenu();
+    endScreen = new EndScreen();
     credits = new Credits();
     gameManager = new GameManager();
     // animalsystem = new AnimalSystem();
@@ -39,6 +41,7 @@ void setup()
     
     mainMenu.setup();
     pauseMenu.setup();
+    endScreen.setup();
     credits.setup();
     riverAnimation.setup();
     icecreamsystem.resettimer();
@@ -105,6 +108,9 @@ void update()
             //credits
             credits.keyInput();
             break;
+        case 4:
+        endScreen.keyInput();
+        break;
     }
 }
 
@@ -138,6 +144,10 @@ void render()
             // credits
             credits.draw();
             break;
+        case 4: 
+        //end Screen
+         endScreen.draw();
+         break;
     }        
 }
 

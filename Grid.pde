@@ -75,7 +75,10 @@ class Grid
     void addPiece(Piece newPiece, int posX, int posY) {
         int[] origin = {posX, posY};
         int[][] pieceCoords = newPiece.piece[newPiece.rotation];
+ if ( gameManager.gameState == 1 && currentPiece.x == 0) {
 
+            gameManager.gameState = 4;
+        }
         for(int[] coord : pieceCoords) {
             grid[origin[1] + coord[1]][origin[0] + coord[0]] = piecesAmount;
         }
