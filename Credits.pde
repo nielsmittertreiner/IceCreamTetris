@@ -20,7 +20,7 @@ class Credits
     
     void draw()
     {
-        background(asset.darkBlue); 
+        riverAnimation.draw(0, height, asset.blue);
         
         textAlign(CENTER, CENTER);
         textSize(textSize);

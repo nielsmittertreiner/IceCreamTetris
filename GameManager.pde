@@ -20,7 +20,7 @@ class GameManager
     {   
         
         timer++;
-
+        
         if (keyPressed && timer > timerTotal)
         {
             timer = 0;
@@ -34,7 +34,14 @@ class GameManager
                 {
                     usedKey = 'D';
                 }
-                else if (keyCode == LEFT)
+            }
+            else
+            {
+                usedKey = key;
+            }
+        } else if (keyPressed & key == CODED)
+        {
+                if (keyCode == LEFT)
                 {
                     usedKey = 'L';
                 }
@@ -42,22 +49,10 @@ class GameManager
                 {
                     usedKey = 'R';
                 }
-            }
-            else
-            {
-                if (keyCode == BACKSPACE)
-                {
-                    usedKey = 'E';
-                }
-                else
-                {
-                    usedKey = key;
-                }
-            }
         }
         else
         {
-            usedKey = ' ';
+            usedKey = 0;
         }
     }
     
@@ -119,6 +114,12 @@ class GameManager
         if (gameManager.usedKey == 'E')
         {
             gameManager.gameState = 2;
+        }
+        if (gameManager.usedKey == 'y')
+        {
+            gameManager.reset();
+            gameManager.gameState = 4;
+            
         }
     }
     
@@ -340,7 +341,10 @@ class GameManager
     {
         difficulty = 0;
         score = 0;
-        gameState = 0;
+        icecreamsystem.resettimer();
+         for (int i = 0; i < 20; ++i) {
+                grid.removeRow(i);
+            }
     }
 
 
