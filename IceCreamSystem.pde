@@ -39,6 +39,15 @@ class IceCreamSystem
             icecreams.get(i).m = 0;
         }
     }
+
+    void resetIcecream(){
+        for (int i = 0; i < 5; ++i) 
+        { 
+            icecreams.get(i).yIceCream = 0;
+            icecreams.get(i).yTimer = 0;
+        }
+
+    }
  
     //While the yIcecream is less then 0 so if the icecream is above the screen return true.
     public boolean respawning(int icecream)

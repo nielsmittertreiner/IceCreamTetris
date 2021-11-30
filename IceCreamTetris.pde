@@ -45,7 +45,7 @@ void setup()
     credits.setup();
     riverAnimation.setup();
     icecreamsystem.resettimer();
-    gameManager.setup();
+    ui.setup();
 
 }
 
@@ -136,7 +136,7 @@ void render()
             animalsystem.run();
             currentPiece.render();
             ui.draw();
-            gameManager.draw();
+            
             break;
         
         case 2:
