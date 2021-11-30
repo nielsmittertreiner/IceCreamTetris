@@ -60,13 +60,13 @@ void setup()
   //credits.setup();
   riverAnimation.setup();
   icecreamsystem.resettimer();
-
+  ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   
       connect.connect();
-=======
->>>>>>> 2443163a78d9c63a91f77509fdeb738b65c3bae4
+
+
 }
 
 // update all game objects

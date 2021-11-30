@@ -24,4 +24,5 @@ class Highscore
     }
     keyCode = 'q';
   }
+  //test
 }

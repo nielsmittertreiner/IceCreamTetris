@@ -11,10 +11,9 @@ class UI
 
     void setup(){
 
-     heart = loadImage("img/Hearts.png");
+     heart = loadImage("img/heart.png");
 
-}
-
+    }
 
     void draw()
     {
@@ -38,11 +37,6 @@ class UI
             gameManager.reset();
                            
         }
-
-
       }
-
-
-
     }
 }

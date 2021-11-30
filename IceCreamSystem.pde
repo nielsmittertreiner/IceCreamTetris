@@ -122,7 +122,7 @@ class IceCreamSystem
         {
             IceCream icecream = icecreams.get(icecreamcount);
             icecream.draw();    
-          //  gameManager.health(icecreamcount);
+          
         }  
 
 
