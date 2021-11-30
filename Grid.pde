@@ -1,9 +1,5 @@
 class Grid
 {
-<<<<<<< HEAD
-  private int[][] grid;
-  private int cellSize;
-=======
     int piecesAmount = 1;
 
     private int[][] grid;
@@ -30,41 +26,36 @@ class Grid
     int width() {
         return grid[0].length;
     }
->>>>>>> bbbe3e2e5c70a47223cecb82ab0b89eb6d80cc88
 
-  int boxX;
-  int boxY;
+    int height() {
+        return grid.length;
+    }
 
-  private int tileColor;
-  private int backgroundColor;
-  private int strokeColor;
-  private int opacity;
+    int gridX() {
+        return boxX;
+    }
 
-  public Grid(int width, int height, int cellSize) {
-    grid = new int[height][width];
-    this.cellSize = cellSize;
+    int gridY() {
+        return boxY;
+    }
 
-    tileColor = asset.black;
-    backgroundColor = asset.lightBlue;
-    strokeColor = asset.black;
-    opacity = asset.opacity;
-  }
+    boolean isRowFull(int x) {
+        for (int y = 0; y < grid.length; y++) {   
+            if (grid[y][x] == 0) {  
+                return false;
+            }
+        }
+        
+        return true;
+    }
 
-  int width() {
-    return grid[0].length;
-  }
+    void removeRow(int x) {
+        for(int y = 0; y < grid.length; y++) {
+            grid[y][x] = 0;
+        }
+    }
 
-  int height() {
-    return grid.length;
-  }
 
-  int gridX() {
-    return boxX;
-  }
-
-  int gridY() {
-    return boxY;
-  }
     void setTileColor(int rgb) {
         tileColor = rgb;
     }
@@ -95,45 +86,22 @@ class Grid
         piecesAmount++;
     }
 
-  boolean isRowFull(int x) {
-    for (int y = 0; y < grid.length; y++) {   
-      if (grid[y][x] == 0) {  
-        return false;
-      }
+    int getRowPosition(int rowX) {
+        int gridWidth = grid[0].length * cellSize;
+        int boxOffsetX = width / 2 - gridWidth / 2;
+        return boxOffsetX + rowX * cellSize;
     }
 
-    return true;
-  }
-
-  void removeRow(int x) {
-    for (int y = 0; y < grid.length; y++) {
-      grid[y][x] = 0;
+    void setState(int x, int y, int state) {
+        grid[y][x] = state;
     }
-  }
 
-
-  void setTileColor(int rgb) {
-    tileColor = rgb;
-  }
-
-  void setBackgroundColor(int rgb) {
-    backgroundColor = rgb;
-  }
-
-  void setStrokeColor(int rgb) {
-    strokeColor = rgb;
-  }
-
-  void setOpacity(int alpha) {
-    opacity = alpha;
-  }
-
-  void addPiece(Piece newPiece, int posX, int posY) {
-    int[] origin = {posX, posY};
-    int[][] pieceCoords = newPiece.piece[newPiece.rotation];
-
-    for (int[] coord : pieceCoords) {
-      grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
+    int getState(int x, int y) {
+        try {
+            return grid[y][x];
+        } catch (Exception e) {
+            return -1;
+        }
     }
     
     void draw() {        
@@ -167,7 +135,5 @@ class Grid
                 } 
             }
         }
-      }
     }
-  }
 }

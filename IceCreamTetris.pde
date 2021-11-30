@@ -29,7 +29,6 @@ SoundFile backgroundMusic;
 
 void setup()
 {
-<<<<<<< HEAD
   size(1600, 900, P2D);
   asset = new Asset();
   connect = new Connect();
@@ -67,34 +66,7 @@ void setup()
   
       connect.connect();
 =======
-    size(1600, 900, P2D);
-    asset = new Asset();
-    ground = loadImage("img/ground.jpg");
-    groundColour = asset.green;
-    mainMenu = new MainMenu();
-    pauseMenu = new PauseMenu();
-    endScreen = new EndScreen();
-    credits = new Credits();
-    gameManager = new GameManager();
-    // animalsystem = new AnimalSystem();
-    riverAnimation = new RiverAnimation();
-    button = new Button();
-    ui = new UI();
-    grid = new Grid(20, 9, 80);
-    animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(random(0,8)));
-    // nextPiece = new Piece(int(1));
-    icecreamsystem = new IceCreamSystem(grid); 
-    
-    mainMenu.setup();
-    pauseMenu.setup();
-    endScreen.setup();
-    credits.setup();
-    riverAnimation.setup();
-    icecreamsystem.resettimer();
-    ui.setup();
-
->>>>>>> bbbe3e2e5c70a47223cecb82ab0b89eb6d80cc88
+>>>>>>> 2443163a78d9c63a91f77509fdeb738b65c3bae4
 }
 
 // update all game objects
@@ -164,24 +136,8 @@ void update()
         break;
     }
 
-    m = millis() - last;
-    // movement Pieces
-    if (millis() > last + gameManager.speeddifficulty) {
-      last= millis();
-      currentPiece.move(grid, 1, 0);// this.x += 80;
-    }   
-
-  case 2:
-    // pause menu
-    pauseMenu.keyInput();
-    break;
-
-  case 3:
-    //credits
-    credits.keyInput();
-    break;
-  }
 }
+
 
 // render all objects to screen
 void render()
