@@ -26,6 +26,7 @@ void keyInput()
     void draw()
     {
       riverAnimation.draw(0, height, asset.blue);
+      
         fill(asset.white);
         textSize(100);
         text("GAME OVER",width/3,height/4);

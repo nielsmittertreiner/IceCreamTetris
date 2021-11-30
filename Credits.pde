@@ -1,12 +1,11 @@
 class Credits
 {
     int textSize = 50;
-    int buttonY = 540;
-    
     int numberButtons = 1;
-    
+    int buttonDistance = 550;
+
     Button[] buttons;
-    
+
     void setup()
     {
         buttons = new Button[numberButtons];
@@ -15,6 +14,8 @@ class Credits
             buttons[i] = new Button();
         }
         buttons[0].text = "RETURN";
+
+        buttons[0].link = 0;
     }
     
     void draw()
@@ -28,15 +29,16 @@ class Credits
         
         for (int i = 0; i < numberButtons; i++)
         {
-            button.draw(buttons[i].text, buttonY, buttonY, gameManager.selectedButton == i,  i + 1, numberButtons);
+            button.draw(buttons[i].text, buttonDistance, buttonDistance, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
+      
     }
     
     void keyInput()
     {
-        for (int i = 0; i < numberButtons; i++)
-        {
-            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-        } 
+     if (gameManager.usedKey == 'x')
+      {
+            gameManager.gameState = 0;
+        }
     }
 }

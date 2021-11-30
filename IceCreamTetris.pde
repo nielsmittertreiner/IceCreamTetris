@@ -33,9 +33,6 @@ void setup()
   asset = new Asset();
   connect = new Connect();
   
-
-    
-    
   asset.loadSound();
   ground = loadImage("img/ground.jpg");
   groundColour = asset.green;
@@ -43,6 +40,7 @@ void setup()
   highscore = new Highscore();
   pauseMenu = new PauseMenu();
   credits = new Credits();
+  endScreen = new EndScreen();
   gameManager = new GameManager();
   riverAnimation = new RiverAnimation();
   button = new Button();
@@ -61,11 +59,13 @@ void setup()
   endScreen.setup();
   riverAnimation.setup();
   icecreamsystem.resettimer();
-
+  ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   
       connect.connect();
+
+
 }
 
 // update all game objects
@@ -160,8 +160,12 @@ void render()
             icecreamsystem.draw();
             currentPiece.render();
             ui.draw();
+<<<<<<< HEAD
             gameManager.draw();
             animalsystem.run();
+=======
+            
+>>>>>>> 94c093f843cad80576ed245c89557758c2a5883c
             break;
         
         case 2:
