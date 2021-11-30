@@ -160,12 +160,8 @@ void render()
             icecreamsystem.draw();
             currentPiece.render();
             ui.draw();
-<<<<<<< HEAD
             gameManager.draw();
             animalsystem.run();
-=======
-            
->>>>>>> 94c093f843cad80576ed245c89557758c2a5883c
             break;
         
         case 2:

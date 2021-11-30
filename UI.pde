@@ -1,18 +1,5 @@
 class UI
 {
-<<<<<<< HEAD
-  int textDistance = 100, textSize = 50;
-
-
-  void draw()
-  {
-    textSize(textSize);
-    fill(asset.white);
-    text("SCORE: " + gameManager.score, textDistance, textSize);
-    text("Press left to turn", 700, textSize);
-  }
-}
-=======
     int textDistance = 5, textSize = 50;
     
     PImage heart = new PImage();
@@ -53,4 +40,3 @@ class UI
       }
     }
 }
->>>>>>> 94c093f843cad80576ed245c89557758c2a5883c
