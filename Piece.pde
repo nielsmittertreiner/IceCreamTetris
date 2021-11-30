@@ -1,377 +1,376 @@
 class Piece
 {
-  final int BLOCK_COUNT = 5;
-  final int BLOCK_SIZE = 80;
-  final int ROTATION_COUNT = 4;
+    final int BLOCK_COUNT = 5;
+    final int BLOCK_SIZE = 80;
+    final int ROTATION_COUNT = 4;
 
-  int last;
-  int m;
+    int last;
+    int m;
 
-  final String[] textures = 
+    final String[] textures = 
     { // Texture of the Pieces
-    "img/wood_1.png", 
-    "img/wood_2.png", 
-    "img/wood_3.png", 
-    "img/wood_4.png"
-  };
-
-  final color[] tints =
+        "img/wood_1.png",
+        "img/wood_2.png",
+        "img/wood_3.png",
+        "img/wood_4.png"
+    };
+    
+    final color[] tints =
     {   // colour of the Pieces
-    asset.green, 
-    asset.orange, 
-    asset.blue, 
-    asset.darkBlue, 
-    asset.red, 
-    asset.darkRed, 
-    asset.white, 
-    asset.black
-  };
-
-  int[][][][] blockCoordinates =
+        asset.green,
+        asset.orange,
+        asset.blue,
+        asset.darkBlue,
+        asset.red,
+        asset.darkRed,
+        asset.white,
+        asset.black
+    };
+    
+    int[][][][] blockCoordinates =
     {
-    {   // Pyramid
-      // . . .    
-      // X X X
-      // . X .
-      {
-        {-1, 0}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {-1, 0}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-    }, 
-    {   // C shape
-      // . . .
-      // X X X
-      // X . X
-      {
-        {-1, 0}, 
-        {-1, 1}, 
-        {0, 0}, 
-        {1, 0}, 
-        {1, 1}, 
-      }, 
-      {
-        {-1, -1}, 
-        {0, -1}, 
-        {0, 0}, 
-        {-1, 1}, 
-        {0, 1}, 
-      }, 
-      {
-        {-1, 0}, 
-        {-1, 1}, 
-        {0, 1}, 
-        {1, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {0, -1}, 
-        {1, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 1}, 
-      }, 
-    }, 
-    {  // Snake
-      // . . .
-      // . X X
-      // X X .
-      {
-        {-1, 1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {-1, -1}, 
-        {-1, 0}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {-1, 1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
-    }, 
-    {   // L shape
-      // . . .
-      // X X X
-      // . . X
-      {
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {-1, 1}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {-1, -1}, 
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {1, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-    }, 
-    {   // Long Rectangle
-      // . . .
-      // X X X
-      // . . .
-      {
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
-      {
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
+        {   // Pyramid
+            // . . .    
+            // X X X
+            // . X .
+            {
+                {-1, 0},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {-1,0},
+                {0,0},
+                {0,1},
+                {0,0}, // filler
+            },
+            {
+                {0,-1},
+                {-1,0},
+                {0,0},
+                {1,0},
+                {0,0}, // filler
+            },
+            {
+                {0,-1},
+                {0,0},
+                {1,0},
+                {0,1},
+                {0,0}, // filler
+            },
+        },
+        {   // C shape
+            // . . .
+            // X X X
+            // X . X
+            {
+                {-1, 0},
+                {-1, 1},
+                {0, 0},
+                {1 ,0},
+                {1, 1},
+            },
+            {
+                {-1,-1},
+                {0,-1},
+                {0,0},
+                {-1,1},
+                {0,1},
+            },
+            {
+                {-1,0},
+                {-1,1},
+                {0,1},
+                {1,1},
+                {1,0},
+            },
+            {
+                {0,-1},
+                {1,-1},
+                {0,0},
+                {0,1},
+                {1,1},
+            },
+        },
+          {  // Snake
+            // . . .
+            // . X X
+            // X X .
+            {
+                {-1, 1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {0, 0}, // filler
+            },
+            {
+                {-1,-1},
+                {-1,0},
+                {0,0},
+                {0,1},
+                {0,0}, // filler
+            },
+            {
+                {-1, 1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {0,0},
+                {1,0},
+                {1,1},
+                {0,0}, // filler
+            },
+        },
+        {   // L shape
+            // . . .
+            // X X X
+            // . . X
+            {
+                {-1, 0},
+                {0, 0}, 
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {0,0},
+                {-1,1},
+                {0,1},
+                {0,0}, // filler
+            },
+            {
+                {-1,-1},
+                {-1, 0},
+                {0, 0}, 
+                {1, 0},
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {1,-1},
+                {0,0},
+                {0,1},
+                {0,0}, // filler
+            },
+        } ,
+                {   // Long Rectangle
+            // . . .
+            // X X X
+            // . . .
+            {
+                {-1, 0}, 
+                {0, 0}, 
+                {1, 0},
+                {0, 0}, // filler
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {0,0},
+                {0,1},
+                {0,0}, // filler
+                {0,0}, // filler
+            },
+            {
+                {-1, 0}, 
+                {0, 0}, 
+                {1, 0},
+                {0, 0}, // filler
+                {0, 0}, // filler
+            },
+            {
+                {0,-1},
+                {0,0},
+                {0,1},
+                {0,0}, // filler
+                {0,0}, // filler
+         },
+         
+        },
+        {   // Plus 
+            // . X .
+            // X X X
+            // . X .
+            {
+                {-1, 0},
+                {0, -1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+            },
+            {
+                {-1, 0},
+                {0, -1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+            },
+            {
+                {-1, 0},
+                {0, -1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+            },
+            {
+                {-1, 0},
+                {0, -1},
+                {0, 0},
+                {0, 1},
+                {1, 0},
+            },
+            
+        },
+               {   // Stairs
+            // . . .
+            // . X X
+            // . . X
+            {
+                {0, 0},
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+                {0, 0}, // filler
+            },
+            {
+                {0,0},
+                {0,1},
+                {-1,1},
+                {0,0}, // filler
+                {0,0}, // filler
+            },
+            {
+                {0,0},
+                {0,0},
+                {0,0},
+                {0,1}, // filler
+                {1,0}, // filler
+            },
+            {
+                {0,0},
+                {0,0},
+                {0,0},
+                {1,0}, // filler
+                {1,1}, // filler
+            },
+        },
+        {
+            // Square
+            // . . .
+            // . X X
+            // . X X
+            {
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+            },
+            {
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+            },
+            {
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+            },
+            {
+                {0, 0},
+                {0, 1},
+                {1, 0},
+                {1, 1},
+                {0, 0}, // filler
+            },
+        }
+    };
+    
+    int[][][] piece = new int[ROTATION_COUNT][BLOCK_COUNT][2];
+    PImage[] gfx = new PImage[BLOCK_COUNT];
+    int x = int(width / 2);
+    int y = 0;
+    int type;
+    int tint;
+    int rotation;
 
-    }, 
-    {   // Plus 
-      // . X .
-      // X X X
-      // . X .
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-
-    }, 
-    {   // Stairs
-      // . . .
-      // . X X
-      // . . X
-      {
-        {0, 0}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 1}, 
-        {-1, 1}, 
-        {0, 0}, // filler
-        {0, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 0}, 
-        {0, 0}, 
-        {0, 1}, // filler
-        {1, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 0}, 
-        {0, 0}, 
-        {1, 0}, // filler
-        {1, 1}, // filler
-      }, 
-    }, 
+    // Generate of the Pieces
+    Piece(int type)
     {
-      // Square
-      // . . .
-      // . X X
-      // . X X
-      {
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-        {1, 1}, 
-        {0, 0}, // filler
-      }, 
+        this.type = type;
+        this.rotation = 0;
+        this.piece = blockCoordinates[type];
+        this.tint = tints[type];
+
+        for (int i = 0; i < BLOCK_COUNT; i++)
+        {
+            gfx[i] = loadImage(textures[int(random(0, textures.length))]);
+        }
+        
+        // testing only
+        this.x = int(0); // initialize piece x
+        this.y = int(170); // initialize piece y
+        println("type: " + type);
     }
-  };
-
-  int[][][] piece = new int[ROTATION_COUNT][BLOCK_COUNT][2];
-  PImage[] gfx = new PImage[BLOCK_COUNT];
-  int x = int(width / 2);
-  int y = 0;
-  int type;
-  int tint;
-  int rotation;
-
-  // Generate of the Pieces
-  Piece(int type)
-  {
-    this.type = type;
-    this.rotation = 0;
-    this.piece = blockCoordinates[type];
-    this.tint = tints[type];
-
-    for (int i = 0; i < BLOCK_COUNT; i++)
+    
+    //rendering the Pieces
+    void render()
     {
-      gfx[i] = loadImage(textures[int(random(0, textures.length))]);
-    }
-
-    // testing only
-    this.x = int(0); // initialize piece x
-    this.y = int(170); // initialize piece y
-    println("type: " + type);
-  }
-
-  //rendering the Pieces
-  void render()
-  {
-    pushMatrix();
-    translate(x, y); // verander dit naar grid x y later?
-    tint(tint);
-    for (int i = 0; i < BLOCK_COUNT; i++)
-    {
-      image(gfx[i], piece[rotation][i][0] * BLOCK_SIZE, piece[rotation][i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-    }
-    noTint();
-    popMatrix();
-  }
-
-  void instanceNextPiece() {
-    currentPiece = new Piece(int(random(0, 8)));
-    asset.pop.play();
-  }
-
-  void move(Grid grid, int x, int y) {
-    int[] w2g = world2grid();
-
-    int[][] piece = this.piece[rotation];
-
-    for (int[] coord : piece) {
-      if (w2g[0] + coord[0] == grid.width() - 1) {
-        grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();
-        return;
-      } else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
-        grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();
-        return;
-      } else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
-        return;
-      }
+        pushMatrix();
+        translate(x, y); // verander dit naar grid x y later?
+        tint(tint);
+        for (int i = 0; i < BLOCK_COUNT; i++)
+        {
+            image(gfx[i], piece[rotation][i][0] * BLOCK_SIZE, piece[rotation][i][1] * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+        noTint();
+        popMatrix();   
     }
 
-    this.x += BLOCK_SIZE * x;
-    this.y += BLOCK_SIZE * y;
-  }
+    void instanceNextPiece() {
+        currentPiece = new Piece(int(random(0,8)));
+    }
 
-  int[] world2grid() {
-    int grid_x = (x / BLOCK_SIZE) + 1;
-    int grid_y = (y / BLOCK_SIZE) - 1;
-    return new int[] {grid_x, grid_y};
-  }
+    void move(Grid grid, int x, int y) {
+        int[] w2g = world2grid();
+        
+        int[][] piece = this.piece[rotation];
+
+        for(int[] coord : piece) {
+            if(w2g[0] + coord[0] == grid.width() - 1) {
+                grid.addPiece(this, w2g[0], w2g[1]);
+                instanceNextPiece();
+                return;
+            } else if(grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
+                grid.addPiece(this, w2g[0], w2g[1]);
+                instanceNextPiece();
+                return;
+            } else if(grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
+                return;
+            }
+        }
+
+        this.x += BLOCK_SIZE * x;
+        this.y += BLOCK_SIZE * y;
+    }
+
+    int[] world2grid() {
+        int grid_x = (x / BLOCK_SIZE) + 1;
+        int grid_y = (y / BLOCK_SIZE) - 1;
+        return new int[] {grid_x, grid_y};
+    }
 }
 
 
