@@ -2,18 +2,24 @@ int icecreamcount;
 
 class IceCreamSystem
 { 
-    ArrayList<IceCream> icecreams;
+  ArrayList<IceCream> icecreams;
 
-    float iceCreamSize = 90;
-    float timePace = 75;
-    float timeStop = iceCreamSize * timePace;
-    float timePlus = 900;
-    boolean time = true; 
+  float iceCreamSize = 90;
+  float timePace = 75;
+  float timeStop = iceCreamSize * timePace;
+  float timePlus = 900;
+  boolean time = true; 
 
-    IceCream icecreamtemp;
-    Grid grid;
-    // construcor for the icecreams and timers and fills them with the right positions an gets the same xposition as the grid row.
-    IceCreamSystem(Grid grid)
+  IceCream icecreamtemp;
+  Grid grid;
+  // construcor for the icecreams and timers and fills them with the right positions an gets the same xposition as the grid row.
+  IceCreamSystem(Grid grid)
+  {
+    this.grid = grid;
+
+    //puts icecreams in the Arraylist with position.
+    icecreams = new ArrayList<IceCream>();   
+    for (int i = 0; i < 5; ++i) 
     {
         this.grid = grid;
         
@@ -57,14 +63,18 @@ class IceCreamSystem
         }
         return false;    
     }
+  }
 
-    
-    //Calculates the score by the size of the whole timer - the time past. max 90 min 0.  
-    int getscore(int icecream)
+  //While the yIcecream is less then 0 so if the icecream is above the screen return true.
+  public boolean respawning(int icecream)
+  { 
+    while (icecreams.get(calculateiceceream(icecream)).yIceCream < 0)
     {
       icecream = int(icecreams.get(calculateicecream(icecream)).iceCreamSize - (icecreams.get(calculateicecream(icecream)).m / icecreams.get(calculateicecream(icecream)).timePace));
       return icecream;
     }
+    return false;
+  }
 
     //calculates the value of the icecreams.
     int calculateicecream(int icecream)
@@ -102,7 +112,12 @@ class IceCreamSystem
     icecreams.get(calculateicecream(icecream)).xIceCream = -375; 
     icecreams.get(calculateicecream(icecream)).xTimer = -375; 
 
-    }
+  //If boolean is true makes the icecream move to the right location.
+  void movetospawn(int icecream)
+  {
+    icecreams.get(calculateiceceream(icecream)).yIceCream += 2;
+    icecreams.get(calculateiceceream(icecream)).yTimer += 2;
+  }
 
 
     //If boolean is true makes the icecream move to the right location.

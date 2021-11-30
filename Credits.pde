@@ -41,4 +41,6 @@ class Credits
             gameManager.gameState = 0;
         }
     }
+    keyCode = 'q';
+  }
 }
