@@ -347,7 +347,7 @@ class GameManager
 
 void setup(){
 
-     heart = loadImage("img/Hearts.png");
+     heart = loadImage("img/heart.png");
 
 }
     
@@ -358,19 +358,13 @@ void removeHealth(){
 
 
     void draw(){
-      
-      for (int i = 0; i < health; ++i) {
+       for (int i = 0; i < health; ++i) {
+           noFill();
+           image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
+       }
 
-          noFill();
-          image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
-
-      }
-
-      if (health < 0){
-
-        
-
-      }
+       if (health < 0){
+       }
     }
 }
 
