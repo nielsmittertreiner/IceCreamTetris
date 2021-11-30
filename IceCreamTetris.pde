@@ -56,6 +56,8 @@ void setup()
   mainMenu.setup();
   pauseMenu.setup();
   endScreen.setup();
+  credits.setup();
+  highscore.setup();
   riverAnimation.setup();
   icecreamsystem.resetTimer();
   ui.setup();
