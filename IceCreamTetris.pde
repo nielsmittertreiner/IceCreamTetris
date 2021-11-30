@@ -33,9 +33,6 @@ void setup()
   asset = new Asset();
   connect = new Connect();
   
-
-    
-    
   asset.loadSound();
   ground = loadImage("img/ground.jpg");
   groundColour = asset.green;
@@ -43,6 +40,7 @@ void setup()
   highscore = new Highscore();
   pauseMenu = new PauseMenu();
   credits = new Credits();
+  endScreen = new EndScreen();
   gameManager = new GameManager();
   // animalsystem = new AnimalSystem();
   riverAnimation = new RiverAnimation();
@@ -57,7 +55,8 @@ void setup()
 
   mainMenu.setup();
   pauseMenu.setup();
-  //credits.setup();
+  credits.setup();
+  endScreen.setup();
   riverAnimation.setup();
   icecreamsystem.resettimer();
 
@@ -65,9 +64,7 @@ void setup()
   asset.backgroundMusic.amp(0.05);
   
       connect.connect();
-=======
->>>>>>> 2443163a78d9c63a91f77509fdeb738b65c3bae4
-}
+      }
 
 // update all game objects
 void update()
