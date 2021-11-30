@@ -20,7 +20,7 @@ class MainMenu
         buttons[2].text = "CREDITS";
 
         buttons[0].link = 1;
-        buttons[1].link = -1;
+        buttons[1].link = 5;
         buttons[2].link = 3;
     }
     

@@ -44,7 +44,6 @@ void setup()
   pauseMenu = new PauseMenu();
   credits = new Credits();
   gameManager = new GameManager();
-  // animalsystem = new AnimalSystem();
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
@@ -53,11 +52,13 @@ void setup()
   currentPiece = new Piece(int(random(0, 8)));
   // nextPiece = new Piece(int(1));
   icecreamsystem = new IceCreamSystem(grid); 
+  endScreen = new EndScreen();
 
-
+  gameManager.setup();
   mainMenu.setup();
   pauseMenu.setup();
-  //credits.setup();
+  credits.setup();
+  endScreen.setup();
   riverAnimation.setup();
   icecreamsystem.resettimer();
 
@@ -132,6 +133,10 @@ void update()
         case 4:
         endScreen.keyInput();
         break;
+        case 5:
+        //highscore
+        highscore.keyInput();
+        break;
     }
 
 }
@@ -153,10 +158,10 @@ void render()
             rect(0, 0, width, height);
             grid.draw();
             icecreamsystem.draw();
-            animalsystem.run();
             currentPiece.render();
             ui.draw();
             gameManager.draw();
+            animalsystem.run();
             break;
         
         case 2:
@@ -172,6 +177,10 @@ void render()
         //end Screen
          endScreen.draw();
          break;
+                 case 5:
+        //highscore
+        highscore.draw();
+        break;
     }        
 }
 

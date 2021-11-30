@@ -6,7 +6,7 @@ class GameManager
     int speeddifficulty = 600;
     int selectedButton;
     char usedKey = ' ';
-    int timer = 0, timerTotal = 30;
+    int timer = 0, timerTotal = 15;
     
     PImage heart = new PImage();
     float xHearts;
