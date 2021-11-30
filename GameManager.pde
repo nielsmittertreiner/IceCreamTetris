@@ -8,6 +8,10 @@ class GameManager
     char usedKey = ' ';
     int timer = 0, timerTotal = 30;
     
+    PImage heart = new PImage();
+    float xHearts;
+    int yHearts = 815;
+    int heartsSize = 80;
 
     int health = 5;
     
@@ -335,26 +339,35 @@ class GameManager
         difficulty = 0;
         score = 0;
         icecreamsystem.resettimer();
-        icecreamsystem.resetIcecream();
-        gameManager.resetHealth();
          for (int i = 0; i < 20; ++i) {
                 grid.removeRow(i);
             }
     }
 
 
+void setup(){
+
+     heart = loadImage("img/heart.png");
+
+}
     
 void removeHealth(){
 
     health -= 1;
 }
 
-void resetHealth(){
 
-    health = 5;
-}
+    void draw(){
+       for (int i = 0; i < health; ++i) {
+           noFill();
+           image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
+       }
 
+       if (health == 0 && gameManager.gameState == 1){
 
+           gameManager.gameState = 4;
+       }
+    }
 }
 
 
