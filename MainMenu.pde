@@ -39,5 +39,6 @@ class MainMenu
         {
             button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
+        gameManager.reset();
     }
 }

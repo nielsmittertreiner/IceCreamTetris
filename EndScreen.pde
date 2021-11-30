@@ -1,6 +1,6 @@
 class EndScreen
 {
-    int numberButtons = 1;
+    int numberButtons = 2;
     Button[] buttons;
     void setup()
     {
@@ -10,23 +10,22 @@ class EndScreen
             buttons[i] = new Button();
         }
         buttons[0].text = "RESTART";
+        buttons[1].text = "QUIT";
+
         buttons[0].link = 0;
-    
-       
-      
+        buttons[1].link = -1;
     }
 void keyInput()
 {
       for (int i = 0; i < numberButtons; i++)
         {
             button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-            gameManager.reset();
+            // gameManager.reset();
         }
 }
     void draw()
     {
       riverAnimation.draw(0, height, asset.blue);
-        
         fill(asset.white);
         textSize(100);
         text("GAME OVER",width/3,height/4);
@@ -38,7 +37,7 @@ void keyInput()
             
          for (int i = 0; i < numberButtons; i++)
         {
-           button.draw(buttons[i].text, 0, height+100, gameManager.selectedButton == i,  i + 1, numberButtons);
+            button.draw(buttons[i].text, 400, 600, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
     }
 }
