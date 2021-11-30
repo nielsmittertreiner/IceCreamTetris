@@ -3,10 +3,6 @@ class MainMenu
     int numberButtons = 3;
     
     Button[] buttons;
-    
-    float speed = 1.05;
-    float offset = 0;
-    float offset2 = 0;
    
     void setup()
     {
