@@ -363,7 +363,9 @@ void removeHealth(){
            image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
        }
 
-       if (health < 0){
+       if (health == 0 && gameManager.gameState == 1){
+
+           gameManager.gameState = 4;
        }
     }
 }
