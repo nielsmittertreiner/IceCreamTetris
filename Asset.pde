@@ -1,5 +1,15 @@
 class Asset
-{
+{ 
+  SoundFile backgroundMusic;
+  SoundFile pop;
+  SoundFile animalMove;
+
+  void loadSound() 
+  {
+    backgroundMusic = new SoundFile(IceCreamTetris.this, "music/backgroundmusic.mp3");
+    pop = new SoundFile(IceCreamTetris.this, "soundeffects/pop.mp3");
+    animalMove = new SoundFile(IceCreamTetris.this, "soundeffects/collect.mp3");
+  }
   int darkRed = #731d0b;
   int red = #FF1212;
 
@@ -9,8 +19,8 @@ class Asset
 
   int green = #648c30; 
   int lightGreen = #32CE5D;
-  
-  int white = #f7fbf8;
+
+  int white = #f7fbf8; 
   int grey = #808b80;
   int black = #1d1f1e;
 
