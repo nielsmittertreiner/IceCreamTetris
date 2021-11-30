@@ -1,287 +1,372 @@
 class GameManager
 {
-  int gameState = 0;
-  int score = 0, difficulty = 0;
-  int speeddifficulty = 600;
-  void keyInput()
-  {
-    if (keyCode == BACKSPACE && keyPressed)
-    {
-      keyCode = TAB;
-      if (gameManager.gameState == 1)
-      {
-        gameManager.gameState = 2;
-      }
-    }
+    //-1 = paused, 0 = starting menu, 1 = game
+    int gameState = 0;
+    int score = 0, difficulty = 0;
+    int speeddifficulty = 600;
+    int selectedButton;
+    char usedKey = ' ';
+    int timer = 0, timerTotal = 30;
+    
+    PImage heart = new PImage();
+    float xHearts;
+    int yHearts = 815;
+    int heartsSize = 80;
 
-    // going Down
-    if (keyCode == DOWN && keyPressed)
-    {
-      currentPiece.move(grid, 0, 1);// currentPiece.y+=80;
-      changeFit();
+    int health = 5;
+    
 
-
-      key = 'q';
-    } 
-    // going Up
-    if (keyCode == UP && keyPressed)
-    {
-
-      currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;   
-      changeFit();
-
-      key = 'q';
-    } 
-    // going forward
-    if (keyCode == RIGHT && keyPressed)
-    {
-      if (currentPiece.x <= 1360 && currentPiece.x >= 240) {
-        currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
-
-        key = 'q';
-      }
-    }
-    if (keyCode == LEFT && keyPressed)
-    {
-
-
-      currentPiece.rotation = (currentPiece.rotation + 1) % 4;
-      keyCode = ENTER;
-
-      changeFit();
-    }
-
-
-    //add 2 to Score by pressing m, take 2 away by pressing l
-    if (key == 'm' && keyPressed)
-    {
-      gameManager.addScore(5);
-      key = 'q';
-    } 
-    if (key == 'l' && keyPressed)
-    {
-      gameManager.addScore( -5);
-      key = 'q';
-    }
-
-    //up the difficulty by pressing d
-    if (key == 'a' && keyPressed) 
-    {
-      gameManager.setDifficulty(1);
-      key = 'q';
-    }
-
-    //reset both by pressing r
-    if (key == 'r' && keyPressed)
-    {
-      gameManager.reset();
-      key = 'q';
-    }
-  }
-  void changeSpeedDifficulty()
-  {   
-    if (speeddifficulty >= 100) {
-      speeddifficulty -= (score / 200);
-      println(speeddifficulty);
-    } else {
-      println("Maximum Difficultyspeed reached!");
-    }
-  }
-  void changeFit()
-  {
-
-    if (currentPiece.type == 0) 
-    {
-
-      if (currentPiece.rotation == 0  )
-      {
-        if (currentPiece.y < 90)
+    void update()
+    {   
+        
+        timer++;
+        
+        if (keyPressed && timer > timerTotal)
         {
-          currentPiece.y = 90;
+            timer = 0;
+            if (key == CODED)
+            {
+                if (keyCode == UP)
+                {
+                    usedKey = 'U';
+                }
+                else if (keyCode == DOWN)
+                {
+                    usedKey = 'D';
+                }
+                else if (keyCode == LEFT)
+                {
+                    usedKey = 'L';
+                }
+            }
+            else
+            {
+                usedKey = key;
+            }
+        } else if (keyPressed & keyCode == RIGHT)
+        {   
+          usedKey = 'R';
         }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 2 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170 )
+        else
         {
-          currentPiece.y = 170;
+            usedKey = 0;
         }
-      }
-
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y > 650)
-        {
-          currentPiece.y = 650;
-        }
-      }
-      if (currentPiece.rotation == 2)
-      {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
-        }
-      }
     }
-    if (currentPiece.type == 1) 
+    
+    void keyInput()
     {
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2  )
-      {
-        if (currentPiece.y < 90)
-        {
-          currentPiece.y = 90;
+        // going Down
+        if (usedKey == 'D')
+            {
+            currentPiece.move(grid, 0, 1);// currentPiece.y+=80;
+            changeFit();
+        } 
+        
+        // going Up
+        if (usedKey == 'U')
+            {
+            
+            currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;   
+            changeFit();
+        } 
+        
+        
+        // going forward
+        if (usedKey == 'R')
+            {
+            if (currentPiece.x <= 1360)
+                {
+                currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
+            }
         }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
+        if (usedKey == 'L')
+            { 
+            currentPiece.rotation = (currentPiece.rotation + 1) % 4;        
+            changeFit();      
         }
-      }
-
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
+        
+        //add 2 to Score by pressing m, take 2 away by pressing l
+        if (usedKey == 'm')
+            {
+            gameManager.addScore(5);
+        } 
+        if (usedKey == 'l')
+            {
+            gameManager.addScore( -5);
+        }
+        
+        //up the difficulty by pressing d
+        if (gameManager.usedKey == 'd') 
+            {
+            //gameManager.setDifficulty(1);
+        }
+        
+        //reset both by pressing r
+        if (gameManager.usedKey == 'r')
+        {
+            gameManager.reset();
+        }
+        
+        //pause game
+        if (gameManager.usedKey == 'E')
+        {
+            gameManager.gameState = 2;
+        }
+        if (gameManager.usedKey == 'y')
+        {
+            gameManager.reset();
+            gameManager.gameState = 4;
+            
+        }
     }
-
-    if (currentPiece.type == 2) 
+    
+    void addScore(int scoreAdded)
     {
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2  )
-      {
-        if (currentPiece.y < 90)
+        score += scoreAdded;
+        if (score < 0)
         {
-          currentPiece.y = 90;
+            score = 0;
         }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
-        }
-      }
-
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
+        changeSpeedDifficulty();
     }
-
-    if (currentPiece.type == 3) 
+    
+    void changeSpeedDifficulty()
+        {
+        if (speeddifficulty >= 100)
+            {
+            speeddifficulty -= (score / 200);
+            println(speeddifficulty);
+        }
+        else
+            {
+            println("MaximumDifficultyspeed reached!");
+        }       
+    }
+    
+    
+    void changeFit()
+        {
+        if (currentPiece.type == 0) 
+            {   
+            if (currentPiece.rotation == 0)
+                {
+                if (currentPiece.y < 90)
+                    {
+                    currentPiece.y = 90;
+                }
+            }
+            if (currentPiece.rotation == 1 || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y < 170)
+                    {
+                    currentPiece.y = 170;
+                    
+                }   
+            }
+            
+            if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y > 650)
+                    {
+                    currentPiece.y = 650;
+                }
+            }
+            if (currentPiece.rotation == 2)
+                {
+                if (currentPiece.y > 730)
+                    {
+                    currentPiece.y = 730;
+                }   
+            }
+            
+        }
+        
+        if (currentPiece.type == 1) 
+            {
+            
+            if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+                {
+                if (currentPiece.y < 90)
+                    {
+                    currentPiece.y = 90;
+                }
+            }
+            if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y < 170)
+                    {
+                    currentPiece.y = 170;
+                }       
+            }
+            
+            if (currentPiece.y > 650)
+                {
+                currentPiece.y = 650;
+            }
+        }
+        
+        if (currentPiece.type ==  2) 
+            {
+            
+            if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+                {
+                if (currentPiece.y < 90)
+                    {
+                    currentPiece.y = 90;
+                }
+            }
+            if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y < 170)
+                    {
+                    currentPiece.y = 170;
+                }           
+            }
+            
+            if (currentPiece.y > 650)
+                {
+                currentPiece.y = 650;
+            }
+        }
+        
+        if (currentPiece.type == 3) 
+            {
+            
+            if (currentPiece.rotation ==  0)
+                {
+                if (currentPiece.y < 90)
+                    {
+                    currentPiece.y = 90;
+                }
+            }
+            if (currentPiece.rotation == 1  || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y < 170)
+                    {
+                    currentPiece.y = 170;
+                }     
+            }
+            
+            if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y > 650)
+                    {
+                    currentPiece.y = 650;
+                }
+            }
+            if (currentPiece.rotation == 2)
+                {
+                if (currentPiece.y > 730) {
+                    currentPiece.y = 730;
+                }           
+            }
+        }
+        
+        if (currentPiece.type == 4) 
+            {
+            
+            if (currentPiece.rotation == 0  || currentPiece.rotation == 2)
+                {
+                if (currentPiece.y < 90)
+                    {
+                    currentPiece.y = 90;
+                }
+            }
+            if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y < 170)
+                    {
+                    currentPiece.y = 170;
+                }
+                
+            }
+            
+            if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+                {
+                if (currentPiece.y > 650)
+                    {
+                    currentPiece.y = 650;
+                }
+            }
+            if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+                {
+                if (currentPiece.y > 730) {
+                    currentPiece.y = 730;
+                }           
+            }
+            
+        }
+        
+        if (currentPiece.type == 5) 
+            {
+            if (currentPiece.y < 170)
+                {
+                currentPiece.y = 170;
+            }
+            if (currentPiece.y > 650)
+                {
+                currentPiece.y = 650;
+            }
+        }
+        
+        if (currentPiece.type == 6) 
+            {
+            if (currentPiece.y < 90)
+                {
+                currentPiece.y = 90;
+            }
+            if (currentPiece.y > 650)
+                {
+                currentPiece.y = 650;
+            } 
+        }
+        
+        if (currentPiece.type == 7) 
+            {
+            if (currentPiece.y < 90)
+                {
+                currentPiece.y = 90;
+            }
+            if (currentPiece.y > 650)
+                {
+                currentPiece.y = 650;
+            } 
+        }
+    }
+    
+    void reset()
     {
-      if (currentPiece.rotation == 0   )
-      {
-        if (currentPiece.y < 90)
-        {
-          currentPiece.y = 90;
-        }
-      }
-      if (currentPiece.rotation == 1  || currentPiece.rotation == 2 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
-        }
-      }
-
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y > 650)
-        {
-          currentPiece.y = 650;
-        }
-      }
-      if (currentPiece.rotation == 2)
-      {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
-        }
-      }
+        difficulty = 0;
+        score = 0;
+        icecreamsystem.resettimer();
+         for (int i = 0; i < 20; ++i) {
+                grid.removeRow(i);
+            }
     }
 
-    if (currentPiece.type == 4) 
-    {
-      if (currentPiece.rotation == 0  || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y < 90)
-        {
-          currentPiece.y = 90;
-        }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
-        }
-      }
 
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y > 650)
-        {
-          currentPiece.y = 650;
-        }
-      }
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
-        }
-      }
-    }
+void setup(){
 
-    if (currentPiece.type == 5) 
-    {
-      if (currentPiece.y < 170)
-      {
-        currentPiece.y = 170;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
+     heart = loadImage("img/heart.png");
 
-    if (currentPiece.type == 6) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650) {
-        currentPiece.y = 650;
-      }
-    }
-    if (currentPiece.type == 7) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650) {
-        currentPiece.y = 650;
-      }
-    }
-  }
+}
+    
+void removeHealth(){
 
-  void addScore(int scoreAdded) {
-    score += scoreAdded;
-    if (score < 0) {
-      score = 0;
-    }
-    changeSpeedDifficulty();
-  }
-
-  void setDifficulty(int difficultyAdded) {
-    difficulty += difficultyAdded;
-  }
-  void reset() {
-    difficulty = 0;
-    score = 0;
-    gameState = 0;
-  }
+    health -= 1;
 }
 
-//test
+
+    void draw(){
+       for (int i = 0; i < health; ++i) {
+           noFill();
+           image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
+       }
+
+       if (health < 0){
+       }
+    }
+}
+
+
+// test

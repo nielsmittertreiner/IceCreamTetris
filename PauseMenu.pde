@@ -1,13 +1,10 @@
 class PauseMenu
 {
-  int numberButtons = 2, selectedButton = 0;
-
-  Button[] buttons;
-
-  void setup()
-  {
-    buttons = new Button[numberButtons];
-    for (int i = 0; i < numberButtons; i++)
+    int numberButtons = 2;
+    
+    Button[] buttons;
+    
+    void setup()
     {
       buttons[i] = new Button();
     }
@@ -15,36 +12,15 @@ class PauseMenu
     buttons[1].text = "QUIT";
   }
 
-  void keyInput()
-  {
-    if (keyCode == DOWN && keyPressed)
-    {
-      selectedButton += 1;
-      keyCode = TAB;
-      if (selectedButton == numberButtons)
-      {
-        selectedButton = 0;
-      }
-    }
-    if (keyCode == UP && keyPressed)
-    {
-      selectedButton -= 1;
-      keyCode = TAB;
-      if (selectedButton == -1)
-      {
-        selectedButton = numberButtons - 1;
-      }
+        buttons[0].link = 1;
+        buttons[1].link = -1;
     }
     if (key == 'x' && keyPressed)
     {
-      if (selectedButton == 0)
-      {
-        gameManager.gameState = 1;
-        keyCode = 'q';
-      } else
-      {
-        exit();
-      }
+        for (int i = 0; i < numberButtons; i++)
+        {
+            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+        }
     }
   }
   void draw()
@@ -52,7 +28,11 @@ class PauseMenu
     riverAnimation.draw(0, height, asset.blue);
     for (int i = 0; i < numberButtons; i++)
     {
-      button.draw(selectedButton == i, buttons[i].text, i + 1, numberButtons + 1);
+        riverAnimation.draw(0, height, asset.blue);
+         
+        for (int i = 0; i < numberButtons; i++)
+        {
+            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
+        }
     }
-  }
-} 
+}

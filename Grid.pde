@@ -1,7 +1,36 @@
 class Grid
 {
+<<<<<<< HEAD
   private int[][] grid;
   private int cellSize;
+=======
+    int piecesAmount = 1;
+
+    private int[][] grid;
+    private int cellSize;
+    
+    int boxX;
+    int boxY;
+
+    private int tileColor;
+    private int backgroundColor;
+    private int strokeColor;
+    private int opacity;
+    
+    public Grid(int width, int height, int cellSize) {
+        grid = new int[height][width];
+        this.cellSize = cellSize;
+        
+        tileColor = asset.black;
+        backgroundColor = asset.lightBlue;
+        strokeColor = asset.black;
+        opacity = asset.opacity;
+    }
+    
+    int width() {
+        return grid[0].length;
+    }
+>>>>>>> bbbe3e2e5c70a47223cecb82ab0b89eb6d80cc88
 
   int boxX;
   int boxY;
@@ -36,6 +65,35 @@ class Grid
   int gridY() {
     return boxY;
   }
+    void setTileColor(int rgb) {
+        tileColor = rgb;
+    }
+    
+    void setBackgroundColor(int rgb) {
+        backgroundColor = rgb;
+    }
+    
+    void setStrokeColor(int rgb) {
+        strokeColor = rgb;
+    }
+    
+    void setOpacity(int alpha) {
+        opacity = alpha;
+    }
+    
+    void addPiece(Piece newPiece, int posX, int posY) {
+        int[] origin = {posX, posY};
+        int[][] pieceCoords = newPiece.piece[newPiece.rotation];
+ if ( gameManager.gameState == 1 && currentPiece.x == 0) {
+            gameManager.selectedButton = 0;
+            gameManager.gameState = 4;
+        }
+        for(int[] coord : pieceCoords) {
+            grid[origin[1] + coord[1]][origin[0] + coord[0]] = piecesAmount;
+        }
+
+        piecesAmount++;
+    }
 
   boolean isRowFull(int x) {
     for (int y = 0; y < grid.length; y++) {   
@@ -77,50 +135,37 @@ class Grid
     for (int[] coord : pieceCoords) {
       grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
     }
-  }
+    
+    void draw() {        
+        // Calculate grid
+        int gridWidth = grid[0].length * cellSize;
+        int gridHeight = grid.length * cellSize;
+        boxX = width / 2 - gridWidth / 2;
+        boxY = height / 2 - gridHeight / 2;
+        
+        // Draw background
+        fill(asset.grey);
+        rect(boxX, boxY, gridWidth, gridHeight);
 
-  int getRowPosition(int rowX) {
-    int gridWidth = grid[0].length * cellSize;
-    int boxOffsetX = width / 2 - gridWidth / 2;
-    return boxOffsetX + rowX * cellSize;
-  }
+        // Draw animation
+        riverAnimation.draw(boxY, gridHeight, backgroundColor);
 
-  void setState(int x, int y, int state) {
-    grid[y][x] = state;
-  }
-
-  int getState(int x, int y) {
-    try {
-      return grid[y][x];
-    } 
-    catch (Exception e) {
-      return -1;
-    }
-  }
-
-  void draw() {        
-    // Calculate grid
-    int gridWidth = grid[0].length * cellSize;
-    int gridHeight = grid.length * cellSize;
-    boxX = width / 2 - gridWidth / 2;
-    boxY = height / 2 - gridHeight / 2;
-
-    // Draw background
-    fill(asset.grey);
-    rect(boxX, boxY, gridWidth, gridHeight);
-
-    // Draw animation
-    riverAnimation.draw(boxY, gridHeight, asset.lightBlue);
-
-    // Draw tiles
-    fill(tileColor, opacity);
-
-    for (int y = 0; y < grid.length; y++) {
-      for (int x = 0; x < grid[y].length; x++) {
-        if (grid[y][x] >= 1) {
-          int tileX = boxX + x * cellSize;
-          int tileY = boxY + y * cellSize;
-          rect(tileX, tileY, cellSize, cellSize);
+        // Draw grid box
+        stroke(strokeColor, opacity);
+        noFill();
+        rect(boxX, boxY, gridWidth, gridHeight);
+        
+        // Draw tiles
+        fill(tileColor, opacity);
+        
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[y].length; x++) {
+                if (grid[y][x] >= 1) {
+                    int tileX = boxX + x * cellSize;
+                    int tileY = boxY + y * cellSize;
+                    rect(tileX, tileY, cellSize, cellSize);
+                } 
+            }
         }
       }
     }
