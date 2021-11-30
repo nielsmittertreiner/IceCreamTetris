@@ -5,7 +5,11 @@ class Highscore
 
   int buttonDistance = 50;
 
+<<<<<<< HEAD
 // test
+=======
+
+>>>>>>> 79d8fb5 (Sound and database connection)
 
 
   void draw()
@@ -24,5 +28,8 @@ class Highscore
     }
     keyCode = 'q';
   }
+<<<<<<< HEAD
   //test
+=======
+>>>>>>> 79d8fb5 (Sound and database connection)
 }

@@ -1,5 +1,6 @@
 class Grid
 {
+<<<<<<< HEAD
     int piecesAmount = 1;
 
     private int[][] grid;
@@ -26,36 +27,38 @@ class Grid
     int width() {
         return grid[0].length;
     }
+=======
+  private int[][] grid;
+  private int cellSize;
+>>>>>>> 79d8fb5 (Sound and database connection)
 
-    int height() {
-        return grid.length;
-    }
+  int boxX;
+  int boxY;
 
-    int gridX() {
-        return boxX;
-    }
+  private int tileColor;
+  private int backgroundColor;
+  private int strokeColor;
+  private int opacity;
 
-    int gridY() {
-        return boxY;
-    }
+  public Grid(int width, int height, int cellSize) {
+    grid = new int[height][width];
+    this.cellSize = cellSize;
 
-    boolean isRowFull(int x) {
-        for (int y = 0; y < grid.length; y++) {   
-            if (grid[y][x] == 0) {  
-                return false;
-            }
-        }
-        
-        return true;
-    }
+    tileColor = asset.black;
+    backgroundColor = asset.lightBlue;
+    strokeColor = asset.black;
+    opacity = asset.opacity;
+  }
 
-    void removeRow(int x) {
-        for(int y = 0; y < grid.length; y++) {
-            grid[y][x] = 0;
-        }
-    }
+  int width() {
+    return grid[0].length;
+  }
 
+  int height() {
+    return grid.length;
+  }
 
+<<<<<<< HEAD
     void setTileColor(int rgb) {
         tileColor = rgb;
     }
@@ -85,24 +88,57 @@ class Grid
 
         piecesAmount++;
     }
+=======
+  int gridX() {
+    return boxX;
+  }
 
-    int getRowPosition(int rowX) {
-        int gridWidth = grid[0].length * cellSize;
-        int boxOffsetX = width / 2 - gridWidth / 2;
-        return boxOffsetX + rowX * cellSize;
+  int gridY() {
+    return boxY;
+  }
+>>>>>>> 79d8fb5 (Sound and database connection)
+
+  boolean isRowFull(int x) {
+    for (int y = 0; y < grid.length; y++) {   
+      if (grid[y][x] == 0) {  
+        return false;
+      }
     }
 
-    void setState(int x, int y, int state) {
-        grid[y][x] = state;
-    }
+    return true;
+  }
 
-    int getState(int x, int y) {
-        try {
-            return grid[y][x];
-        } catch (Exception e) {
-            return -1;
-        }
+  void removeRow(int x) {
+    for (int y = 0; y < grid.length; y++) {
+      grid[y][x] = 0;
     }
+  }
+
+
+  void setTileColor(int rgb) {
+    tileColor = rgb;
+  }
+
+  void setBackgroundColor(int rgb) {
+    backgroundColor = rgb;
+  }
+
+  void setStrokeColor(int rgb) {
+    strokeColor = rgb;
+  }
+
+  void setOpacity(int alpha) {
+    opacity = alpha;
+  }
+
+  void addPiece(Piece newPiece, int posX, int posY) {
+    int[] origin = {posX, posY};
+    int[][] pieceCoords = newPiece.piece[newPiece.rotation];
+
+    for (int[] coord : pieceCoords) {
+      grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
+    }
+<<<<<<< HEAD
     
     void draw() {        
         // Calculate grid
@@ -134,6 +170,54 @@ class Grid
                     rect(tileX, tileY, cellSize, cellSize);
                 } 
             }
-        }
+=======
+  }
+
+  int getRowPosition(int rowX) {
+    int gridWidth = grid[0].length * cellSize;
+    int boxOffsetX = width / 2 - gridWidth / 2;
+    return boxOffsetX + rowX * cellSize;
+  }
+
+  void setState(int x, int y, int state) {
+    grid[y][x] = state;
+  }
+
+  int getState(int x, int y) {
+    try {
+      return grid[y][x];
+    } 
+    catch (Exception e) {
+      return -1;
     }
+  }
+
+  void draw() {        
+    // Calculate grid
+    int gridWidth = grid[0].length * cellSize;
+    int gridHeight = grid.length * cellSize;
+    boxX = width / 2 - gridWidth / 2;
+    boxY = height / 2 - gridHeight / 2;
+
+    // Draw background
+    fill(asset.grey);
+    rect(boxX, boxY, gridWidth, gridHeight);
+
+    // Draw animation
+    riverAnimation.draw(boxY, gridHeight, asset.lightBlue);
+
+    // Draw tiles
+    fill(tileColor, opacity);
+
+    for (int y = 0; y < grid.length; y++) {
+      for (int x = 0; x < grid[y].length; x++) {
+        if (grid[y][x] >= 1) {
+          int tileX = boxX + x * cellSize;
+          int tileY = boxY + y * cellSize;
+          rect(tileX, tileY, cellSize, cellSize);
+>>>>>>> 79d8fb5 (Sound and database connection)
+        }
+      }
+    }
+  }
 }
