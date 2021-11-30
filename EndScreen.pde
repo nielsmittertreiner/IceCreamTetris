@@ -20,13 +20,12 @@ void keyInput()
       for (int i = 0; i < numberButtons; i++)
         {
             button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-            gameManager.reset();
+            // gameManager.reset();
         }
 }
     void draw()
     {
       riverAnimation.draw(0, height, asset.blue);
-        
         fill(asset.white);
         textSize(100);
         text("GAME OVER",width/3,height/4);
@@ -38,7 +37,7 @@ void keyInput()
             
          for (int i = 0; i < numberButtons; i++)
         {
-           button.draw(buttons[i].text, 0, height+100, gameManager.selectedButton == i,  i + 1, numberButtons);
+           button.draw(buttons[i].text, 550, 550, gameManager.selectedButton == i,  i + 1, numberButtons);
         }
     }
 }

@@ -76,7 +76,7 @@ class Grid
         int[] origin = {posX, posY};
         int[][] pieceCoords = newPiece.piece[newPiece.rotation];
  if ( gameManager.gameState == 1 && currentPiece.x == 0) {
-
+            gameManager.selectedButton = 0;
             gameManager.gameState = 4;
         }
         for(int[] coord : pieceCoords) {
