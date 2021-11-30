@@ -1,5 +1,10 @@
+import processing.sound.*;
+import samuelal.squelized.*;
+import java.util.Properties;
+
 // initialize game
 Asset asset;
+Highscore highscore;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
 EndScreen endScreen;
@@ -13,40 +18,55 @@ Piece currentPiece;
 Piece nextPiece;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
+Connect connect;
 PImage ground;
 int groundColour;
 int last;
 int m;
 
+
+SoundFile backgroundMusic;
+
 void setup()
 {
-    size(1600, 900, P2D);
-    asset = new Asset();
-    ground = loadImage("img/ground.jpg");
-    groundColour = asset.green;
-    mainMenu = new MainMenu();
-    pauseMenu = new PauseMenu();
-    endScreen = new EndScreen();
-    credits = new Credits();
-    gameManager = new GameManager();
-    // animalsystem = new AnimalSystem();
-    riverAnimation = new RiverAnimation();
-    button = new Button();
-    ui = new UI();
-    grid = new Grid(20, 9, 80);
-    animalsystem = new AnimalSystem(grid);
-    currentPiece = new Piece(int(random(0,8)));
-    // nextPiece = new Piece(int(1));
-    icecreamsystem = new IceCreamSystem(grid); 
-    
-    mainMenu.setup();
-    pauseMenu.setup();
-    endScreen.setup();
-    credits.setup();
-    riverAnimation.setup();
-    icecreamsystem.resettimer();
-    gameManager.setup();
+  size(1600, 900, P2D);
+  asset = new Asset();
+  connect = new Connect();
+  
 
+    
+    
+  asset.loadSound();
+  ground = loadImage("img/ground.jpg");
+  groundColour = asset.green;
+  mainMenu = new MainMenu();
+  highscore = new Highscore();
+  pauseMenu = new PauseMenu();
+  credits = new Credits();
+  gameManager = new GameManager();
+  // animalsystem = new AnimalSystem();
+  riverAnimation = new RiverAnimation();
+  button = new Button();
+  ui = new UI();
+  grid = new Grid(20, 9, 80);
+  animalsystem = new AnimalSystem(grid);
+  currentPiece = new Piece(int(random(0, 8)));
+  // nextPiece = new Piece(int(1));
+  icecreamsystem = new IceCreamSystem(grid); 
+
+
+  mainMenu.setup();
+  pauseMenu.setup();
+  //credits.setup();
+  riverAnimation.setup();
+  icecreamsystem.resettimer();
+
+  asset.backgroundMusic.loop();
+  asset.backgroundMusic.amp(0.05);
+  
+      connect.connect();
+=======
+>>>>>>> 2443163a78d9c63a91f77509fdeb738b65c3bae4
 }
 
 // update all game objects
@@ -115,7 +135,9 @@ void update()
         endScreen.keyInput();
         break;
     }
+
 }
+
 
 // render all objects to screen
 void render()
@@ -136,7 +158,7 @@ void render()
             animalsystem.run();
             currentPiece.render();
             ui.draw();
-            gameManager.draw();
+            
             break;
         
         case 2:
@@ -171,4 +193,3 @@ void keyPressed()
 }
 
 // test
-
