@@ -52,12 +52,12 @@ void setup()
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 
-  gameManager.setup();
+
   mainMenu.setup();
   pauseMenu.setup();
   endScreen.setup();
   riverAnimation.setup();
-  icecreamsystem.resettimer();
+  icecreamsystem.resetTimer();
   ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
@@ -159,7 +159,7 @@ void render()
             icecreamsystem.draw();
             currentPiece.render();
             ui.draw();
-            gameManager.draw();
+
             animalsystem.run();
             break;
         

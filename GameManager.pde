@@ -338,36 +338,38 @@ class GameManager
     {
         difficulty = 0;
         score = 0;
-        icecreamsystem.resettimer();
+        icecreamsystem.resetTimer();
+        icecreamsystem.resetIcecream();
+        gameManager.resetHealth();
          for (int i = 0; i < 20; ++i) {
                 grid.removeRow(i);
             }
     }
 
 
-void setup(){
-
-     heart = loadImage("img/heart.png");
-
-}
     
 void removeHealth(){
 
     health -= 1;
 }
 
+void resetHealth(){
 
-    void draw(){
-       for (int i = 0; i < health; ++i) {
-           noFill();
-           image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
-       }
+    health = 5;
+}
 
-       if (health == 0 && gameManager.gameState == 1){
 
-           gameManager.gameState = 4;
-       }
-    }
+    // void draw(){
+    //    for (int i = 0; i < health; ++i) {
+    //        noFill();
+    //        image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
+    //    }
+
+    //    if (health == 0 && gameManager.gameState == 1){
+
+    //        gameManager.gameState = 4;
+    //    }
+    // }
 }
 
 
