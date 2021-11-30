@@ -30,8 +30,4 @@ void gettable()
       }
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 79d8fb5 (Sound and database connection)

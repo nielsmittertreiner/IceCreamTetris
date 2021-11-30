@@ -1,36 +1,7 @@
 class Grid
 {
-<<<<<<< HEAD
-    int piecesAmount = 1;
-
-    private int[][] grid;
-    private int cellSize;
-    
-    int boxX;
-    int boxY;
-
-    private int tileColor;
-    private int backgroundColor;
-    private int strokeColor;
-    private int opacity;
-    
-    public Grid(int width, int height, int cellSize) {
-        grid = new int[height][width];
-        this.cellSize = cellSize;
-        
-        tileColor = asset.black;
-        backgroundColor = asset.lightBlue;
-        strokeColor = asset.black;
-        opacity = asset.opacity;
-    }
-    
-    int width() {
-        return grid[0].length;
-    }
-=======
   private int[][] grid;
   private int cellSize;
->>>>>>> 79d8fb5 (Sound and database connection)
 
   int boxX;
   int boxY;
@@ -58,7 +29,6 @@ class Grid
     return grid.length;
   }
 
-<<<<<<< HEAD
     void setTileColor(int rgb) {
         tileColor = rgb;
     }
@@ -88,7 +58,6 @@ class Grid
 
         piecesAmount++;
     }
-=======
   int gridX() {
     return boxX;
   }
@@ -96,7 +65,6 @@ class Grid
   int gridY() {
     return boxY;
   }
->>>>>>> 79d8fb5 (Sound and database connection)
 
   boolean isRowFull(int x) {
     for (int y = 0; y < grid.length; y++) {   
@@ -138,39 +106,6 @@ class Grid
     for (int[] coord : pieceCoords) {
       grid[origin[1] + coord[1]][origin[0] + coord[0]] = 1;
     }
-<<<<<<< HEAD
-    
-    void draw() {        
-        // Calculate grid
-        int gridWidth = grid[0].length * cellSize;
-        int gridHeight = grid.length * cellSize;
-        boxX = width / 2 - gridWidth / 2;
-        boxY = height / 2 - gridHeight / 2;
-        
-        // Draw background
-        fill(asset.grey);
-        rect(boxX, boxY, gridWidth, gridHeight);
-
-        // Draw animation
-        riverAnimation.draw(boxY, gridHeight, backgroundColor);
-
-        // Draw grid box
-        stroke(strokeColor, opacity);
-        noFill();
-        rect(boxX, boxY, gridWidth, gridHeight);
-        
-        // Draw tiles
-        fill(tileColor, opacity);
-        
-        for (int y = 0; y < grid.length; y++) {
-            for (int x = 0; x < grid[y].length; x++) {
-                if (grid[y][x] >= 1) {
-                    int tileX = boxX + x * cellSize;
-                    int tileY = boxY + y * cellSize;
-                    rect(tileX, tileY, cellSize, cellSize);
-                } 
-            }
-=======
   }
 
   int getRowPosition(int rowX) {
@@ -215,7 +150,6 @@ class Grid
           int tileX = boxX + x * cellSize;
           int tileY = boxY + y * cellSize;
           rect(tileX, tileY, cellSize, cellSize);
->>>>>>> 79d8fb5 (Sound and database connection)
         }
       }
     }
