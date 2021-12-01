@@ -340,36 +340,25 @@ class GameManager
         score = 0;
         icecreamsystem.resetTimer();
         icecreamsystem.resetIcecream();
+        animalsystem.resetAnimal();
         gameManager.resetHealth();
          for (int i = 0; i < 20; ++i) {
                 grid.removeRow(i);
             }
     }
-
-
     
-void removeHealth(){
+     void removeHealth(){
 
-    health -= 1;
-}
+         health -= 1;
+         
+     }
 
-void resetHealth(){
+    void resetHealth(){
 
-    health = 5;
-}
+         health = 5;
 
+    }
 
-    // void draw(){
-    //    for (int i = 0; i < health; ++i) {
-    //        noFill();
-    //        image(heart,xHearts + i * 100, yHearts, heartsSize, heartsSize);
-    //    }
-
-    //    if (health == 0 && gameManager.gameState == 1){
-
-    //        gameManager.gameState = 4;
-    //    }
-    // }
 }
 
 

@@ -32,7 +32,7 @@ class AnimalSystem
 
     return false;
   }
-
+  
   //if yAnimal respawns on the bottom of the screen remain true while the yAnimal is not the height it supossed to be so it can move to that position.
   public boolean respawning(int animal)
   { 
@@ -51,6 +51,16 @@ class AnimalSystem
       return true;
     }
     return false;
+  }
+  
+  //resets the animals when you restart the game. 
+  void resetAnimal(){
+    
+    for (int i = 0; i < 5; ++i) 
+    { 
+      animals.get(i).yAnimal = height - 100;
+
+    }
   }
 
   // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
