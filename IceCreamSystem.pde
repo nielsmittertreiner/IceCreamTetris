@@ -98,7 +98,7 @@ class IceCreamSystem
   }
 
 
-
+  // despawns the icecreams and timer when the timer hits 0. 
   void despawnIceCream(int icecream) {
 
     icecreams.get(calculateiceceream(icecream)).xIceCream = -375; 
@@ -127,10 +127,8 @@ class IceCreamSystem
 
       if (grid.isRowFull(i))
       {
-        // println(false);
         for (int j = 15; j < 20; ++j) {
           icecreams.get(calculateiceceream(j)).m -= timePlus;
-          //   println(true);
         }
       }
     }
@@ -164,6 +162,7 @@ class IceCreamSystem
       { 
         icecreams.get(calculateiceceream(i)).m --; 
 
+        //when the timer hits 0 remove 1 heart. 
         gameManager.removeHealth();
         //  despawnIceCream(i);
 
