@@ -52,6 +52,8 @@ void setup()
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 
+      connect.connect();
+
   gameManager.setup();
   mainMenu.setup();
   pauseMenu.setup();
@@ -61,8 +63,9 @@ void setup()
   ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
-  
-      connect.connect();
+  highscore.setup();
+
+
 
 
 }
@@ -178,7 +181,7 @@ void render()
          break;
                  case 5:
         //highscore
-        highscore.draw();
+        highscore.render();
         break;
     }        
 }

@@ -7,13 +7,19 @@ class Highscore
 
 // test
 
+void setup()
+{
 
-  void draw()
+  connect.gettable();
+
+
+}
+
+
+  void render()
   {
     riverAnimation.draw(0, height, asset.blue);
-   connect.gettable();
-   
-   
+    connect.printTable(); 
   }
 
   void keyInput()

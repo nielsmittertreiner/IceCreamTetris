@@ -43,10 +43,12 @@ class GameManager
             {
                 usedKey = key;
             }
-        } else if (keyPressed & keyCode == RIGHT)
+        }
+       else if (keyPressed & keyCode == RIGHT)
         {   
           usedKey = 'R';
         }
+        
         else
         {
             usedKey = 0;
@@ -74,7 +76,7 @@ class GameManager
         // going forward
         if (usedKey == 'R')
             {
-            if (currentPiece.x <= 1360)
+            if (currentPiece.x >= 160)
                 {
                 currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
             }
