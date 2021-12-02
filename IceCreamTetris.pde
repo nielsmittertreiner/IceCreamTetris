@@ -54,7 +54,6 @@ void setup()
 
       connect.connect();
 
-  gameManager.setup();
   mainMenu.setup();
   pauseMenu.setup();
   endScreen.setup();
