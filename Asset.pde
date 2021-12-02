@@ -1,15 +1,5 @@
 class Asset
-{ 
-  SoundFile backgroundMusic;
-  SoundFile pop;
-  SoundFile animalMove;
-
-  void loadSound() 
-  {
-    backgroundMusic = new SoundFile(IceCreamTetris.this, "music/backgroundmusic.mp3");
-    pop = new SoundFile(IceCreamTetris.this, "soundeffects/pop.mp3");
-    animalMove = new SoundFile(IceCreamTetris.this, "soundeffects/collect.mp3");
-  }
+{
   int darkRed = #731d0b;
   int red = #FF1212;
 
@@ -27,4 +17,31 @@ class Asset
   int orange = #F5BC00;
 
   int opacity = 150;
+  
+   
+
+
+  SoundFile backgroundMusic;
+  SoundFile pop;
+  SoundFile animalMove;
+
+  int groundColour;
+
+  PImage ground;
+
+  void loadAssets() 
+  {
+    backgroundMusic = new SoundFile(IceCreamTetris.this, "music/backgroundmusic.mp3");
+    pop = new SoundFile(IceCreamTetris.this, "soundeffects/pop.mp3");
+    animalMove = new SoundFile(IceCreamTetris.this, "soundeffects/collect.mp3");
+    ground = loadImage("img/ground.jpg");
+  }
+
+  void drawBackground(){
+
+  image(ground, 0, 0, width, height);
+            fill(green, opacity);
+            rect(0, 0, width, height);
+
+  }
 }

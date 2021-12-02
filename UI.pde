@@ -15,7 +15,7 @@ class UI
 
     }
 
-    void draw()
+    void render()
     {
         textSize(textSize);
         fill(asset.white);

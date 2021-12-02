@@ -19,23 +19,15 @@ Piece nextPiece;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
-PImage ground;
-int groundColour;
 int last;
 int m;
 
 
 SoundFile backgroundMusic;
 
-void setup()
-{
-  size(1600, 900, P2D);
-  asset = new Asset();
+void initialize()
+{asset = new Asset();
   connect = new Connect();
-  
-  asset.loadSound();
-  ground = loadImage("img/ground.jpg");
-  groundColour = asset.green;
   mainMenu = new MainMenu();
   highscore = new Highscore();
   pauseMenu = new PauseMenu();
@@ -48,12 +40,20 @@ void setup()
   grid = new Grid(20, 9, 80);
   animalsystem = new AnimalSystem(grid);
   currentPiece = new Piece(int(random(0, 8)));
-  // nextPiece = new Piece(int(1));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 
-      connect.connect();
+}
 
+
+void setup()
+{
+  size(1600, 900, P2D);
+
+  initialize();
+  
+  connect.connect();
+  asset.loadAssets();
   mainMenu.setup();
   pauseMenu.setup();
   endScreen.setup();
@@ -65,10 +65,6 @@ void setup()
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
-
-
-
-
 }
 
 // update all game objects
@@ -152,33 +148,31 @@ void render()
     {
         case 0:
             // main menu
-            mainMenu.draw();
+            mainMenu.render();
             break;
         case 1:
             // game
-            image(ground, 0, 0, width, height);
-            fill(groundColour, asset.opacity);
-            rect(0, 0, width, height);
-            grid.draw();
-            icecreamsystem.draw();
+            asset.drawBackground();
+            grid.render();
+            icecreamsystem.render();
             currentPiece.render();
-            ui.draw();
+            ui.render();
 
             animalsystem.run();
             break;
         
         case 2:
             // pause menu
-            pauseMenu.draw();
+            pauseMenu.render();
             break;
         
         case 3:
             // credits
-            credits.draw();
+            credits.render();
             break;
         case 4: 
         //end Screen
-         endScreen.draw();
+         endScreen.render();
          break;
                  case 5:
         //highscore
