@@ -1,11 +1,19 @@
    
 class Highscore
 {
-  int textSize = 50;
+  int numberButtons = 1;
+    int buttonY = 550;
 
-  int buttonDistance = 50;
+    Button[] buttons;
 
-// test
+    void setup()
+    {
+        buttons = new Button[numberButtons];
+        for (int i = 0; i < numberButtons; i++)
+        {
+            buttons[i] = new Button();
+        }
+        buttons[0].text = "RETURN";
 
 void setup()
 {
@@ -20,15 +28,20 @@ void setup()
   {
     riverAnimation.draw(0, height, asset.blue);
     connect.printTable(); 
+
+    for (int i = 0; i < numberButtons; i++)
+        {
+            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
+        }
+
+        
   }
 
-  void keyInput()
-  {
-    if (key == 'x' && keyPressed)
+void keyInput()
     {
-      gameManager.gameState = 0;
+        for (int i = 0; i < numberButtons; i++)
+        {
+            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
+        }
     }
-    keyCode = 'q';
-  }
-  //test
 }

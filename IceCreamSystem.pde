@@ -31,12 +31,23 @@ class IceCreamSystem
   }
 
   // Resets the timer, used for respawning the whole icecream. and by starting a level.
-  void resettimer()
+  void resetTimer()
   {
     for (int i = 0; i < 5; ++i) 
     { 
       icecreams.get(i).m = 0;
     }
+  }
+
+  void resetIcecream()
+  {
+     for (int i = 0; i < 5; ++i) 
+    { 
+      icecreams.get(i).yIceCream = 0;
+      icecreams.get(i).yTimer = 0;
+
+    }
+
   }
 
   //While the yIcecream is less then 0 so if the icecream is above the screen return true.
@@ -87,7 +98,7 @@ class IceCreamSystem
   }
 
 
-
+  // despawns the icecreams and timer when the timer hits 0. 
   void despawnIceCream(int icecream) {
 
     icecreams.get(calculateiceceream(icecream)).xIceCream = -375; 
@@ -116,27 +127,23 @@ class IceCreamSystem
 
       if (grid.isRowFull(i))
       {
-        // println(false);
         for (int j = 15; j < 20; ++j) {
           icecreams.get(calculateiceceream(j)).m -= timePlus;
-          //   println(true);
         }
       }
     }
-    // checks if overlapp = true and adds points to the score and then respawns the ice cream. 
     for (int i = 15; i < 20; ++i) 
     {    
+      // checks if a row is full with an icecream and timer, if so then the timer stops. 
+      if (grid.isRowFull(i)){
+
+         icecreams.get(calculateiceceream(i)).m --; 
+
+      }
+      // checks if overlapp = true and adds points to the score and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
       {
         gameManager.addScore(getscore(i));
-
-        // if animal takes icecream, the other icecreams get more time. 
-        //     for (int j = 15; j < 20; ++j) {
-
-        //         icecreams.get(calculateiceceream(j)).m -= timePlus;
-
-        //      }
-
 
         respawnIceCream(i);
       }       
@@ -155,11 +162,12 @@ class IceCreamSystem
       { 
         icecreams.get(calculateiceceream(i)).m --; 
 
-
+        //when the timer hits 0 remove 1 heart. 
+        gameManager.removeHealth();
         //  despawnIceCream(i);
-        //  gameManager.addScore(-50);
-        //  respawnIceCream(i);
-        //  movetospawn(i);
+
+          respawnIceCream(i);
+          movetospawn(i);
       }
     }
   }
