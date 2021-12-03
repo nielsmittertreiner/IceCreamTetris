@@ -1,7 +1,7 @@
 class Connect
 {
 SQLConnection myConnection;
-
+Table table;
   void connect()
   {
     Properties props = new Properties();
@@ -13,12 +13,12 @@ SQLConnection myConnection;
 
 void gettable()
 {
-    Table testTable = myConnection.getTable("user");
-    testTable = myConnection.runQuery("SELECT * FROM user");
-    printTable(testTable);
+    table = myConnection.getTable("user");
+    table = myConnection.runQuery("SELECT * FROM user");
+    // printTable(testTable);
 
 }
-  void printTable(Table table)
+  void printTable()
   {
     textSize(32);
     fill(255);

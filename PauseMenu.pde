@@ -25,7 +25,7 @@ class PauseMenu
             button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
         }
     }
-    void draw()
+    void render()
     {
         riverAnimation.draw(0, height, asset.blue);
          

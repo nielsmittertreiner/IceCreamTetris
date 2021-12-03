@@ -23,7 +23,7 @@ void keyInput()
             // gameManager.reset();
         }
 }
-    void draw()
+    void render()
     {
       riverAnimation.draw(0, height, asset.blue);
       
