@@ -132,12 +132,12 @@ void update()
             credits.keyInput();
             break;
         case 4:
-        endScreen.keyInput();
-        break;
+            endScreen.keyInput();
+            break;
         case 5:
-        //highscore
-        highscore.keyInput();
-        break;
+            //highscore
+            highscore.keyInput();
+            break;
     }
 
 }
