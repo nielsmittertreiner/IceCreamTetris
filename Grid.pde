@@ -104,7 +104,7 @@ class Grid
         }
     }
     
-    void draw() {        
+    void render() {        
         // Calculate grid
         int gridWidth = grid[0].length * cellSize;
         int gridHeight = grid.length * cellSize;

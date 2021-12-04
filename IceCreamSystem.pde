@@ -113,7 +113,8 @@ class IceCreamSystem
   }
 
 
-  void draw() 
+
+  void render() 
   {
     //draws the icecreams + timers.
     for (icecreamcount = 0; icecreamcount < 5; icecreamcount++) 
