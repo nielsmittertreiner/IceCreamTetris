@@ -110,7 +110,16 @@ class IceCreamSystem
     icecreams.get(calculateicecream(icecream)).yTimer += 2;
   }
 
+// checks if a row is full outside of the icecreams and animals, if so then the icecreams gets more time. 
+ void timeExtra()
+ {
 
+   for (int i = 15; i < 20; ++i) 
+   {
+       icecreams.get(calculateicecream(i)).m -= timePlus;      
+   }
+
+ }
 
   void render() 
   {
@@ -120,18 +129,7 @@ class IceCreamSystem
       IceCream icecream = icecreams.get(icecreamcount);
       icecream.draw();
     }  
-    // checks if a row is full outside of the icecreams and animals, if so then the icecreams gets more time. 
-    for (int i = 0; i < 15; ++i) {
-
-      if (grid.isRowFull(i))
-      {
-        for (int j = 15; j < 20; ++j) {
-          icecreams.get(calculateicecream(j)).m -= timePlus;
-        
-        }
-        grid.removeRow(i);
-      }
-    }
+ 
     for (int i = 15; i < 20; ++i) 
     {    
       // checks if a row is full with an icecream and timer, if so then the timer stops. 
