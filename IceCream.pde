@@ -41,6 +41,7 @@ class IceCream {
   void drawIceCream() 
   {      
     noFill();
+    tint(255);
     image(graphic, xIceCream, yIceCream, iceCreamSize, iceCreamSize);
 
     noStroke();
