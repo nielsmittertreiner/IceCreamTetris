@@ -43,6 +43,7 @@ void initialize()
   grid = new Grid(20, 9, 80);
   animalsystem = new AnimalSystem(grid);
   currentPiece = new Piece(int(random(0, 8)));
+  nextPiece = new Piece(int(random(0, 8)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 //   nameselector = new NameSelector();
@@ -119,7 +120,8 @@ void update()
             { 
                 if (grid.isRowFull(i)) 
                 {
-                    grid.removeRow(i);
+                     icecreamsystem.timeExtra();
+                     grid.removeRow(i);
                      grid.pushRows(i);
                 }
                 
@@ -178,6 +180,7 @@ void render()
             grid.render();
             icecreamsystem.render();
             currentPiece.render();
+            //nextPiece.renderPreview();
             ui.render();
 
             animalsystem.run();
