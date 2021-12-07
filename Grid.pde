@@ -100,6 +100,7 @@ class Grid
     }
     for (int[] coord : pieceCoords) {
       grid[origin[1] + coord[1]][origin[0] + coord[0]] = piecesAmount;
+      colorGrid[origin[1] + coord[1]][origin[0] + coord[0]] = newPiece.tint;
     }
 
     piecesAmount++;
