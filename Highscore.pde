@@ -1,25 +1,31 @@
-   
+
 class Highscore
 {
   int numberButtons = 1;
-    int buttonY = 550;
+  int buttonY = 550;
 
-    Button[] buttons;
+  Button[] buttons;
 
-    void setup()
+
+
+  void setup()
+  {
+  
+
+    connect.gettable();
+    
+
+
+    buttons = new Button[numberButtons];
+    for (int i = 0; i < numberButtons; i++)
     {
-
-      connect.gettable();
-
-
-        buttons = new Button[numberButtons];
-        for (int i = 0; i < numberButtons; i++)
-        {
-            buttons[i] = new Button();
-        }
-        buttons[0].text = "RETURN";
+      buttons[i] = new Button();
     }
+    buttons[0].text = "RETURN";
 
+  
+
+}
 
 
   void render()
@@ -28,18 +34,16 @@ class Highscore
     connect.printTable(); 
 
     for (int i = 0; i < numberButtons; i++)
-        {
-            button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i,  i + 1, numberButtons);
-        }
-
-        
+    {
+      button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i, i + 1, numberButtons);
+    }
   }
 
-void keyInput()
+  void keyInput()
+  {
+    for (int i = 0; i < numberButtons; i++)
     {
-        for (int i = 0; i < numberButtons; i++)
-        {
-            button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-        }
+      button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
     }
+  }
 }

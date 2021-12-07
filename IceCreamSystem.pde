@@ -41,13 +41,11 @@ class IceCreamSystem
 
   void resetIcecream()
   {
-     for (int i = 0; i < 5; ++i) 
+    for (int i = 0; i < 5; ++i) 
     { 
       icecreams.get(i).yIceCream = 0;
       icecreams.get(i).yTimer = 0;
-
     }
-
   }
 
   //While the yIcecream is less then 0 so if the icecream is above the screen return true.
@@ -135,10 +133,9 @@ class IceCreamSystem
     for (int i = 15; i < 20; ++i) 
     {    
       // checks if a row is full with an icecream and timer, if so then the timer stops. 
-      if (grid.isRowFull(i)){
+      if (grid.isRowFull(i)) {
 
-         icecreams.get(calculateiceceream(i)).m --; 
-
+        icecreams.get(calculateiceceream(i)).m --;
       }
       // checks if overlapp = true and adds points to the score and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
@@ -166,8 +163,8 @@ class IceCreamSystem
         gameManager.removeHealth();
         //  despawnIceCream(i);
 
-          respawnIceCream(i);
-          movetospawn(i);
+        respawnIceCream(i);
+        movetospawn(i);
       }
     }
   }

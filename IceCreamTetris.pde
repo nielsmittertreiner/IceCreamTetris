@@ -2,6 +2,8 @@ import processing.sound.*;
 import samuelal.squelized.*;
 import java.util.Properties;
 
+import java.sql.*;
+
 // initialize game
 Asset asset;
 Highscore highscore;
@@ -19,6 +21,7 @@ Piece nextPiece;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
+// NameSelector nameselector;
 int last;
 int m;
 
@@ -42,6 +45,7 @@ void initialize()
   currentPiece = new Piece(int(random(0, 8)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
+//   nameselector = new NameSelector();
 
 }
 
@@ -52,19 +56,20 @@ void setup()
 
   initialize();
   
+  
   connect.connect();
   asset.loadAssets();
   mainMenu.setup();
   pauseMenu.setup();
   endScreen.setup();
   credits.setup();
-  highscore.setup();
   riverAnimation.setup();
   icecreamsystem.resetTimer();
   ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
+//   nameselector.setup();
 }
 
 // update all game objects
@@ -86,6 +91,8 @@ void update()
             // game
             gameManager.keyInput();
             // checks if grid is full and moves the animal.
+            
+            
             for (int i = 15; i < 20; ++i) 
             { 
                 if (grid.isRowFull(i)) 
@@ -96,6 +103,10 @@ void update()
                 if (animalsystem.checkpassed(i)) 
                 {
                     grid.removeRow(i);
+                   
+                
+                grid.pushRows(i);
+            
                     animalsystem.respawnanimal(i);  
                     animalsystem.checkoverlapp(i);
                 }  
@@ -109,6 +120,7 @@ void update()
                 if (grid.isRowFull(i)) 
                 {
                     grid.removeRow(i);
+                     grid.pushRows(i);
                 }
                 
             }
@@ -174,7 +186,7 @@ void render()
         //end Screen
          endScreen.render();
          break;
-                 case 5:
+        case 5:
         //highscore
         highscore.render();
         break;

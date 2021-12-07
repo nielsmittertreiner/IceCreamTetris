@@ -17,8 +17,8 @@ class Asset
   int orange = #F5BC00;
 
   int opacity = 150;
-  
-   
+
+
 
 
   SoundFile backgroundMusic;
@@ -37,11 +37,10 @@ class Asset
     ground = loadImage("img/ground.jpg");
   }
 
-  void drawBackground(){
+  void drawBackground() {
 
-  image(ground, 0, 0, width, height);
-            fill(green, opacity);
-            rect(0, 0, width, height);
-
+    image(ground, 0, 0, width, height);
+    fill(green, opacity);
+    rect(0, 0, width, height);
   }
 }
