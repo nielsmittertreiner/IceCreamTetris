@@ -104,15 +104,7 @@ void update()
                     animalsystem.movetospawn(i);
                 }    
             }
-            for (int i = 0; i < 15; ++i) 
-            { 
-                if (grid.isRowFull(i)) 
-                {
-                    grid.removeRow(i);
-                }
-                
-            }
-            
+
             m = millis() - last;
             // movement Pieces
             if (millis() > last + gameManager.speeddifficulty) {

@@ -126,11 +126,12 @@ class IceCreamSystem
     for (int i = 0; i < 15; ++i) {
 
       if (grid.isRowFull(i))
-      { //println("false");
+      {
         for (int j = 15; j < 20; ++j) {
           icecreams.get(calculateicecream(j)).m -= timePlus;
-        //  println("true");
+        
         }
+        grid.removeRow(i);
       }
     }
     for (int i = 15; i < 20; ++i) 
@@ -162,7 +163,8 @@ class IceCreamSystem
          icecreams.get(calculateicecream(i)).m ++;
       }
       // timer never goes over its max time. 
-       if (icecreams.get(calculateicecream(i)).m < 0){
+       if (icecreams.get(calculateicecream(i)).m < 0)
+       {
 
            icecreams.get(calculateicecream(i)).m = 0;
 
