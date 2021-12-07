@@ -1,8 +1,10 @@
 class Grid
 {
+    PImage tileTexture = loadImage("img/wood_1.png");
     int piecesAmount = 1;
 
     private int[][] grid;
+    private int[][] colorGrid;
     private int cellSize;
     
     int boxX;
@@ -15,6 +17,7 @@ class Grid
     
     public Grid(int width, int height, int cellSize) {
         grid = new int[height][width];
+        colorGrid = new int[height][width];
         this.cellSize = cellSize;
         
         tileColor = asset.black;
@@ -75,12 +78,15 @@ class Grid
     void addPiece(Piece newPiece, int posX, int posY) {
         int[] origin = {posX, posY};
         int[][] pieceCoords = newPiece.piece[newPiece.rotation];
- if ( gameManager.gameState == 1 && currentPiece.x == 0) {
+
+        if (gameManager.gameState == 1 && currentPiece.x == 0) {
             gameManager.selectedButton = 0;
             gameManager.gameState = 4;
         }
+
         for(int[] coord : pieceCoords) {
             grid[origin[1] + coord[1]][origin[0] + coord[0]] = piecesAmount;
+            colorGrid[origin[1] + coord[1]][origin[0] + coord[0]] = newPiece.tint;
         }
 
         piecesAmount++;
@@ -131,9 +137,11 @@ class Grid
                 if (grid[y][x] >= 1) {
                     int tileX = boxX + x * cellSize;
                     int tileY = boxY + y * cellSize;
-                    rect(tileX, tileY, cellSize, cellSize);
+                    // rect(tileX, tileY, cellSize, cellSize);
+                    tint(colorGrid[y][x]);
+                    image(tileTexture, tileX, tileY, cellSize, cellSize);
                 } 
             }
         }
     }
-}
+}   
