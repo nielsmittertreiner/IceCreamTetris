@@ -51,7 +51,7 @@ class IceCreamSystem
   //While the yIcecream is less then 0 so if the icecream is above the screen return true.
   public boolean respawning(int icecream)
   { 
-    while (icecreams.get(calculateiceceream(icecream)).yIceCream < 0)
+    while (icecreams.get(calculateicecream(icecream)).yIceCream < 0)
     {
       return true;
     }
@@ -62,12 +62,12 @@ class IceCreamSystem
   //Calculates the score by the size of the whole timer - the time past. max 90 min 0.  
   int getscore(int icecream)
   {
-    icecream = int(icecreams.get(calculateiceceream(icecream)).iceCreamSize - (icecreams.get(calculateiceceream(icecream)).m / icecreams.get(calculateiceceream(icecream)).timePace));
+    icecream = int(icecreams.get(calculateicecream(icecream)).iceCreamSize - (icecreams.get(calculateicecream(icecream)).m / icecreams.get(calculateicecream(icecream)).timePace));
     return icecream;
   }
 
   //calculates the value of the icecreams.
-  int calculateiceceream(int icecream)
+  int calculateicecream(int icecream)
   {
     switch(icecream) 
     {
@@ -90,24 +90,24 @@ class IceCreamSystem
   //Respawns the icecream and the timer and puts the timer on 0.
   void respawnIceCream(int icecream) 
   {
-    icecreams.get(calculateiceceream(icecream)).yIceCream = -375; 
-    icecreams.get(calculateiceceream(icecream)).yTimer = -375; 
-    icecreams.get(calculateiceceream(icecream)).m = 0;
+    icecreams.get(calculateicecream(icecream)).yIceCream = -375; 
+    icecreams.get(calculateicecream(icecream)).yTimer = -375; 
+    icecreams.get(calculateicecream(icecream)).m = 0;
   }
 
 
   // despawns the icecreams and timer when the timer hits 0. 
   void despawnIceCream(int icecream) {
 
-    icecreams.get(calculateiceceream(icecream)).xIceCream = -375; 
-    icecreams.get(calculateiceceream(icecream)).xTimer = -375;
+    icecreams.get(calculateicecream(icecream)).xIceCream = -375; 
+    icecreams.get(calculateicecream(icecream)).xTimer = -375;
   }
 
   //If boolean is true makes the icecream move to the right location.
   void movetospawn(int icecream)
   {
-    icecreams.get(calculateiceceream(icecream)).yIceCream += 2;
-    icecreams.get(calculateiceceream(icecream)).yTimer += 2;
+    icecreams.get(calculateicecream(icecream)).yIceCream += 2;
+    icecreams.get(calculateicecream(icecream)).yTimer += 2;
   }
 
 
@@ -126,21 +126,27 @@ class IceCreamSystem
       if (grid.isRowFull(i))
       {
         for (int j = 15; j < 20; ++j) {
-          icecreams.get(calculateiceceream(j)).m -= timePlus;
+          icecreams.get(calculateicecream(j)).m -= timePlus;
+        
         }
+        grid.removeRow(i);
       }
     }
     for (int i = 15; i < 20; ++i) 
     {    
       // checks if a row is full with an icecream and timer, if so then the timer stops. 
-      if (grid.isRowFull(i)) {
-
-        icecreams.get(calculateiceceream(i)).m --;
+      if (grid.isRowFull(i))
+      {
+         icecreams.get(calculateicecream(i)).m --; 
       }
-      // checks if overlapp = true and adds points to the score and then respawns the ice cream. 
+      // checks if overlapp = true, if so add points to the score, gets more time for the other icecreams and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
       {
         gameManager.addScore(getscore(i));
+      
+        for (int j = 15; j < 20; ++j) {
+          icecreams.get(calculateicecream(j)).m -= timePlus;
+        }
 
         respawnIceCream(i);
       }       
@@ -152,15 +158,22 @@ class IceCreamSystem
       //makes the timers count down.
       if (time) 
       {
-        icecreams.get(calculateiceceream(i)).m ++;
+         icecreams.get(calculateicecream(i)).m ++;
+      }
+      // timer never goes over its max time. 
+       if (icecreams.get(calculateicecream(i)).m < 0)
+       {
+
+           icecreams.get(calculateicecream(i)).m = 0;
+
       }
       //if the timer hits the bottom it stops.
-      if (icecreams.get(calculateiceceream(i)).m > timeStop) 
+      if (icecreams.get(calculateicecream(i)).m > timeStop) 
       { 
-        icecreams.get(calculateiceceream(i)).m --; 
+          icecreams.get(calculateicecream(i)).m --; 
 
         //when the timer hits 0 remove 1 heart. 
-        gameManager.removeHealth();
+          gameManager.removeHealth();
         //  despawnIceCream(i);
 
         respawnIceCream(i);

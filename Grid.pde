@@ -1,6 +1,34 @@
 class Grid
 {
-  int piecesAmount = 1;
+    PImage tileTexture = loadImage("img/wood_1.png");
+    int piecesAmount = 1;
+
+    private int[][] grid;
+    private int[][] colorGrid;
+    private int cellSize;
+    
+    int boxX;
+    int boxY;
+
+    private int tileColor;
+    private int backgroundColor;
+    private int strokeColor;
+    private int opacity;
+    
+    public Grid(int width, int height, int cellSize) {
+        grid = new int[height][width];
+        colorGrid = new int[height][width];
+        this.cellSize = cellSize;
+        
+        tileColor = asset.black;
+        backgroundColor = asset.lightBlue;
+        strokeColor = asset.black;
+        opacity = asset.opacity;
+    }
+    
+    int width() {
+        return grid[0].length;
+    }
 
   private int[][] grid;
   private int cellSize;
@@ -120,37 +148,40 @@ class Grid
       return -1;
     }
   }
+   
+    void render() {        
+        // Calculate grid
+        int gridWidth = grid[0].length * cellSize;
+        int gridHeight = grid.length * cellSize;
+        boxX = width / 2 - gridWidth / 2;
+        boxY = height / 2 - gridHeight / 2;
+        
+        // Draw background
+        fill(asset.grey);
+        rect(boxX, boxY, gridWidth, gridHeight);
 
-  void render() {        
-    // Calculate grid
-    int gridWidth = grid[0].length * cellSize;
-    int gridHeight = grid.length * cellSize;
-    boxX = width / 2 - gridWidth / 2;
-    boxY = height / 2 - gridHeight / 2;
+        // Draw animation
+        riverAnimation.draw(boxY, gridHeight, backgroundColor);
 
-    // Draw background
-    fill(asset.grey);
-    rect(boxX, boxY, gridWidth, gridHeight);
-
-    // Draw animation
-    riverAnimation.draw(boxY, gridHeight, backgroundColor);
-
-    // Draw grid box
-    stroke(strokeColor, opacity);
-    noFill();
-    rect(boxX, boxY, gridWidth, gridHeight);
-
-    // Draw tiles
-    fill(tileColor, opacity);
-
-    for (int y = 0; y < grid.length; y++) {
-      for (int x = 0; x < grid[y].length; x++) {
-        if (grid[y][x] >= 1) {
-          int tileX = boxX + x * cellSize;
-          int tileY = boxY + y * cellSize;
-          rect(tileX, tileY, cellSize, cellSize);
+        // Draw grid box
+        stroke(strokeColor, opacity);
+        noFill();
+        rect(boxX, boxY, gridWidth, gridHeight);
+        
+        // Draw tiles
+        fill(tileColor, opacity);
+        
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[y].length; x++) {
+                if (grid[y][x] >= 1) {
+                    int tileX = boxX + x * cellSize;
+                    int tileY = boxY + y * cellSize;
+                    // rect(tileX, tileY, cellSize, cellSize);
+                    tint(colorGrid[y][x]);
+                    image(tileTexture, tileX, tileY, cellSize, cellSize);
+                } 
+            }
         }
       }
-    }
-  }
-}
+    
+}   
