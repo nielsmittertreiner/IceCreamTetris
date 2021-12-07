@@ -89,6 +89,8 @@ class Grid
   }
 
   void addPiece(Piece newPiece, int posX, int posY) {
+    gameManager.updateStorm();
+
     int[] origin = {posX, posY};
     int[][] pieceCoords = newPiece.piece[newPiece.rotation];
     if ( gameManager.gameState == 1 && currentPiece.x == 0) {

@@ -43,6 +43,7 @@ void initialize()
   grid = new Grid(20, 9, 80);
   animalsystem = new AnimalSystem(grid);
   currentPiece = new Piece(int(random(0, 8)));
+  nextPiece = new Piece(int(random(0, 8)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   //   nameselector = new NameSelector();
@@ -146,6 +147,7 @@ void update()
 // render all objects to screen
 void render()
 {
+<<<<<<< HEAD
   switch(gameManager.gameState)
   {
   case 0:
@@ -181,6 +183,44 @@ void render()
     highscore.render();
     break;
   }
+=======
+    switch(gameManager.gameState)
+    {
+        case 0:
+            // main menu
+            mainMenu.render();
+            break;
+        case 1:
+            // game
+            asset.drawBackground();
+            grid.render();
+            icecreamsystem.render();
+            currentPiece.render();
+            //nextPiece.renderPreview();
+            ui.render();
+
+            animalsystem.run();
+            break;
+        
+        case 2:
+            // pause menu
+            pauseMenu.render();
+            break;
+        
+        case 3:
+            // credits
+            credits.render();
+            break;
+        case 4: 
+        //end Screen
+         endScreen.render();
+         break;
+        case 5:
+        //highscore
+        highscore.render();
+        break;
+    }        
+>>>>>>> 7ce4645500e66edc90eb7c7aed906cfef9f67a47
 }
 
 // update and render game loop

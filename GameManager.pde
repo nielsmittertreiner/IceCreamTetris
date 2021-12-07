@@ -5,6 +5,11 @@ class GameManager
   int score = 0, difficulty = 0;
   int speeddifficulty = 600;
   int selectedButton;
+  boolean storm = false;
+  float stormSpeed = 8.5;
+  int stormTimer = 0;
+  int stormTimerDuration, stormTimerDurationMin = 2, stormTimerDurationMax = 4;
+  int stormTimerCoolDown, stormTimerCoolDownMin = 3, stormTimerCoolDownMax = 9;
   char usedKey = ' ';
   int timer = 0, timerTotal = 15;
 
@@ -20,7 +25,8 @@ class GameManager
 
   void update()
   {   
-    if (gameState == 5 && updated == false )
+    if(gameState == 5 && updated == false )
+
     {
       connect.gettable();
       updated = true;
@@ -61,6 +67,8 @@ class GameManager
     {
       usedKey = 0;
     }
+
+
   }
 
   void keyInput()
@@ -144,10 +152,10 @@ class GameManager
     if (speeddifficulty >= 100)
     {
       speeddifficulty -= (score / 200);
-      println(speeddifficulty);
+      //println(speeddifficulty);
     } else
     {
-      println("MaximumDifficultyspeed reached!");
+      //println("MaximumDifficultyspeed reached!");
     }
   }
 
@@ -336,16 +344,76 @@ class GameManager
         currentPiece.y = 650;
       }
     }
+   if (currentPiece.type == 8) 
+    {
+
+      if (currentPiece.rotation ==  2)
+      {
+        if (currentPiece.y < 90)
+        {
+          currentPiece.y = 90;
+        }
+      }
+      if (currentPiece.rotation == 1  || currentPiece.rotation == 0 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y < 170)
+        {
+          currentPiece.y = 170;
+        }
+      }
+
+      if (currentPiece.rotation == 2 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y > 650)
+        {
+          currentPiece.y = 650;
+        }
+      }
+      if (currentPiece.rotation == 0)
+      {
+        if (currentPiece.y > 730) {
+          currentPiece.y = 730;
+        }
+      }
+    }
+  }
+
+  void resetStorm()
+  {
+      stormTimer = 0;
+      stormTimerDuration = int(random(stormTimerDurationMin, stormTimerDurationMax + 1));
+      stormTimerCoolDown = int(random(stormTimerCoolDownMin, stormTimerCoolDownMax + 1));
+  }
+
+  void updateStorm()
+  {
+
+      stormTimer++;
+      if (stormTimer >= stormTimerCoolDown)
+      {
+        storm = true;
+      }
+      else
+      {
+        storm = false;
+      }
+      if (stormTimer >= stormTimerCoolDown + stormTimerDuration)
+      {
+        resetStorm();
+      }
+      println(stormTimer, stormTimerCoolDown, stormTimerDuration, storm);
   }
 
   void reset()
   {
+    print("R");
     difficulty = 0;
     score = 0;
     icecreamsystem.resetTimer();
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetHealth();
+    gameManager.resetStorm();
     for (int i = 0; i < 20; ++i) {
       grid.removeRow(i);
     }
