@@ -25,19 +25,15 @@ class GameManager
 
   void update()
   {   
-
     if(gameState == 5 && updated == false )
 
     {
       connect.gettable();
       updated = true;
-
     }
-
-    if (gameState != 5) {
-
+    if (gameState != 5) 
+    {
       updated = false;
-      
     }
 
     timer++;
@@ -56,12 +52,10 @@ class GameManager
         } else if (keyCode == LEFT)
         {
           usedKey = 'L';
-        }
-        else if (keyCode == RIGHT)
+        } else if (keyCode == RIGHT)
         {
           usedKey = 'R';
         }
-
       } else
       {
         usedKey = key;
@@ -348,6 +342,38 @@ class GameManager
       if (currentPiece.y > 650)
       {
         currentPiece.y = 650;
+      }
+    }
+   if (currentPiece.type == 8) 
+    {
+
+      if (currentPiece.rotation ==  2)
+      {
+        if (currentPiece.y < 90)
+        {
+          currentPiece.y = 90;
+        }
+      }
+      if (currentPiece.rotation == 1  || currentPiece.rotation == 0 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y < 170)
+        {
+          currentPiece.y = 170;
+        }
+      }
+
+      if (currentPiece.rotation == 2 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y > 650)
+        {
+          currentPiece.y = 650;
+        }
+      }
+      if (currentPiece.rotation == 0)
+      {
+        if (currentPiece.y > 730) {
+          currentPiece.y = 730;
+        }
       }
     }
   }

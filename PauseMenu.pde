@@ -19,7 +19,6 @@ class PauseMenu
     buttons[0].link = 1;
     buttons[1].link = 0;
     buttons[2].link = -1;
-
   }
 
   void keyInput()

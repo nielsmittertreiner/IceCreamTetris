@@ -7,10 +7,8 @@ class UI
   int yHearts = 815;
   int heartsSize = 80;
 
-
-
-  void setup() {
-
+  void setup() 
+  {
     heart = loadImage("img/heart.png");
   }
 

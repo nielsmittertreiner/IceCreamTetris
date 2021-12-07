@@ -18,9 +18,6 @@ class Asset
 
   int opacity = 150;
 
-
-
-
   SoundFile backgroundMusic;
   SoundFile pop;
   SoundFile animalMove;

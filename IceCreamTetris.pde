@@ -25,11 +25,11 @@ Connect connect;
 int last;
 int m;
 
-
 SoundFile backgroundMusic;
 
 void initialize()
-{asset = new Asset();
+{
+  asset = new Asset();
   connect = new Connect();
   mainMenu = new MainMenu();
   highscore = new Highscore();
@@ -46,18 +46,15 @@ void initialize()
   nextPiece = new Piece(int(random(0, 8)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
-//   nameselector = new NameSelector();
-
+  //   nameselector = new NameSelector();
 }
-
 
 void setup()
 {
   size(1600, 900, P2D);
 
   initialize();
-  
-  
+
   connect.connect();
   asset.loadAssets();
   mainMenu.setup();
@@ -70,104 +67,123 @@ void setup()
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
-//   nameselector.setup();
 }
 
 // update all game objects
 void update()
 {
 
-    gameManager.update();
-    switch(gameManager.gameState) 
-    {
-        case - 1:
-            //quit
-            exit();
-            break;
-        case 0:
-            // main menu
-            mainMenu.keyInput();
-            break;
-        case 1:
-            // game
-            gameManager.keyInput();
-            // checks if grid is full and moves the animal.
-            
-            
-            for (int i = 15; i < 20; ++i) 
-            { 
-                if (grid.isRowFull(i)) 
-                {
-                    animalsystem.moveAnimal(i);    
-                }
-                
-                if (animalsystem.checkpassed(i)) 
-                {
-                    grid.removeRow(i);
-                   
-                
-                grid.pushRows(i);
-            
-                    animalsystem.respawnanimal(i);  
-                    animalsystem.checkoverlapp(i);
-                }  
-                if (animalsystem.respawning(i))
-                {
-                    animalsystem.movetospawn(i);
-                }    
-            }
-            for (int i = 0; i < 15; ++i) 
-            { 
-                if (grid.isRowFull(i)) 
-                {
-                     icecreamsystem.timeExtra();
-                     grid.removeRow(i);
-                     grid.pushRows(i);
-                }
-                
-            }
-            
-            m = millis() - last;
-            // movement Pieces
-            if (gameManager.storm)
-            {
-                if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
-                    last= millis();
-                    currentPiece.move(grid, 1, 0);// this.x += 80;
-                }
-            }
-            else
-            {
-                if (millis() > last + gameManager.speeddifficulty) {
-                    last= millis();
-                    currentPiece.move(grid, 1, 0);// this.x += 80;
-                }
-            }   
-            
-        case 2:
-            // pause menu
-            pauseMenu.keyInput();
-            break;
-        
-        case 3:
-            //credits
-            credits.keyInput();
-            break;
-        case 4:
-            endScreen.keyInput();
-            break;
-        case 5:
-            //highscore
-            highscore.keyInput();
-            break;
+  gameManager.update();
+  switch(gameManager.gameState) 
+  {
+  case - 1:
+    //quit
+    exit();
+    break;
+  case 0:
+    // main menu
+    mainMenu.keyInput();
+    break;
+  case 1:
+    // game
+    gameManager.keyInput();
+    // checks if grid is full and moves the animal.
+
+    for (int i = 15; i < 20; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      {
+        animalsystem.moveAnimal(i);
+      }
+
+      if (animalsystem.checkpassed(i)) 
+      {
+        grid.removeRow(i);
+        grid.pushRows(i);
+        animalsystem.respawnanimal(i);  
+        animalsystem.checkoverlapp(i);
+      }  
+      if (animalsystem.respawning(i))
+      {
+        animalsystem.movetospawn(i);
+      }
+    }
+    for (int i = 0; i < 15; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      {
+        grid.removeRow(i);
+        grid.pushRows(i);
+      }
     }
 
+    m = millis() - last;
+    // movement Pieces
+    if (millis() > last + gameManager.speeddifficulty) {
+      last= millis();
+      currentPiece.move(grid, 1, 0);// this.x += 80;
+    }   
+
+  case 2:
+    // pause menu
+    pauseMenu.keyInput();
+    break;
+
+  case 3:
+    //credits
+    credits.keyInput();
+    break;
+  case 4:
+    endScreen.keyInput();
+    break;
+  case 5:
+    //highscore
+    highscore.keyInput();
+    break;
+  }
 }
 
 
 // render all objects to screen
 void render()
 {
+<<<<<<< HEAD
+  switch(gameManager.gameState)
+  {
+  case 0:
+    // main menu
+    mainMenu.render();
+    break;
+  case 1:
+    // game
+    asset.drawBackground();
+    grid.render();
+    icecreamsystem.render();
+    currentPiece.render();
+    ui.render();
+
+    animalsystem.run();
+    break;
+
+  case 2:
+    // pause menu
+    pauseMenu.render();
+    break;
+
+  case 3:
+    // credits
+    credits.render();
+    break;
+  case 4: 
+    //end Screen
+    endScreen.render();
+    break;
+  case 5:
+    //highscore
+    highscore.render();
+    break;
+  }
+=======
     switch(gameManager.gameState)
     {
         case 0:
@@ -204,21 +220,22 @@ void render()
         highscore.render();
         break;
     }        
+>>>>>>> 7ce4645500e66edc90eb7c7aed906cfef9f67a47
 }
 
 // update and render game loop
 void draw()
 {
-    update();
-    render();
+  update();
+  render();
 }
 
 void keyPressed()
 {
-    if (key== ESC)
-    {   
-        key = 'E';
-    }
+  if (key== ESC)
+  {   
+    key = 'E';
+  }
 }
 
 // test

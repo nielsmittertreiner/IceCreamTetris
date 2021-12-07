@@ -13,22 +13,16 @@ class IceCream {
   int xTimer = xIceCream, yTimer = yIceCream; 
   int m = millis();
 
-
   boolean changeColor;
   IceCreamSystem icecreamsystem;
-
-
-
 
   // constructor for the icecreams but instead of the animals it is 5 times the same picture so fills the filepath with a for loop.
   IceCream(int icecream) 
   {
     for (int i = 0; i < 5; ++i) 
     {
-
       filepaths[i] = "img/ijsje.png";
     }
-
     graphic = loadImage(filepaths[icecream]);
   }
 

@@ -129,19 +129,29 @@ class IceCreamSystem
       IceCream icecream = icecreams.get(icecreamcount);
       icecream.draw();
     }  
- 
+    // checks if a row is full outside of the icecreams and animals, if so then the icecreams gets more time. 
+    for (int i = 0; i < 15; ++i) {
+
+      if (grid.isRowFull(i))
+      {
+        for (int j = 15; j < 20; ++j) {
+          icecreams.get(calculateicecream(j)).m -= timePlus;
+        }
+        grid.removeRow(i);
+      }
+    }
     for (int i = 15; i < 20; ++i) 
     {    
       // checks if a row is full with an icecream and timer, if so then the timer stops. 
       if (grid.isRowFull(i))
       {
-         icecreams.get(calculateicecream(i)).m --; 
+        icecreams.get(calculateicecream(i)).m --;
       }
       // checks if overlapp = true, if so add points to the score, gets more time for the other icecreams and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
       {
         gameManager.addScore(getscore(i));
-      
+
         for (int j = 15; j < 20; ++j) {
           icecreams.get(calculateicecream(j)).m -= timePlus;
         }
@@ -156,22 +166,21 @@ class IceCreamSystem
       //makes the timers count down.
       if (time) 
       {
-         icecreams.get(calculateicecream(i)).m ++;
+        icecreams.get(calculateicecream(i)).m ++;
       }
       // timer never goes over its max time. 
-       if (icecreams.get(calculateicecream(i)).m < 0)
-       {
+      if (icecreams.get(calculateicecream(i)).m < 0)
+      {
 
-           icecreams.get(calculateicecream(i)).m = 0;
-
+        icecreams.get(calculateicecream(i)).m = 0;
       }
       //if the timer hits the bottom it stops.
       if (icecreams.get(calculateicecream(i)).m > timeStop) 
       { 
-          icecreams.get(calculateicecream(i)).m --; 
+        icecreams.get(calculateicecream(i)).m --; 
 
         //when the timer hits 0 remove 1 heart. 
-          gameManager.removeHealth();
+        gameManager.removeHealth();
         //  despawnIceCream(i);
 
         respawnIceCream(i);
