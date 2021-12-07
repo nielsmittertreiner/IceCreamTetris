@@ -30,31 +30,6 @@ class Grid
         return grid[0].length;
     }
 
-  private int[][] grid;
-  private int cellSize;
-
-  int boxX;
-  int boxY;
-
-  private int tileColor;
-  private int backgroundColor;
-  private int strokeColor;
-  private int opacity;
-
-  public Grid(int width, int height, int cellSize) {
-    grid = new int[height][width];
-    this.cellSize = cellSize;
-
-    tileColor = asset.black;
-    backgroundColor = asset.lightBlue;
-    strokeColor = asset.black;
-    opacity = asset.opacity;
-  }
-
-  int width() {
-    return grid[0].length;
-  }
-
   int height() {
     return grid.length;
   }
