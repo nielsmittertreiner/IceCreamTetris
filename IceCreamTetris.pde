@@ -127,9 +127,19 @@ void update()
             
             m = millis() - last;
             // movement Pieces
-            if (millis() > last + gameManager.speeddifficulty) {
-                last= millis();
-                currentPiece.move(grid, 1, 0);// this.x += 80;
+            if (gameManager.storm)
+            {
+                if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }
+            }
+            else
+            {
+                if (millis() > last + gameManager.speeddifficulty) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }
             }   
             
         case 2:
