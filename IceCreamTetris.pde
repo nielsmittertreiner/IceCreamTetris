@@ -42,7 +42,7 @@ void initialize()
   ui = new UI();
   grid = new Grid(20, 9, 80);
   animalsystem = new AnimalSystem(grid);
-  currentPiece = new Piece(int(random(0, 8)));
+  currentPiece = new Piece(8);
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 //   nameselector = new NameSelector();

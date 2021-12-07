@@ -24,7 +24,8 @@ class Piece
     asset.red, 
     asset.darkRed, 
     asset.white, 
-    asset.black
+    asset.black,
+    asset.lightBlue
   };
 
   int[][][][] blockCoordinates =
@@ -161,39 +162,6 @@ class Piece
         {0, 0}, // filler
       }, 
     }, 
-    {   // L shape
-      // . . .
-      // X X X
-      // . . X
-      {
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {1, -1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {0, 0}, 
-        {1, 1}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {-1, 1}, 
-        {-1, 0}, 
-        {0, 0}, 
-        {1, 0}, 
-        {0, 0}, // filler
-      }, 
-      {
-        {0, -1}, 
-        {-1, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {0, 0}, // filler
-      }, 
-    },
     {   // Long Rectangle
       // . . .
       // X X X
@@ -328,6 +296,39 @@ class Piece
         {1, 1}, 
         {0, 0}, // filler
       }, 
+    },
+    {   // L shape
+      // . . .
+      // X X X
+      // . . X
+      {
+        {-1, 0}, 
+        {0, 0}, 
+        {1, 0}, 
+        {1, -1}, 
+        {0, 0}, // filler
+      }, 
+      {
+        {0, -1}, 
+        {0, 0}, 
+        {1, 1}, 
+        {0, 1}, 
+        {0, 0}, // filler
+      }, 
+      {
+        {-1, 1}, 
+        {-1, 0}, 
+        {0, 0}, 
+        {1, 0}, 
+        {0, 0}, // filler
+      }, 
+      {
+        {0, -1}, 
+        {-1, -1}, 
+        {0, 0}, 
+        {0, 1}, 
+        {0, 0}, // filler
+      }, 
     }
   };
 
@@ -373,7 +374,7 @@ class Piece
   }
 
   void instanceNextPiece() {
-    currentPiece = new Piece(int(random(0, 8)));
+    currentPiece = new Piece(int(random(8)));
     asset.pop.play();
   }
 

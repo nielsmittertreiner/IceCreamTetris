@@ -342,6 +342,38 @@ class GameManager
         currentPiece.y = 650;
       }
     }
+   if (currentPiece.type == 8) 
+    {
+
+      if (currentPiece.rotation ==  2)
+      {
+        if (currentPiece.y < 90)
+        {
+          currentPiece.y = 90;
+        }
+      }
+      if (currentPiece.rotation == 1  || currentPiece.rotation == 0 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y < 170)
+        {
+          currentPiece.y = 170;
+        }
+      }
+
+      if (currentPiece.rotation == 2 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      {
+        if (currentPiece.y > 650)
+        {
+          currentPiece.y = 650;
+        }
+      }
+      if (currentPiece.rotation == 0)
+      {
+        if (currentPiece.y > 730) {
+          currentPiece.y = 730;
+        }
+      }
+    }
   }
 
   void reset()
