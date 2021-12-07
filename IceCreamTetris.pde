@@ -147,43 +147,6 @@ void update()
 // render all objects to screen
 void render()
 {
-<<<<<<< HEAD
-  switch(gameManager.gameState)
-  {
-  case 0:
-    // main menu
-    mainMenu.render();
-    break;
-  case 1:
-    // game
-    asset.drawBackground();
-    grid.render();
-    icecreamsystem.render();
-    currentPiece.render();
-    ui.render();
-
-    animalsystem.run();
-    break;
-
-  case 2:
-    // pause menu
-    pauseMenu.render();
-    break;
-
-  case 3:
-    // credits
-    credits.render();
-    break;
-  case 4: 
-    //end Screen
-    endScreen.render();
-    break;
-  case 5:
-    //highscore
-    highscore.render();
-    break;
-  }
-=======
     switch(gameManager.gameState)
     {
         case 0:
@@ -212,15 +175,14 @@ void render()
             credits.render();
             break;
         case 4: 
-        //end Screen
-         endScreen.render();
-         break;
+            //end Screen
+            endScreen.render();
+            break;
         case 5:
-        //highscore
-        highscore.render();
-        break;
+            //highscore
+            highscore.render();
+            break;
     }        
->>>>>>> 7ce4645500e66edc90eb7c7aed906cfef9f67a47
 }
 
 // update and render game loop
