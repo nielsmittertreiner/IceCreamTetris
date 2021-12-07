@@ -3,6 +3,9 @@ class Piece
   final int BLOCK_COUNT = 5;
   final int BLOCK_SIZE = 80;
   final int ROTATION_COUNT = 4;
+  final int PREVIEW_OFFSET_X = 600;
+  final int PREVIEW_OFFSET_Y = 815;
+  final int PREVIEW_BLOCK_SIZE = BLOCK_SIZE / 2;
 
   int last;
   int m;
@@ -373,8 +376,22 @@ class Piece
     popMatrix();
   }
 
+  void renderPreview()
+  {
+    pushMatrix();
+    translate(PREVIEW_OFFSET_X, PREVIEW_OFFSET_Y);
+    tint(tint);
+    for (int i = 0; i < BLOCK_COUNT; i++)
+    {
+      image(gfx[i], piece[rotation][i][0] * PREVIEW_BLOCK_SIZE, piece[rotation][i][1] * PREVIEW_BLOCK_SIZE, PREVIEW_BLOCK_SIZE, PREVIEW_BLOCK_SIZE);
+    }
+    noTint();
+    popMatrix();
+  }
+
   void instanceNextPiece() {
-    currentPiece = new Piece(int(random(8)));
+    currentPiece = nextPiece;
+    nextPiece = new Piece(int(random(0, 8)));
     asset.pop.play();
   }
 

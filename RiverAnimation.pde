@@ -15,7 +15,12 @@ class RiverAnimation
 
   void draw(int top, int bottom, color watercolor)
   {
-    offset += speed;
+    if(gameManager.storm){
+      offset += speed * gameManager.stormSpeed;
+    }
+    else{
+      offset += speed;
+    }
     if (offset >= width)
     {
       offset = 0;

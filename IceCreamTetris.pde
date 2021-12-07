@@ -42,7 +42,8 @@ void initialize()
   ui = new UI();
   grid = new Grid(20, 9, 80);
   animalsystem = new AnimalSystem(grid);
-  currentPiece = new Piece(8);
+  currentPiece = new Piece(int(random(0, 8)));
+  nextPiece = new Piece(int(random(0, 8)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
 //   nameselector = new NameSelector();
@@ -128,9 +129,19 @@ void update()
             
             m = millis() - last;
             // movement Pieces
-            if (millis() > last + gameManager.speeddifficulty) {
-                last= millis();
-                currentPiece.move(grid, 1, 0);// this.x += 80;
+            if (gameManager.storm)
+            {
+                if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }
+            }
+            else
+            {
+                if (millis() > last + gameManager.speeddifficulty) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }
             }   
             
         case 2:
@@ -169,6 +180,7 @@ void render()
             grid.render();
             icecreamsystem.render();
             currentPiece.render();
+            //nextPiece.renderPreview();
             ui.render();
 
             animalsystem.run();
