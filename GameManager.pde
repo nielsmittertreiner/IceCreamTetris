@@ -20,18 +20,14 @@ class GameManager
 
   void update()
   {   
-
-    if(gameState == 5 && updated == false )
+    if (gameState == 5 && updated == false )
     {
       connect.gettable();
       updated = true;
-
     }
-
-    if (gameState != 5) {
-
+    if (gameState != 5) 
+    {
       updated = false;
-      
     }
 
     timer++;
@@ -50,12 +46,10 @@ class GameManager
         } else if (keyCode == LEFT)
         {
           usedKey = 'L';
-        }
-        else if (keyCode == RIGHT)
+        } else if (keyCode == RIGHT)
         {
           usedKey = 'R';
         }
-
       } else
       {
         usedKey = key;

@@ -17,7 +17,7 @@ class Credits
 
     buttons[0].link = 0;
   }
-
+  
   void render()
   {
     riverAnimation.draw(0, height, asset.blue);

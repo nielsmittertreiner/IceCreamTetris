@@ -6,15 +6,9 @@ class Highscore
 
   Button[] buttons;
 
-
-
   void setup()
   {
-  
-
     connect.gettable();
-    
-
 
     buttons = new Button[numberButtons];
     for (int i = 0; i < numberButtons; i++)
@@ -22,10 +16,7 @@ class Highscore
       buttons[i] = new Button();
     }
     buttons[0].text = "RETURN";
-
-  
-
-}
+  }
 
 
   void render()
