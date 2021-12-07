@@ -120,7 +120,8 @@ void update()
             { 
                 if (grid.isRowFull(i)) 
                 {
-                    grid.removeRow(i);
+                     icecreamsystem.timeExtra();
+                     grid.removeRow(i);
                      grid.pushRows(i);
                 }
                 
