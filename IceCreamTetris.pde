@@ -165,6 +165,7 @@ void render()
             gameManager.updateStorm();
             }
             animalsystem.run();
+            gameManager.selectedButton = 0;
             break;
         
         case 2:
