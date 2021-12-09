@@ -19,7 +19,7 @@ class EndScreen
 
   int row = 0;
 
-  String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+  String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " "};
 
   String username;
 
@@ -82,13 +82,13 @@ class EndScreen
 
         if (gameManager.usedKey == 'U' && row == i) {
           L[i]++;
-          if (L[i] >= 36) {
+          if (L[i] >= 37) {
             L[i] = 0;
           }
         } else if (gameManager.usedKey == 'D' && row == i) {
           L[i]--;
           if (L[i] <= -1) {
-            L[i] = 35;
+            L[i] = 36;
           }
         }
       }
@@ -136,7 +136,7 @@ class EndScreen
 
   void render()
   {
-
+    gameManager.selectedButton = 0;
     riverAnimation.draw(0, height, asset.blue);
 
 

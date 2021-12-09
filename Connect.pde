@@ -8,8 +8,6 @@ class Connect
   Table user2;
   Table timep;
 
-  int highscorerows = 10;
-
   String userid;
 
   String id;
@@ -23,8 +21,8 @@ class Connect
 
   void gettable()
   {
-    table2 = myConnection.getTable("user");
-    table2 = myConnection.runQuery("SELECT id FROM user;");    
+    table2 = myConnection.getTable("User");
+    table2 = myConnection.runQuery("SELECT id FROM User;");    
 
     for (int i = 0; i< table2.getRowCount(); i++) 
     {
@@ -37,16 +35,15 @@ class Connect
     }
 
     table = myConnection.getTable("Score");
-    table = myConnection.runQuery("SELECT (SELECT name FROM user WHERE id = userid), score FROM Score ORDER BY score DESC;");    
-
-    timep = myConnection.getTable("user");
-    timep = myConnection.runQuery("SELECT name, timesplayed FROM user ORDER BY timesplayed DESC;");
+    table = myConnection.runQuery("SELECT (SELECT name FROM User WHERE id = userid), score FROM Score ORDER BY score DESC LIMIT 10;");    
+    timep = myConnection.getTable("User");
+    timep = myConnection.runQuery("SELECT name, timesplayed FROM User ORDER BY timesplayed DESC LIMIT 10;");
   }
   
   void UpdateDtb(String useR, int scorE)
   {
-    user = myConnection.getTable("user");
-    user = myConnection.runQuery("SELECT name FROM user WHERE name='" + useR + "'");
+    user = myConnection.getTable("User");
+    user = myConnection.runQuery("SELECT name FROM User WHERE name='" + useR + "'");
 
     println("users" +user.getRowCount());
     if (user.getRowCount() == 0)
@@ -64,8 +61,8 @@ class Connect
 
   void getuserid(String useR)
   {
-    user2 = myConnection.getTable("user");
-    user2 = myConnection.runQuery("SELECT id FROM user WHERE name='" + useR + "'");
+    user2 = myConnection.getTable("User");
+    user2 = myConnection.runQuery("SELECT id FROM User WHERE name='" + useR + "'");
 
     for (int i = 0; i< user2.getRowCount(); i++) {
       TableRow row = user2.getRow(i);
@@ -83,13 +80,13 @@ class Connect
 
   void timesplayed()
   {
-    myConnection.updateQuery("UPDATE user SET timesplayed = timesplayed + 1");
+    myConnection.updateQuery("UPDATE User SET timesplayed = timesplayed + 1");
   }
 
 
   void addUser(String user)
   {
-    myConnection.updateQuery("INSERT INTO user (name) VALUES (\""+ user + "\");");
+    myConnection.updateQuery("INSERT INTO User (name) VALUES (\""+ user + "\");");
   }
 
   void printTable()
@@ -99,15 +96,13 @@ class Connect
     textSize(32);
     fill(255);
     for (int i = 0; i < table.getRowCount(); i++) {
-      TableRow row;
-      if (i < 10) {
-        row = table.getRow(i);
+        TableRow row = table.getRow(i);
 
         for (int j = 0; j < row.getColumnCount(); j++) {
 
           text(row.getString(j), 100+ 200*j, 250+50*i);
         }
-      }
+      
     }
     noFill();
     textSize(50);
@@ -118,9 +113,7 @@ class Connect
     textSize(32);
     fill(255);
     for (int i = 0; i < timep.getRowCount(); i++) {
-      TableRow row;
-      if (i < 10) {
-        row = timep.getRow(i);
+        TableRow row = timep.getRow(i);
 
 
         for (int j = 0; j < row.getColumnCount(); j++) {
@@ -129,5 +122,5 @@ class Connect
         }
       }
     }
-  }
+  
 }

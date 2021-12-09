@@ -25,6 +25,7 @@ class Asset
   int groundColour;
 
   PImage ground;
+  PImage cloud;
 
   void loadAssets() 
   {
@@ -32,6 +33,8 @@ class Asset
     pop = new SoundFile(IceCreamTetris.this, "soundeffects/pop.mp3");
     animalMove = new SoundFile(IceCreamTetris.this, "soundeffects/collect.mp3");
     ground = loadImage("img/ground.jpg");
+    cloud = loadImage("img/cloud.png");
+
   }
 
   void drawBackground() {

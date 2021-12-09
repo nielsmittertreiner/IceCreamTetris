@@ -6,12 +6,15 @@ class GameManager
   int speeddifficulty = 600;
   int selectedButton;
   boolean storm = false;
-  float stormSpeed = 5;
+  float stormSpeed = 2;
   int stormTimer = 0;
-  int stormTimerDuration, stormTimerDurationMin = 2, stormTimerDurationMax = 4;
-  int stormTimerCoolDown, stormTimerCoolDownMin = 3, stormTimerCoolDownMax = 9;
+  int stormTimerDuration, stormTimerDurationMin = 1, stormTimerDurationMax = 3;
+  int stormTimerCoolDown, stormTimerCoolDownMin = 8, stormTimerCoolDownMax = 12;
   char usedKey = ' ';
   int timer = 0, timerTotal = 15;
+
+
+    boolean spawnpiece = true;
 
   PImage heart = new PImage();
   float xHearts;
@@ -106,7 +109,7 @@ class GameManager
     //add 2 to Score by pressing m, take 2 away by pressing l
     if (usedKey == 'm')
     {
-      gameManager.addScore(5);
+      gameManager.addScore(50);
     } 
     if (usedKey == 'l')
     {
@@ -149,13 +152,13 @@ class GameManager
 
   void changeSpeedDifficulty()
   {
-    if (speeddifficulty >= 100)
+    if (speeddifficulty >= 200)
     {
-      speeddifficulty -= (score / 200);
-      //println(speeddifficulty);
+      speeddifficulty -= (score / 50);
+      println(speeddifficulty);
     } else
     {
-      //println("MaximumDifficultyspeed reached!");
+      println("MaximumDifficultyspeed reached!");
     }
   }
 
@@ -388,6 +391,7 @@ class GameManager
   void updateStorm()
   {
 
+
       stormTimer++;
       if (stormTimer >= stormTimerCoolDown)
       {
@@ -406,7 +410,6 @@ class GameManager
 
   void reset()
   {
-    print("R");
     difficulty = 0;
     score = 0;
     icecreamsystem.resetTimer();

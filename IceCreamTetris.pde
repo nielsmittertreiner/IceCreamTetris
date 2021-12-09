@@ -42,8 +42,8 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
-  currentPiece = new Piece(int(random(0, 8)));
-  nextPiece = new Piece(int(random(0, 8)));
+  currentPiece = new Piece(int(random(0, 9)));
+  nextPiece = new Piece(int(random(0, 9)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   //   nameselector = new NameSelector();
@@ -92,13 +92,14 @@ void update()
     for (int i = 15; i < 20; ++i) 
     { 
       if (grid.isRowFull(i)) 
-      {
+      {gameManager.spawnpiece = false;
         animalsystem.moveAnimal(i);
+               
       }
 
       if (animalsystem.checkpassed(i)) 
       {
-        grid.removeRow(i);
+        // grid.removeRow(i);
         grid.pushRows(i);
         animalsystem.respawnanimal(i);  
         animalsystem.checkoverlapp(i);
@@ -106,12 +107,15 @@ void update()
       if (animalsystem.respawning(i))
       {
         animalsystem.movetospawn(i);
+        gameManager.spawnpiece = true;
       }
     }
     for (int i = 0; i < 15; ++i) 
     { 
       if (grid.isRowFull(i)) 
       {
+        gameManager.changeSpeedDifficulty();
+        icecreamsystem.timeExtra();
         grid.removeRow(i);
         grid.pushRows(i);
       }
@@ -119,10 +123,20 @@ void update()
 
     m = millis() - last;
     // movement Pieces
-    if (millis() > last + gameManager.speeddifficulty) {
-      last= millis();
-      currentPiece.move(grid, 1, 0);// this.x += 80;
-    }   
+     if (gameManager.storm)
+            {
+                if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }
+            }
+            else
+            {
+                if (millis() > last + gameManager.speeddifficulty) {
+                    last= millis();
+                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                }  
+            }
 
   case 2:
     // pause menu
@@ -159,12 +173,13 @@ void render()
             grid.render();
             icecreamsystem.render();
             currentPiece.render();
+            if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+              image(asset.cloud, width/2, 10, 100,100);
+            }
             //nextPiece.renderPreview();
             ui.render();
-            if(!gameManager.storm){
-            gameManager.updateStorm();
-            }
             animalsystem.run();
+            gameManager.selectedButton = 0;
             break;
         
         case 2:

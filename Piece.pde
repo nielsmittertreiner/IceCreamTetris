@@ -256,15 +256,15 @@ class Piece
         {0, 0}, 
         {0, 0}, 
         {0, 1}, // filler
-        {1, 0}, // filler
-      }, 
+        {1, 1}, // filler
+      },
       {
         {0, 0}, 
         {0, 0}, 
         {0, 0}, 
         {0, 1}, // filler
-        {1, 1}, // filler
-      }, 
+        {1, 0}, // filler
+      },  
     }, 
     {
       // Square
@@ -358,7 +358,7 @@ class Piece
 
     // testing only
     this.x = int(0); // initialize piece x
-    this.y = int(170); // initialize piece y
+    this.y = int(90 + (int(random(1,7)) * 80)) ; // initialize piece y
     println("type: " + type);
   }
 
@@ -391,11 +391,12 @@ class Piece
 
   void instanceNextPiece() {
     currentPiece = nextPiece;
-    nextPiece = new Piece(int(random(0, 8)));
+    nextPiece = new Piece(int(random(0, 9)));
     asset.pop.play();
   }
 
   void move(Grid grid, int x, int y) {
+    if (gameManager.spawnpiece) {
     int[] w2g = world2grid();
 
     int[][] piece = this.piece[rotation];
@@ -407,7 +408,7 @@ class Piece
         return;
       } else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
         grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();
+        instanceNextPiece();         
         return;
       } else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
         return;
@@ -417,6 +418,7 @@ class Piece
     this.x += BLOCK_SIZE * x;
     this.y += BLOCK_SIZE * y;
   }
+}
 
   int[] world2grid() {
     int grid_x = (x / BLOCK_SIZE) + 1;
