@@ -24,7 +24,6 @@ Connect connect;
 // NameSelector nameselector;
 int last;
 int m;
-
 SoundFile backgroundMusic;
 
 void initialize()
@@ -42,8 +41,8 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
-  currentPiece = new Piece(int(random(0, 9)));
-  nextPiece = new Piece(int(random(0, 9)));
+  currentPiece = new Piece(int(random(0, gameManager.pieceAmount)));
+  nextPiece = new Piece(int(random(0,gameManager.pieceAmount)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   //   nameselector = new NameSelector();
