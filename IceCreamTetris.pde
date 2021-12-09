@@ -192,13 +192,13 @@ void render()
             credits.render();
             break;
         case 4: 
-        //end Screen
-         endScreen.render();
-         break;
+            //end Screen
+            endScreen.render();
+            break;
         case 5:
-        //highscore
-        highscore.render();
-        break;
+            //highscore
+            highscore.render();
+            break;
     }        
 }
 
