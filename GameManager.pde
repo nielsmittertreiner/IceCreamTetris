@@ -413,6 +413,7 @@ class GameManager
 
   void reset()
   {
+    speeddifficulty = 600; 
     difficulty = 0;
     score = 0;
     icecreamsystem.resetTimer();
@@ -420,6 +421,8 @@ class GameManager
     animalsystem.resetAnimal();
     gameManager.resetHealth();
     gameManager.resetStorm();
+    
+
     for (int i = 0; i < 20; ++i) {
       grid.removeRow(i);
     }
