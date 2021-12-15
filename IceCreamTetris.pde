@@ -115,8 +115,10 @@ void update()
       {
         gameManager.changeSpeedDifficulty();
         icecreamsystem.timeExtra();
+        gameManager.addScore(15); 
         grid.removeRow(i);
         grid.pushRows(i);
+
       }
     }
 
