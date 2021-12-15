@@ -155,6 +155,9 @@ void update()
     //highscore
     highscore.keyInput();
     break;
+  case 6: 
+    //achievements
+ //   achievement.keyInput(); 
   }
 }
 
