@@ -11,7 +11,6 @@ class Grid
   int boxY;
 
   private int tileColor;
-  private int backgroundColor;
   private int strokeColor;
   private int opacity;
 
@@ -21,7 +20,6 @@ class Grid
     this.cellSize = cellSize;
 
     tileColor = asset.black;
-    backgroundColor = asset.lightBlue;
     strokeColor = asset.black;
     opacity = asset.opacity;
   }
@@ -73,10 +71,6 @@ class Grid
 
   void setTileColor(int rgb) {
     tileColor = rgb;
-  }
-
-  void setBackgroundColor(int rgb) {
-    backgroundColor = rgb;
   }
 
   void setStrokeColor(int rgb) {
@@ -136,7 +130,13 @@ class Grid
     rect(boxX, boxY, gridWidth, gridHeight);
 
     // Draw animation
-    riverAnimation.draw(boxY, gridHeight, backgroundColor);
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+      riverAnimation.draw(boxY, gridHeight, asset.grey);
+    }
+    else
+    {
+      riverAnimation.draw(boxY, gridHeight, asset.blue);
+    }
 
     // Draw grid box
     stroke(strokeColor, opacity);
