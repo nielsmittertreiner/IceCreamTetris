@@ -99,7 +99,7 @@ void update()
       if (animalsystem.checkpassed(i)) 
       {
         // grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
         animalsystem.respawnanimal(i);  
         animalsystem.checkoverlapp(i);
       }  
@@ -117,7 +117,7 @@ void update()
         icecreamsystem.timeExtra();
         gameManager.addScore(15); 
         grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
 
       }
     }
@@ -174,7 +174,9 @@ void render()
         case 1:
             // game
             asset.drawBackground();
-            grid.render();
+            grid.renderBox();
+            currentPiece.renderBeam();
+            grid.renderTiles();
             icecreamsystem.render();
             currentPiece.render();
             if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){

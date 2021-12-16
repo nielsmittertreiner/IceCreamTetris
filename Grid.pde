@@ -49,7 +49,7 @@ class Grid
     return true;
   }
 
-  void pushRows(int x)
+  void pushRow(int x)
   {
     for (int y = 0; y < 9; y++) 
     {
@@ -60,14 +60,13 @@ class Grid
         }
       }
     }
-  }
+ }
 
   void removeRow(int x) {
     for (int y = 0; y < grid.length; y++) {
       grid[y][x] = 0;
     }
   }
-
 
   void setTileColor(int rgb) {
     tileColor = rgb;
@@ -118,7 +117,7 @@ class Grid
     }
   }
 
-  void render() {        
+  void renderBox() {
     // Calculate grid
     int gridWidth = grid[0].length * cellSize;
     int gridHeight = grid.length * cellSize;
@@ -142,8 +141,16 @@ class Grid
     stroke(strokeColor, opacity);
     noFill();
     rect(boxX, boxY, gridWidth, gridHeight);
+  }
 
-    // Draw tiles
+  void renderTiles() {
+    // Calculate grid
+    int gridWidth = grid[0].length * cellSize;
+    int gridHeight = grid.length * cellSize;
+    boxX = width / 2 - gridWidth / 2;
+    boxY = height / 2 - gridHeight / 2;
+
+     // Draw tiles
     fill(tileColor, opacity);
 
     for (int y = 0; y < grid.length; y++) {
