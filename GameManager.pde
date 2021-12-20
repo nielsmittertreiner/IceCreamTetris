@@ -13,9 +13,8 @@ class GameManager
   char usedKey = ' ';
   int timer = 0, timerTotal = 15;
   int pieceAmount = 8;
-
-    boolean spawnpiece = true;
-
+  boolean spawnpiece = true;
+  boolean show =false;
   PImage heart = new PImage();
   float xHearts;
   int yHearts = 815;
@@ -415,6 +414,7 @@ class GameManager
   {
     difficulty = 0;
     score = 0;
+    pieceAmount = 8;
     icecreamsystem.resetTimer();
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
