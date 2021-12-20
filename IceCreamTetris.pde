@@ -20,6 +20,7 @@ UI ui;
 AnimalSystem animalsystem;
 Piece currentPiece;
 Piece nextPiece;
+Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
@@ -27,6 +28,8 @@ Connect connect;
 int last;
 int m;
 SoundFile backgroundMusic;
+
+
 
 void initialize()
 {
@@ -45,6 +48,7 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
+  particle = new Particles();
   currentPiece = new Piece(int(random(0, gameManager.pieceAmount)));
   nextPiece = new Piece(int(random(0,gameManager.pieceAmount)));
   icecreamsystem = new IceCreamSystem(grid); 
@@ -57,7 +61,6 @@ void setup()
   size(1600, 900, P2D);
 
   initialize();
-
   connect.connect();
   asset.loadAssets();
   mainMenu.setup();
@@ -73,6 +76,7 @@ void setup()
   profile.setup();
   achievement.setup();
   
+  particle.setup();
 }
 
 // update all game objects
@@ -98,15 +102,16 @@ void update()
     for (int i = 15; i < 20; ++i) 
     { 
       if (grid.isRowFull(i)) 
-      {gameManager.spawnpiece = false;
+      {
+        gameManager.spawnpiece = false;
         animalsystem.moveAnimal(i);
-               
+        
       }
 
       if (animalsystem.checkpassed(i)) 
       {
         // grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
         animalsystem.respawnanimal(i);  
         animalsystem.checkoverlapp(i);
       }  
@@ -124,7 +129,7 @@ void update()
         icecreamsystem.timeExtra();
         gameManager.addScore(15); 
         grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
 
       }
     }
@@ -185,7 +190,9 @@ void render()
         case 1:
             // game
             asset.drawBackground();
-            grid.render();
+            grid.renderBox();
+            currentPiece.renderBeam();
+            grid.renderTiles();
             icecreamsystem.render();
             currentPiece.render();
             if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
@@ -195,6 +202,30 @@ void render()
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
+            for (int i = 15; i < 20; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      { 
+        particle.render(i);
+      }
+    }
+      if (gameManager.score >= 500 && gameManager.score < 600) {
+               gameManager.show = true;
+               image(particle.textWolk,700,500, 500,500);
+           }
+           if (gameManager.score >= 1000 && gameManager.score < 1100) {
+             gameManager.show = true;
+             image(particle.textWolk2, 700, 500, 500, 500);
+           }
+           for (int i = 0; i < 20; ++i) 
+           {
+             
+            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
+             {
+             gameManager.show = true;
+             image(particle.textWolk1, 700, 500, 500, 500);
+            }
+           }
             break;
         
         case 2:

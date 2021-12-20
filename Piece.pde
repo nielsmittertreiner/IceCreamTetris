@@ -377,6 +377,28 @@ class Piece
     popMatrix();
   }
 
+  void renderBeam() {
+    noStroke();
+    fill(255, 255, 255, 64);
+
+    int minY = 0;
+    int maxY = 0;
+
+    for(int i = 0; i < piece[rotation].length; i++) {
+      int[] coord = piece[rotation][i];
+
+      if(coord[1] > maxY) {
+        maxY = coord[1];
+      }
+
+      if(coord[1] < minY) {
+        minY = coord[1];
+      }
+    }
+
+    rect(grid.gridX(), y + minY * BLOCK_SIZE, grid.width() * BLOCK_SIZE, BLOCK_SIZE + (maxY - minY) * BLOCK_SIZE);
+  }
+
   void renderPreview()
   {
     pushMatrix();
