@@ -11,7 +11,6 @@ class Grid
   int boxY;
 
   private int tileColor;
-  private int backgroundColor;
   private int strokeColor;
   private int opacity;
 
@@ -21,7 +20,6 @@ class Grid
     this.cellSize = cellSize;
 
     tileColor = asset.black;
-    backgroundColor = asset.lightBlue;
     strokeColor = asset.black;
     opacity = asset.opacity;
   }
@@ -51,7 +49,7 @@ class Grid
     return true;
   }
 
-  void pushRows(int x)
+  void pushRow(int x)
   {
     for (int y = 0; y < 9; y++) 
     {
@@ -62,7 +60,7 @@ class Grid
         }
       }
     }
-  }
+ }
 
   void removeRow(int x) {
     for (int y = 0; y < grid.length; y++) {
@@ -70,13 +68,8 @@ class Grid
     }
   }
 
-
   void setTileColor(int rgb) {
     tileColor = rgb;
-  }
-
-  void setBackgroundColor(int rgb) {
-    backgroundColor = rgb;
   }
 
   void setStrokeColor(int rgb) {
@@ -124,7 +117,7 @@ class Grid
     }
   }
 
-  void render() {        
+  void renderBox() {
     // Calculate grid
     int gridWidth = grid[0].length * cellSize;
     int gridHeight = grid.length * cellSize;
@@ -136,14 +129,28 @@ class Grid
     rect(boxX, boxY, gridWidth, gridHeight);
 
     // Draw animation
-    riverAnimation.draw(boxY, gridHeight, backgroundColor);
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+      riverAnimation.draw(boxY, gridHeight, asset.grey);
+    }
+    else
+    {
+      riverAnimation.draw(boxY, gridHeight, asset.blue);
+    }
 
     // Draw grid box
     stroke(strokeColor, opacity);
     noFill();
     rect(boxX, boxY, gridWidth, gridHeight);
+  }
 
-    // Draw tiles
+  void renderTiles() {
+    // Calculate grid
+    int gridWidth = grid[0].length * cellSize;
+    int gridHeight = grid.length * cellSize;
+    boxX = width / 2 - gridWidth / 2;
+    boxY = height / 2 - gridHeight / 2;
+
+     // Draw tiles
     fill(tileColor, opacity);
 
     for (int y = 0; y < grid.length; y++) {

@@ -40,7 +40,13 @@ class Asset
   void drawBackground() {
 
     image(ground, 0, 0, width, height);
-    fill(green, opacity);
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+      fill(black, opacity);
+    }
+    else
+    {
+      fill(green, opacity);
+    }
     rect(0, 0, width, height);
   }
 }
