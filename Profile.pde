@@ -1,10 +1,10 @@
-class Achievement
+class Profile
 {
 
-int numberButtons = 1; 
+int numberButtons = 2; 
 Button[] buttons;
-int buttonY = 550; 
-
+int buttonY = 650; 
+int buttonDist = 300;
 
 void setup()
 {
@@ -15,8 +15,12 @@ void setup()
     {
       buttons[i] = new Button();
     }
-    buttons[0].text = "RETURN";
-    buttons[0].link = 6;
+    buttons[0].text = "ACHIEVEMENT";
+    buttons[1].text = "RETURN";
+
+    buttons[0].link = 7;
+    buttons[1].link = 0;
+
 }
 
 void render()
@@ -26,11 +30,11 @@ void render()
   textAlign(CENTER); 
   textSize(75);
   fill(asset.white);
-  text("ACHIEVEMENTS", width / 2, 100);
+  text("PROFILE", width / 2, 100);
 
     for (int i = 0; i < numberButtons; i++)
     {
-      button.draw(buttons[i].text, buttonY, buttonY, gameManager.selectedButton == i, i + 1, numberButtons);
+      button.draw(buttons[i].text, buttonY, buttonDist, gameManager.selectedButton == i, i + 1, numberButtons);
     }
 
 }

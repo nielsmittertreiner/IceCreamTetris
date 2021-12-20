@@ -21,6 +21,7 @@ class Asset
   SoundFile backgroundMusic;
   SoundFile pop;
   SoundFile animalMove;
+  SoundFile thunder; 
 
   int groundColour;
 
@@ -32,13 +33,15 @@ class Asset
     backgroundMusic = new SoundFile(IceCreamTetris.this, "music/backgroundmusic.mp3");
     pop = new SoundFile(IceCreamTetris.this, "soundeffects/pop.mp3");
     animalMove = new SoundFile(IceCreamTetris.this, "soundeffects/collect.mp3");
+    thunder = new SoundFile(IceCreamTetris.this, "soundeffects/thunder.mp3"); 
     ground = loadImage("img/ground.jpg");
     cloud = loadImage("img/cloud.png");
 
   }
 
   void drawBackground() {
-
+    
+    noStroke();
     image(ground, 0, 0, width, height);
     if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
       fill(black, opacity);

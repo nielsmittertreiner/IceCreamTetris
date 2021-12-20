@@ -14,12 +14,8 @@ class GameManager
   int timer = 0, timerTotal = 15;
   int pieceAmount = 8;
 
-    boolean spawnpiece = true;
-
-  PImage heart = new PImage();
-  float xHearts;
-  int yHearts = 815;
-  int heartsSize = 80;
+  
+  boolean spawnpiece = true;
 
   int health = 5;
 
@@ -399,6 +395,7 @@ class GameManager
       if (stormTimer >= stormTimerCoolDown)
       {
         storm = true;
+        
       }
       else
       {
@@ -410,6 +407,8 @@ class GameManager
       }
       println(stormTimer, stormTimerCoolDown, stormTimerDuration, storm);
   }
+
+
 
   void reset()
   {

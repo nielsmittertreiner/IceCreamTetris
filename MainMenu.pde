@@ -1,6 +1,6 @@
 class MainMenu
 {
-  int numberButtons = 4;
+  int numberButtons = 5;
 
   Button[] buttons;
 
@@ -14,12 +14,15 @@ class MainMenu
     buttons[0].text = "PLAY";
     buttons[1].text = "HIGHSCORE";
     buttons[2].text = "CREDITS";
-    buttons[3].text = "QUIT";
+    buttons[3].text = "PROFILE";
+    buttons[4].text = "QUIT";
+  
 
     buttons[0].link = 1;
     buttons[1].link = 5;
     buttons[2].link = 3;
-    buttons[3].link = -1;
+    buttons[3].link = 6;
+    buttons[4].link = -1;
   }
 
   void keyInput()

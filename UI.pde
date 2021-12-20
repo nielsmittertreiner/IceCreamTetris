@@ -1,6 +1,6 @@
 class UI
 {
-  int textDistance = 5, textSize = 50;
+  int textDistance = 5, textSize = 42;
 
   PImage heart = new PImage();
   float xHearts;

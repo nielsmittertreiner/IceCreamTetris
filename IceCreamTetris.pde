@@ -6,6 +6,8 @@ import java.sql.*;
 
 // initialize game
 Asset asset;
+Achievement achievement; 
+Profile profile;
 Highscore highscore;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
@@ -37,6 +39,8 @@ void initialize()
   pauseMenu = new PauseMenu();
   credits = new Credits();
   endScreen = new EndScreen();
+  achievement = new Achievement();
+  profile = new Profile();
   gameManager = new GameManager();
   riverAnimation = new RiverAnimation();
   button = new Button();
@@ -66,6 +70,9 @@ void setup()
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
+  profile.setup();
+  achievement.setup();
+  
 }
 
 // update all game objects
@@ -143,7 +150,6 @@ void update()
     // pause menu
     pauseMenu.keyInput();
     break;
-
   case 3:
     //credits
     credits.keyInput();
@@ -156,8 +162,13 @@ void update()
     highscore.keyInput();
     break;
   case 6: 
+    //profile
+    profile.keyInput();
+    break;
+  case 7: 
     //achievements
- //   achievement.keyInput(); 
+    achievement.keyInput(); 
+    break;
   }
 }
 
@@ -190,7 +201,6 @@ void render()
             // pause menu
             pauseMenu.render();
             break;
-        
         case 3:
             // credits
             credits.render();
@@ -202,6 +212,14 @@ void render()
         case 5:
             //highscore
             highscore.render();
+            break;
+        case 6: 
+            //Profile
+            profile.render();
+            break;
+        case 7: 
+            //Achievement;
+            achievement.render();
             break;
     }        
 }
