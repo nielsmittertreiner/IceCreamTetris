@@ -5,9 +5,10 @@ class IceCreamSystem
   ArrayList<IceCream> icecreams;
 
   float iceCreamSize = 90;
-  float timePace = 75;
+  float timePace = 45;
   float timeStop = iceCreamSize * timePace;
   float timePlus = 900;
+  float timePlus2 = 600; 
   boolean time = true; 
 
   IceCream icecreamtemp;
@@ -130,8 +131,6 @@ class IceCreamSystem
       icecream.draw();
     }  
         
-             
-      
     
     for (int i = 15; i < 20; ++i) 
     {    
@@ -142,15 +141,22 @@ class IceCreamSystem
       }
       // checks if overlapp = true, if so add points to the score, gets more time for the other icecreams and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
-      {
+      { 
         gameManager.addScore(getscore(i));
-
+        
         for (int j = 15; j < 20; ++j) {
-          icecreams.get(calculateicecream(j)).m -= timePlus;
+          icecreams.get(calculateicecream(j)).m -= timePlus2;
         }
 
         respawnIceCream(i);
-      }       
+
+      } 
+      // else if(animalsystem.checkoverlapp(18) && animalsystem.checkoverlapp(19) || animalsystem.checkoverlapp(17) && animalsystem.checkoverlapp(18)){
+      //   gameManager.addScore(500 / 3);
+      //   println("true");
+        
+      // }       
+      
       // if respawned it is placed above the screen so then move tot the right location.
       if (respawning(i)) 
       {
@@ -172,7 +178,7 @@ class IceCreamSystem
       { 
         icecreams.get(calculateicecream(i)).m --; 
 
-        //when the timer hits 0 remove 1 heart. 
+        //when the timer hits 0 remove a heart. 
         gameManager.removeHealth();
         //  despawnIceCream(i);
 

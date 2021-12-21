@@ -7,6 +7,7 @@ class Piece
   final int PREVIEW_OFFSET_Y = 815;
   final int PREVIEW_BLOCK_SIZE = BLOCK_SIZE / 2;
 
+  
   int last;
   int m;
 
@@ -199,40 +200,6 @@ class Piece
       }, 
 
     }, 
-    {   // Plus 
-      // . X .
-      // X X X
-      // . X .
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-      {
-        {-1, 0}, 
-        {0, -1}, 
-        {0, 0}, 
-        {0, 1}, 
-        {1, 0}, 
-      }, 
-
-    }, 
     {   // Stairs
       // . . .
       // . X X
@@ -256,15 +223,15 @@ class Piece
         {0, 0}, 
         {0, 0}, 
         {0, 1}, // filler
-        {1, 1}, // filler
-      },
+        {1, 0}, // filler
+      }, 
       {
         {0, 0}, 
         {0, 0}, 
         {0, 0}, 
         {0, 1}, // filler
-        {1, 0}, // filler
-      },  
+        {1, 1}, // filler
+      }, 
     }, 
     {
       // Square
@@ -332,7 +299,41 @@ class Piece
         {0, 1}, 
         {0, 0}, // filler
       }, 
-    }
+    },
+    {   // Plus 
+      // . X .
+      // X X X
+      // . X .
+      {
+        {-1, 0}, 
+        {0, -1}, 
+        {0, 0}, 
+        {0, 1}, 
+        {1, 0}, 
+      }, 
+      {
+        {-1, 0}, 
+        {0, -1}, 
+        {0, 0}, 
+        {0, 1}, 
+        {1, 0}, 
+      }, 
+      {
+        {-1, 0}, 
+        {0, -1}, 
+        {0, 0}, 
+        {0, 1}, 
+        {1, 0}, 
+      }, 
+      {
+        {-1, 0}, 
+        {0, -1}, 
+        {0, 0}, 
+        {0, 1}, 
+        {1, 0}, 
+      }, 
+
+    }, 
   };
 
   int[][][] piece = new int[ROTATION_COUNT][BLOCK_COUNT][2];
@@ -358,7 +359,7 @@ class Piece
 
     // testing only
     this.x = int(0); // initialize piece x
-    this.y = int(90 + (int(random(1,7)) * 80)) ; // initialize piece y
+    this.y = int(90 + (int(random(1,7)) * 80)) ; // initialize piece y 
     println("type: " + type);
   }
 
@@ -376,6 +377,28 @@ class Piece
     popMatrix();
   }
 
+  void renderBeam() {
+    noStroke();
+    fill(255, 255, 255, 64);
+
+    int minY = 0;
+    int maxY = 0;
+
+    for(int i = 0; i < piece[rotation].length; i++) {
+      int[] coord = piece[rotation][i];
+
+      if(coord[1] > maxY) {
+        maxY = coord[1];
+      }
+
+      if(coord[1] < minY) {
+        minY = coord[1];
+      }
+    }
+
+    rect(grid.gridX(), y + minY * BLOCK_SIZE, grid.width() * BLOCK_SIZE, BLOCK_SIZE + (maxY - minY) * BLOCK_SIZE);
+  }
+
   void renderPreview()
   {
     pushMatrix();
@@ -391,7 +414,7 @@ class Piece
 
   void instanceNextPiece() {
     currentPiece = nextPiece;
-    nextPiece = new Piece(int(random(0, 9)));
+    nextPiece = new Piece(int(random(0, gameManager.pieceAmount)));
     asset.pop.play();
   }
 
@@ -408,7 +431,7 @@ class Piece
         return;
       } else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
         grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();         
+        instanceNextPiece();
         return;
       } else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
         return;
@@ -417,8 +440,8 @@ class Piece
 
     this.x += BLOCK_SIZE * x;
     this.y += BLOCK_SIZE * y;
+    }
   }
-}
 
   int[] world2grid() {
     int grid_x = (x / BLOCK_SIZE) + 1;

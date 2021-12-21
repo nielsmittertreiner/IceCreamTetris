@@ -12,10 +12,9 @@ class GameManager
   int stormTimerCoolDown, stormTimerCoolDownMin = 8, stormTimerCoolDownMax = 12;
   char usedKey = ' ';
   int timer = 0, timerTotal = 15;
-
-
-    boolean spawnpiece = true;
-
+  int pieceAmount = 8;
+  boolean spawnpiece = true;
+  boolean show =false;
   PImage heart = new PImage();
   float xHearts;
   int yHearts = 815;
@@ -146,6 +145,9 @@ class GameManager
     if (score < 0)
     {
       score = 0;
+    }
+    if (score > 1000 && pieceAmount == 8) {
+      pieceAmount +=1;
     }
     changeSpeedDifficulty();
   }
@@ -312,11 +314,23 @@ class GameManager
       }
     }
 
-    if (currentPiece.type == 5) 
+    if (currentPiece.type == 8) 
     {
       if (currentPiece.y < 170)
       {
         currentPiece.y = 170;
+      }
+      if (currentPiece.y > 650)
+      {
+        currentPiece.y = 650;
+      }
+    }
+
+    if (currentPiece.type == 5) 
+    {
+      if (currentPiece.y < 90)
+      {
+        currentPiece.y = 90;
       }
       if (currentPiece.y > 650)
       {
@@ -335,19 +349,7 @@ class GameManager
         currentPiece.y = 650;
       }
     }
-
-    if (currentPiece.type == 7) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-   if (currentPiece.type == 8) 
+   if (currentPiece.type == 7) 
     {
 
       if (currentPiece.rotation ==  2)
@@ -396,6 +398,7 @@ class GameManager
       if (stormTimer >= stormTimerCoolDown)
       {
         storm = true;
+        
       }
       else
       {
@@ -408,15 +411,21 @@ class GameManager
       println(stormTimer, stormTimerCoolDown, stormTimerDuration, storm);
   }
 
+
+
   void reset()
   {
+    speeddifficulty = 600; 
     difficulty = 0;
     score = 0;
+    pieceAmount = 8;
     icecreamsystem.resetTimer();
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetHealth();
     gameManager.resetStorm();
+    
+
     for (int i = 0; i < 20; ++i) {
       grid.removeRow(i);
     }

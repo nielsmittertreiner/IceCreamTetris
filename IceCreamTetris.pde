@@ -6,6 +6,8 @@ import java.sql.*;
 
 // initialize game
 Asset asset;
+Achievement achievement; 
+Profile profile;
 Highscore highscore;
 MainMenu mainMenu;
 PauseMenu pauseMenu;
@@ -18,14 +20,15 @@ UI ui;
 AnimalSystem animalsystem;
 Piece currentPiece;
 Piece nextPiece;
+Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
 // NameSelector nameselector;
 int last;
 int m;
-
 SoundFile backgroundMusic;
+
 
 void initialize()
 {
@@ -38,12 +41,15 @@ void initialize()
   pauseMenu = new PauseMenu();
   credits = new Credits();
   endScreen = new EndScreen();
+  achievement = new Achievement();
+  profile = new Profile();
   gameManager = new GameManager();
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
-  currentPiece = new Piece(int(random(0, 9)));
-  nextPiece = new Piece(int(random(0, 9)));
+  particle = new Particles();
+  currentPiece = new Piece(int(random(0, gameManager.pieceAmount)));
+  nextPiece = new Piece(int(random(0,gameManager.pieceAmount)));
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   //   nameselector = new NameSelector();
@@ -54,7 +60,6 @@ void setup()
   size(1600, 900, P2D);
 
   initialize();
-
   connect.connect();
   asset.loadAssets();
   mainMenu.setup();
@@ -67,6 +72,9 @@ void setup()
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
+  profile.setup();
+  achievement.setup();
+  particle.setup();
 }
 
 // update all game objects
@@ -92,15 +100,16 @@ void update()
     for (int i = 15; i < 20; ++i) 
     { 
       if (grid.isRowFull(i)) 
-      {gameManager.spawnpiece = false;
+      {
+        gameManager.spawnpiece = false;
         animalsystem.moveAnimal(i);
-               
+        
       }
 
       if (animalsystem.checkpassed(i)) 
       {
         // grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
         animalsystem.respawnanimal(i);  
         animalsystem.checkoverlapp(i);
       }  
@@ -116,8 +125,10 @@ void update()
       {
         gameManager.changeSpeedDifficulty();
         icecreamsystem.timeExtra();
+        gameManager.addScore(15); 
         grid.removeRow(i);
-        grid.pushRows(i);
+        grid.pushRow(i);
+
       }
     }
 
@@ -142,7 +153,6 @@ void update()
     // pause menu
     pauseMenu.keyInput();
     break;
-
   case 3:
     //credits
     credits.keyInput();
@@ -153,6 +163,14 @@ void update()
   case 5:
     //highscore
     highscore.keyInput();
+    break;
+  case 6: 
+    //profile
+    profile.keyInput();
+    break;
+  case 7: 
+    //achievements
+    achievement.keyInput(); 
     break;
   }
 }
@@ -170,23 +188,59 @@ void render()
         case 1:
             // game
             asset.drawBackground();
-            grid.render();
+            grid.renderBox();
+            currentPiece.renderBeam();
+            grid.renderTiles();
             icecreamsystem.render();
             currentPiece.render();
             if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
               image(asset.cloud, width/2, 10, 100,100);
+              for (int i = 0; i < particle.DRUPPELS_COUNT; ++i) {
+                fill(asset.blue);
+              ellipse(particle.druppelX[i],particle.druppelY[i],particle.druppelSizes[i],particle.druppelSize[i]);
+              particle.druppelY[i] += particle.druppelVy;
+               if (particle.druppelY[i]>= 900) {
+              particle.druppelX[i] = random(0,width);
+              particle.druppelY[i] = random(0,height/2);
+              particle.druppelSize[i] = random(10,25);
+            }
+              // image(druppels, 100, 100, width, height);
+              }
             }
             //nextPiece.renderPreview();
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
+            for (int i = 15; i < 20; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      { 
+        particle.render(i);
+      }
+    }
+      if (gameManager.score >= 500 && gameManager.score < 600) {
+               gameManager.show = true;
+               image(particle.textWolk,700,500, 500,500);
+           }
+           if (gameManager.score >= 1000 && gameManager.score < 1100) {
+             gameManager.show = true;
+             image(particle.textWolk2, 700, 500, 500, 500);
+           }
+           for (int i = 0; i < 20; ++i) 
+           {
+             
+            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
+             {
+             gameManager.show = true;
+             image(particle.textWolk1, 700, 500, 500, 500);
+            }
+           }
             break;
         
         case 2:
             // pause menu
             pauseMenu.render();
             break;
-        
         case 3:
             // credits
             credits.render();
@@ -198,6 +252,14 @@ void render()
         case 5:
             //highscore
             highscore.render();
+            break;
+        case 6: 
+            //Profile
+            profile.render();
+            break;
+        case 7: 
+            //Achievement;
+            achievement.render();
             break;
     }        
 }

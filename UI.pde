@@ -1,6 +1,6 @@
 class UI
 {
-  int textDistance = 5, textSize = 50;
+  int textDistance = 5, textSize = 42;
 
   PImage heart = new PImage();
   float xHearts;
@@ -29,11 +29,6 @@ class UI
 
       gameManager.gameState = 4;
 
-      //if you press restart it will reset. 
-      for (int i = 0; i < 1; i++)
-      {
-        gameManager.reset();
-      }
     }
   }
 }
