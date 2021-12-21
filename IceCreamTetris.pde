@@ -91,6 +91,7 @@ void update()
   case 0:
     // main menu
     mainMenu.keyInput();
+    gameManager.reset();
     break;
   case 1:
     // game
