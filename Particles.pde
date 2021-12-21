@@ -4,7 +4,7 @@ class Particles
     PImage textWolk1;
     PImage textWolk2;
     final int PARTICAL_COUNT = 25 , PARTICLES_PER_FRAME=2;
-    final int DRUPPELS_COUNT = 100;
+    final int DRUPPELS_COUNT = 300;
     float[] winParticlesX = new float[PARTICAL_COUNT];
     float[] winParticlesY = new float[PARTICAL_COUNT];
     float[] winParticlesSize = new float[PARTICAL_COUNT];
@@ -16,7 +16,7 @@ class Particles
     float[] druppelY = new float[DRUPPELS_COUNT];
     float[] druppelSize = new float[DRUPPELS_COUNT];
     float[] druppelSizes = new float[DRUPPELS_COUNT];
-    float druppelVy = 10;
+    float druppelVy = 20;
     float yVelocity = -5;
 
     boolean part = false;
