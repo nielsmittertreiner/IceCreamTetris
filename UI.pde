@@ -29,11 +29,6 @@ class UI
 
       gameManager.gameState = 4;
 
-      //if you press restart it will reset. 
-      for (int i = 0; i < 1; i++)
-      {
-        gameManager.reset();
-      }
     }
   }
 }
