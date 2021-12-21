@@ -4,6 +4,7 @@ class Particles
     PImage textWolk1;
     PImage textWolk2;
     final int PARTICAL_COUNT = 25 , PARTICLES_PER_FRAME=2;
+    final int DRUPPELS_COUNT = 100;
     float[] winParticlesX = new float[PARTICAL_COUNT];
     float[] winParticlesY = new float[PARTICAL_COUNT];
     float[] winParticlesSize = new float[PARTICAL_COUNT];
@@ -11,6 +12,11 @@ class Particles
     float[] winParticlesG = new float[PARTICAL_COUNT];
     float[] winParticlesB = new float[PARTICAL_COUNT];
     float[] xVelocity = new float[PARTICAL_COUNT];
+    float[] druppelX = new float[DRUPPELS_COUNT];
+    float[] druppelY = new float[DRUPPELS_COUNT];
+    float[] druppelSize = new float[DRUPPELS_COUNT];
+    float[] druppelSizes = new float[DRUPPELS_COUNT];
+    float druppelVy = 10;
     float yVelocity = -5;
 
     boolean part = false;
@@ -21,6 +27,12 @@ class Particles
         textWolk = loadImage("img/textWolk.png");
         textWolk1 = loadImage("img/textWolk1.png");
         textWolk2 = loadImage("img/textWolk2.png");
+        for (int i = 0; i <DRUPPELS_COUNT ; ++i) {
+            druppelX[i] = random(0,width);
+           druppelY[i] = random(0,height);
+            druppelSize[i] = random(10,25);
+            druppelSizes[i] = random(2,5);
+        }
     }
     void render(int p) {
         

@@ -30,7 +30,6 @@ int m;
 SoundFile backgroundMusic;
 
 
-
 void initialize()
 {
   asset = new Asset();
@@ -75,7 +74,6 @@ void setup()
   highscore.setup();
   profile.setup();
   achievement.setup();
-  
   particle.setup();
 }
 
@@ -197,6 +195,17 @@ void render()
             currentPiece.render();
             if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
               image(asset.cloud, width/2, 10, 100,100);
+              for (int i = 0; i < particle.DRUPPELS_COUNT; ++i) {
+                fill(asset.blue);
+              ellipse(particle.druppelX[i],particle.druppelY[i],particle.druppelSizes[i],particle.druppelSize[i]);
+              particle.druppelY[i] += particle.druppelVy;
+               if (particle.druppelY[i]>= 900) {
+              particle.druppelX[i] = random(0,width);
+              particle.druppelY[i] = random(0,height/2);
+              particle.druppelSize[i] = random(10,25);
+            }
+              // image(druppels, 100, 100, width, height);
+              }
             }
             //nextPiece.renderPreview();
             ui.render();
