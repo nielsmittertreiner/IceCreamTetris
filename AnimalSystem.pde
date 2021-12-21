@@ -1,8 +1,10 @@
-private int ANIMALS_USED = 5;
-public int animalscount;
-
 class AnimalSystem
-{ 
+{
+  private int ANIMALS_USED = 5;
+public int animalscount;
+int animalspeed = 5;
+int animalrespawnspeed = 2;
+
   ArrayList<Animal> animals;
 
   Animal animaltemp;
@@ -14,10 +16,12 @@ class AnimalSystem
     animals = new ArrayList<Animal>();   
     for (int i = 0; i < ANIMALS_USED; ++i) 
     {
-      animaltemp = new Animal(i);
+      animaltemp = new Animal(i); 
+
       animaltemp.xAnimal = grid.getRowPosition(i + 15);
       animaltemp.yAnimal = height - 100;
       animals.add(animaltemp);
+    
     }
   }
 
@@ -73,7 +77,7 @@ class AnimalSystem
   // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
   void moveAnimal(int animal) 
   {
-    animals.get(calculateanimal(animal)).yAnimal -= 3;
+    animals.get(calculateanimal(animal)).yAnimal -= animalspeed;
   }
 
   //if animalpassed == true respawn the animal puts the yAnimal on height + 100.
@@ -85,8 +89,8 @@ class AnimalSystem
   // if the animal is respawned underneath the screen move it upwise to his position.
   void movetospawn(int animal)
   {
-    animals.get(calculateanimal(animal)).yAnimal -= 2;
-  }
+    animals.get(calculateanimal(animal)).yAnimal -= animalrespawnspeed;
+  }  
 
   // changes the value of animal to the grid x position.
   int calculateanimal(int animal)
