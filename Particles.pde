@@ -34,28 +34,40 @@ class Particles
             druppelSizes[i] = random(2,5);
         }
     }
-    void render(int p) {
+
+void stormrender()
+{
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+              image(asset.cloud, width/2, 10, 100,100);
+              for (int i = 0; i < DRUPPELS_COUNT; ++i) {
+                fill(asset.blue);
+              ellipse(druppelX[i],druppelY[i],druppelSizes[i],druppelSize[i]);
+              druppelY[i] += druppelVy;
+               if (druppelY[i]>= 900) {
+              druppelX[i] = random(0,width);
+              druppelY[i] = random(0,height/2);
+              druppelSize[i] = random(10,25);
+            }
+              }
+            }
+}
+
+    void winrender(int p) {
         
     for (int iParticle=0; iParticle <PARTICAL_COUNT; iParticle++) {
-
-        if(PARTICAL_COUNT +PARTICLES_PER_FRAME > PARTICAL_COUNT)
-        {
-        winParticlesY[iParticle] += yVelocity;
-        winParticlesX[iParticle] += xVelocity[iParticle];
-            if( winParticlesY[iParticle] <=height-300)
+             winParticlesY[iParticle] += yVelocity ;
+             winParticlesX[iParticle] += xVelocity[iParticle];
+        if( winParticlesY[iParticle] <= animalsystem.getypos(p)-250)
             {
-               for (int i = 0; i < ANIMALS_USED; ++i) 
-    {
-            winParticlesX[iParticle] = grid.getRowPosition(p)+random(-20,20) + 25;
-            winParticlesY[iParticle] = random(height-200, height-100);
+            winParticlesX[iParticle] = grid.getRowPosition(p)+random(-20,20) + 30;
+            winParticlesY[iParticle] =  random(animalsystem.getypos(p)-200, animalsystem.getypos(p));
             winParticlesSize[iParticle] = random(5, 10);
             winParticlesR[iParticle] = random(0,255);
             winParticlesG[iParticle] = random(0,255);
             winParticlesB[iParticle] = random(0,255);
             xVelocity[iParticle] = random(-3,3);
             }
-            }
-        }
+        
         
     fill( winParticlesR[iParticle], winParticlesG[iParticle], winParticlesB[iParticle]);
         rect(winParticlesX[iParticle], winParticlesY[iParticle], winParticlesSize[iParticle], winParticlesSize[iParticle]);

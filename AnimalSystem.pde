@@ -66,6 +66,13 @@ int animalrespawnspeed = 2;
     }
   }
 
+  int getypos(int animal)
+  {
+     return animals.get(calculateanimal(animal)).yAnimal;
+     
+
+  }
+
   void reset()
   {
     for (int i = 0; i < 5; ++i) 
