@@ -30,7 +30,6 @@ int m;
 SoundFile backgroundMusic;
 
 
-
 void initialize()
 {
   asset = new Asset();
@@ -75,7 +74,6 @@ void setup()
   highscore.setup();
   profile.setup();
   achievement.setup();
-  
   particle.setup();
 }
 
@@ -93,47 +91,13 @@ void update()
   case 0:
     // main menu
     mainMenu.keyInput();
+    gameManager.reset();
     break;
   case 1:
     // game
     gameManager.keyInput();
     // checks if grid is full and moves the animal.
-
-    for (int i = 15; i < 20; ++i) 
-    { 
-      if (grid.isRowFull(i)) 
-      {
-        gameManager.spawnpiece = false;
-        animalsystem.moveAnimal(i);
-        
-      }
-
-      if (animalsystem.checkpassed(i)) 
-      {
-        // grid.removeRow(i);
-        grid.pushRow(i);
-        animalsystem.respawnanimal(i);  
-        animalsystem.checkoverlapp(i);
-      }  
-      if (animalsystem.respawning(i))
-      {
-        animalsystem.movetospawn(i);
-        gameManager.spawnpiece = true;
-      }
-    }
-    for (int i = 0; i < 15; ++i) 
-    { 
-      if (grid.isRowFull(i)) 
-      {
-        gameManager.changeSpeedDifficulty();
-        icecreamsystem.timeExtra();
-        gameManager.addScore(15); 
-        grid.removeRow(i);
-        grid.pushRow(i);
-
-      }
-    }
-
+    gameManager.checkrows();
     m = millis() - last;
     // movement Pieces
      if (gameManager.storm)
@@ -195,9 +159,7 @@ void render()
             grid.renderTiles();
             icecreamsystem.render();
             currentPiece.render();
-            if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
-              image(asset.cloud, width/2, 10, 100,100);
-            }
+            particle.stormrender();
             //nextPiece.renderPreview();
             ui.render();
             animalsystem.run();
@@ -206,7 +168,7 @@ void render()
     { 
       if (grid.isRowFull(i)) 
       { 
-        particle.render(i);
+        particle.winrender(i);
       }
     }
       if (gameManager.score >= 500 && gameManager.score < 600) {
