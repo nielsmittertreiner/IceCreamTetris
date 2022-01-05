@@ -67,7 +67,7 @@ int animalrespawnspeed = 2;
 
   int getypos(int animal)
   {
-     return animals.get(calculateanimal(animal)).yAnimal;
+     return animals.get(calculateanimal(animal)).y;
      
 
   }
