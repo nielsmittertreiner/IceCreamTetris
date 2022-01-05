@@ -15,12 +15,6 @@ class GameManager
   int pieceAmount = 8;
   boolean spawnpiece = true;
   boolean show =false;
-  PImage heart = new PImage();
-  float xHearts;
-  int yHearts = 815;
-  int heartsSize = 80;
-
-  int health = 5;
 
   boolean updated = false;
 
@@ -137,6 +131,47 @@ class GameManager
       gameManager.reset();
       gameManager.gameState = 4;
     }
+  }
+
+  void checkrows()
+  {
+    for (int i = 15; i < 20; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      {
+        gameManager.spawnpiece = false;
+        animalsystem.moveAnimal(i);
+        
+      }
+
+      if (animalsystem.checkpassed(i)) 
+      {
+        // grid.removeRow(i);
+        grid.pushRow(i);
+        animalsystem.respawnanimal(i);  
+        animalsystem.checkoverlapp(i);
+      }  
+      if (animalsystem.respawning(i))
+      {
+        animalsystem.movetospawn(i);
+        gameManager.spawnpiece = true;
+      }
+    }
+    for (int i = 0; i < 15; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      {
+        gameManager.changeSpeedDifficulty();
+        icecreamsystem.timeExtra();
+        gameManager.addScore(15); 
+        grid.removeRow(i);
+        grid.pushRow(i);
+
+      }
+    }
+
+
+
   }
 
   void addScore(int scoreAdded)
@@ -422,23 +457,12 @@ class GameManager
     icecreamsystem.resetTimer();
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
-    gameManager.resetHealth();
     gameManager.resetStorm();
     
 
     for (int i = 0; i < 20; ++i) {
       grid.removeRow(i);
     }
-  }
-
-  void removeHealth() {
-
-    health -= 1;
-  }
-
-  void resetHealth() {
-
-    health = 5;
   }
 }
 

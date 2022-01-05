@@ -29,17 +29,17 @@ class Connect
       TableRow row = table2.getRow(i);
       for (int j = 0; j < row.getColumnCount(); j++) 
       {
-
         id = row.getString(j);
       }
     }
 
     table = myConnection.getTable("Score");
-    table = myConnection.runQuery("SELECT (SELECT name FROM User WHERE id = userid), score FROM Score ORDER BY score DESC LIMIT 10;");    
+    table = myConnection.runQuery("SELECT U.name, MAX(S.Score) as Score FROM User as U INNER JOIN Score as S ON S.userid = U.id GROUP BY U.id ORDER BY score DESC LIMIT 10");    
     timep = myConnection.getTable("User");
     timep = myConnection.runQuery("SELECT name, timesplayed FROM User ORDER BY timesplayed DESC LIMIT 10;");
   }
-  
+
+
   void UpdateDtb(String useR, int scorE)
   {
     user = myConnection.getTable("User");
@@ -89,7 +89,7 @@ class Connect
     myConnection.updateQuery("INSERT INTO User (name) VALUES (\""+ user + "\");");
   }
 
-  void printTable()
+  void printhighscore()
   {
     text("Highscore", 100, 200);
     line(100, 210, 400, 210);

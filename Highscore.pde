@@ -22,7 +22,7 @@ class Highscore
   void render()
   {
     riverAnimation.draw(0, height, asset.blue);
-    connect.printTable(); 
+    connect.printhighscore(); 
 
     for (int i = 0; i < numberButtons; i++)
     {

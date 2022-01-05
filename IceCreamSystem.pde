@@ -182,11 +182,7 @@ class IceCreamSystem
       if (icecreams.get(calculateicecream(i)).m > timeStop) 
       { 
         icecreams.get(calculateicecream(i)).m --; 
-
-        //when the timer hits 0 remove a heart. 
-        gameManager.removeHealth();
-        //  despawnIceCream(i);
-
+        
         respawnIceCream(i);
         movetospawn(i);
       }
