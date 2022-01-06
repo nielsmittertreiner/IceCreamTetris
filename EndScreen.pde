@@ -21,7 +21,7 @@ class EndScreen
 
   String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " "};
 
-  String username;
+  
 
   void setup()
   {
@@ -34,23 +34,6 @@ class EndScreen
 
     buttons[0].link = 0;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -105,7 +88,7 @@ class EndScreen
 
 
 
-        username=  a + b + c + d + e + f;
+        gameManager.username=  a + b + c + d + e + f;
 
         //   for(int i = 0; i < LETTERCOUNT; ++i) {
         //      username = str((letters[L[i]])*i);
@@ -113,9 +96,9 @@ class EndScreen
 
 
         // a + "" + b + "" +c + "" + d + "" + e + "" + f
-        println(username);
+        println(gameManager.username);
 
-        connect.UpdateDtb(username, gameManager.score);
+        connect.UpdateDtb(gameManager.username, gameManager.score);
 
 
 
@@ -138,20 +121,6 @@ class EndScreen
   {
     gameManager.selectedButton = 0;
     riverAnimation.draw(0, height, asset.blue);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

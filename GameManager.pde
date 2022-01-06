@@ -17,7 +17,13 @@ class GameManager
   boolean show =false;
 
   boolean updated = false;
+  
+//Achievements
+  boolean p500 = false;
+  boolean p1000 = false;
+  boolean r2 = false;
 
+String username;
 
   void update()
   {   
@@ -185,6 +191,29 @@ class GameManager
       pieceAmount +=1;
     }
     changeSpeedDifficulty();
+  }
+  void checkAchievements(){
+
+     if (score >= 500 && score < 600) {
+              show = true;
+              p500 = true;
+               image(particle.textWolk,700,500, 500,500);
+           }
+           if (score >= 1000 && score < 1100) {
+             show = true;
+             p1000 = true;
+             image(particle.textWolk2, 700, 500, 500, 500);
+           }
+           for (int i = 0; i < 20; ++i) 
+           {
+             
+            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
+             {
+             show = true;
+             r2 = true;
+             image(particle.textWolk1, 700, 500, 500, 500);
+            }
+           }
   }
 
   void changeSpeedDifficulty()
@@ -458,6 +487,10 @@ class GameManager
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetStorm();
+
+    p500 = false;
+    p1000 = false;
+    r2 = false;
     
 
     for (int i = 0; i < 20; ++i) {

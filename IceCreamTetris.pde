@@ -161,6 +161,7 @@ void render()
             currentPiece.render();
             particle.stormrender();
             //nextPiece.renderPreview();
+            gameManager.checkAchievements();
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
@@ -171,23 +172,6 @@ void render()
         particle.winrender(i);
       }
     }
-      if (gameManager.score >= 500 && gameManager.score < 600) {
-               gameManager.show = true;
-               image(particle.textWolk,700,500, 500,500);
-           }
-           if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             gameManager.show = true;
-             image(particle.textWolk2, 700, 500, 500, 500);
-           }
-           for (int i = 0; i < 20; ++i) 
-           {
-             
-            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
-             {
-             gameManager.show = true;
-             image(particle.textWolk1, 700, 500, 500, 500);
-            }
-           }
             break;
         
         case 2:

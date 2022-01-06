@@ -8,7 +8,7 @@ int buttonDist = 300;
 
 void setup()
 {
-
+connect.getAchievements(gameManager.username);
     buttons = new Button[numberButtons];
 
     for (int i = 0; i < numberButtons; i++)
@@ -26,7 +26,6 @@ void setup()
 void render()
 {
   riverAnimation.draw(0, height, asset.blue);
-
   textAlign(CENTER); 
   textSize(75);
   fill(asset.white);
@@ -36,7 +35,8 @@ void render()
     {
       button.draw(buttons[i].text, buttonY, buttonDist, gameManager.selectedButton == i, i + 1, numberButtons);
     }
-
+    text(gameManager.username,50,50);
+    connect.printBehaald();
 }
 
 
