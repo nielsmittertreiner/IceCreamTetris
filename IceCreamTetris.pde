@@ -18,8 +18,7 @@ GameManager gameManager;
 Grid grid;
 UI ui;
 AnimalSystem animalsystem;
-Piece currentPiece;
-Piece nextPiece;
+Piece piece;
 Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
@@ -48,8 +47,7 @@ void initialize()
   button = new Button();
   ui = new UI();
   particle = new Particles();
-  currentPiece = new Piece(int(random(0, gameManager.pieceAmount)));
-  nextPiece = new Piece(int(random(0,gameManager.pieceAmount)));
+  piece = new Piece();
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   //   nameselector = new NameSelector();
@@ -104,14 +102,14 @@ void update()
             {
                 if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
                     last= millis();
-                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                    piece.move(grid, 1, 0);// this.x += 80;
                 }
             }
             else
             {
                 if (millis() > last + gameManager.speeddifficulty) {
                     last= millis();
-                    currentPiece.move(grid, 1, 0);// this.x += 80;
+                    piece.move(grid, 1, 0);// this.x += 80;
                 }  
             }
 
@@ -155,13 +153,16 @@ void render()
             // game
             asset.drawBackground();
             grid.renderBox();
-            currentPiece.renderBeam();
+            piece.renderBeam();
             grid.renderTiles();
             icecreamsystem.render();
-            currentPiece.render();
+            piece.render();
             particle.stormrender();
+<<<<<<< HEAD
             //nextPiece.renderPreview();
             gameManager.checkAchievements();
+=======
+>>>>>>> 59a164b0221f2c284ceb737e9fc149859bbb5362
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;

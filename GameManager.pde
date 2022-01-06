@@ -78,7 +78,7 @@ String username;
     // going Down
     if (usedKey == 'D')
     {
-      currentPiece.move(grid, 0, 1);// currentPiece.y+=80;
+      piece.move(grid, 0, 1);// piece.y+=80;
       changeFit();
     } 
 
@@ -86,7 +86,7 @@ String username;
     if (usedKey == 'U')
     {
 
-      currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;   
+      piece.move(grid, 0, -1);// piece.y -= 80;   
       changeFit();
     } 
 
@@ -94,14 +94,14 @@ String username;
     // going forward
     if (usedKey == 'R')
     {
-      if (currentPiece.x >= 160)
+      if (piece.x >= 160)
       {
-        currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
+        piece.move(grid, 1, 0);// piece.x+=80;
       }
     }
     if (usedKey == 'L')
     { 
-      currentPiece.rotation = (currentPiece.rotation + 1) % 4;        
+      piece.rotation = (piece.rotation + 1) % 4;        
       changeFit();
     }
 
@@ -231,217 +231,217 @@ String username;
 
   void changeFit()
   {
-    if (currentPiece.type == 0) 
+    if (piece.type == 0) 
     {   
-      if (currentPiece.rotation == 0)
+      if (piece.rotation == 0)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 2 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 0 || piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 2)
+      if (piece.rotation == 2)
       {
-        if (currentPiece.y > 730)
+        if (piece.y > 730)
         {
-          currentPiece.y = 730;
+          piece.y = 730;
         }
       }
     }
 
-    if (currentPiece.type == 1) 
+    if (piece.type == 1) 
     {
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.y > 650)
+      if (piece.y > 650)
       {
-        currentPiece.y = 650;
+        piece.y = 650;
       }
     }
 
-    if (currentPiece.type ==  2) 
+    if (piece.type ==  2) 
     {
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.y > 650)
+      if (piece.y > 650)
       {
-        currentPiece.y = 650;
+        piece.y = 650;
       }
     }
 
-    if (currentPiece.type == 3) 
+    if (piece.type == 3) 
     {
 
-      if (currentPiece.rotation ==  0)
+      if (piece.rotation ==  0)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1  || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+      if (piece.rotation == 1  || piece.rotation == 2 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 0 || piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 2)
+      if (piece.rotation == 2)
       {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
-        }
-      }
-    }
-
-    if (currentPiece.type == 4) 
-    {
-
-      if (currentPiece.rotation == 0  || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y < 90)
-        {
-          currentPiece.y = 90;
-        }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
-        }
-      }
-
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y > 650)
-        {
-          currentPiece.y = 650;
-        }
-      }
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
+        if (piece.y > 730) {
+          piece.y = 730;
         }
       }
     }
 
-    if (currentPiece.type == 8) 
-    {
-      if (currentPiece.y < 170)
-      {
-        currentPiece.y = 170;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-
-    if (currentPiece.type == 5) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-
-    if (currentPiece.type == 6) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-   if (currentPiece.type == 7) 
+    if (piece.type == 4) 
     {
 
-      if (currentPiece.rotation ==  2)
+      if (piece.rotation == 0  || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1  || currentPiece.rotation == 0 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 2 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 0)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
+        if (piece.y > 730) {
+          piece.y = 730;
+        }
+      }
+    }
+
+    if (piece.type == 8) 
+    {
+      if (piece.y < 170)
+      {
+        piece.y = 170;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+
+    if (piece.type == 5) 
+    {
+      if (piece.y < 90)
+      {
+        piece.y = 90;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+
+    if (piece.type == 6) 
+    {
+      if (piece.y < 90)
+      {
+        piece.y = 90;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+   if (piece.type == 7) 
+    {
+
+      if (piece.rotation ==  2)
+      {
+        if (piece.y < 90)
+        {
+          piece.y = 90;
+        }
+      }
+      if (piece.rotation == 1  || piece.rotation == 0 || piece.rotation == 3)
+      {
+        if (piece.y < 170)
+        {
+          piece.y = 170;
+        }
+      }
+
+      if (piece.rotation == 2 || piece.rotation == 1 || piece.rotation == 3)
+      {
+        if (piece.y > 650)
+        {
+          piece.y = 650;
+        }
+      }
+      if (piece.rotation == 0)
+      {
+        if (piece.y > 730) {
+          piece.y = 730;
         }
       }
     }
