@@ -158,11 +158,8 @@ void render()
             icecreamsystem.render();
             piece.render();
             particle.stormrender();
-<<<<<<< HEAD
             //nextPiece.renderPreview();
             gameManager.checkAchievements();
-=======
->>>>>>> 59a164b0221f2c284ceb737e9fc149859bbb5362
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
