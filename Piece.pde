@@ -332,7 +332,8 @@ class Piece
   };
 
   int[][][] piece = new int[ROTATION_COUNT][BLOCK_COUNT][2];
-  int[] order;
+  int[] orderSmall = new int[8];
+  int[] orderLarge = new int[blockCoordinates.length];
   int currentOrderIndex;
   PImage[] gfx = new PImage[BLOCK_COUNT];
   int x;
@@ -343,7 +344,8 @@ class Piece
 
   Piece()
   {
-    this.order = generatePieceOrder();
+    orderSmall = generatePieceOrder();
+    orderLarge = generatePieceOrder();
     generatePieceFromOrder();
   }
 
@@ -398,12 +400,27 @@ class Piece
 
   void generatePieceFromOrder()
   {
-    if (this.currentOrderIndex == gameManager.pieceAmount - 1)
+    if (this.currentOrderIndex < gameManager.pieceAmount - 1)
     {
-        this.order = generatePieceOrder();
+      if (gameManager.pieceAmount == 8)
+        this.type = orderSmall[this.currentOrderIndex];
+      else
+        this.type = orderLarge[this.currentOrderIndex];
+    }
+    else
+    {
+      if (gameManager.pieceAmount == 8)
+      {
+        this.orderSmall = generatePieceOrder();
+        this.type = orderSmall[this.currentOrderIndex];
+      }
+      else
+      {
+        this.orderLarge = generatePieceOrder();
+        this.type = orderLarge[this.currentOrderIndex];
+      }
     }
     this.rotation = 0;
-    this.type = this.order[this.currentOrderIndex];
     this.piece = blockCoordinates[this.type];
     this.tint = tints[this.type];
     this.currentOrderIndex++;
@@ -416,6 +433,22 @@ class Piece
     this.x = int(0); // initialize piece x
     this.y = int(90 + (int(random(1, 7)) * BLOCK_SIZE)) ; // initialize piece y 
     println("piece.type: " + this.type);
+  }
+
+  int[] generatePieceOrder()
+  {
+    int[] arr = new int[gameManager.pieceAmount];
+
+    for (int i = 0; i < arr.length; i++)
+    {
+      arr[i] = i;
+    }
+
+    shuffleArray(arr);
+    printPieceOrder(arr);
+    this.currentOrderIndex = 0;
+
+    return arr;
   }
 
   int[] shuffleArray(int[] arr)
@@ -433,7 +466,7 @@ class Piece
 
   void printPieceOrder(int[] arr)
   {
-    for (int i = 0; i < gameManager.pieceAmount; i++)
+    for (int i = 0; i < arr.length; i++)
     {
       println("order[",+i,"],", + arr[i]);
     }
