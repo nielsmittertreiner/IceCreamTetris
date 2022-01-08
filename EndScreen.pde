@@ -35,27 +35,6 @@ class EndScreen
     buttons[0].link = 0;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   void keyInput()
   {
 
@@ -103,23 +82,11 @@ class EndScreen
         String e= letters[L[4]];
         String f=  letters[L[5]];
 
-
-
         username=  a + b + c + d + e + f;
-
-        //   for(int i = 0; i < LETTERCOUNT; ++i) {
-        //      username = str((letters[L[i]])*i);
-        //  }
-
-
-        // a + "" + b + "" +c + "" + d + "" + e + "" + f
         println(username);
 
         connect.UpdateDtb(username, gameManager.score);
-
-
-
-        // connect.addUser(username);
+        connect.sessionUpdate(username,gameManager.piecesused,gameManager.crosscount,gameManager.stormcount,gameManager.combocount);
       }
 
 
@@ -138,22 +105,6 @@ class EndScreen
   {
     gameManager.selectedButton = 0;
     riverAnimation.draw(0, height, asset.blue);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     fill(asset.white);
     textSize(100);

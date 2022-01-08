@@ -2,15 +2,13 @@ class Connect
 {
   Properties props = new Properties();
   SQLConnection myConnection;
-  Table table;
-  Table table2;
-  Table user;
-  Table user2;
-  Table timep;
 
   String userid;
 
   String id;
+
+Table table; 
+Table timep;
 
   void connect()
   {
@@ -21,7 +19,7 @@ class Connect
 
   void gettable()
   {
-    table2 = myConnection.getTable("User");
+    Table table2 = myConnection.getTable("User");
     table2 = myConnection.runQuery("SELECT id FROM User;");    
 
     for (int i = 0; i< table2.getRowCount(); i++) 
@@ -33,17 +31,35 @@ class Connect
       }
     }
 
-    table = myConnection.getTable("Score");
-    table = myConnection.runQuery("SELECT U.name, MAX(S.Score) as Score FROM User as U INNER JOIN Score as S ON S.userid = U.id GROUP BY U.id ORDER BY score DESC LIMIT 10");    
-    timep = myConnection.getTable("User");
-    timep = myConnection.runQuery("SELECT name, timesplayed FROM User ORDER BY timesplayed DESC LIMIT 10;");
+     table = myConnection.getTable("Score");
+     table = myConnection.runQuery("SELECT U.name, MAX(S.Score) as Score FROM User as U INNER JOIN Score as S ON S.userid = U.id GROUP BY U.id ORDER BY score DESC LIMIT 10");    
+     timep = myConnection.getTable("User");
+     timep = myConnection.runQuery("SELECT name, timesplayed FROM User ORDER BY timesplayed DESC LIMIT 10;");
   }
 
 
+ void sessionUpdate(String useR, int piecesused,int crosscount,int stormcount,int combocount)
+ {
+   getuserid(useR);
+
+   float timeplayed = sessiontimer / 1000;
+
+   
+
+   myConnection.updateQuery("INSERT INTO Session (userid, timeplayed, piecesused, crosscount, stormcount , combo) VALUES (\""+ userid + "\","+ timeplayed +","+ piecesused +","+ crosscount +", "+ stormcount +","+ combocount +");");
+
+   println(userid);
+   println(piecesused);
+   println(crosscount);
+   println(stormcount);
+   println(combocount/202);
+
+ }
+
   void UpdateDtb(String useR, int scorE)
   {
-    user = myConnection.getTable("User");
-    user = myConnection.runQuery("SELECT name FROM User WHERE name='" + useR + "'");
+    Table user = myConnection.getTable("User");
+     user = myConnection.runQuery("SELECT name FROM User WHERE name='" + useR + "'");
 
     println("users" +user.getRowCount());
     if (user.getRowCount() == 0)
@@ -59,10 +75,12 @@ class Connect
     scoretodtb(userid, scorE);
   }
 
+
+
   void getuserid(String useR)
   {
-    user2 = myConnection.getTable("User");
-    user2 = myConnection.runQuery("SELECT id FROM User WHERE name='" + useR + "'");
+    Table user2 = myConnection.getTable("User");
+     user2 = myConnection.runQuery("SELECT id FROM User WHERE name='" + useR + "'");
 
     for (int i = 0; i< user2.getRowCount(); i++) {
       TableRow row = user2.getRow(i);
@@ -77,12 +95,6 @@ class Connect
   {
     myConnection.updateQuery("INSERT INTO Score (userid, score) VALUES (\""+ useR + "\","+ scorE +");");
   }
-
-  void timesplayed()
-  {
-    myConnection.updateQuery("UPDATE User SET timesplayed = timesplayed + 1");
-  }
-
 
   void addUser(String user)
   {

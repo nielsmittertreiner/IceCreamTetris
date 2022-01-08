@@ -15,8 +15,15 @@ class GameManager
   int pieceAmount = 8;
   boolean spawnpiece = true;
   boolean show =false;
+  boolean combo = false;
 
   boolean updated = false;
+
+
+  int piecesused = 0;
+  int crosscount = 0;
+  int stormcount = 0;
+  int combocount = 0;
 
 
   void update()
@@ -154,7 +161,7 @@ class GameManager
       if (animalsystem.respawning(i))
       {
         animalsystem.movetospawn(i);
-        gameManager.spawnpiece = true;
+        spawnpiece = true;
       }
     }
     for (int i = 0; i < 15; ++i) 
@@ -423,6 +430,7 @@ class GameManager
       stormTimer = 0;
       stormTimerDuration = int(random(stormTimerDurationMin, stormTimerDurationMax + 1));
       stormTimerCoolDown = int(random(stormTimerCoolDownMin, stormTimerCoolDownMax + 1));
+      stormcount +=1;
   }
 
   void updateStorm()
@@ -433,7 +441,6 @@ class GameManager
       if (stormTimer >= stormTimerCoolDown)
       {
         storm = true;
-        
       }
       else
       {
@@ -458,6 +465,12 @@ class GameManager
     icecreamsystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetStorm();
+
+  piecesused = 0;
+  crosscount = 0;
+  stormcount = 0;
+  combocount = 0;
+
     
 
     for (int i = 0; i < 20; ++i) {

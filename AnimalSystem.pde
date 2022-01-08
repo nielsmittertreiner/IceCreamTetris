@@ -1,6 +1,6 @@
 class AnimalSystem
 {
-  private int ANIMALS_USED = 5;
+final private int ANIMALS_USED = 5;
 public int animalscount;
 int animalspeed = 5;
 int animalrespawnspeed = 2;
@@ -52,6 +52,7 @@ int animalrespawnspeed = 2;
   { 
     if (animals.get(calculateanimal(animal)).yAnimal < icecreamsystem.icecreams.get(calculateanimal(animal)).yIceCream) {
       asset.animalMove.play();
+      gameManager.crosscount += 1;
       return true;
     }
     return false;

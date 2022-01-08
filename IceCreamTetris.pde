@@ -28,6 +28,7 @@ Connect connect;
 int last;
 int m;
 SoundFile backgroundMusic;
+float sessiontimer;
 
 
 void initialize()
@@ -98,6 +99,7 @@ void update()
     gameManager.keyInput();
     // checks if grid is full and moves the animal.
     gameManager.checkrows();
+   sessiontimer = millis();
     m = millis() - last;
     // movement Pieces
      if (gameManager.storm)
@@ -172,20 +174,19 @@ void render()
       }
     }
       if (gameManager.score >= 500 && gameManager.score < 600) {
-               gameManager.show = true;
                image(particle.textWolk,700,500, 500,500);
            }
            if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             gameManager.show = true;
              image(particle.textWolk2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
-             
             if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
              {
-             gameManager.show = true;
+             gameManager.combocount += 1;
+               
              image(particle.textWolk1, 700, 500, 500, 500);
+             
             }
            }
             break;

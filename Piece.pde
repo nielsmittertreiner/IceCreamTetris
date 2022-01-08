@@ -416,6 +416,7 @@ class Piece
     currentPiece = nextPiece;
     nextPiece = new Piece(int(random(0, gameManager.pieceAmount)));
     asset.pop.play();
+    gameManager.piecesused += 1;
   }
 
   void move(Grid grid, int x, int y) {
