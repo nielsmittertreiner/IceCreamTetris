@@ -48,6 +48,7 @@ void getAchievements(String useR)
 
   achievement = myConnection.getTable("Behaald");
   achievement = myConnection.runQuery("SELECT icon, name, beschrijving FROM Achievement WHERE id = ANY(SELECT achievementid FROM Behaald WHERE userid = '"+ userid +"' GROUP BY achievementid)"); 
+}
 
  void sessionUpdate(String useR, int piecesused,int crosscount,int stormcount,int combocount)
  {
@@ -67,7 +68,7 @@ void getAchievements(String useR)
 
  }
 
-}
+
 void printBehaald()
 {
 
@@ -133,8 +134,6 @@ if (row.getString(0).equals("2r")) {
     myConnection.updateQuery("INSERT INTO Score (userid, score) VALUES (\""+ useR + "\","+ scorE +");");
   }
 
-<<<<<<< HEAD
-=======
 void achievementstodtb(String useRid)
 {
 if (gameManager.p500) 
@@ -158,7 +157,6 @@ if (gameManager.p500)
   }
 
 
->>>>>>> f3771df95da71c55d481ae7d1b5f73f310ea56b2
   void addUser(String user)
   {
     myConnection.updateQuery("INSERT INTO User (name) VALUES (\""+ user + "\");");
@@ -196,6 +194,5 @@ if (gameManager.p500)
           text(row.getString(j), (width - 400) +  200*j, 250+50*i);
         }
       }
-    }
-  
+  }
 }

@@ -35,13 +35,6 @@ class EndScreen
     buttons[0].link = 0;
   }
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> f3771df95da71c55d481ae7d1b5f73f310ea56b2
   void keyInput()
   {
 
@@ -89,11 +82,11 @@ class EndScreen
         String e= letters[L[4]];
         String f=  letters[L[5]];
 
-        username=  a + b + c + d + e + f;
-        println(username);
+        gameManager.username=  a + b + c + d + e + f;
+        println(gameManager.username);
 
-        connect.UpdateDtb(username, gameManager.score);
-        connect.sessionUpdate(username,gameManager.piecesused,gameManager.crosscount,gameManager.stormcount,gameManager.combocount);
+        connect.UpdateDtb(gameManager.username, gameManager.score);
+        connect.sessionUpdate(gameManager.username,gameManager.piecesused,gameManager.crosscount,gameManager.stormcount,gameManager.combocount);
 
 
         gameManager.username=  a + b + c + d + e + f;

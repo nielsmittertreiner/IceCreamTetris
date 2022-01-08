@@ -398,11 +398,6 @@ class Piece
     popMatrix();
   }
 
-  void instanceNextPiece() {
-    currentPiece = nextPiece;
-    nextPiece = new Piece(int(random(0, gameManager.pieceAmount)));
-    asset.pop.play();
-    gameManager.piecesused += 1;
   void generatePieceFromOrder()
   {
     if (this.currentOrderIndex < gameManager.pieceAmount - 1)
