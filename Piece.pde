@@ -7,12 +7,8 @@ class Piece
   final int PREVIEW_OFFSET_Y = 815;
   final int PREVIEW_BLOCK_SIZE = BLOCK_SIZE / 2;
 
-  
-  int last;
-  int m;
-
   final String[] textures = 
-    { // Texture of the Pieces
+  { // Texture of the Pieces
     "img/wood_1.png", 
     "img/wood_2.png", 
     "img/wood_3.png", 
@@ -20,7 +16,7 @@ class Piece
   };
 
   final color[] tints =
-    {   // colour of the Pieces
+  {   // colour of the Pieces
     asset.green, 
     asset.orange, 
     asset.blue, 
@@ -33,7 +29,7 @@ class Piece
   };
 
   int[][][][] blockCoordinates =
-    {
+  {
     {   // Pyramid
       // . . .    
       // X X X
@@ -332,42 +328,32 @@ class Piece
         {0, 1}, 
         {1, 0}, 
       }, 
-
-    }, 
+    },
   };
 
   int[][][] piece = new int[ROTATION_COUNT][BLOCK_COUNT][2];
+  int[] orderSmall = new int[8];
+  int[] orderLarge = new int[blockCoordinates.length];
+  int currentOrderIndex;
   PImage[] gfx = new PImage[BLOCK_COUNT];
-  int x = int(width / 2);
-  int y = 0;
+  int x;
+  int y;
   int type;
   int tint;
   int rotation;
 
-  // Generate of the Pieces
-  Piece(int type)
+  Piece()
   {
-    this.type = type;
-    this.rotation = 0;
-    this.piece = blockCoordinates[type];
-    this.tint = tints[type];
-
-    for (int i = 0; i < BLOCK_COUNT; i++)
-    {
-      gfx[i] = loadImage(textures[int(random(0, textures.length))]);
-    }
-
-    // testing only
-    this.x = int(0); // initialize piece x
-    this.y = int(90 + (int(random(1,7)) * 80)) ; // initialize piece y 
-    println("type: " + type);
+    orderSmall = generatePieceOrder();
+    orderLarge = generatePieceOrder();
+    generatePieceFromOrder();
   }
 
   //rendering the Pieces
   void render()
   {
     pushMatrix();
-    translate(x, y); // verander dit naar grid x y later?
+    translate(x, y);
     tint(tint);
     for (int i = 0; i < BLOCK_COUNT; i++)
     {
@@ -417,6 +403,78 @@ class Piece
     nextPiece = new Piece(int(random(0, gameManager.pieceAmount)));
     asset.pop.play();
     gameManager.piecesused += 1;
+  void generatePieceFromOrder()
+  {
+    if (this.currentOrderIndex < gameManager.pieceAmount - 1)
+    {
+      if (gameManager.pieceAmount == 8)
+        this.type = orderSmall[this.currentOrderIndex];
+      else
+        this.type = orderLarge[this.currentOrderIndex];
+    }
+    else
+    {
+      if (gameManager.pieceAmount == 8)
+      {
+        this.orderSmall = generatePieceOrder();
+        this.type = orderSmall[this.currentOrderIndex];
+      }
+      else
+      {
+        this.orderLarge = generatePieceOrder();
+        this.type = orderLarge[this.currentOrderIndex];
+      }
+    }
+    this.rotation = 0;
+    this.piece = blockCoordinates[this.type];
+    this.tint = tints[this.type];
+    this.currentOrderIndex++;
+
+    for (int i = 0; i < BLOCK_COUNT; i++)
+    {
+      gfx[i] = loadImage(textures[int(random(0, textures.length))]);
+    }
+
+    this.x = int(0); // initialize piece x
+    this.y = int(90 + (int(random(1, 7)) * BLOCK_SIZE)) ; // initialize piece y 
+    println("piece.type: " + this.type);
+  }
+
+  int[] generatePieceOrder()
+  {
+    int[] arr = new int[gameManager.pieceAmount];
+
+    for (int i = 0; i < arr.length; i++)
+    {
+      arr[i] = i;
+    }
+
+    shuffleArray(arr);
+    printPieceOrder(arr);
+    this.currentOrderIndex = 0;
+
+    return arr;
+  }
+
+  int[] shuffleArray(int[] arr)
+  {
+    for (int i = 0; i < arr.length; i++)
+    {
+      int a = (int)random(0, arr.length);
+      int b = arr[i];
+
+      arr[i] = arr[a];
+      arr[a] = b;
+    }
+    return arr;
+  }
+
+  void printPieceOrder(int[] arr)
+  {
+    for (int i = 0; i < arr.length; i++)
+    {
+      println("order[",+i,"],", + arr[i]);
+    }
   }
 
   void move(Grid grid, int x, int y) {
@@ -428,11 +486,15 @@ class Piece
     for (int[] coord : piece) {
       if (w2g[0] + coord[0] == grid.width() - 1) {
         grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();
+        asset.pop.play();
+        generatePieceFromOrder();
+        //instanceNextPiece();
         return;
       } else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
         grid.addPiece(this, w2g[0], w2g[1]);
-        instanceNextPiece();
+        asset.pop.play();
+        generatePieceFromOrder();
+        //instanceNextPiece();
         return;
       } else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
         return;

@@ -9,12 +9,13 @@ class IceCreamSystem
   float timeStop = iceCreamSize * timePace;
   float timePlus = 900;
   float timePlus2 = 600; 
-  boolean time = true; 
+  boolean time; 
+  int maxScore = 100; 
 
   IceCream icecreamtemp;
   Grid grid;
   // construcor for the icecreams and timers and fills them with the right positions an gets the same xposition as the grid row.
-  IceCreamSystem(Grid grid)
+  IceCreamSystem(Grid grid) 	
   {
     this.grid = grid;
 
@@ -54,16 +55,18 @@ class IceCreamSystem
   { 
     while (icecreams.get(calculateicecream(icecream)).yIceCream < 0)
     {
+    time = false;
       return true;
     }
+    time = true;
     return false;
   }
 
 
-  //Calculates the score by the size of the whole timer - the time past. max 90 min 0.  
+  //Calculates the score by maxScore - the time past. max 100 min 0.  
   int getscore(int icecream)
   {
-    icecream = int(icecreams.get(calculateicecream(icecream)).iceCreamSize - (icecreams.get(calculateicecream(icecream)).m / icecreams.get(calculateicecream(icecream)).timePace));
+    icecream = int(maxScore - (icecreams.get(calculateicecream(icecream)).m / icecreams.get(calculateicecream(icecream)).timePace));
     return icecream;
   }
 
@@ -93,7 +96,7 @@ class IceCreamSystem
   {
     icecreams.get(calculateicecream(icecream)).yIceCream = -375; 
     icecreams.get(calculateicecream(icecream)).yTimer = -375; 
-    icecreams.get(calculateicecream(icecream)).m = 0;
+    icecreams.get(calculateicecream(icecream)).m = 0; 
   }
 
 
@@ -150,19 +153,21 @@ class IceCreamSystem
 
         respawnIceCream(i);
 
-      } 
-      // else if(animalsystem.checkoverlapp(18) && animalsystem.checkoverlapp(19) || animalsystem.checkoverlapp(17) && animalsystem.checkoverlapp(18)){
-      //   gameManager.addScore(500 / 3);
+      }
+      // if the most right animal and the animal left to it, takes the icecream at the exact same time, score plus number.
+      // else if(animalsystem.checkoverlapp(i) && animalsystem.checkoverlapp(i-1))
+      // {
+      //   gameManager.addScore(500);
       //   println("true");
         
       // }       
-      
-      // if respawned it is placed above the screen so then move tot the right location.
+
+      // if the icecream is respawned, it is placed above the screen so then move to the right location.
       if (respawning(i)) 
       {
         movetospawn(i);
       } 
-      //makes the timers count down.
+      // if boolean time is true. make the timers count down.
       if (time) 
       {
         icecreams.get(calculateicecream(i)).m ++;

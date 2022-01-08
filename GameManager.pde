@@ -18,7 +18,13 @@ class GameManager
   boolean combo = false;
 
   boolean updated = false;
+  
+//Achievements
+  boolean p500 = false;
+  boolean p1000 = false;
+  boolean r2 = false;
 
+String username;
 
   int piecesused = 0;
   int crosscount = 0;
@@ -79,7 +85,7 @@ class GameManager
     // going Down
     if (usedKey == 'D')
     {
-      currentPiece.move(grid, 0, 1);// currentPiece.y+=80;
+      piece.move(grid, 0, 1);// piece.y+=80;
       changeFit();
     } 
 
@@ -87,7 +93,7 @@ class GameManager
     if (usedKey == 'U')
     {
 
-      currentPiece.move(grid, 0, -1);// currentPiece.y -= 80;   
+      piece.move(grid, 0, -1);// piece.y -= 80;   
       changeFit();
     } 
 
@@ -95,14 +101,14 @@ class GameManager
     // going forward
     if (usedKey == 'R')
     {
-      if (currentPiece.x >= 160)
+      if (piece.x >= 160)
       {
-        currentPiece.move(grid, 1, 0);// currentPiece.x+=80;
+        piece.move(grid, 1, 0);// piece.x+=80;
       }
     }
     if (usedKey == 'L')
     { 
-      currentPiece.rotation = (currentPiece.rotation + 1) % 4;        
+      piece.rotation = (piece.rotation + 1) % 4;        
       changeFit();
     }
 
@@ -193,6 +199,29 @@ class GameManager
     }
     changeSpeedDifficulty();
   }
+  void checkAchievements(){
+
+     if (score >= 500 && score < 600) {
+              show = true;
+              p500 = true;
+               image(particle.textWolk,700,500, 500,500);
+           }
+           if (score >= 1000 && score < 1100) {
+             show = true;
+             p1000 = true;
+             image(particle.textWolk2, 700, 500, 500, 500);
+           }
+           for (int i = 0; i < 20; ++i) 
+           {
+             
+            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
+             {
+             show = true;
+             r2 = true;
+             image(particle.textWolk1, 700, 500, 500, 500);
+            }
+           }
+  }
 
   void changeSpeedDifficulty()
   {
@@ -209,217 +238,217 @@ class GameManager
 
   void changeFit()
   {
-    if (currentPiece.type == 0) 
+    if (piece.type == 0) 
     {   
-      if (currentPiece.rotation == 0)
+      if (piece.rotation == 0)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 2 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 0 || piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 2)
+      if (piece.rotation == 2)
       {
-        if (currentPiece.y > 730)
+        if (piece.y > 730)
         {
-          currentPiece.y = 730;
+          piece.y = 730;
         }
       }
     }
 
-    if (currentPiece.type == 1) 
+    if (piece.type == 1) 
     {
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.y > 650)
+      if (piece.y > 650)
       {
-        currentPiece.y = 650;
+        piece.y = 650;
       }
     }
 
-    if (currentPiece.type ==  2) 
+    if (piece.type ==  2) 
     {
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.y > 650)
+      if (piece.y > 650)
       {
-        currentPiece.y = 650;
+        piece.y = 650;
       }
     }
 
-    if (currentPiece.type == 3) 
+    if (piece.type == 3) 
     {
 
-      if (currentPiece.rotation ==  0)
+      if (piece.rotation ==  0)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1  || currentPiece.rotation == 2 || currentPiece.rotation == 3)
+      if (piece.rotation == 1  || piece.rotation == 2 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 0 || piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 2)
+      if (piece.rotation == 2)
       {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
-        }
-      }
-    }
-
-    if (currentPiece.type == 4) 
-    {
-
-      if (currentPiece.rotation == 0  || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y < 90)
-        {
-          currentPiece.y = 90;
-        }
-      }
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y < 170)
-        {
-          currentPiece.y = 170;
-        }
-      }
-
-      if (currentPiece.rotation == 1 || currentPiece.rotation == 3)
-      {
-        if (currentPiece.y > 650)
-        {
-          currentPiece.y = 650;
-        }
-      }
-      if (currentPiece.rotation == 0 || currentPiece.rotation == 2)
-      {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
+        if (piece.y > 730) {
+          piece.y = 730;
         }
       }
     }
 
-    if (currentPiece.type == 8) 
-    {
-      if (currentPiece.y < 170)
-      {
-        currentPiece.y = 170;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-
-    if (currentPiece.type == 5) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-
-    if (currentPiece.type == 6) 
-    {
-      if (currentPiece.y < 90)
-      {
-        currentPiece.y = 90;
-      }
-      if (currentPiece.y > 650)
-      {
-        currentPiece.y = 650;
-      }
-    }
-   if (currentPiece.type == 7) 
+    if (piece.type == 4) 
     {
 
-      if (currentPiece.rotation ==  2)
+      if (piece.rotation == 0  || piece.rotation == 2)
       {
-        if (currentPiece.y < 90)
+        if (piece.y < 90)
         {
-          currentPiece.y = 90;
+          piece.y = 90;
         }
       }
-      if (currentPiece.rotation == 1  || currentPiece.rotation == 0 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y < 170)
+        if (piece.y < 170)
         {
-          currentPiece.y = 170;
+          piece.y = 170;
         }
       }
 
-      if (currentPiece.rotation == 2 || currentPiece.rotation == 1 || currentPiece.rotation == 3)
+      if (piece.rotation == 1 || piece.rotation == 3)
       {
-        if (currentPiece.y > 650)
+        if (piece.y > 650)
         {
-          currentPiece.y = 650;
+          piece.y = 650;
         }
       }
-      if (currentPiece.rotation == 0)
+      if (piece.rotation == 0 || piece.rotation == 2)
       {
-        if (currentPiece.y > 730) {
-          currentPiece.y = 730;
+        if (piece.y > 730) {
+          piece.y = 730;
+        }
+      }
+    }
+
+    if (piece.type == 8) 
+    {
+      if (piece.y < 170)
+      {
+        piece.y = 170;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+
+    if (piece.type == 5) 
+    {
+      if (piece.y < 90)
+      {
+        piece.y = 90;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+
+    if (piece.type == 6) 
+    {
+      if (piece.y < 90)
+      {
+        piece.y = 90;
+      }
+      if (piece.y > 650)
+      {
+        piece.y = 650;
+      }
+    }
+   if (piece.type == 7) 
+    {
+
+      if (piece.rotation ==  2)
+      {
+        if (piece.y < 90)
+        {
+          piece.y = 90;
+        }
+      }
+      if (piece.rotation == 1  || piece.rotation == 0 || piece.rotation == 3)
+      {
+        if (piece.y < 170)
+        {
+          piece.y = 170;
+        }
+      }
+
+      if (piece.rotation == 2 || piece.rotation == 1 || piece.rotation == 3)
+      {
+        if (piece.y > 650)
+        {
+          piece.y = 650;
+        }
+      }
+      if (piece.rotation == 0)
+      {
+        if (piece.y > 730) {
+          piece.y = 730;
         }
       }
     }
@@ -471,6 +500,9 @@ class GameManager
   stormcount = 0;
   combocount = 0;
 
+    p500 = false;
+    p1000 = false;
+    r2 = false;
     
 
     for (int i = 0; i < 20; ++i) {

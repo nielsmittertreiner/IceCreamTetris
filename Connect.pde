@@ -2,13 +2,18 @@ class Connect
 {
   Properties props = new Properties();
   SQLConnection myConnection;
+  Table table;
+  Table table2;
+  Table user;
+  Table user2;
+  Table timep;
+  Table achievement;
+
 
   String userid;
 
   String id;
 
-Table table; 
-Table timep;
 
   void connect()
   {
@@ -37,6 +42,12 @@ Table timep;
      timep = myConnection.runQuery("SELECT name, timesplayed FROM User ORDER BY timesplayed DESC LIMIT 10;");
   }
 
+void getAchievements(String useR)
+{ 
+   getuserid(useR);
+
+  achievement = myConnection.getTable("Behaald");
+  achievement = myConnection.runQuery("SELECT icon, name, beschrijving FROM Achievement WHERE id = ANY(SELECT achievementid FROM Behaald WHERE userid = '"+ userid +"' GROUP BY achievementid)"); 
 
  void sessionUpdate(String useR, int piecesused,int crosscount,int stormcount,int combocount)
  {
@@ -56,6 +67,28 @@ Table timep;
 
  }
 
+}
+void printBehaald()
+{
+
+  for (int i = 0; i< achievement.getRowCount(); i++) 
+    {
+      TableRow row = achievement.getRow(i);
+      for (int j = 1; j < row.getColumnCount(); j++) 
+      {
+if (row.getString(0).equals("500p")) {
+  image(asset.p500, 250, 210+50*i,50,50);
+}
+if (row.getString(0).equals("1000p")) {
+  image(asset.p1000, 250, 210+50*i,50,50);
+}
+if (row.getString(0).equals("2r")) {
+  image(asset.r2, 250, 210+50*i,50,50);
+}
+        text(row.getString(j), 100+ 300 *j, 250+50*i);
+      }
+    }
+}
   void UpdateDtb(String useR, int scorE)
   {
     Table user = myConnection.getTable("User");
@@ -73,6 +106,10 @@ Table timep;
     println("userid = "+ userid);
 
     scoretodtb(userid, scorE);
+    achievementstodtb(userid);
+
+    profile.setup();
+
   }
 
 
@@ -96,6 +133,32 @@ Table timep;
     myConnection.updateQuery("INSERT INTO Score (userid, score) VALUES (\""+ useR + "\","+ scorE +");");
   }
 
+<<<<<<< HEAD
+=======
+void achievementstodtb(String useRid)
+{
+if (gameManager.p500) 
+{
+  myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",1);");
+}
+ if (gameManager.p1000 ) 
+{
+
+  myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",2);");
+}
+ if (gameManager.r2 ) 
+{
+  myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",3);");
+}
+}
+
+  void timesplayed()
+  {
+    myConnection.updateQuery("UPDATE User SET timesplayed = timesplayed + 1");
+  }
+
+
+>>>>>>> f3771df95da71c55d481ae7d1b5f73f310ea56b2
   void addUser(String user)
   {
     myConnection.updateQuery("INSERT INTO User (name) VALUES (\""+ user + "\");");

@@ -27,6 +27,9 @@ class Asset
 
   PImage ground;
   PImage cloud;
+  PImage p500;
+  PImage p1000;
+  PImage r2;
 
   void loadAssets() 
   {
@@ -36,6 +39,9 @@ class Asset
     thunder = new SoundFile(IceCreamTetris.this, "soundeffects/thunder.mp3"); 
     ground = loadImage("img/ground.jpg");
     cloud = loadImage("img/cloud.png");
+     p500 =loadImage("img/500p.png");
+      p1000= loadImage("img/1000p.png");
+       r2 = loadImage("img/2r.png");
 
   }
 
