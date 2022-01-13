@@ -136,16 +136,46 @@ if (row.getString(0).equals("2r")) {
 
 void achievementstodtb(String useRid)
 {
-if (gameManager.p500) 
+  Table achievement1 = myConnection.runQuery("SELECT count(*) FROM Behaald WHERE userid = \""+ useRid + "\" AND achievementid = 1");
+  Table achievement2 = myConnection.runQuery("SELECT count(*) FROM Behaald WHERE userid = \""+ useRid + "\" AND achievementid = 2");
+  Table achievement3 = myConnection.runQuery("SELECT count(*) FROM Behaald WHERE userid = \""+ useRid + "\" AND achievementid = 3");
+
+String ach1 = "0";
+String ach2 = "0";
+String ach3 = "0";
+
+ for (int i = 0; i< achievement1.getRowCount(); i++) {
+      TableRow row = achievement1.getRow(i);
+      for (int j = 0; j < row.getColumnCount(); j++) {
+
+        ach1 = row.getString(j);
+      }
+    }
+    for (int i = 0; i< achievement2.getRowCount(); i++) {
+      TableRow row = achievement2.getRow(i);
+      for (int j = 0; j < row.getColumnCount(); j++) {
+
+        ach2 = row.getString(j);
+      }
+    }
+    for (int i = 0; i< achievement3.getRowCount(); i++) {
+      TableRow row = achievement3.getRow(i);
+      for (int j = 0; j < row.getColumnCount(); j++) {
+
+        ach3 = row.getString(j);
+      }
+    }
+
+if (gameManager.p500 && ach1.equals("0")) 
 {
   myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",1);");
 }
- if (gameManager.p1000 ) 
+ if (gameManager.p1000 && ach2.equals("0")) 
 {
 
   myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",2);");
 }
- if (gameManager.r2 ) 
+ if (gameManager.r2 && ach3.equals("0")) 
 {
   myConnection.updateQuery("INSERT INTO Behaald (userid,achievementid) VALUES (\""+ useRid + "\",3);");
 }

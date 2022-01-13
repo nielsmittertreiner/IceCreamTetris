@@ -12,6 +12,7 @@ class Particles
     float[] winParticlesG = new float[PARTICAL_COUNT];
     float[] winParticlesB = new float[PARTICAL_COUNT];
     float[] xVelocity = new float[PARTICAL_COUNT];
+
     float[] druppelX = new float[DRUPPELS_COUNT];
     float[] druppelY = new float[DRUPPELS_COUNT];
     float[] druppelSize = new float[DRUPPELS_COUNT];
@@ -52,7 +53,8 @@ void stormrender()
             }
 }
 
-    void winrender(int p) {
+    void winrender(int p) 
+    {
         
     for (int iParticle=0; iParticle <PARTICAL_COUNT; iParticle++) {
              winParticlesY[iParticle] += yVelocity ;
