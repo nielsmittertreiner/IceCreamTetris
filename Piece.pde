@@ -424,6 +424,7 @@ class Piece
     this.piece = blockCoordinates[this.type];
     this.tint = tints[this.type];
     this.currentOrderIndex++;
+    gameManager.piecesused++;
 
     for (int i = 0; i < BLOCK_COUNT; i++)
     {
