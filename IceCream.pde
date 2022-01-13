@@ -31,17 +31,7 @@ class IceCream {
     drawIceCream();
   }
 
-  // Draws the icecream plus the timer.
-  void drawIceCream() 
-  {      
-    noFill();
-    tint(255);
-    image(graphic, xIceCream, yIceCream, iceCreamSize, iceCreamSize);
-
-    noStroke();
-    fill(asset.white);
-    rect(xIceCream, yTimer, timeWidth, iceCreamSize);
-
+  void timerChange(){
     //change the color of the timers.
     changeColor = true;
     if (m > timeStop / 1.25) {
@@ -62,6 +52,20 @@ class IceCream {
       fill(asset.lightBlue);
       rect(xIceCream, yTimer, timeWidth, iceCreamSize);
     }
+  }
+  // Draws the icecream plus the timer.
+  void drawIceCream() 
+  {      
+    noFill();
+    tint(255);
+
+    image(graphic, xIceCream, yIceCream, iceCreamSize, iceCreamSize);
+
+    noStroke();
+    fill(asset.white);
+    rect(xIceCream, yTimer, timeWidth, iceCreamSize);
+    
+    timerChange();
 
     noStroke();
     fill(0);
