@@ -174,7 +174,7 @@ String username;
       if (grid.isRowFull(i)) 
       {
         gameManager.changeSpeedDifficulty();
-        icecreamsystem.timeExtra();
+        iceCreamSystem.timeExtra();
         gameManager.addScore(15); 
         grid.removeRow(i);
         grid.pushRow(i);
@@ -484,8 +484,8 @@ String username;
     difficulty = 0;
     score = 0;
     pieceAmount = 8;
-    icecreamsystem.resetTimer();
-    icecreamsystem.resetIcecream();
+    iceCreamSystem.resetTimer();
+    iceCreamSystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetStorm();
 

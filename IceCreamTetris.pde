@@ -21,7 +21,7 @@ AnimalSystem animalsystem;
 Piece piece;
 Gamestats gamestats;
 // Particles particle;
-IceCreamSystem icecreamsystem;
+IceCreamSystem iceCreamSystem;
 RiverAnimation riverAnimation;
 Connect connect;
 // NameSelector nameselector;
@@ -53,7 +53,7 @@ void initialize()
   gamestats = new Gamestats();
   // particle = new Particles();
   piece = new Piece();
-  icecreamsystem = new IceCreamSystem(grid); 
+  iceCreamSystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   particleSystem = new ParticleSystem(300,100);
  
@@ -71,7 +71,7 @@ void setup()
   pauseMenu.setup();
   endScreen.setup();
   credits.setup();
-  icecreamsystem.resetTimer();
+  iceCreamSystem.resetTimer();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
@@ -172,7 +172,7 @@ void render()
             piece.renderBeam();
             ui.render();
             grid.renderTiles();
-            icecreamsystem.render();
+            iceCreamSystem.render();
             piece.render();
             gameManager.checkAchievements();
             animalsystem.run();
