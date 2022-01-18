@@ -432,7 +432,6 @@ class Piece
 
     this.x = int(0); // initialize piece x
     this.y = int(90 + (int(random(1, 7)) * BLOCK_SIZE)) ; // initialize piece y 
-    println("piece.type: " + this.type);
   }
 
   // generate a piece order
@@ -449,7 +448,6 @@ class Piece
 
     // shuffle array, print final order and reset the order index
     shuffleArray(arr);
-    printPieceOrder(arr);
     this.currentOrderIndex = 0;
 
     // return entire array
@@ -468,15 +466,6 @@ class Piece
       arr[a] = b;
     }
     return arr;
-  }
-
-  // print the array in a nice fashion
-  void printPieceOrder(int[] arr)
-  {
-    for (int i = 0; i < arr.length; i++)
-    {
-      println("order[",+i,"],", + arr[i]);
-    }
   }
 
   // move a piece per grid cell

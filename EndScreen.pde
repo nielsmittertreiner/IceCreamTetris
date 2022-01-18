@@ -49,7 +49,6 @@ class EndScreen
           row = LETTERCOUNT - 1;
         }
       } else if (gameManager.usedKey == 'L') {
-        println(row);
         row--;
         if (row <=  0) {
           row = 0;
@@ -86,8 +85,8 @@ class EndScreen
 
         connect.UpdateDtb(gameManager.username, gameManager.score);
         connect.sessionUpdate(gameManager.username, gameManager.piecesused, gameManager.crosscount, gameManager.stormcount, gameManager.combocount);
-        connect.getGamestats(gameManager.username);
-        connect.getprofileStats(gameManager.username);
+        connect.getGameStats(gameManager.username);
+        connect.getProfileStats(gameManager.username);
       }
 
 
