@@ -72,7 +72,6 @@ void setup()
   endScreen.setup();
   credits.setup();
   icecreamsystem.resetTimer();
-  ui.setup();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
@@ -171,11 +170,11 @@ void render()
             asset.drawBackground();
             grid.renderBox();
             piece.renderBeam();
+            ui.render();
             grid.renderTiles();
             icecreamsystem.render();
             piece.render();
             gameManager.checkAchievements();
-            ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
             if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm)
