@@ -1,7 +1,7 @@
 class IceCreamSystem
 { 
   ArrayList<IceCream> iceCreams;
-  int iceCreamCount;
+  
   final int ICECREAM_USED = 5, BEGIN_ICECREAM = 15, END_ICECREAM = 20;
   float iceCreamSize = 90;
   float timePace = 45;
@@ -126,9 +126,9 @@ class IceCreamSystem
   void render() 
   {
     //draws the icecreams + timers.
-    for (iceCreamCount = 0; iceCreamCount < ICECREAM_USED; iceCreamCount++) 
+    for (int i = 0; i < ICECREAM_USED; i++) 
     {
-      IceCream icecream = iceCreams.get(iceCreamCount);
+      IceCream icecream = iceCreams.get(i);
       icecream.draw();
     }  
         

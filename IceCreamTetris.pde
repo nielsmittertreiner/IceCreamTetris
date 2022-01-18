@@ -168,8 +168,8 @@ void render()
             // game
             asset.drawBackground();
             grid.renderBox();
-            piece.renderBeam();
             ui.render();
+            piece.renderBeam();
             grid.renderTiles();
             iceCreamSystem.render();
             piece.render();
