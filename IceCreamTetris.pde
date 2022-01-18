@@ -21,7 +21,7 @@ AnimalSystem animalsystem;
 Piece piece;
 Gamestats gamestats;
 // Particles particle;
-IceCreamSystem icecreamsystem;
+IceCreamSystem iceCreamSystem;
 RiverAnimation riverAnimation;
 Connect connect;
 // NameSelector nameselector;
@@ -53,7 +53,7 @@ void initialize()
   gamestats = new Gamestats();
   // particle = new Particles();
   piece = new Piece();
-  icecreamsystem = new IceCreamSystem(grid); 
+  iceCreamSystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   particleSystem = new ParticleSystem(300,100);
  
@@ -71,8 +71,7 @@ void setup()
   pauseMenu.setup();
   endScreen.setup();
   credits.setup();
-  icecreamsystem.resetTimer();
-  ui.setup();
+  iceCreamSystem.resetTimer();
   asset.backgroundMusic.loop();
   asset.backgroundMusic.amp(0.05);
   highscore.setup();
@@ -171,12 +170,11 @@ void render()
             asset.drawBackground();
             grid.renderBox();
             piece.renderBeam();
-            grid.renderTiles();
-            icecreamsystem.render();
-            piece.render();
-            //nextPiece.renderPreview();
-            gameManager.checkAchievements();
             ui.render();
+            grid.renderTiles();
+            iceCreamSystem.render();
+            piece.render();
+            gameManager.checkAchievements();
             animalsystem.run();
             gameManager.selectedButton = 0;
             if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm)
@@ -186,10 +184,10 @@ void render()
             }
   
       if (gameManager.score >= 500 && gameManager.score < 600) {
-               image(asset.textWolk,700,500, 500,500);
+               image(asset.textCloud,700,500, 500,500);
            }
            if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             image(asset.textWolk2, 700, 500, 500, 500);
+             image(asset.textCloud2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -197,7 +195,7 @@ void render()
              {
              gameManager.combocount += 1;
                
-             image(asset.textWolk1, 700, 500, 500, 500);
+             image(asset.textCloud1, 700, 500, 500, 500);
              
             }
            }

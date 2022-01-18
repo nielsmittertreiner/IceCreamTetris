@@ -14,7 +14,7 @@ class Profile
     {
       buttons[i] = new Button();
     }
-    buttons[0].text = "Stats";
+    buttons[0].text = "STATS";
     buttons[1].text = "ACHIEVEMENTS";
     buttons[2].text = "RETURN";
     
@@ -23,7 +23,7 @@ class Profile
     buttons[2].link = 0;
 
     connect.getBehaald(gameManager.username);
-    connect.getprofileStats(gameManager.username);
+    connect.getProfileStats(gameManager.username);
   }
 
   void render()
@@ -39,7 +39,7 @@ class Profile
     text("Games Played:", 170, 300);
     text("Highscore:", 150, 500);
     connect.printProfileStats();
-    text("Behaalde Achievements:", 1100, 350);
+    text("Reached Achievements:", 1100, 350);
     connect.printBehaald();
 
     for (int i = 0; i < numberButtons; i++)

@@ -14,7 +14,7 @@ class IceCream {
   int m = millis();
 
   boolean changeColor;
-  IceCreamSystem icecreamsystem;
+  IceCreamSystem iceCreamSystem;
 
   // constructor for the icecreams but instead of the animals it is 5 times the same picture so fills the filepath with a for loop.
   IceCream(int icecream) 

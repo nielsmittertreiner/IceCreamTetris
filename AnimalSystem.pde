@@ -49,7 +49,7 @@ class AnimalSystem
   //Checks if the animal image overlapps the icecreamimage if so returns true.
   public boolean checkoverlapp(int animal)
   { 
-    if (animals.get(calculateanimal(animal)).y < icecreamsystem.icecreams.get(calculateanimal(animal)).yIceCream) {
+    if (animals.get(calculateanimal(animal)).y < iceCreamSystem.iceCreams.get(calculateanimal(animal)).yIceCream) {
       asset.animalMove.play();
       return true;
     }
@@ -104,7 +104,6 @@ class AnimalSystem
     case 19:
       return  4;	  
     default :
-      //println("can't calculate Animal");
       return - 1;
     }
   }

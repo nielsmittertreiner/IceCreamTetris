@@ -174,7 +174,7 @@ String username;
       if (grid.isRowFull(i)) 
       {
         gameManager.changeSpeedDifficulty();
-        icecreamsystem.timeExtra();
+        iceCreamSystem.timeExtra();
         gameManager.addScore(15); 
         grid.removeRow(i);
         grid.pushRow(i);
@@ -203,12 +203,12 @@ String username;
      if (score >= 500 && score < 600) {
               show = true;
               p500 = true;
-               image(asset.textWolk,700,500, 500,500);
+               image(asset.textCloud,700,500, 500,500);
            }
            if (score >= 1000 && score < 1100) {
              show = true;
              p1000 = true;
-             image(asset.textWolk2, 700, 500, 500, 500);
+             image(asset.textCloud2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -217,7 +217,7 @@ String username;
              {
              show = true;
              r2 = true;
-             image(asset.textWolk1, 700, 500, 500, 500);
+             image(asset.textCloud1, 700, 500, 500, 500);
             }
            }
   }
@@ -227,10 +227,6 @@ String username;
     if (speeddifficulty >= 200)
     {
       speeddifficulty -= (score / 50);
-      println(speeddifficulty);
-    } else
-    {
-      println("MaximumDifficultyspeed reached!");
     }
   }
 
@@ -478,7 +474,6 @@ String username;
       {
         resetStorm();
       }
-      println(stormTimer, stormTimerCoolDown, stormTimerDuration, storm);
   }
 
 
@@ -489,8 +484,8 @@ String username;
     difficulty = 0;
     score = 0;
     pieceAmount = 8;
-    icecreamsystem.resetTimer();
-    icecreamsystem.resetIcecream();
+    iceCreamSystem.resetTimer();
+    iceCreamSystem.resetIcecream();
     animalsystem.resetAnimal();
     gameManager.resetStorm();
 
