@@ -18,8 +18,8 @@ GameManager gameManager;
 Grid grid;
 UI ui;
 AnimalSystem animalsystem;
-Gamestats gamestats;
 Piece piece;
+Gamestats gamestats;
 // Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
@@ -30,7 +30,6 @@ int m;
 SoundFile backgroundMusic;
 float sessiontimer;
 ParticleSystem particleSystem;
-
 
 
 
@@ -51,11 +50,11 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
+  gamestats = new Gamestats();
   // particle = new Particles();
   piece = new Piece();
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
-  gamestats = new Gamestats();
   particleSystem = new ParticleSystem(300,100);
  
   //   nameselector = new NameSelector();
@@ -79,9 +78,7 @@ void setup()
   highscore.setup();
   profile.setup();
   achievement.setup();
-  particle.setup();
   gamestats.setup();
- 
 }
 
 // update all game objects
@@ -105,7 +102,7 @@ void update()
     gameManager.keyInput();
     // checks if grid is full and moves the animal.
     gameManager.checkrows();
-    sessiontimer = millis();
+   sessiontimer = millis();
     m = millis() - last;
     // movement Pieces
     
@@ -152,7 +149,7 @@ if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.st
     //achievements
     achievement.keyInput(); 
     break;
-  case 8: 
+    case 8: 
     //gamestats
     gamestats.keyInput(); 
     break;
@@ -163,79 +160,86 @@ if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.st
 // render all objects to screen
 void render()
 {
-  switch(gameManager.gameState)
-  {
-  case 0:
-    // main menu
-    mainMenu.render();
-    break;
-  case 1:
-    // game
-    asset.drawBackground();
-    grid.renderBox();
-    piece.renderBeam();
-    grid.renderTiles();
-    icecreamsystem.render();
-    piece.render();
-    particle.stormrender();
-    //nextPiece.renderPreview();
-    gameManager.checkAchievements();
-    ui.render();
-    animalsystem.run();
-    gameManager.selectedButton = 0;
-    for (int i = 15; i < 20; ++i) 
+    switch(gameManager.gameState)
+    {
+        case 0:
+            // main menu
+            mainMenu.render();
+            break;
+        case 1:
+            // game
+            asset.drawBackground();
+            grid.renderBox();
+            piece.renderBeam();
+            grid.renderTiles();
+            icecreamsystem.render();
+            piece.render();
+            //nextPiece.renderPreview();
+            gameManager.checkAchievements();
+            ui.render();
+            animalsystem.run();
+            gameManager.selectedButton = 0;
+            if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm)
+            { 
+            image(asset.cloud, width/2, 10, 100,100);
+            particleSystem.renderRain();
+            }
+  
+      if (gameManager.score >= 500 && gameManager.score < 600) {
+               image(asset.textWolk,700,500, 500,500);
+           }
+           if (gameManager.score >= 1000 && gameManager.score < 1100) {
+             image(asset.textWolk2, 700, 500, 500, 500);
+           }
+           for (int i = 0; i < 20; ++i) 
+           {
+            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
+             {
+             gameManager.combocount += 1;
+               
+             image(asset.textWolk1, 700, 500, 500, 500);
+             
+            }
+           }
+           for (int i = 15; i < 20; ++i) 
     { 
       if (grid.isRowFull(i)) 
-      { 
-        particle.winrender(i);
-      }
-    }
-    if (gameManager.score >= 500 && gameManager.score < 600) {
-      image(particle.textWolk, 700, 500, 500, 500);
-    }
-    if (gameManager.score >= 1000 && gameManager.score < 1100) {
-      image(particle.textWolk2, 700, 500, 500, 500);
-    }
-    for (int i = 0; i < 20; ++i) 
-    {
-      if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
       {
-        gameManager.combocount += 1;
-
-        image(particle.textWolk1, 700, 500, 500, 500);
+             particleSystem.updateWinEffect(i);
+        particleSystem.renderWinEffect(i);
       }
     }
-    break;
-
-  case 2:
-    // pause menu
-    pauseMenu.render();
-    break;
-  case 3:
-    // credits
-    credits.render();
-    break;
-  case 4: 
-    //end Screen
-    endScreen.render();
-    break;
-  case 5:
-    //highscore
-    highscore.render();
-    break;
-  case 6: 
-    //Profile
-    profile.render();
-    break;
-  case 7: 
-    //Achievement;
-    achievement.render();
-    break;
-  case 8: 
+            break;
+        
+        case 2:
+            // pause menu
+            pauseMenu.render();
+            break;
+        case 3:
+            // credits
+            credits.render();
+            break;
+        case 4: 
+            //end Screen
+            endScreen.render();
+            break;
+        case 5:
+            //highscore
+            highscore.render();
+            break;
+        case 6: 
+            //Profile
+            profile.render();
+            break;
+        case 7: 
+            //Achievement;
+            achievement.render();
+            break;
+        case 8: 
     //gamestats
     gamestats.render(); 
     break;
-  }
+    }        
 }
 
 // update and render game loop
