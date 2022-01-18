@@ -6,7 +6,7 @@ class GameManager
   int speeddifficulty = 600;
   int selectedButton;
   boolean storm = false;
-  float stormSpeed = 2;
+  float stormSpeed = 2.5;
   int stormTimer = 0;
   int stormTimerDuration, stormTimerDurationMin = 1, stormTimerDurationMax = 3;
   int stormTimerCoolDown, stormTimerCoolDownMin = 8, stormTimerCoolDownMax = 12;

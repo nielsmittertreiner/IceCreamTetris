@@ -72,7 +72,6 @@ void setup()
   pauseMenu.setup();
   endScreen.setup();
   credits.setup();
-  riverAnimation.setup();
   icecreamsystem.resetTimer();
   ui.setup();
   asset.backgroundMusic.loop();
