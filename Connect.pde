@@ -3,18 +3,16 @@ class Connect
   Properties props = new Properties();
   SQLConnection myConnection;
 
-  Table getuserid;
+  Table getUserid;
   Table highScores;
   Table user;
-  Table user2;
-  Table timep;
   Table behaald;
   Table achievement;
   Table session;
   Table highScore;
-  Table gamestats;
+  Table gameStats;
 
-  String userid;
+  String userId;
   String id;
 
   //Stores all properties to connect with the database.
@@ -26,16 +24,16 @@ class Connect
   }
 
   //Returns the userid from a username.
-  void getuserid(String useR)
+  void getUserid(String useR)
   {
-    Table user2 = myConnection.getTable("User");
-    user2 = myConnection.runQuery("SELECT id FROM User WHERE name='"+ useR + "'");
+    Table getUserid = myConnection.getTable("User");
+    getUserid = myConnection.runQuery("SELECT id FROM User WHERE name='"+ useR + "'");
 
-    for (int i = 0; i< user2.getRowCount(); i++) {
-      TableRow row = user2.getRow(i);
+    for (int i = 0; i< getUserid.getRowCount(); i++) {
+      TableRow row = getUserid.getRow(i);
       for (int j = 0; j < row.getColumnCount(); j++) {
 
-        userid = row.getString(j);
+        userId = row.getString(j);
       }
     }
   }
@@ -50,31 +48,31 @@ class Connect
   //Select all the achievements that are reached by a player.
   void getBehaald(String useR)
   { 
-    getuserid(useR);
+    getUserid(useR);
 
-    behaald = myConnection.getTable("Reached");
-    behaald = myConnection.runQuery("SELECT icon, name, beschrijving FROM Achievement WHERE id = ANY(SELECT achievementid FROM Behaald WHERE userid = '"+ userid +"' GROUP BY achievementid)");
+    behaald = myConnection.getTable("Behaald");
+    behaald = myConnection.runQuery("SELECT icon, name, beschrijving FROM Achievement WHERE id = ANY(SELECT achievementid FROM Behaald WHERE userid = '"+ userId +"' GROUP BY achievementid)");
   }
 
   //Select all the gamestats of the last game a player played.
   void getGameStats(String useR)
   { 
-    getuserid(useR);
+    getUserid(useR);
 
-    gamestats = myConnection.getTable("Session");
-    gamestats = myConnection.runQuery("SELECT timeplayed,piecesused,crosscount,stormcount,combo From Session WHERE sessionid = (SELECT MAX(sessionid)FROM Session WHERE userid = \""+ userid + "\" );");
+    gameStats = myConnection.getTable("Session");
+    gameStats = myConnection.runQuery("SELECT timeplayed,piecesused,crosscount,stormcount,combo From Session WHERE sessionid = (SELECT MAX(sessionid)FROM Session WHERE userid = \""+ userId + "\" );");
   }
 
   //Select the number of games a player played and his/her highscore.
   void getProfileStats(String useR)
   {
-    getuserid(useR);
+    getUserid(useR);
 
     session = myConnection.getTable("Session");
-    session = myConnection.runQuery("SELECT count(*) FROM Session WHERE userid = '"+userid+"'");
+    session = myConnection.runQuery("SELECT count(*) FROM Session WHERE userid = '"+userId+"'");
 
     highScore = myConnection.getTable("Score");
-    highScore = myConnection.runQuery("SELECT MAX(score) FROM Score WHERE userid = '"+userid+"'");
+    highScore = myConnection.runQuery("SELECT MAX(score) FROM Score WHERE userid = '"+userId+"'");
   }
 
   //Select all the achievements that are in the database.
@@ -96,10 +94,10 @@ class Connect
       addUser(useR);
     }
 
-    getuserid(useR);
+    getUserid(useR);
 
-    scoreTodtb(userid, scorE);
-    achievementsTodtb(userid);
+    scoreTodtb(userId, scorE);
+    achievementsTodtb(userId);
 
     profile.setup();
   }
@@ -119,12 +117,12 @@ class Connect
   //Adds a session to the database and calculates the time played to seconds and calculates the comobocount.
   void sessionUpdate(String useR, int piecesused, int crosscount, int stormcount, int combocount)
   {
-    getuserid(useR);
+    getUserid(useR);
     combocount = (combocount/202)/2;
 
     float timeplayed = sessiontimer / 1000;
 
-    myConnection.updateQuery("INSERT INTO Session (userid, timeplayed, piecesused, crosscount, stormcount , combo) VALUES (\""+ userid + "\","+ timeplayed +","+ piecesused +","+ crosscount +", "+ stormcount +","+ combocount +");");
+    myConnection.updateQuery("INSERT INTO Session (userid, timeplayed, piecesused, crosscount, stormcount , combo) VALUES (\""+ userId + "\","+ timeplayed +","+ piecesused +","+ crosscount +", "+ stormcount +","+ combocount +");");
   }
 
   //Adds the reached achievements to the database.
@@ -170,9 +168,9 @@ class Connect
 void printGameStats()
 {
 
-  for (int i = 0; i< gamestats.getRowCount(); i++) 
+  for (int i = 0; i< gameStats.getRowCount(); i++) 
     {
-      TableRow row = gamestats.getRow(i);
+      TableRow row = gameStats.getRow(i);
       for (int j = 0; j < row.getColumnCount(); j++) 
       {
         text(row.getString(j), 350+ j * 200, height/2);
