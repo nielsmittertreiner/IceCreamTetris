@@ -1,14 +1,14 @@
 class AnimalSystem
 {
-  final private int ANIMALS_USED = 5;
-  public int animalscount;
-  int animalspeed = 5;
-  int animalrespawnspeed = 2;
+  final int ANIMALS_USED = 5;
+  int animalSpeed = 5;
+  int animalRespawnspeed = 2;
 
   ArrayList<Animal> animals;
 
-  Animal animaltemp;
+  Animal animalTemp;
   Grid grid;
+
   //Animalsystem Constructor fills in all the variables for the animals + makes the animals get the same x position as their grid row.
   AnimalSystem(Grid grid)
   {
@@ -16,10 +16,10 @@ class AnimalSystem
     animals = new ArrayList<Animal>();   
     for (int i = 0; i < ANIMALS_USED; ++i) 
     {
-      animaltemp = new Animal(i);
-      animaltemp.x = grid.getRowPosition(i + 15);
-      animaltemp.y = height - 100;
-      animals.add(animaltemp);
+      animalTemp = new Animal(i);
+      animalTemp.x = grid.getRowPosition(i + 15);
+      animalTemp.y = height - 100;
+      animals.add(animalTemp);
     }
   }
 
@@ -74,7 +74,7 @@ class AnimalSystem
   // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.
   void moveAnimal(int animal) 
   {
-    animals.get(calculateanimal(animal)).y -= animalspeed;
+    animals.get(calculateanimal(animal)).y -= animalSpeed;
   }
 
   //if animalpassed == true respawn the animal puts the y on height + 100.
@@ -86,7 +86,7 @@ class AnimalSystem
   // if the animal is respawned underneath the screen move it upwise to his position.
   void movetospawn(int animal)
   {
-    animals.get(calculateanimal(animal)).y -= animalrespawnspeed;
+    animals.get(calculateanimal(animal)).y -= animalRespawnspeed;
   }
 
   // changes the value of animal to the grid x position.
@@ -112,9 +112,9 @@ class AnimalSystem
   void run()
   {
     //Draws the animals from animal.pde with the right count.
-    for (animalscount = 0; animalscount < ANIMALS_USED; animalscount++) 
+    for (int animalsCount = 0; animalsCount < ANIMALS_USED; animalsCount++) 
     {
-      Animal animal = animals.get(animalscount);
+      Animal animal = animals.get(animalsCount);
       animal.render();
     }
   }
