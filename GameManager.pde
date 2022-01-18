@@ -146,7 +146,7 @@ String username;
     }
   }
 
-  void checkrows()
+  void checkRows()
   {
     for (int i = 15; i < 20; ++i) 
     { 
@@ -154,6 +154,8 @@ String username;
       {
         gameManager.spawnpiece = false;
         animalsystem.moveAnimal(i);
+        particleSystem.updateWinEffect(i);
+        particleSystem.renderWinEffect(i);
       }
 
       if (animalsystem.checkpassed(i)) 
@@ -181,9 +183,15 @@ String username;
 
       }
     }
+  }
 
-
-
+  void checkStorm()
+  {
+if(stormTimer == stormTimerCoolDown - 1 || storm)
+            { 
+            image(asset.cloud, width/2, 10, 100,100);
+            particleSystem.renderRain();
+            }
   }
 
   void addScore(int scoreAdded)

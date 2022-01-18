@@ -100,7 +100,6 @@ void update()
     // game
     gameManager.keyInput();
     // checks if grid is full and moves the animal.
-    gameManager.checkrows();
    sessiontimer = millis();
     m = millis() - last;
     // movement Pieces
@@ -176,37 +175,9 @@ void render()
             piece.render();
             gameManager.checkAchievements();
             animalsystem.run();
+            gameManager.checkRows();
+            gameManager.checkStorm();
             gameManager.selectedButton = 0;
-            if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm)
-            { 
-            image(asset.cloud, width/2, 10, 100,100);
-            particleSystem.renderRain();
-            }
-  
-      if (gameManager.score >= 500 && gameManager.score < 600) {
-               image(asset.textCloud,700,500, 500,500);
-           }
-           if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             image(asset.textCloud2, 700, 500, 500, 500);
-           }
-           for (int i = 0; i < 20; ++i) 
-           {
-            if (grid.isRowFull(i) &&  grid.isRowFull(i-1)) 
-             {
-             gameManager.combocount += 1;
-               
-             image(asset.textCloud1, 700, 500, 500, 500);
-             
-            }
-           }
-           for (int i = 15; i < 20; ++i) 
-    { 
-      if (grid.isRowFull(i)) 
-      {
-             particleSystem.updateWinEffect(i);
-        particleSystem.renderWinEffect(i);
-      }
-    }
             break;
         
         case 2:
