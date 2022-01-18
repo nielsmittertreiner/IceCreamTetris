@@ -17,7 +17,7 @@ class Gamestats
     buttons[0].text = "RETURN";
 
     buttons[0].link = 6;
-    connect.getGamestats(gameManager.username);
+    connect.getGameStats(gameManager.username);
 
     
 
@@ -36,7 +36,7 @@ text("Animals Crossed" , 750, height/3);
 text("Storms" , 950, height/3);
 text("Combos" , 1150, height/3);
 textSize(80);
-    connect.printGamestats();
+    connect.printGameStats();
 
     for (int i = 0; i < numberButtons; i++)
     {

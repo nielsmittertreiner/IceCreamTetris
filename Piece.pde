@@ -8,7 +8,7 @@ class Piece
   final int PREVIEW_BLOCK_SIZE = BLOCK_SIZE / 2;
 
   final String[] textures = 
-  { // Texture of the Pieces
+  {
     "img/wood_1.png", 
     "img/wood_2.png", 
     "img/wood_3.png", 
@@ -16,7 +16,7 @@ class Piece
   };
 
   final color[] tints =
-  {   // colour of the Pieces
+  {
     asset.green, 
     asset.orange, 
     asset.blue, 
@@ -28,6 +28,7 @@ class Piece
     asset.lightBlue
   };
 
+  // coordinates of individual blocks that make up one piece
   int[][][][] blockCoordinates =
   {
     {   // Pyramid
@@ -342,6 +343,7 @@ class Piece
   int tint;
   int rotation;
 
+  // constructor creates initial orders and piece
   Piece()
   {
     orderSmall = generatePieceOrder();
@@ -349,7 +351,7 @@ class Piece
     generatePieceFromOrder();
   }
 
-  //rendering the Pieces
+  // display piece as textured images with a specific tint applied
   void render()
   {
     pushMatrix();
@@ -363,21 +365,26 @@ class Piece
     popMatrix();
   }
 
-  void renderBeam() {
+  // display white translucent beam to preview where the piece will land
+  void renderBeam()
+  {
     noStroke();
     fill(255, 255, 255, 64);
 
     int minY = 0;
     int maxY = 0;
 
-    for(int i = 0; i < piece[rotation].length; i++) {
+    for(int i = 0; i < piece[rotation].length; i++)
+    {
       int[] coord = piece[rotation][i];
 
-      if(coord[1] > maxY) {
+      if(coord[1] > maxY)
+      {
         maxY = coord[1];
       }
 
-      if(coord[1] < minY) {
+      if(coord[1] < minY)
+      {
         minY = coord[1];
       }
     }
@@ -385,21 +392,10 @@ class Piece
     rect(grid.gridX(), y + minY * BLOCK_SIZE, grid.width() * BLOCK_SIZE, BLOCK_SIZE + (maxY - minY) * BLOCK_SIZE);
   }
 
-  void renderPreview()
-  {
-    pushMatrix();
-    translate(PREVIEW_OFFSET_X, PREVIEW_OFFSET_Y);
-    tint(tint);
-    for (int i = 0; i < BLOCK_COUNT; i++)
-    {
-      image(gfx[i], piece[rotation][i][0] * PREVIEW_BLOCK_SIZE, piece[rotation][i][1] * PREVIEW_BLOCK_SIZE, PREVIEW_BLOCK_SIZE, PREVIEW_BLOCK_SIZE);
-    }
-    noTint();
-    popMatrix();
-  }
-
+  // generates a piece from either 'orderSmall' or 'orderLarge'
   void generatePieceFromOrder()
   {
+    // pick piece type by stepping through order array, if it hits the end, generate a new order
     if (this.currentOrderIndex < gameManager.pieceAmount - 1)
     {
       if (gameManager.pieceAmount == 8)
@@ -420,12 +416,15 @@ class Piece
         this.type = orderLarge[this.currentOrderIndex];
       }
     }
+
+    // initialize piece variables
     this.rotation = 0;
     this.piece = blockCoordinates[this.type];
     this.tint = tints[this.type];
     this.currentOrderIndex++;
-    gameManager.piecesused++;
+    gameManager.piecesused++; //increment total pieces used each time
 
+    // load random textures for every block of the piece
     for (int i = 0; i < BLOCK_COUNT; i++)
     {
       gfx[i] = loadImage(textures[int(random(0, textures.length))]);
@@ -433,25 +432,29 @@ class Piece
 
     this.x = int(0); // initialize piece x
     this.y = int(90 + (int(random(1, 7)) * BLOCK_SIZE)) ; // initialize piece y 
-    println("piece.type: " + this.type);
   }
 
+  // generate a piece order
   int[] generatePieceOrder()
   {
+    // initialize empty array of size 'gameManager.pieceAmount'
     int[] arr = new int[gameManager.pieceAmount];
 
+    // fill entire array with 0, 1, 2, 3, etc
     for (int i = 0; i < arr.length; i++)
     {
       arr[i] = i;
     }
 
+    // shuffle array, print final order and reset the order index
     shuffleArray(arr);
-    printPieceOrder(arr);
     this.currentOrderIndex = 0;
 
+    // return entire array
     return arr;
   }
 
+  // random shuffling algorithm
   int[] shuffleArray(int[] arr)
   {
     for (int i = 0; i < arr.length; i++)
@@ -465,49 +468,47 @@ class Piece
     return arr;
   }
 
-  void printPieceOrder(int[] arr)
+  // move a piece per grid cell
+  void move(Grid grid, int x, int y)
   {
-    for (int i = 0; i < arr.length; i++)
+    if (gameManager.spawnpiece)
     {
-      println("order[",+i,"],", + arr[i]);
-    }
-  }
+      int[] w2g = world2grid();
 
-  void move(Grid grid, int x, int y) {
-    if (gameManager.spawnpiece) {
-    int[] w2g = world2grid();
+      int[][] piece = this.piece[rotation];
 
-    int[][] piece = this.piece[rotation];
-
-    for (int[] coord : piece) {
-      if (w2g[0] + coord[0] == grid.width() - 1) {
-        grid.addPiece(this, w2g[0], w2g[1]);
-        asset.pop.play();
-        generatePieceFromOrder();
-        //instanceNextPiece();
-        return;
-      } else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0) {
-        grid.addPiece(this, w2g[0], w2g[1]);
-        asset.pop.play();
-        generatePieceFromOrder();
-        //instanceNextPiece();
-        return;
-      } else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0) {
-        return;
+      // if piece collides with something in the grid or hits the bottom, add the piece to the grid and generate a new one
+      for (int[] coord : piece)
+      {
+        if (w2g[0] + coord[0] == grid.width() - 1)
+        {
+          grid.addPiece(this, w2g[0], w2g[1]);
+          asset.pop.play();
+          generatePieceFromOrder();
+          return;
+        }
+        else if (grid.getState(w2g[0] + coord[0] + 1, w2g[1] + coord[1]) > 0)
+        {
+          grid.addPiece(this, w2g[0], w2g[1]);
+          asset.pop.play();
+          generatePieceFromOrder();
+          return;
+        }
+        else if (grid.getState(w2g[0] + coord[0] - 1 + x, w2g[1] + coord[1] + y) > 0)
+        {
+          return;
+        }
       }
-    }
 
     this.x += BLOCK_SIZE * x;
     this.y += BLOCK_SIZE * y;
     }
   }
 
+  // converts a world x y to a grid x y
   int[] world2grid() {
     int grid_x = (x / BLOCK_SIZE) + 1;
     int grid_y = (y / BLOCK_SIZE) - 1;
     return new int[] {grid_x, grid_y};
   }
 }
-
-
-//test
