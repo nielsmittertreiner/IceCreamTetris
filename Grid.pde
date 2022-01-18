@@ -6,7 +6,7 @@ class Grid
   private int[][] grid;
   private int[][] colorGrid;
   private int cellSize;
-  
+
   int boxX;
   int boxY;
   int startTimer = 0;
@@ -61,7 +61,7 @@ class Grid
         }
       }
     }
- }
+  }
 
   void removeRow(int x) {
     for (int y = 0; y < grid.length; y++) {
@@ -123,7 +123,7 @@ class Grid
     int gridHeight = grid.length * cellSize;
     boxX = width / 2 - gridWidth / 2;
     boxY = height / 2 - gridHeight / 2;
-   
+
 
     // Draw background
     fill(asset.grey);
@@ -131,28 +131,25 @@ class Grid
 
 
     // Draw animation
-    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm) {
 
-     riverAnimation.draw(boxY, gridHeight, asset.grey);
-    
-     startTimer++;
+      riverAnimation.draw(boxY, gridHeight, asset.grey);
 
-     if(startTimer == 10 || startTimer == 20 || startTimer == 30 || startTimer == 200 || startTimer == 210 || startTimer == 220 || startTimer == 400 || startTimer == 410 || startTimer == 420) {
-    
-          riverAnimation.draw(boxY, gridHeight, asset.white);
-          asset.thunder.play();
-     }
-      
-     if (startTimer == 15 || startTimer == 25 || startTimer == 35 || startTimer == 205 || startTimer == 215 || startTimer == 225 || startTimer == 405 || startTimer == 415 || startTimer == 425) {
-          riverAnimation.draw(boxY, gridHeight, asset.grey);
-     }
+      startTimer++;
 
-    }
-     else
+      if (startTimer == 10 || startTimer == 20 || startTimer == 30 || startTimer == 200 || startTimer == 210 || startTimer == 220 || startTimer == 400 || startTimer == 410 || startTimer == 420) {
+
+        riverAnimation.draw(boxY, gridHeight, asset.white);
+        asset.thunder.play();
+      }
+
+      if (startTimer == 15 || startTimer == 25 || startTimer == 35 || startTimer == 205 || startTimer == 215 || startTimer == 225 || startTimer == 405 || startTimer == 415 || startTimer == 425) {
+        riverAnimation.draw(boxY, gridHeight, asset.grey);
+      }
+    } else
     {
       startTimer = 0; 
       riverAnimation.draw(boxY, gridHeight, asset.blue);
-
     }
 
 
@@ -170,7 +167,7 @@ class Grid
     boxX = width / 2 - gridWidth / 2;
     boxY = height / 2 - gridHeight / 2;
 
-     // Draw tiles
+    // Draw tiles
     fill(tileColor, opacity);
 
     for (int y = 0; y < grid.length; y++) {

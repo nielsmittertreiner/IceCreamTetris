@@ -19,6 +19,7 @@ Grid grid;
 UI ui;
 AnimalSystem animalsystem;
 Piece piece;
+Gamestats gamestats;
 // Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
@@ -49,6 +50,7 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
+  gamestats = new Gamestats();
   // particle = new Particles();
   piece = new Piece();
   icecreamsystem = new IceCreamSystem(grid); 
@@ -76,7 +78,7 @@ void setup()
   highscore.setup();
   profile.setup();
   achievement.setup();
- 
+  gamestats.setup();
 }
 
 // update all game objects
@@ -146,6 +148,10 @@ if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.st
   case 7: 
     //achievements
     achievement.keyInput(); 
+    break;
+    case 8: 
+    //gamestats
+    gamestats.keyInput(); 
     break;
   }
 }
@@ -229,6 +235,10 @@ void render()
             //Achievement;
             achievement.render();
             break;
+        case 8: 
+    //gamestats
+    gamestats.render(); 
+    break;
     }        
 }
 

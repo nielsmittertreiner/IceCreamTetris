@@ -16,6 +16,8 @@ class Asset
 
   int orange = #F5BC00;
 
+  int yellow = #FFFF00;
+
   int opacity = 150;
 
   SoundFile backgroundMusic;
@@ -56,12 +58,13 @@ class Asset
   }
 
   void drawBackground() {
-    
+
     noStroke();
     image(ground, 0, 0, width, height);
-    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm){
+    if (gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm) 
+    {
       fill(black, opacity);
-    }
+    } 
     else
     {
       fill(green, opacity);

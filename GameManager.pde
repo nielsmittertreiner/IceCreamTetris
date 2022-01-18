@@ -37,7 +37,7 @@ String username;
     if(gameState == 5 && updated == false )
 
     {
-      connect.gettable();
+      connect.getHighscores();
       updated = true;
     }
     if (gameState != 5) 

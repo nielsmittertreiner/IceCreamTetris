@@ -1,9 +1,9 @@
 class AnimalSystem
 {
-final private int ANIMALS_USED = 5;
-public int animalscount;
-int animalspeed = 5;
-int animalrespawnspeed = 2;
+  final private int ANIMALS_USED = 5;
+  public int animalscount;
+  int animalspeed = 5;
+  int animalrespawnspeed = 2;
 
   ArrayList<Animal> animals;
 
@@ -20,23 +20,23 @@ int animalrespawnspeed = 2;
       animaltemp.x = grid.getRowPosition(i + 15);
       animaltemp.y = height - 100;
       animals.add(animaltemp);
-    
     }
   }
 
-  //checks if animal X is passed to the other side and returns true or false.
+  //Checks if animal X is passed to the other side and returns true or false.
   public boolean checkpassed(int animal)
   { 
-    //if the y of the image on the top right + the height of the image moves out of the screen return true.
+    //If the y of the image on the top right + the height of the image moves out of the screen return true.
     if (animals.get(calculateanimal(animal)).y + animals.get(calculateanimal(animal)).graphic.height <= 0)
     {
+      gameManager.crosscount +=1;
       return true;
     }
 
     return false;
   }
 
-  //if y respawns on the bottom of the screen remain true while the y is not the height it supossed to be so it can move to that position.
+  //If y respawns on the bottom of the screen remain true while the y is not the height it supossed to be so it can move to that position.
   public boolean respawning(int animal)
   { 
     while (animals.get(calculateanimal(animal)).y >= height - 100)
@@ -51,13 +51,12 @@ int animalrespawnspeed = 2;
   { 
     if (animals.get(calculateanimal(animal)).y < icecreamsystem.icecreams.get(calculateanimal(animal)).yIceCream) {
       asset.animalMove.play();
-      gameManager.crosscount += 1;
       return true;
     }
     return false;
   }
 
-  //resets the animals when you restart the game. 
+  //Resets the animals when you restart the game. 
   void resetAnimal() {
 
     for (int i = 0; i < 5; ++i) 
@@ -66,19 +65,10 @@ int animalrespawnspeed = 2;
     }
   }
 
+  //Int (function) that returns the y posision of the specific animal.
   int getypos(int animal)
   {
-     return animals.get(calculateanimal(animal)).y;
-     
-
-  }
-
-  void reset()
-  {
-    for (int i = 0; i < 5; ++i) 
-    { 
-      animals.get(i).y = height - 100;
-    }
+    return animals.get(calculateanimal(animal)).y;
   }
 
   // Takes an integer from isrowfull from icecreamtetris and grid and moves that specifick animal.

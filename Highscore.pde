@@ -8,7 +8,7 @@ class Highscore
 
   void setup()
   {
-    connect.gettable();
+    connect.getHighscores();
 
     buttons = new Button[numberButtons];
     for (int i = 0; i < numberButtons; i++)
@@ -22,11 +22,11 @@ class Highscore
   void render()
   {
     riverAnimation.draw(0, height, asset.blue);
-    connect.printhighscore(); 
+    connect.printHighscores(); 
 
     for (int i = 0; i < numberButtons; i++)
     {
-      button.draw(buttons[i].text, 0, height, gameManager.selectedButton == i, i + 1, numberButtons);
+      button.draw(buttons[i].text, 0, 1500, gameManager.selectedButton == i, i + 1, numberButtons);
     }
   }
 

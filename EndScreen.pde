@@ -13,7 +13,7 @@ class EndScreen
   int x = width/3+100;
   int y = height/4+200;
   int w = 50;
-  int h = 50;
+  int h = 10;
 
   int timer = 60, timerTotal = 60;
 
@@ -21,7 +21,7 @@ class EndScreen
 
   String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " "};
 
-  
+
 
   void setup()
   {
@@ -71,7 +71,7 @@ class EndScreen
         }
       }
 
-
+      //The Nameslector makes 6 arrays and adds them all to a username. After that it uses that username to update functions in the connect class.
       if (gameManager.usedKey == 'x' )
       {
         String a= letters[L[0]];
@@ -84,46 +84,34 @@ class EndScreen
         gameManager.username=  a + b + c + d + e + f;
 
         connect.UpdateDtb(gameManager.username, gameManager.score);
-        connect.sessionUpdate(gameManager.username,gameManager.piecesused,gameManager.crosscount,gameManager.stormcount,gameManager.combocount);
-
-
-        gameManager.username=  a + b + c + d + e + f;
-
-        connect.UpdateDtb(gameManager.username, gameManager.score);
+        connect.sessionUpdate(gameManager.username, gameManager.piecesused, gameManager.crosscount, gameManager.stormcount, gameManager.combocount);
+        connect.getGamestats(gameManager.username);
+        connect.getprofileStats(gameManager.username);
       }
 
 
       for (int i = 0; i < numberButtons; i++)
       {
         button.keyInput(buttons[i].link, i, numberButtons, gameManager.selectedButton == i);
-        // gameManager.reset();
       }
     }
   }
-
-
-
 
   void render()
   {
     gameManager.selectedButton = 0;
     riverAnimation.draw(0, height, asset.blue);
 
-
-
     fill(asset.white);
     textSize(100);
     text("GAME OVER", width / 3, height / 4);
     textSize(80);
     text("SCORE: " + gameManager.score, width / 3 + 80, height / 4 + 100);
-
     textSize(80);
-
     text("player: ", width/3-200, height/4+200);
-
-    fill(255, 255, 0);
-    rect((row * 100) + (x - w / 2), y - h / 2, w, h);
-    fill(0);
+    fill(asset.yellow);
+    rect(x + row * 100, y+20,w,h);
+    fill(asset.black);
     for (int i = 0; i < LETTERCOUNT; i++) {
       text(letters[L[i]], x + i * 100, y);
     }
