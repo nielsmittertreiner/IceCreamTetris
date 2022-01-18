@@ -227,10 +227,6 @@ String username;
     if (speeddifficulty >= 200)
     {
       speeddifficulty -= (score / 50);
-      println(speeddifficulty);
-    } else
-    {
-      println("MaximumDifficultyspeed reached!");
     }
   }
 
@@ -478,7 +474,6 @@ String username;
       {
         resetStorm();
       }
-      println(stormTimer, stormTimerCoolDown, stormTimerDuration, storm);
   }
 
 

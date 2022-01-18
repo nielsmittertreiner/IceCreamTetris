@@ -49,7 +49,6 @@ class EndScreen
           row = LETTERCOUNT - 1;
         }
       } else if (gameManager.usedKey == 'L') {
-        println(row);
         row--;
         if (row <=  0) {
           row = 0;
@@ -83,7 +82,6 @@ class EndScreen
         String f=  letters[L[5]];
 
         gameManager.username=  a + b + c + d + e + f;
-        println(gameManager.username);
 
         connect.UpdateDtb(gameManager.username, gameManager.score);
         connect.sessionUpdate(gameManager.username,gameManager.piecesused,gameManager.crosscount,gameManager.stormcount,gameManager.combocount);
@@ -91,19 +89,7 @@ class EndScreen
 
         gameManager.username=  a + b + c + d + e + f;
 
-        //   for(int i = 0; i < LETTERCOUNT; ++i) {
-        //      username = str((letters[L[i]])*i);
-        //  }
-
-
-        // a + "" + b + "" +c + "" + d + "" + e + "" + f
-        println(gameManager.username);
-
         connect.UpdateDtb(gameManager.username, gameManager.score);
-
-
-
-        // connect.addUser(username);
       }
 
 

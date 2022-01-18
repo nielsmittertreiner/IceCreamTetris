@@ -59,13 +59,6 @@ void getAchievements(String useR)
    
 
    myConnection.updateQuery("INSERT INTO Session (userid, timeplayed, piecesused, crosscount, stormcount , combo) VALUES (\""+ userid + "\","+ timeplayed +","+ piecesused +","+ crosscount +", "+ stormcount +","+ combocount +");");
-
-   println(userid);
-   println(piecesused);
-   println(crosscount);
-   println(stormcount);
-   println(combocount/202);
-
  }
 
 
@@ -95,16 +88,12 @@ if (row.getString(0).equals("2r")) {
     Table user = myConnection.getTable("User");
      user = myConnection.runQuery("SELECT name FROM User WHERE name='" + useR + "'");
 
-    println("users" +user.getRowCount());
     if (user.getRowCount() == 0)
     {
       addUser(useR);
-      println("user toegevoegd");
     }
 
     getuserid(useR);
-
-    println("userid = "+ userid);
 
     scoretodtb(userid, scorE);
     achievementstodtb(userid);
