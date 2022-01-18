@@ -108,7 +108,7 @@ class EndScreen
     textSize(80);
     text("SCORE: " + gameManager.score, width / 3 + 80, height / 4 + 100);
     textSize(80);
-    text("player: ", width/3-200, height/4+200);
+    text("PLAYER: ", width/3-200, height/4+200);
     fill(asset.yellow);
     rect(x + row * 100, y+20,w,h);
     fill(asset.black);

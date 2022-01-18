@@ -52,7 +52,7 @@ class Connect
   { 
     getuserid(useR);
 
-    behaald = myConnection.getTable("Behaald");
+    behaald = myConnection.getTable("Reached");
     behaald = myConnection.runQuery("SELECT icon, name, beschrijving FROM Achievement WHERE id = ANY(SELECT achievementid FROM Behaald WHERE userid = '"+ userid +"' GROUP BY achievementid)");
   }
 

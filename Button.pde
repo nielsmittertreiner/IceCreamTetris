@@ -2,7 +2,7 @@ class Button
 {
   String text;
   int link;
-  int buttonWidth = 300, buttonHeight = 60;
+  int buttonWidth = 325, buttonHeight = 60;
 
   void draw(String text, float top, float bottom, boolean selected, int number, int total)
   {
