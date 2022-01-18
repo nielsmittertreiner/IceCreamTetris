@@ -100,13 +100,6 @@ class IceCreamSystem
   }
 
 
-  // despawns the icecreams and timer when the timer hits 0. 
-  void despawnIceCream(int icecream) {
-
-    icecreams.get(calculateicecream(icecream)).xIceCream = -375; 
-    icecreams.get(calculateicecream(icecream)).xTimer = -375;
-  }
-
   //If boolean is true makes the icecream move to the right location.
   void movetospawn(int icecream)
   {
@@ -123,6 +116,14 @@ class IceCreamSystem
        icecreams.get(calculateicecream(i)).m -= timePlus;      
    }
 
+ }
+
+ void timeExtra2()
+ {
+     for (int j = 15; j < 20; ++j) 
+     {
+      icecreams.get(calculateicecream(j)).m -= timePlus2;     
+     }
  }
 
   void render() 
@@ -147,9 +148,7 @@ class IceCreamSystem
       { 
         gameManager.addScore(getscore(i));
         
-        for (int j = 15; j < 20; ++j) {
-          icecreams.get(calculateicecream(j)).m -= timePlus2;
-        }
+        timeExtra2();
 
         respawnIceCream(i);
 
@@ -177,6 +176,7 @@ class IceCreamSystem
       {
 
         icecreams.get(calculateicecream(i)).m = 0;
+
       }
       //if the timer hits the bottom it stops.
       if (icecreams.get(calculateicecream(i)).m > timeStop) 

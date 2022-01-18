@@ -20,7 +20,7 @@ UI ui;
 AnimalSystem animalsystem;
 Gamestats gamestats;
 Piece piece;
-Particles particle;
+// Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
@@ -29,6 +29,8 @@ int last;
 int m;
 SoundFile backgroundMusic;
 float sessiontimer;
+ParticleSystem particleSystem;
+
 
 
 
@@ -49,11 +51,13 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
-  particle = new Particles();
+  // particle = new Particles();
   piece = new Piece();
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
   gamestats = new Gamestats();
+  particleSystem = new ParticleSystem(300,100);
+ 
   //   nameselector = new NameSelector();
 }
 
@@ -78,6 +82,7 @@ void setup()
   achievement.setup();
   particle.setup();
   gamestats.setup();
+ 
 }
 
 // update all game objects
@@ -104,20 +109,27 @@ void update()
     sessiontimer = millis();
     m = millis() - last;
     // movement Pieces
-    if (gameManager.storm)
-    {
-      if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
-        last= millis();
-        piece.move(grid, 1, 0);// this.x += 80;
-      }
-    } else
-    {
-      if (millis() > last + gameManager.speeddifficulty) {
-        last= millis();
-        piece.move(grid, 1, 0);// this.x += 80;
-      }
-    }
-
+    
+     if (gameManager.storm)
+            {
+              
+                if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
+                    last= millis();
+                    piece.move(grid, 1, 0);// this.x += 80;
+                }
+            }
+            else
+            {
+                if (millis() > last + gameManager.speeddifficulty) {
+                    last= millis();
+                    piece.move(grid, 1, 0);// this.x += 80;
+                }  
+            }
+if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.storm)
+{
+  particleSystem.updateRain();
+}
+ 
   case 2:
     // pause menu
     pauseMenu.keyInput();

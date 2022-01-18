@@ -154,7 +154,6 @@ String username;
       {
         gameManager.spawnpiece = false;
         animalsystem.moveAnimal(i);
-        
       }
 
       if (animalsystem.checkpassed(i)) 
@@ -204,12 +203,12 @@ String username;
      if (score >= 500 && score < 600) {
               show = true;
               p500 = true;
-               image(particle.textWolk,700,500, 500,500);
+               image(asset.textWolk,700,500, 500,500);
            }
            if (score >= 1000 && score < 1100) {
              show = true;
              p1000 = true;
-             image(particle.textWolk2, 700, 500, 500, 500);
+             image(asset.textWolk2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -218,7 +217,7 @@ String username;
              {
              show = true;
              r2 = true;
-             image(particle.textWolk1, 700, 500, 500, 500);
+             image(asset.textWolk1, 700, 500, 500, 500);
             }
            }
   }
