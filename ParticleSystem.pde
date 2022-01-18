@@ -6,6 +6,7 @@ ArrayList<WinEffect> confetti;
 
 
 // creating variables for the systems
+final int WINEFFECT_HIGHT = 400;
 PVector dropletSize;
 int rainCount;
 int winEffectCount;
@@ -23,7 +24,7 @@ ParticleSystem(int rainCount,int winEffectCount)
     confetti = new ArrayList<WinEffect>();
     this.rainCount = rainCount;
     for (int i = 0; i < winEffectCount; ++i) {
-         confetti.add(new WinEffect(new PVector(1000,500)));
+         confetti.add(new WinEffect(new PVector(1000,WINEFFECT_HIGHT)));
     
     }
         
@@ -66,7 +67,7 @@ for (int i = 0; i < confetti.size()-1; ++i)
         if(winEffect.pos.y <= 300)
         {
             confetti.remove(i);
-            confetti.add(new WinEffect(new PVector(615+j*40,400)));
+            confetti.add(new WinEffect(new PVector(615+j*40,WINEFFECT_HIGHT)));
         }
     }
 }

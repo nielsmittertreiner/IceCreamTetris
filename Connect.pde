@@ -57,7 +57,7 @@ class Connect
   }
 
   //Select all the gamestats of the last game a player played.
-  void getGamestats(String useR)
+  void getGameStats(String useR)
   { 
     getuserid(useR);
 
@@ -66,7 +66,7 @@ class Connect
   }
 
   //Select the number of games a player played and his/her highscore.
-  void getprofileStats(String useR)
+  void getProfileStats(String useR)
   {
     getuserid(useR);
 
@@ -167,7 +167,7 @@ class Connect
   }
 
   //Uses getGamestats() to print the gamestats
-void printGamestats()
+void printGameStats()
 {
 
   for (int i = 0; i< gamestats.getRowCount(); i++) 

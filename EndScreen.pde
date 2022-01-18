@@ -85,8 +85,8 @@ class EndScreen
 
         connect.UpdateDtb(gameManager.username, gameManager.score);
         connect.sessionUpdate(gameManager.username, gameManager.piecesused, gameManager.crosscount, gameManager.stormcount, gameManager.combocount);
-        connect.getGamestats(gameManager.username);
-        connect.getprofileStats(gameManager.username);
+        connect.getGameStats(gameManager.username);
+        connect.getProfileStats(gameManager.username);
       }
 
 

@@ -23,7 +23,7 @@ class Profile
     buttons[2].link = 0;
 
     connect.getBehaald(gameManager.username);
-    connect.getprofileStats(gameManager.username);
+    connect.getProfileStats(gameManager.username);
   }
 
   void render()
