@@ -174,7 +174,6 @@ void render()
             grid.renderTiles();
             icecreamsystem.render();
             piece.render();
-            //nextPiece.renderPreview();
             gameManager.checkAchievements();
             ui.render();
             animalsystem.run();
