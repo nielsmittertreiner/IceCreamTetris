@@ -1,16 +1,14 @@
-int iceCreamCount;
-
 class IceCreamSystem
 { 
-  ArrayList<IceCream> icecreams;
-  int ICECREAM_USED = 5, BEGIN_ICECREAM = 15, END_ICECREAM = 20;
+  ArrayList<IceCream> iceCreams;
+  int iceCreamCount;
+  final int ICECREAM_USED = 5, BEGIN_ICECREAM = 15, END_ICECREAM = 20;
   float iceCreamSize = 90;
   float timePace = 45;
   float timeStop = iceCreamSize * timePace;
   float timePlus = 900, timePlus2 = 600; 
   boolean time; 
-  int maxScore = 100; 
-  int iceCreamPlace = -375, reset = 0, iceCreamPace = 2;
+  int maxScore = 100, iceCreamPlace = -375, reset = 0, iceCreamPace = 2;
 
   IceCream iceCreamTemp;
   Grid grid;
@@ -20,7 +18,7 @@ class IceCreamSystem
     this.grid = grid;
 
     //puts icecreams in the Arraylist with position.
-    icecreams = new ArrayList<IceCream>();   
+    iceCreams = new ArrayList<IceCream>();   
     for (int i = 0; i < ICECREAM_USED; ++i) 
     {
       iceCreamTemp = new IceCream(i);
@@ -28,7 +26,7 @@ class IceCreamSystem
       iceCreamTemp.xTimer = grid.getRowPosition(i + 15);
       iceCreamTemp.yIceCream = 0;
       iceCreamTemp.yTimer = 0;
-      icecreams.add(iceCreamTemp);
+      iceCreams.add(iceCreamTemp);
     }
   }
 
@@ -37,7 +35,7 @@ class IceCreamSystem
   {
     for (int i = 0; i < ICECREAM_USED; ++i) 
     { 
-      icecreams.get(i).m = reset;
+      iceCreams.get(i).m = reset;
     }
   }
 
@@ -45,15 +43,15 @@ class IceCreamSystem
   {
     for (int i = 0; i < ICECREAM_USED; ++i) 
     { 
-      icecreams.get(i).yIceCream = reset;
-      icecreams.get(i).yTimer = reset;
+      iceCreams.get(i).yIceCream = reset;
+      iceCreams.get(i).yTimer = reset;
     }
   }
 
   //While the yIcecream is less then 0 so if the icecream is above the screen return true.
   public boolean respawning(int icecream)
   { 
-    while (icecreams.get(calculateIcecream(icecream)).yIceCream < 0)
+    while (iceCreams.get(calculateIcecream(icecream)).yIceCream < 0)
     {
     time = false;
       return true;
@@ -66,7 +64,7 @@ class IceCreamSystem
   //Calculates the score by maxScore - the time past. max 100 min 0.  
   int getScore(int icecream)
   {
-    icecream = int(maxScore - (icecreams.get(calculateIcecream(icecream)).m / icecreams.get(calculateIcecream(icecream)).timePace));
+    icecream = int(maxScore - (iceCreams.get(calculateIcecream(icecream)).m / iceCreams.get(calculateIcecream(icecream)).timePace));
     return icecream;
   }
 
@@ -93,17 +91,17 @@ class IceCreamSystem
   //Respawns the icecream and the timer and puts the timer on 0.
   void respawnIceCream(int icecream) 
   {
-    icecreams.get(calculateIcecream(icecream)).yIceCream = iceCreamPlace; 
-    icecreams.get(calculateIcecream(icecream)).yTimer = iceCreamPlace; 
-    icecreams.get(calculateIcecream(icecream)).m = reset; 
+    iceCreams.get(calculateIcecream(icecream)).yIceCream = iceCreamPlace; 
+    iceCreams.get(calculateIcecream(icecream)).yTimer = iceCreamPlace; 
+    iceCreams.get(calculateIcecream(icecream)).m = reset; 
   }
 
 
   //If boolean is true makes the icecream move to the right location.
   void moveToSpawn(int icecream)
   {
-    icecreams.get(calculateIcecream(icecream)).yIceCream += iceCreamPace;
-    icecreams.get(calculateIcecream(icecream)).yTimer += iceCreamPace;
+    iceCreams.get(calculateIcecream(icecream)).yIceCream += iceCreamPace;
+    iceCreams.get(calculateIcecream(icecream)).yTimer += iceCreamPace;
   }
 
 // checks if a row is full outside of the icecreams and animals, if so then the icecreams gets more time. 
@@ -112,7 +110,7 @@ class IceCreamSystem
 
    for (int i = BEGIN_ICECREAM; i < END_ICECREAM; ++i) 
    {
-       icecreams.get(calculateIcecream(i)).m -= timePlus;      
+       iceCreams.get(calculateIcecream(i)).m -= timePlus;      
    }
 
  }
@@ -121,7 +119,7 @@ class IceCreamSystem
  {
      for (int j = BEGIN_ICECREAM; j < END_ICECREAM; ++j) 
      {
-      icecreams.get(calculateIcecream(j)).m -= timePlus2;     
+      iceCreams.get(calculateIcecream(j)).m -= timePlus2;     
      }
  }
 
@@ -130,7 +128,7 @@ class IceCreamSystem
     //draws the icecreams + timers.
     for (iceCreamCount = 0; iceCreamCount < ICECREAM_USED; iceCreamCount++) 
     {
-      IceCream icecream = icecreams.get(iceCreamCount);
+      IceCream icecream = iceCreams.get(iceCreamCount);
       icecream.draw();
     }  
         
@@ -140,7 +138,7 @@ class IceCreamSystem
       // checks if a row is full with an icecream and timer, if so then the timer stops. 
       if (grid.isRowFull(i))
       {
-        icecreams.get(calculateIcecream(i)).m --;
+        iceCreams.get(calculateIcecream(i)).m --;
       }
       // checks if overlapp = true, if so add points to the score, gets more time for the other icecreams and then respawns the ice cream. 
       if (animalsystem.checkoverlapp(i)) 
@@ -161,19 +159,19 @@ class IceCreamSystem
       // if boolean time is true. make the timers count down.
       if (time) 
       {
-        icecreams.get(calculateIcecream(i)).m ++;
+        iceCreams.get(calculateIcecream(i)).m ++;
       }
       // timer never goes over its max time. 
-      if (icecreams.get(calculateIcecream(i)).m < 0)
+      if (iceCreams.get(calculateIcecream(i)).m < 0)
       {
 
-        icecreams.get(calculateIcecream(i)).m = reset;
+        iceCreams.get(calculateIcecream(i)).m = reset;
 
       }
       //if the timer hits the bottom it stops.
-      if (icecreams.get(calculateIcecream(i)).m > timeStop) 
+      if (iceCreams.get(calculateIcecream(i)).m > timeStop) 
       { 
-        icecreams.get(calculateIcecream(i)).m --; 
+        iceCreams.get(calculateIcecream(i)).m --; 
         
       }
     }
