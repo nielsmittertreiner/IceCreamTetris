@@ -185,10 +185,10 @@ void render()
             }
   
       if (gameManager.score >= 500 && gameManager.score < 600) {
-               image(asset.textWolk,700,500, 500,500);
+               image(asset.textCloud,700,500, 500,500);
            }
            if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             image(asset.textWolk2, 700, 500, 500, 500);
+             image(asset.textCloud2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -196,7 +196,7 @@ void render()
              {
              gameManager.combocount += 1;
                
-             image(asset.textWolk1, 700, 500, 500, 500);
+             image(asset.textCloud1, 700, 500, 500, 500);
              
             }
            }

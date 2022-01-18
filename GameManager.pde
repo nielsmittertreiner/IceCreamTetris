@@ -203,12 +203,12 @@ String username;
      if (score >= 500 && score < 600) {
               show = true;
               p500 = true;
-               image(asset.textWolk,700,500, 500,500);
+               image(asset.textCloud,700,500, 500,500);
            }
            if (score >= 1000 && score < 1100) {
              show = true;
              p1000 = true;
-             image(asset.textWolk2, 700, 500, 500, 500);
+             image(asset.textCloud2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -217,7 +217,7 @@ String username;
              {
              show = true;
              r2 = true;
-             image(asset.textWolk1, 700, 500, 500, 500);
+             image(asset.textCloud1, 700, 500, 500, 500);
             }
            }
   }
