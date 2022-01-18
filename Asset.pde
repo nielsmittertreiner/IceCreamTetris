@@ -30,6 +30,10 @@ class Asset
   PImage p500;
   PImage p1000;
   PImage r2;
+  PImage textWolk;
+  PImage textWolk1;
+  PImage textWolk2;
+
 
   void loadAssets() 
   {
@@ -42,6 +46,9 @@ class Asset
      p500 =loadImage("img/500p.png");
       p1000= loadImage("img/1000p.png");
        r2 = loadImage("img/2r.png");
+        textWolk = loadImage("img/textWolk.png");
+        textWolk1 = loadImage("img/textWolk1.png");
+        textWolk2 = loadImage("img/textWolk2.png");
 
   }
 

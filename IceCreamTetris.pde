@@ -19,7 +19,7 @@ Grid grid;
 UI ui;
 AnimalSystem animalsystem;
 Piece piece;
-Particles particle;
+// Particles particle;
 IceCreamSystem icecreamsystem;
 RiverAnimation riverAnimation;
 Connect connect;
@@ -28,6 +28,8 @@ int last;
 int m;
 SoundFile backgroundMusic;
 float sessiontimer;
+ParticleSystem particleSystem;
+
 
 
 void initialize()
@@ -47,10 +49,12 @@ void initialize()
   riverAnimation = new RiverAnimation();
   button = new Button();
   ui = new UI();
-  particle = new Particles();
+  // particle = new Particles();
   piece = new Piece();
   icecreamsystem = new IceCreamSystem(grid); 
   endScreen = new EndScreen();
+  particleSystem = new ParticleSystem(300,100);
+ 
   //   nameselector = new NameSelector();
 }
 
@@ -73,7 +77,7 @@ void setup()
   highscore.setup();
   profile.setup();
   achievement.setup();
-  particle.setup();
+ 
 }
 
 // update all game objects
@@ -100,8 +104,10 @@ void update()
    sessiontimer = millis();
     m = millis() - last;
     // movement Pieces
+    
      if (gameManager.storm)
             {
+              
                 if (millis() > last + (gameManager.speeddifficulty/gameManager.stormSpeed)) {
                     last= millis();
                     piece.move(grid, 1, 0);// this.x += 80;
@@ -114,7 +120,11 @@ void update()
                     piece.move(grid, 1, 0);// this.x += 80;
                 }  
             }
-
+if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.storm)
+{
+  particleSystem.updateRain();
+}
+ 
   case 2:
     // pause menu
     pauseMenu.keyInput();
@@ -159,24 +169,22 @@ void render()
             grid.renderTiles();
             icecreamsystem.render();
             piece.render();
-            particle.stormrender();
             //nextPiece.renderPreview();
             gameManager.checkAchievements();
             ui.render();
             animalsystem.run();
             gameManager.selectedButton = 0;
-            for (int i = 15; i < 20; ++i) 
-    { 
-      if (grid.isRowFull(i)) 
-      { 
-        particle.winrender(i);
-      }
-    }
+            if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 || gameManager.storm)
+            { 
+            image(asset.cloud, width/2, 10, 100,100);
+            particleSystem.renderRain();
+            }
+  
       if (gameManager.score >= 500 && gameManager.score < 600) {
-               image(particle.textWolk,700,500, 500,500);
+               image(asset.textWolk,700,500, 500,500);
            }
            if (gameManager.score >= 1000 && gameManager.score < 1100) {
-             image(particle.textWolk2, 700, 500, 500, 500);
+             image(asset.textWolk2, 700, 500, 500, 500);
            }
            for (int i = 0; i < 20; ++i) 
            {
@@ -184,10 +192,18 @@ void render()
              {
              gameManager.combocount += 1;
                
-             image(particle.textWolk1, 700, 500, 500, 500);
+             image(asset.textWolk1, 700, 500, 500, 500);
              
             }
            }
+           for (int i = 15; i < 20; ++i) 
+    { 
+      if (grid.isRowFull(i)) 
+      {
+             particleSystem.updateWinEffect(i);
+        particleSystem.renderWinEffect(i);
+      }
+    }
             break;
         
         case 2:
