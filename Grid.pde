@@ -136,7 +136,6 @@ class Grid
       riverAnimation.draw(boxY, gridHeight, asset.grey);
 
       startTimer++;
-      //   println(startTimer);
 
       if (startTimer == 10 || startTimer == 20 || startTimer == 30 || startTimer == 200 || startTimer == 210 || startTimer == 220 || startTimer == 400 || startTimer == 410 || startTimer == 420) {
 

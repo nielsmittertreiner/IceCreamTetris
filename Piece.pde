@@ -433,7 +433,6 @@ class Piece
 
     this.x = int(0); // initialize piece x
     this.y = int(90 + (int(random(1, 7)) * BLOCK_SIZE)) ; // initialize piece y 
-    println("piece.type: " + this.type);
   }
 
   int[] generatePieceOrder()
@@ -446,7 +445,6 @@ class Piece
     }
 
     shuffleArray(arr);
-    printPieceOrder(arr);
     this.currentOrderIndex = 0;
 
     return arr;
@@ -463,14 +461,6 @@ class Piece
       arr[a] = b;
     }
     return arr;
-  }
-
-  void printPieceOrder(int[] arr)
-  {
-    for (int i = 0; i < arr.length; i++)
-    {
-      println("order[",+i,"],", + arr[i]);
-    }
   }
 
   void move(Grid grid, int x, int y) {

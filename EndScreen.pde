@@ -49,7 +49,6 @@ class EndScreen
           row = LETTERCOUNT - 1;
         }
       } else if (gameManager.usedKey == 'L') {
-        println(row);
         row--;
         if (row <=  0) {
           row = 0;

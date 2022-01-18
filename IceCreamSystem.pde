@@ -86,7 +86,6 @@ class IceCreamSystem
     case 19:
       return  4;	  
     default :
-      //println("can't calculate icecream");
       return - 1;
     }
   }
@@ -154,12 +153,6 @@ class IceCreamSystem
 
       }
       // if the most right animal and the animal left to it, takes the icecream at the exact same time, score plus number.
-      // else if(animalsystem.checkoverlapp(i) && animalsystem.checkoverlapp(i-1))
-      // {
-      //   gameManager.addScore(500);
-      //   println("true");
-        
-      // }       
 
       // if the icecream is respawned, it is placed above the screen so then move to the right location.
       if (respawning(i)) 
