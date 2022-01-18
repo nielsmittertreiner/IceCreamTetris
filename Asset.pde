@@ -33,7 +33,8 @@ class Asset
   PImage textWolk;
   PImage textWolk1;
   PImage textWolk2;
-
+  PImage water;
+  PImage water2;
 
   void loadAssets() 
   {
@@ -43,12 +44,14 @@ class Asset
     thunder = new SoundFile(IceCreamTetris.this, "soundeffects/thunder.mp3"); 
     ground = loadImage("img/ground.jpg");
     cloud = loadImage("img/cloud.png");
-     p500 =loadImage("img/500p.png");
-      p1000= loadImage("img/1000p.png");
-       r2 = loadImage("img/2r.png");
-        textWolk = loadImage("img/textWolk.png");
-        textWolk1 = loadImage("img/textWolk1.png");
-        textWolk2 = loadImage("img/textWolk2.png");
+    p500 =loadImage("img/500p.png");
+    p1000= loadImage("img/1000p.png");
+    r2 = loadImage("img/2r.png");
+    textWolk = loadImage("img/textWolk.png");
+    textWolk1 = loadImage("img/textWolk1.png");
+    textWolk2 = loadImage("img/textWolk2.png");
+    water = loadImage("img/water.jpg");   
+    water2 = loadImage("img/water2.jpg");
 
   }
 
