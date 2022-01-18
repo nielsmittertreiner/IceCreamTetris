@@ -64,7 +64,7 @@ class IceCream {
     }
 
     noStroke();
-    fill(0);
+    fill(asset.black);
     rect(xIceCream, yTimer, timeWidth, m / timePace);
   }
 }
