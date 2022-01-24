@@ -147,7 +147,7 @@ if(gameManager.stormTimer == gameManager.stormTimerCoolDown - 1 ||gameManager.st
     //achievements
     achievement.keyInput(); 
     break;
-    case 8: 
+  case 8: 
     //gamestats
     gamestats.keyInput(); 
     break;
