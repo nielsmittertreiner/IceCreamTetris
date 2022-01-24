@@ -22,7 +22,7 @@ ParticleSystem(int rainCount,int winEffectCount)
     }
     
     confetti = new ArrayList<WinEffect>();
-    this.rainCount = rainCount;
+    this.winEffectCount = winEffectCount;
     for (int i = 0; i < winEffectCount; ++i) {
          confetti.add(new WinEffect(new PVector(1000,WINEFFECT_HIGHT)));
     
